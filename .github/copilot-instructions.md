@@ -112,7 +112,7 @@ docs/
 │   └── <CODE>-<slug>/   # 그 노트의 이미지·다이어그램
 ├── themes/              # 여러 노트를 묶는 주제 페이지 (작성된 노트만 근거)
 └── contributing.md
-tools/                   # fetch_catalog · fetch_sources · new_session · build_pages · validate · fetch_issues(배포 시 이슈→사이트)
+tools/                   # fetch_catalog · fetch_sources · new_session · build_pages · validate · fetch_issues(배포 시 이슈→사이트) · project_board(이슈·PR 상태→프로젝트 보드)
 ```
 
 - 파일명: `<CODE>-<slug>.md`. CODE 는 카탈로그 `sessionCode` 그대로(`KEY01`, `BRK220`, `THRSP312`, `LTG401` …), slug 는 소문자·하이픈.

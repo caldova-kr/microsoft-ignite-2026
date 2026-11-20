@@ -112,3 +112,27 @@ python tools/fetch_image.py BRK220 --page <공식 블로그 포스트 URL> --ima
 | ⏸️ / ➖ | 보류 / 제외 | `catalog/triage.yml` (`hold` / `skip`) |
 
 사이트 카탈로그의 이슈·점유 상태는 이슈가 바뀔 때마다 사이트가 다시 배포되며 반영됩니다(1~2분).
+
+### 프로젝트 보드 — 자동 추적
+
+모든 이슈는 [프로젝트 보드](https://github.com/orgs/caldova-kr/projects/1)에 올라가고, **Status 는 이슈·PR 상태에서 자동으로 정해집니다.** 카드를 손으로 옮기지 마세요 — 다음 동기화 때 되돌아갑니다.
+
+| Status | 이렇게 하면 이동 |
+|---|---|
+| **Todo** | 이슈 등록 (assignee 없음, 연결된 PR 없음) |
+| **In Progress** | assignee 지정(`/claim` 포함) 또는 `Closes #N` 을 단 **Draft PR** |
+| **In Review** | 그 PR 을 **Ready for review** 로 전환 (또는 처음부터 일반 PR) |
+| **Done** | PR 머지로 이슈가 닫힘 (이슈를 직접 닫아도 Done) |
+
+- PR 과 이슈의 연결은 **PR 본문의 `Closes #N`** (또는 이슈의 Development 사이드바)로만 인식합니다. 제목의 `#N` 은 연결이 아닙니다.
+- **릴리스 범위 = Milestone.** 새 이슈는 마감일이 가장 가까운 열린 마일스톤(현재 [`1.0`](https://github.com/caldova-kr/microsoft-ignite-2026/milestone/1))에 자동으로 들어갑니다. 범위 밖이면 마일스톤을 바꾸거나 비웁니다.
+- 동작: [`.github/workflows/project-board.yml`](https://github.com/caldova-kr/microsoft-ignite-2026/blob/main/.github/workflows/project-board.yml) 이 이슈·PR 이벤트마다, 그리고 매시간 전체를 재조정합니다. 지금 바로 맞추려면 Actions → Project board → Run workflow.
+
+<details markdown>
+<summary>메인테이너 — 설정·다른 저장소 재사용</summary>
+
+- 워크플로는 시크릿 **`PROJECT_TOKEN`** 이 필요합니다(기본 `GITHUB_TOKEN` 은 Projects 에 쓸 수 없음). Fine-grained PAT: Resource owner `caldova-kr`, 이 저장소 · Repository 권한 Issues **Read and write**, Pull requests **Read** · Organization 권한 Projects **Read and write**. 또는 같은 권한의 GitHub App 토큰.
+- 로컬 재조정: `GH_TOKEN=$(gh auth token) python tools/project_board.py sync --all`
+- 다른 저장소: `tools/project_board.py` 와 `.github/workflows/project-board.yml` 을 복사 → `GH_TOKEN=$(gh auth token) python tools/project_board.py setup --repo OWNER/REPO --title "<보드 이름>" [--public]` → 생성된 `.github/project-board.json` 커밋 → `PROJECT_TOKEN` 시크릿 등록 → `sync --all`. 새 이슈 자동 마일스톤이 필요 없으면 `setup --no-auto-milestone`.
+
+</details>

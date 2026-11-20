@@ -153,3 +153,23 @@ def test_image_rules(tmp_path):
     for expected, body in cases.items():
         errors, _ = check_note(note(tmp_path, extra_body=body), CATALOG)
         assert len(errors) == 1 and expected in errors[0], (expected, errors)
+
+
+def test_project_board_status_follows_issue_and_pr_state():
+    from project_board import DONE, IN_PROGRESS, IN_REVIEW, TODO, derive_status
+
+    assert derive_status(False, False, []) == TODO
+    assert derive_status(False, True, []) == IN_PROGRESS
+    assert derive_status(False, False, [True]) == IN_PROGRESS      # draft PR = still being written
+    assert derive_status(False, True, [True, False]) == IN_REVIEW  # any ready PR wins
+    assert derive_status(True, True, [False]) == DONE              # closed (e.g. PR merged) beats open PRs
+
+
+def test_new_issues_go_to_the_milestone_due_soonest():
+    from project_board import nearest_milestone
+
+    ms = [{"number": 3, "dueOn": None}, {"number": 2, "dueOn": "2026-12-04T00:00:00Z"},
+          {"number": 1, "dueOn": "2026-11-27T00:00:00Z"}]
+    assert nearest_milestone(ms)["number"] == 1
+    assert nearest_milestone([{"number": 5, "dueOn": None}, {"number": 4, "dueOn": None}])["number"] == 4
+    assert nearest_milestone([]) is None
