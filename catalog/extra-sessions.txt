@@ -1,0 +1,7 @@
+# 공식 세션 페이지·개별 세션 API(/api/session/en-US-<CODE>)에는 있지만
+# 전체 목록 API(/api/session/all/en-US)에서 빠져 있는 세션 코드.
+# tools/fetch_catalog.py 가 개별 API로 받아 카탈로그에 보충합니다. 전체 목록에 다시 나타나면 자동으로 무시됩니다.
+#
+# 찾는 법: python tools/fetch_catalog.py --probe   (코드 번호 범위의 빈 번호를 개별 API로 조회)
+
+BRK338   # 2026-11-20 회차 재편성(새 sessionInstanceId) 후 전체 목록에서 누락

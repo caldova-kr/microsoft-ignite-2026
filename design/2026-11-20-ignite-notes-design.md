@@ -16,6 +16,7 @@
 | 세션 타입 | Breakout 437 · Theater 284 · Lightning Talk 232 · Table Talk 212 · Pre-recorded 104 · Lab 49 · Digital Lab 26 · Broadcast Stage 15 · Innovation Session 4 · Keynote 2 |
 | 토픽 | Cloud & AI · Agent Platform · Security · Copilot · Data · Agentic Business Applications · Windows · Frontier Transformation · Microsoft IQ · MAICPP · Other |
 | 태그 | 약 180종 (카탈로그 원문 유지) |
+| 목록 API 누락 | `/session/all` 이 회차 재편성된 BRK338 을 누락(개별 API `/session/en-US-BRK338` 과 세션 페이지에는 있음). 코드 범위 795개 조회 결과 누락은 이 1건 → `catalog/extra-sessions.txt` 로 보충, `fetch_catalog.py --probe` 로 재점검 |
 | 세션 페이지 | `https://ignite.microsoft.com/en-US/sessions/<CODE>` — 200, 제목 일치 확인 |
 | 미디어 | 영상 668 · 트랜스크립트(.docx) 99 · 슬라이드(.pptx) 25 — 행사 직후라 증가 중 → 매일 재수집 |
 | `aiDescription` | Microsoft가 생성한 긴 요약(타임스탬프 포함). 탐색용으로만 로컬 보관, 근거 금지 |

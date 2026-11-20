@@ -10,6 +10,7 @@
 | `sessions.json` | 생성 (`tools/fetch_catalog.py`) | 정규화된 전체 세션 (세션 코드당 1건) |
 | `sessions.csv` | 생성 (`tools/fetch_catalog.py`) | 스프레드시트용 |
 | `meta.json` | 생성 (`tools/fetch_catalog.py`) | 수집 시각·건수·해시 |
+| [`extra-sessions.txt`](extra-sessions.txt) | **사람이 편집** | 전체 목록 API 에서 빠졌지만 공식 세션 페이지에 있는 세션 코드 — 개별 API 로 보충 |
 | [`triage.yml`](triage.yml) | **사람이 편집** | 일괄 보류·제외 표시 (`hold` / `skip`). 공유 제안·점유는 [이슈로](../CONTRIBUTING.md) |
 
 ## 갱신
@@ -18,6 +19,9 @@
 python tools/fetch_catalog.py   # 카탈로그 재수집 (변경 없으면 아무것도 쓰지 않음)
 python tools/build_pages.py     # SESSIONS.md · 사이트 데이터 · 인덱스 재생성
 ```
+
+전체 목록 API 는 회차가 재편성된 세션을 빠뜨릴 수 있습니다(예: BRK338, 2026-11-20). 의심되면
+`python tools/fetch_catalog.py --probe` 로 코드 번호 범위의 빈 번호를 개별 API 로 조회하고, 찾은 코드를 `extra-sessions.txt` 에 추가합니다.
 
 `.github/workflows/refresh-catalog.yml` 이 매일 자동 갱신합니다 — 행사 후 온디맨드 영상·트랜스크립트·슬라이드 링크가 계속 추가되기 때문입니다.
 

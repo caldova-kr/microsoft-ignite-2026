@@ -7609,6 +7609,68 @@
   "online": true
  },
  {
+  "code": "BRK338",
+  "title": "Secure your data as you scale your agents with Microsoft Purview",
+  "type": "Breakout",
+  "topics": [
+   "Security"
+  ],
+  "tags": [
+   "AI",
+   "Agents",
+   "Azure Container Apps",
+   "Microsoft Purview",
+   "Secure AI",
+   "Microsoft Agent 365",
+   "Secure Agentic Insiders"
+  ],
+  "level": 300,
+  "audiences": [
+   "Business Decision Maker",
+   "Technical Decision Maker",
+   "Technical Practitioner",
+   "Partner Business"
+  ],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Safeena Begum Lepakshi",
+   "Nathalia Borges"
+  ],
+  "duration_min": 45,
+  "recorded": [
+   "Will be recorded"
+  ],
+  "url": "https://ignite.microsoft.com/en-US/sessions/BRK338",
+  "video": "",
+  "transcript": "",
+  "slides": "",
+  "resources": [
+   {
+    "label": "Agent 365 webpage",
+    "link": "https://www.microsoft.com/en-us/microsoft-agent-365"
+   },
+   {
+    "label": "Secure AI at Ignite 2026 blog",
+    "link": "https://aka.ms/SecureAIatIgnite2026"
+   }
+  ],
+  "description": "AI agents can access data and automate work at unprecedented scale. Learn how Microsoft Purview helps discover agent activity, protect sensitive information, detect risk and meet compliance requirements for a growing landscape of AI agents.",
+  "has_ai_summary": false,
+  "catalog_id": "1787856624484001E5xH",
+  "slots": [
+   {
+    "start": "2026-11-21T06:15:00Z",
+    "end": "2026-11-21T07:00:00Z",
+    "location": "Moscone West | Level 2, Room 2002"
+   }
+  ],
+  "online": true
+ },
+ {
   "code": "BRK339",
   "title": "Local agents are here. Can you find and secure them?",
   "type": "Breakout",

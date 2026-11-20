@@ -5,7 +5,7 @@
 ## Repository purpose
 
 - Microsoft Ignite 2026 (2026-11-17 ~ 20, San Francisco) 세션을 **고객·아키텍트 관점**에서 한국어로 정리하는 비공식 노트.
-- `catalog/` 에 공식 카탈로그 전체 세션(1,365개)을 스냅샷으로 두고 — **정리 대상은 `online: true` 세션(온라인 송출 · 온디맨드 영상 · 녹화 예정, 872개)뿐**이다. 현장 전용·녹화 없는 세션은 원문이 없어 다루지 않는다 — 공유할 세션은 **이슈**로 제안·점유해서 노트(`docs/sessions/`)로 만든다.
+- `catalog/` 에 공식 카탈로그 전체 세션(1,366개)을 스냅샷으로 두고 — **정리 대상은 `online: true` 세션(온라인 송출 · 온디맨드 영상 · 녹화 예정, 873개)뿐**이다. 현장 전용·녹화 없는 세션은 원문이 없어 다루지 않는다 — 공유할 세션은 **이슈**로 제안·점유해서 노트(`docs/sessions/`)로 만든다.
 - MkDocs Material 사이트 → GitHub Pages (`https://caldova-kr.github.io/microsoft-ignite-2026/`).
 - 자매 저장소 `caldova-kr/microsoft-build-2026` 과 구조는 같지만 **내용은 절대 섞지 않는다.**
 

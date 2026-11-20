@@ -29,7 +29,7 @@ hide:
 
 <!-- gen:stats -->
 <div class="dg-stats" markdown="0">
-<div class="dg-stat"><strong>872<small>/1,365</small></strong><span>online sessions</span></div>
+<div class="dg-stat"><strong>873<small>/1,366</small></strong><span>online sessions</span></div>
 <div class="dg-stat"><strong>10</strong><span>session types</span></div>
 <div class="dg-stat"><strong>668</strong><span>on-demand videos</span></div>
 <div class="dg-stat"><strong>100</strong><span>transcripts</span></div>
