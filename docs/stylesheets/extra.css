@@ -792,3 +792,28 @@ body {
 .md-typeset .dg-cat-propose {
   color: var(--dg-pick);
 }
+
+/* note figures: video captures & official blog images */
+.md-typeset figure {
+  margin: 1.2rem auto 1.6rem;
+}
+
+.md-typeset figure img {
+  border: 1px solid var(--dg-border);
+  border-radius: 0.4rem;
+  background: var(--dg-surface);
+}
+
+.md-typeset figure > br {
+  display: none;
+}
+
+.md-typeset figcaption {
+  max-width: none;
+  margin-top: 0.5rem;
+  color: var(--dg-muted);
+  font-family: var(--md-code-font-family);
+  font-size: 0.6rem;
+  font-style: normal;
+  letter-spacing: 0;
+}

@@ -12,7 +12,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from catalog_lib import (  # noqa: E402
-    NOTE_STATUSES, REQUIRED_SECTIONS, ROOT, SECTION_ORDER, TRIAGE_STATUSES, catalog_index, load_triage,
+    NOTE_STATUSES, is_official_url, REQUIRED_SECTIONS, ROOT, SECTION_ORDER, TRIAGE_STATUSES, catalog_index, load_triage,
     note_code, note_files, parse_note,
 )
 
@@ -28,6 +28,48 @@ MARKETING = re.compile(r"\b(revolutionary|game[- ]changing|seamless(ly)?|cutting
 SUPPLEMENT = re.compile(r'^!!! \w+ "세션 외 보충', re.M)
 SESSION_LINK = re.compile(r"https://ignite\.microsoft\.com/en-US/sessions/([A-Z0-9-]+)")
 SLUG = re.compile(r"[a-z0-9]+(-[a-z0-9]+)*")
+IMAGE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)[^)]*\)")
+FIGURE = re.compile(r"<figure\b[^>]*>(.*?)</figure>", re.S)
+CAPTION = re.compile(r"<figcaption>(.*?)</figcaption>", re.S)
+T1_CAPTION = re.compile(r"(영상|video)\s*\d{1,2}:\d{2}|슬라이드\s*#?\d+|slide\s*#?\d+", re.I)
+LINK = re.compile(r"\]\((https://[^)\s]+)\)|<(https://[^>\s]+)>")
+MAX_IMAGE_KB = 1024
+
+
+def check_images(path: Path, body: str, status: str) -> tuple[list[str], list[str]]:
+    """Images must be local files in the note folder, inside a <figure> whose caption names the source."""
+    errors, warnings = [], []
+    figures = FIGURE.findall(body)
+    outside = FIGURE.sub("", body)
+    for _alt, src in IMAGE.findall(outside):
+        errors.append(f"image outside <figure> (needs a source caption): {src}")
+    count = 0
+    for fig in figures:
+        m = CAPTION.search(fig)
+        caption = m.group(1) if m else ""
+        for alt, src in IMAGE.findall(fig):
+            count += 1
+            if src.startswith(("http://", "https://")):
+                errors.append(f"hotlinked image — download it into {path.stem}/ (tools/fetch_image.py): {src}")
+                continue
+            if not src.startswith(f"{path.stem}/"):
+                errors.append(f"image must live in the note folder {path.stem}/: {src}")
+            file = path.parent / src
+            if not file.exists():
+                errors.append(f"image file not found: {src}")
+            elif file.stat().st_size > MAX_IMAGE_KB * 1024:
+                warnings.append(f"image larger than {MAX_IMAGE_KB} KB — re-capture with --width or crop: {src}")
+            if not alt.strip() or alt.strip().startswith("<"):
+                errors.append(f"image needs alt text describing what it shows: {src}")
+            if not caption.strip():
+                errors.append(f"figure without <figcaption> source: {src}")
+            elif not T1_CAPTION.search(caption):
+                links = [a or b for a, b in LINK.findall(caption)]
+                if not any(is_official_url(u) for u in links):
+                    errors.append(f"caption must cite '영상 MM:SS' / '슬라이드 #N' or link an official Microsoft blog post: {src}")
+    if status in ("review", "done") and count == 0:
+        warnings.append("no images — capture key frames (tools/capture_frame.py) or official blog images")
+    return errors, warnings
 
 
 def strip_supplements(body: str) -> str:
@@ -85,6 +127,10 @@ def check_note(path: Path, catalog: dict) -> tuple[list[str], list[str]]:
         warnings.append("source_basis has 'slides' but the catalog publishes no slide deck for this session")
     if "video" in basis and not s["video"]:
         warnings.append("source_basis has 'video' but the catalog publishes no on-demand video for this session")
+
+    img_errors, img_warnings = check_images(path, body, status)
+    errors += img_errors
+    warnings += img_warnings
 
     if not re.search(rf"^# \[{re.escape(code)}\] ", body, re.M):
         errors.append(f"H1 must start with '# [{code}] '")

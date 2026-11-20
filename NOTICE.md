@@ -21,12 +21,19 @@ This repository **quotes and references** material from Microsoft Ignite
 metadata (`catalog/`), and short quotations from session videos,
 transcripts, and slides.
 
+Notes also include **still frames captured from the official session
+videos** and **images from official Microsoft announcement posts**
+(Book of News, Microsoft/Azure/Tech Community blogs, GitHub Blog). The
+contributors are Microsoft employees; each image carries a caption naming
+its source (video timestamp or post link).
+
 The copyright of such material belongs to **Microsoft Corporation** and
 the respective presenters. It is **not** covered by the CC BY 4.0 license
 above. Quotations are kept short and transformative and are reproduced for
 commentary, criticism, research, and education. Session videos,
 transcripts, and slide decks themselves are **not** redistributed here;
-notes link to the official sources instead.
+notes link to the official sources instead. Images are not covered by
+the CC BY 4.0 license of this repository.
 
 ## Trademarks
 

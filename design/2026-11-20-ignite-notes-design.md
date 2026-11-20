@@ -41,6 +41,7 @@
 5. **원본 미디어 비커밋**: `.cache/` 로만 받고 노트는 공식 URL 을 링크.
 6. **진행 상태**: 미검토 → 📌 공유 제안(이슈) → 🙋 점유(이슈 assignee) → ✍️ draft → 🔍 review → ✅ done (노트). ⏸️ hold / ➖ skip 은 `triage.yml`.
 7. **협업 (2026-11-20 추가)**: 공유할 세션은 이슈(`[CODE] 제목`, label `session`)로 제안, 정리자는 assignee 로 점유(`/claim` 댓글 워크플로 지원), PR `Closes #N`. 이슈 상태는 배포 시 `tools/fetch_issues.py` → `docs/catalog/issues.json`(비커밋)으로 사이트 카탈로그에 표시되며, 이슈 이벤트마다 재배포.
+10. **이미지 우선**: 기여자 전원이 Microsoft 직원이므로 세션 영상 프레임 캡처(`tools/capture_frame.py`, HIGHMP4 를 HTTP range 로 seek — 전체 다운로드 없음)와 Ignite 2026 공식 블로그 이미지(`tools/fetch_image.py`, 공식 도메인 허용 목록)를 출처 캡션과 함께 커밋. `<figure>` + `<figcaption>` 형식과 출처를 `validate.py` 가 강제.
 9. **오프라인 전용 처리**: 데이터에서 지우지 않고 `online` 플래그로 표시. 사이트 카탈로그 기본 필터 = 온라인으로 볼 수 있음, `SESSIONS.md` 는 오프라인 전용을 접힌 목록으로. `new_session.py` 는 오프라인 전용 세션 노트를 거부.
 8. **Actions 런타임**: Node 24 버전 고정 (checkout v7 · setup-python v7 · upload-pages-artifact v5 · deploy-pages v5).
 

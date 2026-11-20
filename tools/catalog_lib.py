@@ -41,6 +41,22 @@ SECTION_ORDER = [
 ]
 REQUIRED_SECTIONS = ["TL;DR", "Why it matters", "Resources"]
 
+# Official Microsoft announcement sources whose images may be reused (contributors are Microsoft employees).
+OFFICIAL_DOMAINS = (
+    "news.microsoft.com", "blogs.microsoft.com", "azure.microsoft.com", "techcommunity.microsoft.com",
+    "devblogs.microsoft.com", "github.blog", "www.microsoft.com",
+)
+
+
+def is_official_url(url: str) -> bool:
+    from urllib.parse import urlparse
+
+    u = urlparse(url)
+    if u.scheme != "https" or u.hostname not in OFFICIAL_DOMAINS:
+        return False
+    # www.microsoft.com hosts many things; only its blogs count (e.g. /en-us/security/blog/, /en-us/microsoft-365/blog/).
+    return u.hostname != "www.microsoft.com" or "/blog" in u.path
+
 _TAG_RE = re.compile(r"<[^>]+>")
 _WS_RE = re.compile(r"\s+")
 

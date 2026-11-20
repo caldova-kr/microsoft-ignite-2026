@@ -90,7 +90,7 @@ def main() -> None:
     body = TEMPLATE.read_text(encoding="utf-8").split("\n---\n", 1)[1]
     body = body.replace("# [BRK000] <Session Title>", f"# [{s['code']}] {s['title']}\n\n{factsheet(s)}", 1)
     body = re.sub(r"- 🎥 Session: \S+", lambda _: resources(s), body, count=1)
-    body = body.replace("BRK000-slug/", f"{stem}/")
+    body = body.replace("BRK000-slug/", f"{stem}/").replace("BRK000", s["code"])
 
     path = NOTES_DIR / f"{stem}.md"
     path.write_text(frontmatter(s) + body, encoding="utf-8")

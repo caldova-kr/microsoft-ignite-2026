@@ -127,3 +127,29 @@ def test_issue_titles_map_to_catalog_codes():
     )
     assert data == {"BRK1": {"n": 1, "u": "u1", "a": ["me"]}}
     assert len(problems) == 3
+
+
+def figure(src, caption):
+    cap = f"  <figcaption>{caption}</figcaption>\n" if caption is not None else ""
+    return f'\n<figure markdown="span">\n  ![아키텍처 슬라이드]({src})\n{cap}</figure>\n'
+
+
+def test_image_rules(tmp_path):
+    (tmp_path / "BRK1-real-title").mkdir()
+    (tmp_path / "BRK1-real-title" / "arch.jpg").write_bytes(b"x")
+    ok_video = figure("BRK1-real-title/arch.jpg", "▶ 영상 18:40 — 구조")
+    ok_blog = figure("BRK1-real-title/arch.jpg", "📰 공식 블로그 · [Post](https://azure.microsoft.com/en-us/blog/post/) (2026-11-18)")
+    for body in (ok_video, ok_blog):
+        errors, _ = check_note(note(tmp_path, extra_body=body), CATALOG)
+        assert errors == [], errors
+
+    cases = {
+        "hotlinked": figure("https://example.com/a.png", "▶ 영상 01:00"),
+        "without <figcaption>": figure("BRK1-real-title/arch.jpg", None),
+        "official Microsoft blog": figure("BRK1-real-title/arch.jpg", "[Post](https://medium.com/x)"),
+        "outside <figure>": "\n![아키텍처](BRK1-real-title/arch.jpg)\n",
+        "not found": figure("BRK1-real-title/missing.jpg", "▶ 영상 01:00"),
+    }
+    for expected, body in cases.items():
+        errors, _ = check_note(note(tmp_path, extra_body=body), CATALOG)
+        assert len(errors) == 1 and expected in errors[0], (expected, errors)
