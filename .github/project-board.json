@@ -1,0 +1,15 @@
+{
+  "project": {
+    "owner": "caldova-kr",
+    "number": 1,
+    "url": "https://github.com/orgs/caldova-kr/projects/1"
+  },
+  "status_field": "Status",
+  "statuses": {
+    "todo": "Todo",
+    "in_progress": "In Progress",
+    "in_review": "In Review",
+    "done": "Done"
+  },
+  "auto_milestone": true
+}

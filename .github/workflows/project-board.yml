@@ -1,0 +1,60 @@
+name: Project board
+
+# Keeps the project in .github/project-board.json in step with issue/PR state (tools/project_board.py).
+# Status is derived from GitHub state, so card drags are overwritten — change the issue/PR instead.
+# Needs secret PROJECT_TOKEN (Projects read/write + Issues read/write + Pull requests read);
+# the default GITHUB_TOKEN cannot write to Projects.
+on:
+  issues:
+    types: [opened, reopened, closed, assigned, unassigned, transferred]
+  # Base-branch code only — PR code is never checked out, so fork PRs are safe and get the secret.
+  pull_request_target:
+    types: [opened, reopened, closed, edited, ready_for_review, converted_to_draft]
+  schedule:
+    - cron: "17 * * * *"   # reconcile: Development-sidebar links and missed events don't emit triggers
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: Issue number (empty = reconcile everything)
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: project-board-${{ github.event.issue.number || github.event.pull_request.number || inputs.issue || 'all' }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          sparse-checkout: |
+            tools/project_board.py
+            .github/project-board.json
+          sparse-checkout-cone-mode: false
+      - name: Sync status
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          ACTION: ${{ github.event.action }}
+          ISSUE: ${{ github.event.issue.number || inputs.issue }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::warning::PROJECT_TOKEN secret is not set — project board not synced"
+            exit 0
+          fi
+          if [ -n "$PR" ]; then
+            python3 tools/project_board.py sync --pr "$PR"
+          elif [ -n "$ISSUE" ]; then
+            case "$ACTION" in
+              opened|transferred) python3 tools/project_board.py sync --issue "$ISSUE" --new ;;
+              *) python3 tools/project_board.py sync --issue "$ISSUE" ;;
+            esac
+          else
+            python3 tools/project_board.py sync --all
+          fi

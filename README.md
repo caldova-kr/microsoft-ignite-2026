@@ -22,6 +22,8 @@ Microsoft Ignite 2026(2026-11-17 ~ 20, San Francisco) 세션을 **세션 원문 
 2. **내가 정리할 세션 → assignee 를 나로** (UI · `gh issue edit N --add-assignee @me` · 댓글 `/claim`)
 3. **PR `Closes #N`** → 머지되면 사이트에 게시
 
+진행은 [프로젝트 보드](https://github.com/orgs/caldova-kr/projects/1)에서 자동으로 추적됩니다 — assignee 지정 → In Progress, PR 리뷰 요청 → In Review, 머지 → Done. 릴리스 범위는 Milestone([`1.0`](https://github.com/caldova-kr/microsoft-ignite-2026/milestone/1)).
+
 자세한 규칙: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## 원칙

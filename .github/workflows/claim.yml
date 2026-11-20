@@ -7,7 +7,7 @@ on:
 
 permissions:
   issues: write
-  actions: write   # assignee changes made with GITHUB_TOKEN don't trigger other workflows; redeploy explicitly
+  actions: write   # assignee changes made with GITHUB_TOKEN don't trigger other workflows; redeploy + resync board explicitly
 
 jobs:
   claim:
@@ -46,4 +46,5 @@ jobs:
           fi
           if [ "$changed" = 1 ]; then
             gh workflow run deploy-site.yml --ref "${{ github.event.repository.default_branch }}"
+            gh workflow run project-board.yml --ref "${{ github.event.repository.default_branch }}" -f issue="$ISSUE"
           fi
