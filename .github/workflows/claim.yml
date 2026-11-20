@@ -7,6 +7,7 @@ on:
 
 permissions:
   issues: write
+  actions: write   # assignee changes made with GITHUB_TOKEN don't trigger other workflows; redeploy explicitly
 
 jobs:
   claim:
@@ -26,10 +27,12 @@ jobs:
         run: |
           set -euo pipefail
           cmd=$(printf '%s' "$BODY" | head -n1 | awk '{print $1}')
+          changed=0
           current=$(gh issue view "$ISSUE" --json assignees -q '[.assignees[].login] | join(",")')
           if [ "$cmd" = "/claim" ]; then
             if [ -z "$current" ]; then
               gh issue edit "$ISSUE" --add-assignee "$ACTOR"
+              changed=1
               gh issue comment "$ISSUE" --body "@$ACTOR 님이 이 세션 정리를 점유했습니다. 진행을 멈추면 \`/unclaim\` 으로 해제해 주세요."
             elif [ "$current" != "$ACTOR" ]; then
               gh issue comment "$ISSUE" --body "@$ACTOR 이미 @$current 님이 점유 중입니다. 협업이 필요하면 이 이슈에서 조율해 주세요."
@@ -37,6 +40,10 @@ jobs:
           elif [ "$cmd" = "/unclaim" ]; then
             if [[ ",$current," == *",$ACTOR,"* ]]; then
               gh issue edit "$ISSUE" --remove-assignee "$ACTOR"
+              changed=1
               gh issue comment "$ISSUE" --body "@$ACTOR 님이 점유를 해제했습니다. 다른 분이 \`/claim\` 할 수 있습니다."
             fi
+          fi
+          if [ "$changed" = 1 ]; then
+            gh workflow run deploy-site.yml --ref "${{ github.event.repository.default_branch }}"
           fi
