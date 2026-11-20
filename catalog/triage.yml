@@ -1,0 +1,14 @@
+# 세션 트리아지 — 사람이 직접 관리하는 유일한 카탈로그 파일.
+#
+#   <SESSION_CODE>: { status: pick | hold | skip, owner: "<github-id>", note: "<왜 고르거나 뺐는지>" }
+#
+#   pick  정리 대상으로 선정 (노트를 만들면 상태는 노트 frontmatter 의 status 로 자동 대체됨)
+#   hold  영상/자료 공개 대기 등으로 보류
+#   skip  정리하지 않음 (중복·이벤트 안내성 세션 등)
+#
+# 여기에 없는 세션은 "미검토"로 표시됩니다. 수정 후 `python tools/build_pages.py` 실행.
+# 코드는 catalog/sessions.json 에 있어야 하며 CI(tools/validate.py)가 확인합니다.
+
+KEY01: { status: pick, note: "오프닝 키노트 — 이벤트 전체 발표 기준점" }
+KEY02: { status: pick, note: "Partner keynote" }
+BRK101: { status: skip, note: "행사 이용 안내 세션" }

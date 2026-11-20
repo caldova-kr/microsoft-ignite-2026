@@ -1,0 +1,38 @@
+name: Refresh session catalog
+
+# On-demand videos, transcripts and slides keep appearing in the catalog after the event.
+on:
+  schedule:
+    - cron: "17 21 * * *"   # daily, 06:17 KST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python tools/fetch_catalog.py
+      - run: python tools/build_pages.py
+      - name: Notes still match the catalog
+        run: python tools/validate.py
+      - name: Commit and redeploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet; then echo "no catalog changes"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A catalog docs mkdocs.yml
+          git commit -m "chore(catalog): refresh Ignite 2026 session catalog"
+          git push
+          # pushes made with GITHUB_TOKEN do not trigger other workflows
+          gh workflow run deploy-site.yml --ref main

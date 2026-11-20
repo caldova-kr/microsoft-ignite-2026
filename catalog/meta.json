@@ -1,0 +1,11 @@
+{
+  "event": "Microsoft Ignite 2026",
+  "source": "https://ignite.microsoft.com/api/session/all/en-US",
+  "fetched_at": "2026-11-20T07:02:26Z",
+  "raw_instances": 1527,
+  "sessions": 1365,
+  "with_video": 668,
+  "with_slides": 25,
+  "with_transcript": 99,
+  "sha256": "a9ce18ec678c18093d708681a7735d667c40cc5c99ecc0d1fc8385f4e4419f84"
+}
