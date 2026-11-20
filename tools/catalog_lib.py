@@ -22,7 +22,7 @@ API_URL = "https://ignite.microsoft.com/api/session/all/en-US"
 SESSION_URL = "https://ignite.microsoft.com/en-US/sessions/{code}"
 
 NOTE_STATUSES = ("draft", "review", "done")
-TRIAGE_STATUSES = ("pick", "hold", "skip")
+TRIAGE_STATUSES = ("hold", "skip")  # proposing/claiming a session is done with GitHub issues
 
 # Canonical section order of a session note (see .github/copilot-instructions.md).
 SECTION_ORDER = [
@@ -128,11 +128,24 @@ def normalize(raw_records: list[dict]) -> list[dict]:
                 if not rec[key] and r.get(src):
                     rec[key] = r[src]
             rec["has_ai_summary"] = rec["has_ai_summary"] or bool(r.get("aiDescription"))
+            for key, src in (("delivery", "deliveryTypes"), ("recorded", "viewingOptions")):
+                for v in _display_list(r.get(src)):
+                    if v not in rec[key]:
+                        rec[key].append(v)
         if slot and slot not in rec["slots"]:
             rec["slots"].append(slot)
     for rec in by_code.values():
         rec["slots"].sort(key=lambda s: s["start"])
     return sorted(by_code.values(), key=lambda x: x["code"])
+
+
+def is_watchable(s: dict) -> bool:
+    """Online-accessible: streamed online, already has on-demand video, or will be recorded.
+
+    In-person-only sessions that are not recorded cannot be summarized from source material,
+    so the site catalog hides them by default.
+    """
+    return "Online" in s["delivery"] or bool(s["video"]) or "Will be recorded" in s["recorded"]
 
 
 def load_catalog() -> list[dict]:

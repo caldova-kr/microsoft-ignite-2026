@@ -1,0 +1,42 @@
+name: Claim session issue
+
+# `/claim` assigns the commenter, `/unclaim` releases it — works for contributors without triage permission.
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+
+jobs:
+  claim:
+    if: >-
+      !github.event.issue.pull_request &&
+      contains(github.event.issue.labels.*.name, 'session') &&
+      (startsWith(github.event.comment.body, '/claim') || startsWith(github.event.comment.body, '/unclaim'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply claim
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          ISSUE: ${{ github.event.issue.number }}
+          ACTOR: ${{ github.event.comment.user.login }}
+          BODY: ${{ github.event.comment.body }}
+        run: |
+          set -euo pipefail
+          cmd=$(printf '%s' "$BODY" | head -n1 | awk '{print $1}')
+          current=$(gh issue view "$ISSUE" --json assignees -q '[.assignees[].login] | join(",")')
+          if [ "$cmd" = "/claim" ]; then
+            if [ -z "$current" ]; then
+              gh issue edit "$ISSUE" --add-assignee "$ACTOR"
+              gh issue comment "$ISSUE" --body "@$ACTOR 님이 이 세션 정리를 점유했습니다. 진행을 멈추면 \`/unclaim\` 으로 해제해 주세요."
+            elif [ "$current" != "$ACTOR" ]; then
+              gh issue comment "$ISSUE" --body "@$ACTOR 이미 @$current 님이 점유 중입니다. 협업이 필요하면 이 이슈에서 조율해 주세요."
+            fi
+          elif [ "$cmd" = "/unclaim" ]; then
+            if [[ ",$current," == *",$ACTOR,"* ]]; then
+              gh issue edit "$ISSUE" --remove-assignee "$ACTOR"
+              gh issue comment "$ISSUE" --body "@$ACTOR 님이 점유를 해제했습니다. 다른 분이 \`/claim\` 할 수 있습니다."
+            fi
+          fi

@@ -29,10 +29,10 @@ hide:
 
 <!-- gen:stats -->
 <div class="dg-stats" markdown="0">
-<div class="dg-stat"><strong>1,365</strong><span>sessions</span></div>
+<div class="dg-stat"><strong>872<small>/1,365</small></strong><span>online sessions</span></div>
 <div class="dg-stat"><strong>10</strong><span>session types</span></div>
 <div class="dg-stat"><strong>668</strong><span>on-demand videos</span></div>
-<div class="dg-stat"><strong>2</strong><span>picked</span></div>
+<div class="dg-stat"><strong>100</strong><span>transcripts</span></div>
 <div class="dg-stat"><strong>0<small>/0</small></strong><span>notes / done</span></div>
 </div>
 <!-- /gen:stats -->
@@ -59,7 +59,7 @@ hide:
 
 <div class="dg-pipeline" markdown="0">
 <div class="dg-step"><code>01</code><strong>Catalog</strong><span>공식 카탈로그 API → <code>catalog/sessions.json</code></span></div>
-<div class="dg-step"><code>02</code><strong>Triage</strong><span>세션별 정리 대상 선정 → <code>catalog/triage.yml</code></span></div>
+<div class="dg-step"><code>02</code><strong>Issue</strong><span>공유할 세션 이슈 등록 · assignee 로 점유</span></div>
 <div class="dg-step"><code>03</code><strong>Sources</strong><span>영상 · 트랜스크립트 · 슬라이드 확보</span></div>
 <div class="dg-step"><code>04</code><strong>Note</strong><span>근거 기반 노트 작성 · 검증 · 배포</span></div>
 </div>

@@ -1,0 +1,45 @@
+name: 세션 공유 제안
+description: 공유할 만한 Ignite 2026 세션을 제안합니다. 직접 정리하려면 등록 후 본인을 assignee로 지정하세요.
+title: "[CODE] 세션 제목"
+labels: ["session"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **한 세션 = 한 이슈.** 등록 전에 [Issues(label:session)](https://github.com/caldova-kr/microsoft-ignite-2026/issues?q=label%3Asession) 또는 [사이트 카탈로그](https://caldova-kr.github.io/microsoft-ignite-2026/catalog/)에서 이미 있는지 확인하세요.
+        제목은 `[세션코드] 카탈로그 제목` 그대로 — 예: `[BRK220] Build agents with ...`
+  - type: input
+    id: code
+    attributes:
+      label: 세션 코드
+      description: 카탈로그 sessionCode 그대로 (예 KEY01, BRK220, THRSP312)
+      placeholder: BRK220
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: 공유 포인트
+      description: 이 세션에서 공유할 만한 것. 세션에서 실제로 나온 내용 기준으로, 가능하면 위치(영상 MM:SS · 슬라이드 #N · 발화자)를 함께.
+      placeholder: |
+        - 18:40 — Foundry Agent Service 의 ... 데모
+        - 슬라이드 #12 — 아키텍처
+    validations:
+      required: true
+  - type: dropdown
+    id: media
+    attributes:
+      label: 확인 가능한 원문
+      description: 세션 페이지에서 확인한 자료 (복수 선택)
+      multiple: true
+      options:
+        - 영상 (on-demand)
+        - 트랜스크립트
+        - 슬라이드
+        - 아직 공개 안 됨
+  - type: checkboxes
+    id: claim
+    attributes:
+      label: 정리 담당
+      options:
+        - label: 내가 정리하겠습니다 — 등록 후 본인을 assignee로 지정하거나 `/claim` 댓글을 남깁니다.

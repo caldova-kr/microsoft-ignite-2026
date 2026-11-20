@@ -5,7 +5,7 @@
 ## Repository purpose
 
 - Microsoft Ignite 2026 (2026-11-17 ~ 20, San Francisco) 세션을 **고객·아키텍트 관점**에서 한국어로 정리하는 비공식 노트.
-- `catalog/` 에 공식 카탈로그 전체 세션(1,365개)을 스냅샷으로 두고, 정리할 세션을 골라(`triage.yml`) 노트(`docs/sessions/`)로 만든다.
+- `catalog/` 에 공식 카탈로그 전체 세션(1,365개)을 스냅샷으로 두고 — **정리 대상은 `online: true` 세션(온라인 송출 · 온디맨드 영상 · 녹화 예정, 872개)뿐**이다. 현장 전용·녹화 없는 세션은 원문이 없어 다루지 않는다 — 공유할 세션은 **이슈**로 제안·점유해서 노트(`docs/sessions/`)로 만든다.
 - MkDocs Material 사이트 → GitHub Pages (`https://caldova-kr.github.io/microsoft-ignite-2026/`).
 - 자매 저장소 `caldova-kr/microsoft-build-2026` 과 구조는 같지만 **내용은 절대 섞지 않는다.**
 
@@ -33,6 +33,14 @@
 
 ## 2. 세션 노트 작업 절차
 
+기여 흐름은 [`CONTRIBUTING.md`](../CONTRIBUTING.md) 가 기준이다:
+
+1. **공유할 만한 세션 → 이슈** (`[CODE] 카탈로그 제목`, label `session`, 한 세션 = 한 이슈). 이미 있으면 그 이슈에 댓글.
+2. **정리할 세션 → assignee 를 자신으로 지정해 점유**한 뒤에만 작업. assignee 가 다른 사람이면 작업하지 않는다.
+3. **PR 본문 `Closes #<이슈>`**, 노트 1개 = PR 1개.
+
+에이전트로 작업할 때도 같다: 이슈가 없으면 먼저 만들고, 점유되지 않은 이슈만 맡는다(코딩 에이전트는 이슈에 할당된 경우에만 작업).
+
 ```bash
 pip install -r requirements.txt
 python tools/fetch_sources.py BRK220          # .cache/sources/BRK220/ 에 catalog.md · transcript.txt · slides.pptx
@@ -44,12 +52,12 @@ mkdocs build --strict
 ```
 
 - 영상만 있고 트랜스크립트가 없으면 영상을 보며 타임스탬프(`MM:SS`)로 근거를 남긴다. 영상이 없으면(`video` 빈 값) `triage.yml` 에 `hold` 로 둔다.
-- 노트를 만든 뒤 `triage.yml` 항목은 그대로 둬도 된다 — 진행 상태는 노트의 `status` 가 우선한다.
+- `catalog/triage.yml` 은 일괄 `hold`/`skip` 표시용일 뿐이다. 제안·점유는 이슈로만 한다.
 
 ## 3. File layout
 
 ```
-catalog/                 # 공식 카탈로그 스냅샷 — sessions.json/csv/meta.json/SESSIONS.md 는 생성물, triage.yml 만 수동
+catalog/                 # 공식 카탈로그 스냅샷 — sessions.json/csv/meta.json/SESSIONS.md 는 생성물, triage.yml(hold/skip)만 수동
 docs/
 ├── index.md             # 홈 (<!-- gen:* --> 블록은 생성물)
 ├── catalog/index.md     # 세션 탐색기 (sessions.json 은 생성물)
@@ -60,7 +68,7 @@ docs/
 │   └── <CODE>-<slug>/   # 그 노트의 이미지·다이어그램
 ├── themes/              # 여러 노트를 묶는 주제 페이지 (작성된 노트만 근거)
 └── contributing.md
-tools/                   # fetch_catalog · fetch_sources · new_session · build_pages · validate
+tools/                   # fetch_catalog · fetch_sources · new_session · build_pages · validate · fetch_issues(배포 시 이슈→사이트)
 ```
 
 - 파일명: `<CODE>-<slug>.md`. CODE 는 카탈로그 `sessionCode` 그대로(`KEY01`, `BRK220`, `THRSP312`, `LTG401` …), slug 는 소문자·하이픈.
@@ -134,6 +142,8 @@ last_updated: YYYY-MM-DD
 
 ## 7. Validation (CI: `.github/workflows/deploy-site.yml`)
 
+워크플로 액션은 Node 24 런타임 버전을 쓴다 (`actions/checkout@v7`, `actions/setup-python@v7`, `actions/upload-pages-artifact@v5`, `actions/deploy-pages@v5`). Node 20 기반 버전으로 내리지 않는다.
+
 `tools/validate.py` 가 막는 것:
 
 - 파일명 코드가 카탈로그에 없음 / slug 형식 위반
@@ -152,3 +162,4 @@ last_updated: YYYY-MM-DD
 - 생성물 직접 편집, `mkdocs.yml` 의 theme/plugins/markdown_extensions 임의 변경, hooks·서드파티 플러그인 추가(→ Zensical 이전 호환성 유지).
 - 트랜스크립트·슬라이드·영상 원본 파일 커밋.
 - 영어 본문 전환, 마케팅 톤 재작성.
+- 다른 사람이 assignee 인 세션을 작성하거나, 이슈 없이 노트 PR 만들기.

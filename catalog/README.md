@@ -10,7 +10,7 @@
 | `sessions.json` | 생성 (`tools/fetch_catalog.py`) | 정규화된 전체 세션 (세션 코드당 1건) |
 | `sessions.csv` | 생성 (`tools/fetch_catalog.py`) | 스프레드시트용 |
 | `meta.json` | 생성 (`tools/fetch_catalog.py`) | 수집 시각·건수·해시 |
-| [`triage.yml`](triage.yml) | **사람이 편집** | 정리 대상 선정 (`pick` / `hold` / `skip`) |
+| [`triage.yml`](triage.yml) | **사람이 편집** | 일괄 보류·제외 표시 (`hold` / `skip`). 공유 제안·점유는 [이슈로](../CONTRIBUTING.md) |
 
 ## 갱신
 
@@ -29,6 +29,7 @@ python tools/build_pages.py     # SESSIONS.md · 사이트 데이터 · 인덱�
 | `title` | `title` | 원문 그대로 |
 | `type` | `sessionType` | Keynote · Breakout · Theater · Lightning Talk · Table Talk · Lab · Digital Lab · Pre-recorded · Broadcast Stage · Innovation Session |
 | `topics` | `topic[]` | Cloud & AI · Agent Platform · Security · Copilot · Data · Agentic Business Applications · Windows · Frontier Transformation · Microsoft IQ · MAICPP · Other |
+| `online` | — | `deliveryTypes` 에 Online 이 있거나, 온디맨드 영상이 있거나, `Will be recorded` 이면 `true` (반복 회차 합산). `false` = 현장 전용·녹화 없음 → 정리 대상 아님, 사이트에서 기본 숨김 |
 | `tags` | `tags[]` | 카탈로그 태그 원문 (약 180종) |
 | `level` | `sessionLevel` | 100 / 200 / 300 / 400 |
 | `audiences`, `industries`, `delivery`, `recorded` | `audienceTypes`, `industry`, `deliveryTypes`, `viewingOptions` | |

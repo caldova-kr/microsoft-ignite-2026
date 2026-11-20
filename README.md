@@ -9,12 +9,20 @@ Microsoft Ignite 2026(2026-11-17 ~ 20, San Francisco) 세션을 **세션 원문 
 
 | 위치 | 내용 |
 |---|---|
-| [`catalog/`](catalog/) | 공식 세션 카탈로그 스냅샷 — 1,365개 세션의 타입·토픽·태그·레벨·발표자·세션 페이지·영상/슬라이드/트랜스크립트 링크 + 트리아지 |
+| [`catalog/`](catalog/) | 공식 세션 카탈로그 스냅샷 — 1,365개 세션(온라인으로 볼 수 있는 872개가 정리 대상)의 타입·토픽·태그·레벨·발표자·세션 페이지·영상/슬라이드/트랜스크립트 링크 |
 | [`docs/sessions/`](docs/sessions/) | 세션 노트 (세션 1개 = 파일 1개) |
 | [`docs/themes/`](docs/themes/) | 여러 노트를 묶는 주제 페이지 |
 | [`tools/`](tools/) | 카탈로그 수집 · 원문 자료 수집 · 노트 스캐폴드 · 페이지 생성 · 검증 |
 | [`.github/copilot-instructions.md`](.github/copilot-instructions.md) | 작성 규약 (근거 등급 · 금지 출처 · 구조) — 사람과 에이전트 공통 기준 |
 | [`design/`](design/) | 데이터 소스·디자인 조사와 설계 결정 |
+
+## 기여 — 이슈로 제안, assignee 로 점유
+
+1. **공유할 만한 세션 → [이슈 등록](https://github.com/caldova-kr/microsoft-ignite-2026/issues/new?template=session.yml)** (`[CODE] 제목`, 한 세션 = 한 이슈)
+2. **내가 정리할 세션 → assignee 를 나로** (UI · `gh issue edit N --add-assignee @me` · 댓글 `/claim`)
+3. **PR `Closes #N`** → 머지되면 사이트에 게시
+
+자세한 규칙: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## 원칙
 
@@ -29,6 +37,7 @@ Microsoft Ignite 2026(2026-11-17 ~ 20, San Francisco) 세션을 **세션 원문 
 pip install -r requirements.txt
 python tools/fetch_catalog.py            # 카탈로그 재수집 (선택 — 매일 자동 갱신됨)
 python tools/fetch_sources.py KEY01      # 원문 자료 → .cache/sources/KEY01/
+gh issue edit <N> --add-assignee @me     # 이슈 점유 후에만 작성
 python tools/new_session.py KEY01        # docs/sessions/KEY01-<slug>.md 생성
 python tools/build_pages.py              # 생성물 갱신
 python tools/validate.py && mkdocs serve # 검증 후 미리보기 http://127.0.0.1:8000
@@ -41,7 +50,7 @@ python tools/validate.py && mkdocs serve # 검증 후 미리보기 http://127.0.
 | 단계 | 목표 | 완료 기준 |
 |---|---|---|
 | 0. 초안 | 카탈로그 스냅샷 · 탐색기 · 규약 · 검증 · 배포 | ✅ 이 커밋 |
-| 1. 트리아지 | `catalog/triage.yml` 에 토픽별 정리 대상 선정 | 토픽마다 `pick` 세션 확정, 영상 없는 세션은 `hold` |
+| 1. 세션 제안 | 공유할 세션을 이슈로 등록하고 담당자 점유 | 토픽마다 이슈 확보, 자료 없는 세션은 `triage.yml` `hold` |
 | 2. 키노트 | `KEY01`, `KEY02` 노트 | 트랜스크립트 근거로 `done` |
 | 3. 토픽별 노트 | Agent Platform · Cloud & AI · Security · Data · Copilot · Microsoft IQ 등 | 토픽마다 대표 세션 노트 `done` |
 | 4. 테마 · 리캡 | 노트를 가로지르는 `docs/themes/` 페이지 | 작성된 노트만 근거로 테마 페이지 `done` |

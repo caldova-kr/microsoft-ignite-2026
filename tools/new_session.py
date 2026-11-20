@@ -76,6 +76,8 @@ def main() -> None:
     s = catalog.get(args.code)
     if not s:
         raise SystemExit(f"{args.code} is not in catalog/sessions.json")
+    if not s.get("online", True):
+        raise SystemExit(f"{s['code']} is in-person only and not recorded — no source material to summarize")
     existing = [p for p in note_files() if note_code(p, catalog) == s["code"]]
     if existing:
         raise SystemExit(f"note already exists: {existing[0].relative_to(NOTES_DIR.parent.parent)}")

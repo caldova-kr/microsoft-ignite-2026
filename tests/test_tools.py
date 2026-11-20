@@ -27,6 +27,18 @@ def test_normalize_merges_repeats_and_keeps_media_from_any_instance():
     assert s["url"] == "https://ignite.microsoft.com/en-US/sessions/LAB1"
 
 
+def test_repeat_instances_union_delivery_for_online_check():
+    from catalog_lib import is_watchable
+
+    offline = {"deliveryTypes": [{"displayValue": "In-person"}], "viewingOptions": [{"displayValue": "Will not be recorded"}]}
+    out = normalize([
+        raw("TH1", "2026-11-18T10:00:00Z", **offline),
+        raw("TH1", "2026-11-19T10:00:00Z", deliveryTypes=[{"displayValue": "Online"}]),
+        raw("TT1", "2026-11-18T10:00:00Z", **offline),
+    ])
+    assert [is_watchable(s) for s in out] == [True, False]
+
+
 CATALOG = {
     "BRK1": {"code": "BRK1", "title": "Real title", "type": "Breakout", "topics": ["Data"], "tags": [],
              "level": 300, "speakers": ["A"], "url": "https://ignite.microsoft.com/en-US/sessions/BRK1",
@@ -101,3 +113,17 @@ def test_unknown_session_link_is_rejected(tmp_path):
     body = "\n- 관련: https://ignite.microsoft.com/en-US/sessions/BRK999\n"
     errors, _ = check_note(note(tmp_path, extra_body=body), CATALOG)
     assert len(errors) == 1 and "BRK999" in errors[0]
+
+
+def test_issue_titles_map_to_catalog_codes():
+    from fetch_issues import build
+
+    def issue(n, title, assignees=()):
+        return {"number": n, "title": title, "html_url": f"u{n}", "assignees": [{"login": a} for a in assignees]}
+
+    data, problems = build(
+        [issue(3, "[BRK1] dup"), issue(1, "[brk1] Real title", ["me"]), issue(2, "no code"), issue(4, "[NOPE] x")],
+        CATALOG,
+    )
+    assert data == {"BRK1": {"n": 1, "u": "u1", "a": ["me"]}}
+    assert len(problems) == 3

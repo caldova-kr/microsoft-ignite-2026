@@ -4,23 +4,27 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Issue proposals/claims are shown in the site catalog, so republish when they change.
+  issues:
+    types: [opened, edited, closed, reopened, assigned, unassigned, labeled, unlabeled, deleted]
   workflow_dispatch:
 
 permissions:
   contents: read
+  issues: read
   pages: write
   id-token: write
 
 concurrency:
-  group: pages-${{ github.ref }}
+  group: pages-${{ github.event_name == 'pull_request' && github.ref || 'main' }}
   cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
@@ -30,9 +34,14 @@ jobs:
       - name: Generated files are up to date
         run: python tools/build_pages.py --check
       - run: python -m pytest -q
+      - name: Session issues → site catalog (not committed)
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/fetch_issues.py --repo "${{ github.repository }}"
       - run: mkdocs build --strict
       - if: github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
@@ -45,4 +54,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

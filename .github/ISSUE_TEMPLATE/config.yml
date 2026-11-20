@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 세션 카탈로그 (전체 세션 · 이슈/점유 현황)
+    url: https://caldova-kr.github.io/microsoft-ignite-2026/catalog/
+    about: 등록 전에 세션이 이미 제안·점유됐는지 확인하세요.

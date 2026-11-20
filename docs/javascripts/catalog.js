@@ -4,7 +4,8 @@
 
   var PROGRESS = {
     done: ["✅", "완료"], review: ["🔍", "검토 중"], draft: ["✍️", "작성 중"],
-    pick: ["📌", "정리 대상"], hold: ["⏸️", "보류"], skip: ["➖", "제외"], todo: ["·", "미검토"]
+    claimed: ["🙋", "점유"], proposed: ["📌", "공유 제안"],
+    hold: ["⏸️", "보류"], skip: ["➖", "제외"], todo: ["·", "미검토"]
   };
   var PROGRESS_ORDER = Object.keys(PROGRESS);
   var PAGE = 150;
@@ -38,10 +39,11 @@
     var more = root.querySelector(".dg-cat-more");
     var siteRoot = (typeof __md_scope !== "undefined") ? __md_scope : new URL("../", location.href);
     var rows = [], shown = PAGE, sortKey = "c", sortDir = 1;
+    var repo = (root.dataset.repo || "").replace(/\/$/, "");
 
     function readState() {
       var p = new URLSearchParams(location.search);
-      ["text", "type", "topic", "level", "tag", "progress", "media"].forEach(function (k) {
+      ["text", "scope", "type", "topic", "level", "tag", "progress", "media"].forEach(function (k) {
         var input = form.elements[k === "text" ? "q" : k];
         if (input && p.has(k)) input.value = p.get(k);
       });
@@ -50,7 +52,7 @@
 
     function writeState() {
       var p = new URLSearchParams(location.search);
-      ["text", "type", "topic", "level", "tag", "progress", "media"].forEach(function (k) {
+      ["text", "scope", "type", "topic", "level", "tag", "progress", "media"].forEach(function (k) {
         var v = form.elements[k === "text" ? "q" : k].value;
         if (v) p.set(k, v); else p.delete(k);
       });
@@ -66,7 +68,7 @@
 
     function counts(getter) {
       var m = {};
-      rows.forEach(function (r) { [].concat(getter(r)).forEach(function (v) { if (v !== "" && v != null) m[v] = (m[v] || 0) + 1; }); });
+      rows.forEach(function (r) { if (!r.o) return; [].concat(getter(r)).forEach(function (v) { if (v !== "" && v != null) m[v] = (m[v] || 0) + 1; }); });
       return Object.keys(m).map(function (k) { return [k, m[k]]; });
     }
 
@@ -74,9 +76,12 @@
       var f = form.elements;
       var q = f.q.value.trim().toLowerCase();
       if (q) {
-        var hay = (r.c + " " + r.t + " " + r.s.join(" ") + " " + r.g.join(" ") + " " + r.p.join(" ") + " " + r.x).toLowerCase();
+        var hay = (r.c + " " + r.t + " " + r.s.join(" ") + " " + r.g.join(" ") + " " + r.p.join(" ") + " " + r.x +
+          (r.iss ? " @" + r.iss.a.join(" @") : "")).toLowerCase();
         if (!q.split(/\s+/).every(function (w) { return hay.indexOf(w) >= 0; })) return false;
       }
+      if (!f.scope.value && !r.o) return false;
+      if (f.scope.value === "offline" && r.o) return false;
       if (f.type.value && r.y !== f.type.value) return false;
       if (f.topic.value && r.p.indexOf(f.topic.value) < 0) return false;
       if (f.level.value && String(r.l) !== f.level.value) return false;
@@ -103,6 +108,12 @@
       if (r.v) links.appendChild(link(r.v, "▶ Video ↗"));
       if (r.k) links.appendChild(link(r.k, "🖼 Slides ↗"));
       if (r.n) links.appendChild(el("a", { href: new URL(r.n, siteRoot).href, text: "📝 노트 보기", class: "dg-cat-note" }));
+      if (r.iss) {
+        links.appendChild(link(r.iss.u, "이슈 #" + r.iss.n + (r.iss.a.length ? " · @" + r.iss.a.join(", @") : " · 담당자 없음") + " ↗"));
+      } else if (repo && !r.n) {
+        var q = new URLSearchParams({ template: "session.yml", title: "[" + r.c + "] " + r.t, code: r.c });
+        links.appendChild(link(repo + "/issues/new?" + q.toString(), "＋ 이슈로 공유 제안 ↗", "dg-cat-propose"));
+      }
       var meta = el("p", { class: "dg-cat-meta" }, [
         (r.s.length ? "Speakers: " + r.s.join(", ") : "Speakers: —") + (r.d ? "  ·  " + r.d + " min" : "") +
         (r.tr ? "  ·  transcript available" : "")
@@ -130,7 +141,10 @@
           el("td", { class: "dg-num", text: r.l || "" }),
           el("td", { class: "dg-nowrap dg-num", text: r.at ? dayFmt.format(new Date(r.at)) : "" }),
           el("td", {}, [media]),
-          el("td", { class: "dg-nowrap", title: pr[1], text: pr[0] + " " + pr[1] })
+          el("td", { class: "dg-nowrap", title: pr[1] }, [
+            r.iss ? link(r.iss.u, pr[0] + " " + pr[1]) : pr[0] + " " + pr[1],
+            r.iss && r.iss.a.length ? el("span", { class: "dg-cat-assignee", text: " @" + r.iss.a.join(", @") }) : null
+          ])
         ]);
         toggle.addEventListener("click", function () {
           var open = toggle.getAttribute("aria-expanded") === "true";
@@ -139,7 +153,9 @@
         });
         tbody.appendChild(tr);
       });
-      summary.textContent = list.length.toLocaleString() + " / " + rows.length.toLocaleString() + " sessions" +
+      var online = rows.filter(function (r) { return r.o; }).length;
+      summary.textContent = list.length.toLocaleString() + " sessions  ·  온라인 " + online.toLocaleString() +
+        " / 전체 " + rows.length.toLocaleString() +
         (list.length > shown ? " · " + shown + "개 표시" : "");
       more.hidden = list.length <= shown;
       root.querySelectorAll("th[data-sort]").forEach(function (th) {
@@ -149,7 +165,15 @@
 
     function update() { shown = PAGE; writeState(); render(); }
 
-    fetch(new URL(root.dataset.src, location.href)).then(function (r) { return r.json(); }).then(function (data) {
+    // issues.json is produced at deploy time from open `session` issues; absent locally — that's fine.
+    var issuesReq = fetch(new URL("issues.json", new URL(root.dataset.src, location.href)))
+      .then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; });
+    Promise.all([fetch(new URL(root.dataset.src, location.href)).then(function (r) { return r.json(); }), issuesReq]).then(function (res) {
+      var data = res[0], issues = res[1] || {};
+      data.forEach(function (r) {
+        r.iss = issues[r.c] || null;
+        if (r.iss && ["todo", "hold", "skip"].indexOf(r.pr) >= 0) r.pr = r.iss.a.length ? "claimed" : "proposed";
+      });
       rows = data;
       fillSelect("type", counts(function (r) { return r.y; }).sort(function (a, b) { return b[1] - a[1]; }));
       fillSelect("topic", counts(function (r) { return r.p; }).sort(function (a, b) { return b[1] - a[1]; }));

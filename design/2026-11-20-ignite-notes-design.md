@@ -12,6 +12,7 @@
 |---|---|
 | 카탈로그 API | `https://ignite.microsoft.com/api/session/all/en-US` — 사이트 JS 번들의 `apiV2` base(`https://ignite.microsoft.com/api`) + `/session/all/{locale}` 경로. 구 `api-v2.ignite.microsoft.com` 은 403 |
 | 규모 (2026-11-20) | 인스턴스 1,527 → 고유 `sessionCode` 1,365 (반복 회차 병합) |
+| 온라인 시청 가능 | 872 (Online 송출 530 + 현장 전용이지만 영상 있음 242 + 녹화 예정 100). 나머지 493 은 현장 전용·녹화 없음 — `deliveryTypes` 만으로 거르면 영상 있는 Theater 242 개를 잃으므로 `online` = Online ∨ 영상 ∨ 녹화 예정 으로 판정 |
 | 세션 타입 | Breakout 437 · Theater 284 · Lightning Talk 232 · Table Talk 212 · Pre-recorded 104 · Lab 49 · Digital Lab 26 · Broadcast Stage 15 · Innovation Session 4 · Keynote 2 |
 | 토픽 | Cloud & AI · Agent Platform · Security · Copilot · Data · Agentic Business Applications · Windows · Frontier Transformation · Microsoft IQ · MAICPP · Other |
 | 태그 | 약 180종 (카탈로그 원문 유지) |
@@ -37,7 +38,10 @@
 3. **근거 등급 T1~T4** 와 `source_basis` 필드. `review`/`done` 은 T1(영상·트랜스크립트·슬라이드) 필수.
 4. **세션 밖 정보 격리**: `!!! supplement "세션 외 보충 · <출처>"` 블록. 블록 밖의 다른 이벤트 참조는 CI 에러.
 5. **원본 미디어 비커밋**: `.cache/` 로만 받고 노트는 공식 URL 을 링크.
-6. **진행 상태 7단계**: 미검토 → 📌 pick / ⏸️ hold / ➖ skip (triage) → ✍️ draft → 🔍 review → ✅ done (노트).
+6. **진행 상태**: 미검토 → 📌 공유 제안(이슈) → 🙋 점유(이슈 assignee) → ✍️ draft → 🔍 review → ✅ done (노트). ⏸️ hold / ➖ skip 은 `triage.yml`.
+7. **협업 (2026-11-20 추가)**: 공유할 세션은 이슈(`[CODE] 제목`, label `session`)로 제안, 정리자는 assignee 로 점유(`/claim` 댓글 워크플로 지원), PR `Closes #N`. 이슈 상태는 배포 시 `tools/fetch_issues.py` → `docs/catalog/issues.json`(비커밋)으로 사이트 카탈로그에 표시되며, 이슈 이벤트마다 재배포.
+9. **오프라인 전용 처리**: 데이터에서 지우지 않고 `online` 플래그로 표시. 사이트 카탈로그 기본 필터 = 온라인으로 볼 수 있음, `SESSIONS.md` 는 오프라인 전용을 접힌 목록으로. `new_session.py` 는 오프라인 전용 세션 노트를 거부.
+8. **Actions 런타임**: Node 24 버전 고정 (checkout v7 · setup-python v7 · upload-pages-artifact v5 · deploy-pages v5).
 
 ## 범위 밖 (YAGNI)
 

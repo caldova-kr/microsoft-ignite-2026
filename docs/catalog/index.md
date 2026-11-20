@@ -14,18 +14,24 @@ hide:
 
 # 세션 카탈로그
 
-Microsoft Ignite 2026 공식 세션 카탈로그의 전체 세션입니다. 코드를 누르면 공식 세션 페이지로, 제목을 누르면 초록과 링크가 펼쳐집니다.
+Microsoft Ignite 2026 공식 세션 카탈로그입니다. 기본으로 **온라인으로 볼 수 있는 세션**(온라인 송출 · 온디맨드 영상 · 녹화 예정)만 보여 주고, 현장 전용·녹화 없는 세션은 `시청 가능` 필터로 볼 수 있습니다. 코드를 누르면 공식 세션 페이지로, 제목을 누르면 초록과 링크가 펼쳐집니다.
 필터 상태는 URL에 저장되어 그대로 공유할 수 있습니다.
+공유할 만한 세션은 펼친 행의 **＋ 이슈로 공유 제안**으로 등록하고, 직접 정리하려면 이슈에서 본인을 assignee로 지정하세요 — [기여 가이드](../contributing.md).
 
 </div>
 
-<div class="dg-catalog" data-src="sessions.json" markdown="0">
+<div class="dg-catalog" data-src="sessions.json" data-repo="https://github.com/caldova-kr/microsoft-ignite-2026" markdown="0">
   <form class="dg-cat-controls" onsubmit="return false">
     <label class="dg-cat-search">
       <span>검색</span>
-      <input type="search" name="q" placeholder="코드 · 제목 · 발표자 · 태그 · 초록" autocomplete="off">
+      <input type="search" name="q" placeholder="코드 · 제목 · 발표자 · 태그 · 초록 · @담당자" autocomplete="off">
     </label>
     <div class="dg-cat-selects">
+      <label><span>시청 가능</span><select name="scope">
+        <option value="">온라인으로 볼 수 있음</option>
+        <option value="offline">오프라인 전용</option>
+        <option value="all">전체</option>
+      </select></label>
       <label><span>Type</span><select name="type"><option value="">전체</option></select></label>
       <label><span>Topic</span><select name="topic"><option value="">전체</option></select></label>
       <label><span>Level</span><select name="level"><option value="">전체</option></select></label>
