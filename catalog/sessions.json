@@ -214,7 +214,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK203",
   "video": "https://medius.microsoft.com/Embed/video-nc/f0689044-8eb5-4c7a-a330-3618458280be",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/f0689044-8eb5-4c7a-a330-3618458280be",
   "resources": [],
   "description": "Work is full of ideas that could improve a process, simplify a task, or solve a problem, but turning those ideas into working software has traditionally required coding expertise, specialized tools, or an engineering backlog. Join Copilot product leaders for a look at Copilot Code, a new coding experience in Microsoft Copilot. Through live demos, see how people can turn natural language into working dashboards, apps, automations, and other custom tools grounded in their work.",
   "has_ai_summary": true,
@@ -259,9 +259,9 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK205",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/dc04a121-e2f3-48f4-9f46-454a09fe1ebf",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/dc04a121-e2f3-48f4-9f46-454a09fe1ebf",
   "resources": [],
   "description": "Real work changes when AI moves beyond chat to handle repeatable tasks and workflows. In this expert-led breakout, see how organizations use Copilot Cowork to delegate complex, multi-step work across apps, files, and business systems. Product demos and expert guidance will show where Cowork creates value, what to consider for implementation, and how to accelerate adoption.",
   "has_ai_summary": true,
@@ -347,9 +347,9 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK206",
-  "video": "",
-  "transcript": "",
-  "slides": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/1049c34b-eb38-4053-bb2a-5c9242dc335b",
+  "transcript": "https://medius.microsoft.com/video/asset/Transcript/1049c34b-eb38-4053-bb2a-5c9242dc335b",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/1049c34b-eb38-4053-bb2a-5c9242dc335b",
   "resources": [],
   "description": "The next wave of Microsoft Copilot innovation is transforming how work gets done across Word, Excel, PowerPoint, and Outlook. Join us for a demo-heavy session showcasing emerging agentic experiences that help you move seamlessly from idea to outcome, with richer context, more connected workflows, and new ways to create, collaborate, and stay productive. Walk away with practical examples you can start using right away.",
   "has_ai_summary": true,
@@ -523,9 +523,9 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK208",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/b247fb6f-b2a9-4679-8ed5-312aae7b8536",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/b247fb6f-b2a9-4679-8ed5-312aae7b8536",
   "resources": [],
   "description": "Collaboration has always been conversation, and the gap between deciding and doing is where time and momentum quietly disappear. See how Microsoft Teams, Copilot, and agents close it. Agents join your meetings, chats, and channels as teammates you @mention and assign work to, grounded in your context by Work IQ and governed by Agent 365. Learn from specific scenarios where coordination becomes built in, moving your team from fragmented work to coordinated execution.",
   "has_ai_summary": true,
@@ -752,7 +752,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK212",
   "video": "https://medius.microsoft.com/Embed/video-nc/0ef3edb8-3781-4617-a1e1-19ee227a0f7d",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/0ef3edb8-3781-4617-a1e1-19ee227a0f7d",
   "resources": [],
   "description": "Autopilot keeps work moving, taking action across apps, data, and devices without constant direction. But how do you secure work that continues when you're away? Learn how to protect Autopilot's access and actions, safeguard sensitive data even when AI is misled, and contain activity across computers, apps, and networks. Because when AI works independently, security can't be an afterthought.",
   "has_ai_summary": true,
@@ -845,9 +845,9 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK214",
-  "video": "",
-  "transcript": "",
-  "slides": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/4526348e-5ea3-4183-a9a7-9d0f54c7c103",
+  "transcript": "https://medius.microsoft.com/video/asset/Transcript/4526348e-5ea3-4183-a9a7-9d0f54c7c103",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/4526348e-5ea3-4183-a9a7-9d0f54c7c103",
   "resources": [],
   "description": "Move from experimentation to AI agent adoption at scale. In this session, explore how Microsoft Agent 365, the control plane for agents, can help your organization operate and scale agents with confidence by providing comprehensive visibility, built-in governance, and enterprise-grade security across your AI ecosystem. See what's new with Agent 365 and learn how to accelerate agent adoption while maintaining trust, meeting compliance requirements, and keeping operational control.",
   "has_ai_summary": true,
@@ -979,7 +979,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK216",
   "video": "https://medius.microsoft.com/Embed/video-nc/2941369a-b5d5-4af8-89ac-ca81c2a45695",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/2941369a-b5d5-4af8-89ac-ca81c2a45695",
   "resources": [],
   "description": "No single AI model is best for every task. As AI advances, organizations need access to the latest models without adding complexity for users, cost uncertainty for leaders, or administrative risk for administrators. Join us to see how Microsoft Copilot provides one governed front door to multi-model AI, with Microsoft evaluation and integration, intelligent routing with Auto, and cost management tools to you optimize AI value while maintaining security, compliance, and control.",
   "has_ai_summary": true,
@@ -1309,12 +1309,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK223",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/edd9a41c-362f-41bc-9c8f-03ea6e622e30",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "Small businesses want outcomes, not setup. Join this session to see how Copilot plug-in packages bring pre-built skills, scenarios, and connections to key systems of record together in one turnkey experience. See demos focused on key outcomes—like month end accounting—to show how the right skills, integrations, and workflows light up instantly. We'll walk through the top SMB scenarios end to end, showing how to drive measurable outcomes. Leave this session ready to get work done with Copilot.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856606849001Eyyj",
   "slots": [
    {
@@ -1399,12 +1399,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK226",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/716e85c2-7521-4db6-82a5-004be7a21bb2",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "Your organization is already using AI, but is it delivering real value at scale? In this session, we’ll compare Microsoft 365 Copilot to alternative AI solutions across real work scenarios. See how Work IQ, organizational context, multi-model intelligence, security, and trust work together to deliver more relevant results and higher-quality outcomes. Bring your laptop and evaluate the differences firsthand!",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856607340001ECcD",
   "slots": [
    {
@@ -1589,7 +1589,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK230",
   "video": "https://medius.microsoft.com/Embed/video-nc/46aa9d2c-cd3c-4bca-a31c-b9f3dd69c2d7",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/46aa9d2c-cd3c-4bca-a31c-b9f3dd69c2d7",
   "resources": [],
   "description": "Every leader has AI on their priority list. Far fewer have defined what success looks like or how to measure it. Matt Firestone, General Manager of Microsoft Copilot, sits down with leaders from Lumen Technologies, Wells Fargo, and Vodafone to get specific about what's working, what's failing, and what surprises them. Hear how they're preparing their workforce, placing their AI bets, redesigning work around agents, and moving from pilots to payoff.",
   "has_ai_summary": true,
@@ -1633,12 +1633,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK231",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/b91f59d3-4eea-4791-b10e-597b1e38fafd",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "In the AI era, trust is your organization's most important capability.\nJoin Microsoft Corporate Communications and product leaders to learn how Microsoft supports 200K+ employees through workplace transformation. Discover practical strategies to create clarity during change, build psychological safety, scale shared knowledge, and accelerate AI skills through leadership engagement, communities, Teams events, Copilot, and agents—and preview upcoming Viva Engage and Microsoft 365 innovations.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856608132001E8GI",
   "slots": [
    {
@@ -1732,7 +1732,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK233",
   "video": "https://medius.microsoft.com/Embed/video-nc/439e1b09-a21e-4927-8a30-ea615941dea1",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/439e1b09-a21e-4927-8a30-ea615941dea1",
   "resources": [],
   "description": "How do you know which AI delivers the most value for your organization? In this session, you'll learn a repeatable framework and methodology for evaluating Microsoft Copilot, Copilot Cowork and other common AI tools against real work scenarios. We'll walk through how to measure accuracy, trust, speed and cost, so you leave equipped to test your own scenarios, judge where each tool delivers value, and share feedback that helps shape better Copilot experiences.",
   "has_ai_summary": true,
@@ -1881,7 +1881,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK236",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/356d05a7-24fc-4876-98ae-edbe2f51a7fb",
   "transcript": "",
   "slides": "",
   "resources": [],
@@ -1934,7 +1934,7 @@
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK237",
   "video": "https://medius.microsoft.com/Embed/video-nc/d4e867ac-a93c-4445-86bc-8264244e0f2e",
-  "transcript": "",
+  "transcript": "https://medius.microsoft.com/video/asset/Transcript/d4e867ac-a93c-4445-86bc-8264244e0f2e",
   "slides": "",
   "resources": [],
   "description": "As organizations extend Copilot, skills, connectors, MCP servers, tools, and agents can create fragmented catalogs, publishing paths, and controls. Learn how Microsoft’s plugin ecosystem brings these capabilities into a shared lifecycle, from building and importing to publishing, discovering, deploying, governing, evaluating, and maintaining them across supported Copilot experiences. See how the pieces relate and what the model means for users, IT, developers, and partners.",
@@ -2029,7 +2029,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK238",
   "video": "https://medius.microsoft.com/Embed/video-nc/757a65cb-1dfd-4c42-bc82-1baa41b22ca1",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/757a65cb-1dfd-4c42-bc82-1baa41b22ca1",
   "resources": [],
   "description": "AI success depends on more than the model. Learn how Frontier Tuning helps organizations optimize models, tools, skills, knowledge, and evaluation frameworks to improve performance on real business workflows. See how Copilot Studio and Foundry work together to deliver better outcomes, higher quality, and improved cost efficiency at scale.",
   "has_ai_summary": true,
@@ -2077,7 +2077,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK239",
   "video": "https://medius.microsoft.com/Embed/video-nc/247a6e10-0ff6-42fe-beb8-670ac09693ee",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/247a6e10-0ff6-42fe-beb8-670ac09693ee",
   "resources": [],
   "description": "Discover how Employee Self-Service (ESS) agents streamline IT and HR support, connect enterprise systems, improve response quality, and automate workflows. Go beyond deployment to drive adoption and manage governance, evaluation, analytics, and lifecycle operations at scale. Through customer stories and implementation lessons, learn practical patterns to reduce duplication, govern deployments, and scale intelligent, action-oriented support that improves employee experiences across your business.",
   "has_ai_summary": true,
@@ -2446,7 +2446,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK246",
   "video": "https://medius.microsoft.com/Embed/video-nc/aec447c9-a65b-42c9-a4ae-ddca25246a38",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/aec447c9-a65b-42c9-a4ae-ddca25246a38",
   "resources": [],
   "description": "Open-weight models offer greater choice and control, but production at scale requires the right infrastructure, serving stack, and operations. See how Microsoft Foundry Managed Compute helps teams move from model selection to enterprise deployment. Learn from AT&T’s OTel 2.0 experience using multiple open models and GPU types to balance performance, economics, and workload needs without standardizing on one model.",
   "has_ai_summary": true,
@@ -2494,7 +2494,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK247",
   "video": "https://medius.microsoft.com/Embed/video-nc/67297ad2-a05f-44b5-96dd-3c742107e1e0",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/67297ad2-a05f-44b5-96dd-3c742107e1e0",
   "resources": [],
   "description": "Make every token count with Microsoft Foundry. Learn to match workloads to models and inference tiers, reuse prompt caches, route requests intelligently, and handle capacity limits with smart fallbacks. Hear how WolterKluwer and Enhans optimized token usage to better serve customers. Leave with a practical framework for balancing quality, cost, and latency in production AI.",
   "has_ai_summary": true,
@@ -2540,7 +2540,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK248",
   "video": "https://medius.microsoft.com/Embed/video-nc/ce52d49f-3e12-48cc-8808-c7b3a4f6ec8a",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/ce52d49f-3e12-48cc-8808-c7b3a4f6ec8a",
   "resources": [],
   "description": "As Microsoft deploys AI across products used by hundreds of millions of people, trust has become an operational imperative. In this session, Sarah Bird, Microsoft's Chief Product Officer for Responsible AI, shares how Microsoft approaches AI governance, safety, security, and compliance across its own AI systems. Learn practical lessons in risk-based governance, embedded guardrails, continuous monitoring, and scalable controls that enable trusted AI at scale.",
   "has_ai_summary": true,
@@ -2587,7 +2587,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK249",
   "video": "https://medius.microsoft.com/Embed/video-nc/25394d02-90b5-4b9c-a642-2ee6e7b042a6",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/25394d02-90b5-4b9c-a642-2ee6e7b042a6",
   "resources": [],
   "description": "Building an agent is the start. Improving it in production is the real work. See how Microsoft Foundry connects traces, evaluations, and optimization to help teams find high-impact issues, test improvements, and re-measure results. Learn a repeatable loop to improve quality, manage cost, and ship better agents while developers stay in control.",
   "has_ai_summary": true,
@@ -2680,7 +2680,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK251",
   "video": "https://medius.microsoft.com/Embed/video-nc/d0c333e4-ff00-44c0-b014-18b69ba12acf",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/d0c333e4-ff00-44c0-b014-18b69ba12acf",
   "resources": [],
   "description": "Getting an agent into production is only the beginning. Learn how Microsoft Foundry helps teams observe agent behavior, evaluate quality, uncover unexpected issues, and optimize performance over time. Through practical guidance, demos, and a customer story from Tata Consultancy Services, explore how tracing, evaluations, insights, human feedback, and optimization come together in a repeatable continuous improvement loop. You’ll also see how to monitor quality, reliability, latency, safety, and cost across your agent fleet.",
   "has_ai_summary": true,
@@ -2769,7 +2769,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK252",
   "video": "https://medius.microsoft.com/Embed/video-nc/6562c56a-541a-4cd0-9446-59046e0d658a",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/6562c56a-541a-4cd0-9446-59046e0d658a",
   "resources": [],
   "description": "Frontier models are available to everyone. Your advantage is how you train them for your business. See how Microsoft Foundry unites fine-tuning, reinforcement learning, and RL environments to turn production data and agent experience into continuous model improvement. Explore managed and programmed training, and how task feedback boosts agent performance and token efficiency. Hear how Docusign and Heidi Health customized open models with Fireworks on Foundry.",
   "has_ai_summary": true,
@@ -2868,7 +2868,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK254",
   "video": "https://medius.microsoft.com/Embed/video-nc/2e3e9a21-e6b1-4d6a-857c-2f33c7d56359",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/2e3e9a21-e6b1-4d6a-857c-2f33c7d56359",
   "resources": [],
   "description": "AI agents and apps are only as good as the data and models behind them. Get a first look at the latest MAI model innovations for reasoning, coding, voice, image, and multimodal work, built on a clean, traceable data lineage and already powering Microsoft 365 Copilot, PowerPoint, Excel, OneDrive, GitHub, and Bing. Then see how Frontier Tuning closes the loop, using your data, workflows, and evaluation criteria to continuously optimize models and agents in Microsoft Foundry.",
   "has_ai_summary": true,
@@ -2911,12 +2911,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK255",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/88f950e4-aa9d-4eb3-941a-ff1a2f18de79",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "Bring AI closer to users, data, and decisions. This session shows developers how to build responsive, private, and resilient AI applications and agents on-device — running across Windows, macOS, Linux, and emerging mobile scenarios, without requiring a cloud connection for every inference.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856611856001EVuB",
   "slots": [
    {
@@ -3184,7 +3184,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK261",
   "video": "https://medius.microsoft.com/Embed/video-nc/9ff88e92-a86a-4077-8aa5-7e5819913ce0",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/9ff88e92-a86a-4077-8aa5-7e5819913ce0",
   "resources": [],
   "description": "Learn how to build Copilot Studio agents that behave like teammates for recurring business processes. See how agent accounts, triggers, business process memory, and agent refinements help agents work as their own entity, act proactively, retain process context, and continuously improve to facilitate recurring business processes - while the makers stay in control. See how these agents benefit from additional capabilities like app UIs in agents and computer use too.",
   "has_ai_summary": true,
@@ -3266,9 +3266,9 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK262",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/eb1012b8-4ac4-4a62-a5dc-f09b915b8886",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/eb1012b8-4ac4-4a62-a5dc-f09b915b8886",
   "resources": [],
   "description": "As agents move from experimentation to enterprise-wide deployment, how do organizations scale adoption while managing risk and cost? Explore how different layers of Microsoft technology work together to provide governance, security, and cost management. With Copilot Studio agents as a practical focus, learn how to establish guardrails, understand usage and spend, and optimize as adoption grows.",
   "has_ai_summary": true,
@@ -3350,7 +3350,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK263",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/a479496f-2a14-4c93-8b8a-492f1664e2a9",
   "transcript": "",
   "slides": "",
   "resources": [],
@@ -3397,7 +3397,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK264",
   "video": "https://medius.microsoft.com/Embed/video-nc/840f0781-2aae-4992-a99e-1c0e984a71c0",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/840f0781-2aae-4992-a99e-1c0e984a71c0",
   "resources": [],
   "description": "When should you not build using the Microsoft Copilot harness in Copilot Studio? Come learn about how factors like the business process, its complexity, user experience, and cost influence which harness you would want to build your agent with. Leave the session knowing how to match the right harness to the job, while building agents that are fit for their intended purpose.",
   "has_ai_summary": true,
@@ -3479,9 +3479,9 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK265",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/8d0d9425-456a-4e32-95df-ad46ce72395a",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/8d0d9425-456a-4e32-95df-ad46ce72395a",
   "resources": [],
   "description": "Discover how Copilot Studio brings apps and agents together on one governed platform for business transformation. Learn how apps provide structured experiences while agents reason and act across systems to transofrm end to end business processes. Come and see how makers and developers can build with natural language, connect enterprise data and actions, and move solutions from idea to production with shared security, governance, and lifecycle management.",
   "has_ai_summary": true,
@@ -3904,7 +3904,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK272",
   "video": "https://medius.microsoft.com/Embed/video-nc/bc0ce035-800d-4aa1-be94-5441b68c8714",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/bc0ce035-800d-4aa1-be94-5441b68c8714",
   "resources": [],
   "description": "What if core technology modernization that once took 2 days could happen in just 45 minutes? Bradesco is putting agentic AI to work across 5,126 services, building on the AI foundation behind 600+ initiatives serving 74 million customers. With Azure AI Foundry and GitHub Copilot, teams are transforming how they assess, plan, and modernize services while maintaining architecture, security, and quality gates. Join Bradesco and Microsoft to see agentic AI in action across the engineering lifecycle.",
   "has_ai_summary": true,
@@ -3951,12 +3951,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK273",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/d9db9508-be5e-4dd0-a439-b4258cef981f",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "You build software across more than one tool, and GitHub Copilot can meet you in each of them. See how Copilot supports the full development lifecycle across IDEs, the terminal, Slack, Microsoft Teams, and mobile devices. Follow work from planning and building through review, security, and release, choosing from multiple AI models along the way. Understand how Copilot connects these experiences to improve developer flow and help organizations deliver better software faster.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856614544001E44o",
   "slots": [
    {
@@ -4002,12 +4002,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK274",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/975573cc-f99b-4184-b1d2-2543f88b1a5c",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "AI coding should not make you choose between delegating the work and staying close to the code. Follow a real task through GitHub Copilot in VS Code, from handing it off in the agents window to reviewing, editing, and debugging in the editor. See how familiar Claude and Codex workflows carry over while your files, terminal, extensions, and project context stay within reach. You will leave with a practical understanding of when to use each experience and how they work together.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856614691001Eo5M",
   "slots": [
    {
@@ -4148,7 +4148,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK276",
   "video": "https://medius.microsoft.com/Embed/video-nc/44f1e6ba-3118-4807-93a9-840a758a46ff",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/44f1e6ba-3118-4807-93a9-840a758a46ff",
   "resources": [],
   "description": "Explore the applications unlocked by the Microsoft Copilot SDK, from internal support agents and business workflows to coding experiences and software factories. Through practical demos, see how an agent harness brings models, context, tools, and execution together, and how the same building blocks power many app experiences. Learn to turn your organization's expertise and systems into capabilities agents can use.",
   "has_ai_summary": true,
@@ -4196,7 +4196,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK277",
   "video": "https://medius.microsoft.com/Embed/video-nc/6a20d667-bc1c-4d81-812a-6cd1df0a4fb3",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/6a20d667-bc1c-4d81-812a-6cd1df0a4fb3",
   "resources": [],
   "description": "Follow a solution from a simple agent session to isolated execution, task-specific workers, and complex dynamic orchestration. Explore what belongs in a modern harness, how context, tools, models, and execution fit together, and which requirements should drive your next architectural decision for agents. You'll leave with a practical framework for maturing any own agent solution, not just adding more features.",
   "has_ai_summary": true,
@@ -4337,7 +4337,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK280",
   "video": "https://medius.microsoft.com/Embed/video-nc/d5caddab-c598-40cc-96f2-6c990b9c5037",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/d5caddab-c598-40cc-96f2-6c990b9c5037",
   "resources": [],
   "description": "Choosing a model is becoming less important than deciding how and when models are used. Explore how routing can match models to different tasks, constraints, and stages of development. We’ll examine the signals and tradeoffs that guide these decisions, and approaches such as GitHub Copilot Fusion that coordinate models as a portfolio. Leave with a framework for building adaptable agent systems across quality, latency, cost, and control.",
   "has_ai_summary": true,
@@ -4518,12 +4518,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK283",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/9c287d12-2ba8-49ea-b42d-b772471701db",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "Getting ready for AI means getting ahead of security debt. As development accelerates, security teams need a better way to prioritize risk than severity scores alone. Learn how organizations identify the vulnerabilities, dependencies, and secrets most likely to matter, then drive remediation at scale through security campaigns and agentic autofix that help teams reduce backlogs and focus on what needs fixing.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856616021001ERrz",
   "slots": [
    {
@@ -4706,12 +4706,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK287",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/23d5af02-b07a-47b0-80d4-f38879618cb5",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "Every codebase carries quality debt, and AI adds to it faster than teams can pay down. Performance issues inflate cloud cost, maintainability debt slows every future change, and reliability gaps surface as incidents. GitHub Code Quality catches these across new and existing code where developers work, recommends fixes, and gives engineering leaders governance to enforce standards. Agentic autofix then remediates findings at scale, turning backlogs into reviewable pull requests.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856616625001EWVs",
   "slots": [
    {
@@ -4843,7 +4843,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK290",
   "video": "https://medius.microsoft.com/Embed/video-nc/59c48509-8738-4035-bee9-d8651bb5cb4e",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/59c48509-8738-4035-bee9-d8651bb5cb4e",
   "resources": [],
   "description": "Give developers, knowledge workers, and AI agents room to innovate with enterprise control. Follow an admin journey in GitHub Enterprise and Copilot: set model policies and managed settings, customize for teams, onboard fast, and manage access and spend. Review config changes via pull requests and use agent activity data to assess governance. See the roadmap linking policy, usage, and cost. Leave with a plan to set guardrails, measure impact, and grow AI adoption without friction.",
   "has_ai_summary": true,
@@ -5192,7 +5192,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK299",
   "video": "https://medius.microsoft.com/Embed/video-nc/e5b96969-974e-4fa1-81aa-8ca8a512a415",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/e5b96969-974e-4fa1-81aa-8ca8a512a415",
   "resources": [],
   "description": "See how Business Apps in Work IQ brings together CRM, ERP, Teams, Outlook, SharePoint, and more to create a real-time view of your end-to-end business processes. Discover how connected business context helps agents and employees make better decisions, take action faster, and work more effectively across the organization.",
   "has_ai_summary": true,
@@ -5320,12 +5320,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK302",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/e241973d-6bc2-4333-8aa4-d78d94c37b2b",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "See how information workers and developers use Work IQ to power intelligent experiences across declarative agents, Copilot Studio, GitHub Copilot, and third-party platforms. Learn how Work IQ combines organizational context with connectors, agent-to-agent experiences, and external systems to create secure, personalized solutions grounded in your organization's knowledge, processes, and permissions.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856618898001EAOa",
   "slots": [
    {
@@ -5367,7 +5367,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK303",
   "video": "https://medius.microsoft.com/Embed/video-nc/2d533d86-4b53-4fe7-b545-3cebc4e609f5",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/2d533d86-4b53-4fe7-b545-3cebc4e609f5",
   "resources": [],
   "description": "Your next customer may never visit your website. AI assistants and agents increasingly research products, evaluate vendors, and influence buying decisions. Learn how WebIQ powers AI discovery, why some brands get recommended while others are overlooked, and what you can do to improve visibility and trust. Leave with a practical playbook to help your business get found, recommended, and chosen in the AI web.",
   "has_ai_summary": true,
@@ -5454,7 +5454,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK305",
   "video": "https://medius.microsoft.com/Embed/video-nc/f8adfb34-a6c4-44d8-a1ea-1b79302983d4",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/f8adfb34-a6c4-44d8-a1ea-1b79302983d4",
   "resources": [],
   "description": "Agents are only as good as what they know about your business. Your business context is your AI advantage, and much of it already lives in Microsoft 365 and Fabric & Power BI. See how Microsoft IQ unifies and governs all your business context across Work IQ, Fabric IQ, Foundry IQ, Web IQ, and 400+ other sources to securely power your agents built on any platform. Watch us build an agent live using the capabilities available at Ignite, and learn what’s coming next.",
   "has_ai_summary": true,
@@ -5578,7 +5578,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK307",
   "video": "https://medius.microsoft.com/Embed/video-nc/95336c31-5288-4a05-87fd-5a92c6dffc40",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/95336c31-5288-4a05-87fd-5a92c6dffc40",
   "resources": [],
   "description": "Our agents can only reason over what they can retrieve. Classic RAG answers fact lookups but misses themes, trends, and relationships that live across a whole corpus. Get an early look at what's next in Foundry IQ: retrieval that clusters content into topics, graph structures that turn documents into entities and relationships, and a Microsoft-hosted agentic retriever you don't supply model capacity for. Live demos, before-and-after quality, and where enterprise context is headed.",
   "has_ai_summary": true,
@@ -5662,7 +5662,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK309",
   "video": "https://medius.microsoft.com/Embed/video-nc/fb505202-b890-4eda-967f-8d05a3675ff6",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/fb505202-b890-4eda-967f-8d05a3675ff6",
   "resources": [],
   "description": "Every grounding call is a trade-off. The highest-quality answer isn’t always the right one — sometimes your agent needs speed, sometimes freshness, sometimes precision at any cost. This session breaks down the quality-latency-cost frontier behind agent retrieval with Web IQ: when to let auto routing decide, when to orchestrate yourself, and how to design grounding strategies that hold up in production. Leave with a decision framework for any agent you’re building.",
   "has_ai_summary": true,
@@ -5707,7 +5707,7 @@
   "slides": "",
   "resources": [],
   "description": "Better context leads to better AI applications, but improvement requires more than trial and error. In this session, we'll build an evaluation loop for Microsoft IQ applications, using evaluations to compare retrieval configurations, context strategies, prompts, and models. Learn how to identify weak spots, measure the impact of changes, and systematically improve application quality. See how evaluations can transform context engineering from guesswork into an iterative, data-driven practice.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856620099001Ex57",
   "slots": [
    {
@@ -5750,7 +5750,7 @@
   "slides": "",
   "resources": [],
   "description": "Join Microsoft and a customer to explore how Web IQ enables enterprise-grade AI agents grounded in the public web. Through a real-world customer experience, learn how Web IQ supports high-value business scenarios while meeting enterprise requirements for security, governance, quality, and scale. Hear directly from the customer about the business need, implementation journey, key learnings, and outcomes achieved with Web IQ.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856620252001EUUi",
   "slots": [
    {
@@ -5791,7 +5791,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK312",
   "video": "https://medius.microsoft.com/Embed/video-nc/9c74ef7a-de2d-4493-91c5-02e55fe6751e",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/9c74ef7a-de2d-4493-91c5-02e55fe6751e",
   "resources": [],
   "description": "AI is entering a new era where agents reason, collaborate, and take action across business systems. As intelligence becomes more autonomous, trust becomes the critical infrastructure that enables innovation to scale. Join Sarah and Mohammad to explore Microsoft's vision for the next generation of Trustworthy AI: from policy and oversight to security, transparency, and accountability. Learn how organizations can confidently unlock the promise of agentic AI while staying in control.",
   "has_ai_summary": true,
@@ -5930,7 +5930,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK316",
   "video": "https://medius.microsoft.com/Embed/video-nc/f65dde26-b5cc-4857-af86-3cdfb7039bea",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/f65dde26-b5cc-4857-af86-3cdfb7039bea",
   "resources": [
    {
     "label": "Microsoft Perception Site",
@@ -6135,7 +6135,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK318",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/4dc52ff3-d27b-4168-93d1-d1428eef2b71",
   "transcript": "",
   "slides": "",
   "resources": [
@@ -6273,7 +6273,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK320",
   "video": "https://medius.microsoft.com/Embed/video-nc/e1e581a6-ef06-4155-965f-0248c2d6b42e",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/e1e581a6-ef06-4155-965f-0248c2d6b42e",
   "resources": [
    {
     "label": "Microsoft Perception Site",
@@ -6598,9 +6598,9 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK324",
-  "video": "",
-  "transcript": "",
-  "slides": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/d7d31eff-59b3-49ba-9d3b-b94ccf4bc9c9",
+  "transcript": "https://medius.microsoft.com/video/asset/Transcript/d7d31eff-59b3-49ba-9d3b-b94ccf4bc9c9",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/d7d31eff-59b3-49ba-9d3b-b94ccf4bc9c9",
   "resources": [
    {
     "label": "Microsoft Perception Site",
@@ -6660,7 +6660,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK325",
   "video": "https://medius.microsoft.com/Embed/video-nc/5603e73b-21a2-4a17-a15d-c84bd73c3733",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/5603e73b-21a2-4a17-a15d-c84bd73c3733",
   "resources": [
    {
     "label": "Microsoft Perception Site",
@@ -6912,7 +6912,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK328",
   "video": "https://medius.microsoft.com/Embed/video-nc/bc7b7fee-70fc-4162-8d7c-32ad6e2db994",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/bc7b7fee-70fc-4162-8d7c-32ad6e2db994",
   "resources": [
    {
     "label": "Microsoft Intune guide to Ignite",
@@ -7039,7 +7039,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK330",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/c83de3ca-9bba-4ac5-8731-3a8a56434c40",
   "transcript": "",
   "slides": "",
   "resources": [
@@ -7053,7 +7053,7 @@
    }
   ],
   "description": "Modern applications span cloud resources, identities, data, containers, and networks. Learn how Microsoft Defender and Azure Firewall and DDoS protection help uncover attack paths, detect runtime threats, and respond to multi-stage attacks.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856623271001Eb0f",
   "slots": [
    {
@@ -7222,7 +7222,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK333",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/f4aca47f-87db-4a44-8e8d-8e71c964e70c",
   "transcript": "",
   "slides": "",
   "resources": [
@@ -7232,7 +7232,7 @@
    }
   ],
   "description": "See how Defender Security Research turns real-world attacks into coordinated protection. Learn how the unified security graph connects signals and threat intelligence to power detection, prevention, attack disruption and built-in agents.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856623724001E2uS",
   "slots": [
    {
@@ -7280,7 +7280,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK334",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/5f59061b-9af7-419a-a6c9-67ff2aeb3149",
   "transcript": "",
   "slides": "",
   "resources": [
@@ -7294,7 +7294,7 @@
    }
   ],
   "description": "Attackers don't need to steal your password to compromise your identity or account. See how AI-powered phishing, impersonation, compromised accounts, and identity-based attacks are changing the game, and how identity, email and collaboration security help defenders detect and disrupt threats before they spread.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856623881001E2PK",
   "slots": [
    {
@@ -7659,12 +7659,12 @@
    }
   ],
   "description": "AI agents can access data and automate work at unprecedented scale. Learn how Microsoft Purview helps discover agent activity, protect sensitive information, detect risk and meet compliance requirements for a growing landscape of AI agents.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856624484001E5xH",
   "slots": [
    {
-    "start": "2026-11-21T06:15:00Z",
-    "end": "2026-11-21T07:00:00Z",
+    "start": "2026-11-20T18:15:00Z",
+    "end": "2026-11-20T19:00:00Z",
     "location": "Moscone West | Level 2, Room 2002"
    }
   ],
@@ -7970,8 +7970,8 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK343",
-  "video": "",
-  "transcript": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/d7d68869-9d41-4cdd-9817-2434bfba4fbb",
+  "transcript": "https://medius.microsoft.com/video/asset/Transcript/d7d68869-9d41-4cdd-9817-2434bfba4fbb",
   "slides": "",
   "resources": [
    {
@@ -8160,7 +8160,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK345",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/7607f160-707c-4124-b72f-7a399a143aa5",
   "transcript": "",
   "slides": "",
   "resources": [
@@ -8222,9 +8222,9 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK346",
-  "video": "",
-  "transcript": "",
-  "slides": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/88c88245-3ff2-474a-814a-cfe9cbf7c5ec",
+  "transcript": "https://medius.microsoft.com/video/asset/Transcript/88c88245-3ff2-474a-814a-cfe9cbf7c5ec",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/88c88245-3ff2-474a-814a-cfe9cbf7c5ec",
   "resources": [],
   "description": "Learn how Microsoft Purview provides unified data security and compliance to help you identify risk, protect sensitive data across Microsoft 365 and Copilot, and accelerate investigations — so you can scale AI securely and confidently.",
   "has_ai_summary": true,
@@ -8322,12 +8322,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK347",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/939e5284-42f6-486e-8f17-53207aabf580",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "As data grows and AI accelerates how quickly it’s accessed, shared, and used, organizations need a scalable way to protect sensitive information. Microsoft Purview sensitivity labels provide persistent protection and context that travels with your data. Learn how to build an effective labeling strategy and use auto-labeling to automate protection and prevent oversharing in Microsoft 365 Copilot interactions.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856625865001EIu7",
   "slots": [
    {
@@ -8374,9 +8374,9 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK348",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/3f66b6ba-91fe-4bda-a3fe-3a04b97ce0d2",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/3f66b6ba-91fe-4bda-a3fe-3a04b97ce0d2",
   "resources": [],
   "description": "Secure AI starts with understanding your data. Discover how Microsoft Purview uses AI-powered classification and sensitivity labels to identify sensitive content, automate protection, and help organizations confidently scale Copilot adoption.",
   "has_ai_summary": true,
@@ -8512,7 +8512,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK350",
   "video": "https://medius.microsoft.com/Embed/video-nc/d2538d93-5cde-4d06-a478-7958ac88b286",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/d2538d93-5cde-4d06-a478-7958ac88b286",
   "resources": [],
   "description": "Fabric Data Warehouse is an AI-native warehouse built for high-performance analytics. Learn how its open, SaaS-first architecture on OneLake combines enterprise scale, reliability, and predictable performance with innovations like GPU acceleration and built-in AI experiences to simplify your analytics architecture and power demanding analytics and AI workloads.",
   "has_ai_summary": true,
@@ -8599,7 +8599,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK352",
   "video": "https://medius.microsoft.com/Embed/video-nc/23e8cd4c-9926-4422-ab84-a004039108ea",
   "transcript": "https://medius.microsoft.com/video/asset/Transcript/23e8cd4c-9926-4422-ab84-a004039108ea",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/23e8cd4c-9926-4422-ab84-a004039108ea",
   "resources": [],
   "description": "When analytics and AI run your business, the platform underneath must be reliable, secure, and ready to scale. Go inside Microsoft Fabric to see how we engineer for resilience and safely roll out changes to deliver new capabilities. Learn how to protect your data with network isolation, encryption, and identity, with real customer examples. Get practical guidance for managing capacity, governance, and deployment as people and agents scale.",
   "has_ai_summary": true,
@@ -8639,12 +8639,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK353",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/1d72d63b-6827-4d9a-b3d7-6f76f9fa3573",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "See how Fabric Data Factory helps teams connect, transform, govern, and operationalize enterprise data for AI. Learn patterns for pipelines, Dataflows, Copy Jobs, Mirroring, OneLake integrations, data quality, and analytics engineering with dbt to deliver trusted data for copilots, agents, and analytics. Additionally, learn how to modernize your data estate by migrating Azure Data Factory workloads to Microsoft Fabric.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856626777001EA7r",
   "slots": [
    {
@@ -8683,7 +8683,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK354",
   "video": "https://medius.microsoft.com/Embed/video-nc/050bbbd5-20ba-488e-b951-6fa48c7e6662",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/050bbbd5-20ba-488e-b951-6fa48c7e6662",
   "resources": [],
   "description": "Learn how to modernize your data estate by migrating Azure Data Factory and Azure Synapse workloads to Microsoft Fabric. This session covers migration strategy, workload assessment, pipeline and dataflow modernization, warehouse and lakehouse patterns, CI/CD, governance, customer case studies and operational best practices to reduce risk and accelerate analytics and AI on Fabric.",
   "has_ai_summary": true,
@@ -8767,7 +8767,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK356",
   "video": "https://medius.microsoft.com/Embed/video-nc/d70c64bd-942b-4618-aca7-b17689cdcbd1",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/d70c64bd-942b-4618-aca7-b17689cdcbd1",
   "resources": [],
   "description": "Building an AI agent is no longer the hard part. Running it in the enterprise is. Production-ready agents need identity, clear authority, policies, approvals, quality controls, and governance across teams. Today, organizations piece these capabilities together manually for every agent. Join the Microsoft IQ product team for a roadmap session exploring what's next for the operating system for AI agents, how we're simplifying enterprise readiness, and where the platform is heading.",
   "has_ai_summary": true,
@@ -9064,7 +9064,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK362",
   "video": "https://medius.microsoft.com/Embed/video-nc/4a434a09-f2d9-4dbb-a256-9da34250a5ad",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/4a434a09-f2d9-4dbb-a256-9da34250a5ad",
   "resources": [],
   "description": "Every AI application and agent depends on a strong data foundation. Join Shireesh Thota, CVP of Engineering for Databases to explore how Microsoft databases help organizations modernize mission-critical applications while building a new generation of intelligent experiences. Through vision, product innovations, and live demos, discover how operational, analytical, relational, and NoSQL data platforms work together to power modern applications, AI agents, and business transformation.",
   "has_ai_summary": true,
@@ -9294,7 +9294,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK367",
   "video": "https://medius.microsoft.com/Embed/video-nc/8da8250f-49f1-414a-825a-da3ff532a190",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/8da8250f-49f1-414a-825a-da3ff532a190",
   "resources": [],
   "description": "AI apps and multi-agent systems need operational data, memory, state, and retrieval to work together. Learn how to design these patterns with Azure Cosmos DB through real-world use cases and customer examples. See how full-text, vector, hybrid, semantic, sparse, and multi-vector retrieval can ground agents in current application data, while Azure Cosmos DB supports conversation history, memory, personalization, and global production scale.",
   "has_ai_summary": true,
@@ -9388,7 +9388,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK369",
   "video": "https://medius.microsoft.com/Embed/video-nc/e219f2b4-b59c-428f-9613-7e1596e115a7",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/e219f2b4-b59c-428f-9613-7e1596e115a7",
   "resources": [],
   "description": "AI applications are evolving beyond chat and copilots into systems that reason, retrieve context, maintain memory, and take action. These workloads demand a database that can unify transactional, vector, analytical, and agentic workloads without sacrificing scale, performance, or governance. Learn how Azure SQL Hyperscale provides the foundation for building production-ready AI applications with the scale and resilience required for the agentic era.",
   "has_ai_summary": true,
@@ -9564,12 +9564,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK373",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/7f82d8eb-d113-4289-b3b1-acf8dda92ed4",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "Go from an idea to an AI-ready SQL app with the MSSQL extension for Visual Studio Code and GitHub Copilot. Build it step by step: prototype locally with the Azure SQL Database container, design your database with Microsoft SQL Agent Skills, build retrieval augmented generation(RAG) using native vector support, create a data API, and deploy to the cloud. See how the tools work together so you can spend less time on database setup and more time building your app.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856629889001EwSt",
   "slots": [
    {
@@ -9704,7 +9704,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK376",
   "video": "https://medius.microsoft.com/Embed/video-nc/c666a942-24eb-491e-afe2-685b95db05fa",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/c666a942-24eb-491e-afe2-685b95db05fa",
   "resources": [],
   "description": "What happens when CRM stops tracking work and starts doing it? Welcome to agentic CRM. Discover how agentic Dynamics 365 Sales, Microsoft 365 Copilot, and AI agents transform CRM from a system of record into a system of action. Learn how organizations reduce administrative burden, automate sales processes, and equip every seller with an AI-powered sales team. Explore Microsoft’s vision for Dynamics 365 Sales in the flow of work, where people and agents collaborate to drive revenue growth.",
   "has_ai_summary": true,
@@ -9804,7 +9804,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK378",
   "video": "https://medius.microsoft.com/Embed/video-nc/c5c8ac76-0384-4a0c-acf5-83488136a4f1",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/c5c8ac76-0384-4a0c-acf5-83488136a4f1",
   "resources": [],
   "description": "Build AI apps on the platform of your choice and bring them into Microsoft for enterprise management. In this session, learn how the Managed Platform SDK enables integration with AI apps built across ecosystems, while Microsoft Admin Center provides centralized visibility, governance, security, and lifecycle management. Discover how to deliver AI innovation without sacrificing the controls and oversight your organization requires.",
   "has_ai_summary": true,
@@ -9898,7 +9898,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK379",
-  "video": "https://medius.microsoft.com/Embed/video-nc/724b5fa5-2c1d-41bb-a265-970a7c3481b9",
+  "video": "",
   "transcript": "",
   "slides": "",
   "resources": [],
@@ -10003,7 +10003,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK381",
   "video": "https://medius.microsoft.com/Embed/video-nc/7579a7b4-cbfe-4a4c-a16e-487d2fc733f5",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/7579a7b4-cbfe-4a4c-a16e-487d2fc733f5",
   "resources": [],
   "description": "Customers expect every interaction to be fast, personalized, and resolved on the first contact, yet many organizations are constrained by ongoing contact center technology refresh cycles. Join us to see how Microsoft Contact Center Intelligence helps organizations quickly deploy voice and digital agents on existing contact centers. Learn how to accelerate time to value, improve containment rates, and deliver more efficient, high-quality customer experiences.",
   "has_ai_summary": true,
@@ -10111,7 +10111,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK383",
   "video": "https://medius.microsoft.com/Embed/video-nc/eb6d1976-e6e6-4613-a289-80e5e3e26c05",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/eb6d1976-e6e6-4613-a289-80e5e3e26c05",
   "resources": [],
   "description": "Growing businesses need ERP that scales without adding complexity. Explore what's new and what's next for Agentic ERP with Dynamics 365 Business. See how Copilot and agents can streamline work across finance, sales, service, and operations, and learn how to build the data and governance foundation needed for your next stage of growth.",
   "has_ai_summary": true,
@@ -10213,7 +10213,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK385",
   "video": "https://medius.microsoft.com/Embed/video-nc/ee33ad41-48ec-41d5-9483-4ede36440a53",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/ee33ad41-48ec-41d5-9483-4ede36440a53",
   "resources": [],
   "description": "Every seller and service rep knows the cost of CRM tax. See how Dynamics 365 Sales, Dynamics 365 Customer Service, Microsoft 365 Copilot, and AI agents help reduce manual work and improve customer experiences. Explore the latest innovations, customer stories, and Microsoft's vision for bringing CRM into the flow of work.",
   "has_ai_summary": true,
@@ -10262,7 +10262,7 @@
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK386",
   "video": "https://medius.microsoft.com/Embed/video-nc/9738309b-7e2d-4954-94da-58c99c9aae8d",
-  "transcript": "",
+  "transcript": "https://medius.microsoft.com/video/asset/Transcript/9738309b-7e2d-4954-94da-58c99c9aae8d",
   "slides": "",
   "resources": [],
   "description": "Microsoft Power Platform reimagines what's possible for makers and developers. Join this session for a guided tour of the latest innovations across Power Apps, Power Automate, and Power Pages. See how AI is reshaping how solutions are built, deployed, and managed at scale and how low-code and agentic development unite in the most adopted AI-augmented low-code platform.",
@@ -10516,7 +10516,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK390",
   "video": "https://medius.microsoft.com/Embed/video-nc/4fc7562b-4700-4652-9fa2-923cf6b2a254",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/4fc7562b-4700-4652-9fa2-923cf6b2a254",
   "resources": [],
   "description": "One sandbox doesn't fit every AI agent. Explore Windows isolation options through demos of Microsoft Execution Containers. Learn how to choose the right execution environment based on workload, security, and policy.",
   "has_ai_summary": true,
@@ -10571,7 +10571,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK391",
   "video": "https://medius.microsoft.com/Embed/video-nc/25c86b1e-667d-45d1-8a15-30266c7aa64b",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/25c86b1e-667d-45d1-8a15-30266c7aa64b",
   "resources": [],
   "description": "As AI agents move into production, enterprises need governance and a trusted execution layer. See how Windows provides the environment while Intune, Entra, Defender, and Purview discover, secure, and audit agents at scale without slowing innovation.",
   "has_ai_summary": true,
@@ -10771,7 +10771,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK394",
   "video": "https://medius.microsoft.com/Embed/video-nc/1b85752e-3acf-482a-b0d8-2067c253ec53",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/1b85752e-3acf-482a-b0d8-2067c253ec53",
   "resources": [],
   "description": "Discover how WinUI provides the modern native foundation for building great Windows apps - and how a new generation of tools makes development faster and more flexible. Catch up on the latest WinUI platform updates and momentum and see how WinUI Agent and WinAppCLI support agent-ready workflows across Visual Studio, VS Code, and the command line.",
   "has_ai_summary": true,
@@ -10868,7 +10868,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK396",
   "video": "https://medius.microsoft.com/Embed/video-nc/afdd94fe-40ff-48d1-9d42-497a5f5cc54e",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/afdd94fe-40ff-48d1-9d42-497a5f5cc54e",
   "resources": [],
   "description": "You told us what matters most. See how we're improving Windows quality with more reliable updates, fewer disruptions, and more dependable experiences across your organization.​\n​\nLearn how your feedback, Windows Insider participation, and initiatives like the Driver Quality Initiative (DQI) are helping shape the future of Windows, driving improvements across reliability, performance, updates, and the devices and peripherals your business depends on.​",
   "has_ai_summary": true,
@@ -11086,7 +11086,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK400",
-  "video": "https://medius.microsoft.com/Embed/video-nc/4e4660f7-7279-4160-8be9-7ce87347c588",
+  "video": "",
   "transcript": "",
   "slides": "",
   "resources": [],
@@ -11307,7 +11307,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK403",
   "video": "https://medius.microsoft.com/Embed/video-nc/13eb320f-c8c5-4e35-b9b4-1504cf3572f7",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/13eb320f-c8c5-4e35-b9b4-1504cf3572f7",
   "resources": [],
   "description": "Developers need computers. Agents do too. See how Windows 365 gives developers ready-to-code Cloud PCs, and AI agents secure, governed computers for computer-use tasks, while giving organizations the enterprise security, management, and control they need.",
   "has_ai_summary": true,
@@ -11539,7 +11539,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK405",
   "video": "https://medius.microsoft.com/Embed/video-nc/e8718491-7226-44ff-ae91-54f468fc46a0",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/e8718491-7226-44ff-ae91-54f468fc46a0",
   "resources": [],
   "description": "Learn how Windows anchors your client-to-cloud security strategy with a trusted foundation, user and data protections, and AI-era resilience. You’ll walk away understanding what’s new in Windows security and how to put the latest protections to work in your environment.",
   "has_ai_summary": true,
@@ -11886,7 +11886,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK408",
   "video": "https://medius.microsoft.com/Embed/video-nc/d10b1779-8cdb-4d69-8aac-2f0e17183ec8",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/d10b1779-8cdb-4d69-8aac-2f0e17183ec8",
   "resources": [],
   "description": "See how mission-critical SAP workloads run resiliently on Azure, how SAP business data becomes grounded and governed AI context, and how Copilot and agents move from insight to action across finance, supply chain, and operations. Includes live demos and customer proof points, plus a practical roadmap for taking your SAP landscape to the AI frontier without compromising trust, compliance, or uptime.",
   "has_ai_summary": true,
@@ -11977,7 +11977,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK410",
   "video": "https://medius.microsoft.com/Embed/video-nc/a90f3ceb-424b-4217-99df-bfc766ac6e80",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/a90f3ceb-424b-4217-99df-bfc766ac6e80",
   "resources": [],
   "description": "Modernization projects often stall under the weight of technical debt, complex dependencies, and aging databases. See how organizations are using AI-powered agents to transform Java and .NET applications alongside the databases they depend on. Learn how GitHub Copilot accelerates framework upgrades, code remediation, containerization, and database modernization to help teams move faster from assessment to deployment and build an AI-ready foundation for future innovation.",
   "has_ai_summary": true,
@@ -12023,7 +12023,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK411",
   "video": "https://medius.microsoft.com/Embed/video-nc/472ba992-f5f6-4c22-ae8e-f471efaac166",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/472ba992-f5f6-4c22-ae8e-f471efaac166",
   "resources": [],
   "description": "Modernization goes beyond code conversion. Join Microsoft Frontier Company, Raincode, and LSEG to explore a business-led approach to modernizing core systems, using mainframe as a real-world example. Learn how AI, modern platform engineering, and cloud-native architecture on Azure can reduce risk and technical debt, preserve critical business logic, maximize existing investments, and lay the foundation for continuous innovation and AI transformation.",
   "has_ai_summary": true,
@@ -12067,7 +12067,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK412",
   "video": "https://medius.microsoft.com/Embed/video-nc/1f8d9e1b-743d-4778-83d9-058eb858a4fe",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/1f8d9e1b-743d-4778-83d9-058eb858a4fe",
   "resources": [],
   "description": "Discover how AI agents can help modernize apps, data, and infrastructure, from discovery and design through execution. Explore how Azure services bring performance, scale, and AI capabilities to modernized workloads, and learn how to get started with expert guidance from Microsoft. Hear Lumen share lessons from its modernization journey and gain practical insights to reduce risk and move forward with confidence.",
   "has_ai_summary": true,
@@ -12196,7 +12196,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK415",
   "video": "https://medius.microsoft.com/Embed/video-nc/a24e033c-85c7-49ed-8df0-05887f7d9a04",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/a24e033c-85c7-49ed-8df0-05887f7d9a04",
   "resources": [],
   "description": "Move from AI assistance to agentic cloud operations. Through live demos, see Azure agents use rich operational context to investigate incidents, uncover cost optimization opportunities, and take corrective action with granular controls. Explore new Azure Copilot experiences and Azure Resource Manager MCP Server enhancements that give agents deeper environmental awareness. This session is built for FinOps, SRE, platform engineering, and AI infrastructure teams.",
   "has_ai_summary": true,
@@ -12451,7 +12451,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK421",
   "video": "https://medius.microsoft.com/Embed/video-nc/bdb93726-0ed2-4677-8484-4dc663a74587",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/bdb93726-0ed2-4677-8484-4dc663a74587",
   "resources": [],
   "description": "As Kubernetes deployments expand across regions, public cloud, virtualized and bare-metal environments, and sovereign clouds, operational complexity grows. Learn how Azure Kubernetes Service Fleet Manager and AKS Flex Nodes help you standardize operations, enforce compliance, and simplify day-to-day management across distributed environments. Walk away with practical strategies to keep large-scale Kubernetes estates secure, consistent, and resilient as they grow.",
   "has_ai_summary": true,
@@ -12626,7 +12626,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK425",
   "video": "https://medius.microsoft.com/Embed/video-nc/6dbddd61-a1db-476e-9922-811719e837aa",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/6dbddd61-a1db-476e-9922-811719e837aa",
   "resources": [],
   "description": "As AI adoption grows, IT teams need consistent controls across the models, tools, MCP servers, applications, and agents used throughout the enterprise. Learn how AI Gateway provides a centralized runtime layer to secure, govern, monitor, and manage AI interactions across Microsoft Foundry, Microsoft Agent 365, and applications built anywhere. See how to implement policies, manage cost and traffic, monitor usage, and operationalize AI governance across development and production environments.",
   "has_ai_summary": true,
@@ -13101,7 +13101,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK436",
   "video": "https://medius.microsoft.com/Embed/video-nc/6f09b58f-e556-4476-a2ca-db0e318094a8",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/6f09b58f-e556-4476-a2ca-db0e318094a8",
   "resources": [],
   "description": "Scaling Azure infrastructure for AI takes more than adding compute, memory and capacity. It requires maximizing “useful yield”: optimizing how efficiently custom silicon, memory, networking, power, cooling and datacenter design are co-engineered for performance per watt, higher throughput, and lower latency. Join us for an inside look at how Microsoft designs and operates end-to-end to turn AI infrastructure into predictable, efficient, and affordable intelligence for the next frontier.",
   "has_ai_summary": true,
@@ -13143,7 +13143,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK437",
   "video": "https://medius.microsoft.com/Embed/video-nc/c091e7a7-a2fb-4e9c-8067-0c31c576f94d",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/c091e7a7-a2fb-4e9c-8067-0c31c576f94d",
   "resources": [],
   "description": "What happens when the unexpected occurs? Join us to explore real-world incident learnings, the platform investments driving greater resilience, and the established reliability practices and resiliency principles that help customers prepare for, respond to, and recover from force majeure events with confidence.",
   "has_ai_summary": true,
@@ -13186,7 +13186,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK438",
   "video": "https://medius.microsoft.com/Embed/video-nc/1b18749e-3f80-4773-905f-8224c782ada2",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/1b18749e-3f80-4773-905f-8224c782ada2",
   "resources": [],
   "description": "Organizations are adopting AI and modernizing critical systems while facing increasing requirements for operational control, resilience, and continuity. Learn how our Sovereign Private Cloud combines Azure Local, Microsoft 365 Local, GitHub Enterprise Local, and sovereign AI capabilities to support mission-critical workloads across connected, hybrid, and disconnected environments. See real architectures, deployment models, and demos that help you maintain control without sacrificing innovation.",
   "has_ai_summary": true,
@@ -13271,7 +13271,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK440",
   "video": "https://medius.microsoft.com/Embed/video-nc/c3d81392-41a1-4fde-a6ae-25051291825b",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/c3d81392-41a1-4fde-a6ae-25051291825b",
   "resources": [],
   "description": "Compute efficiency has become a first-order design constraint for modern workloads, and gains no longer come from silicon alone. Join us for an inside look on how Cobalt 200 is engineered end-to-end from silicon through systems to deliver exceptional price-performance compute on Azure. Learn more about the Cobalt roadmap, what's new in Cobalt 200 virtual machines (VMs), and hear how Azure customers are translating the performance gains in Cobalt 200 into greater business value.",
   "has_ai_summary": true,
@@ -13395,12 +13395,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK443",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/6bcd4c6f-d32d-4f5f-87b4-1b837e3be140",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "Learn how Azure Confidential VMs on the next-generation VR72 platform help organizations run frontier-scale AI workloads with hardware-backed protection for models, prompts, data, and infrastructure, enabling trusted AI innovation without compromising performance or scale.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856640669001EqlK",
   "slots": [
    {
@@ -13523,12 +13523,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK446",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/6d64af54-5a9d-4759-88b0-b2407b980c7d",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "As AI, regulatory, sovereignty, and edge requirements reshape application design, organizations need architectures that operate consistently across cloud, on-premises, and edge environments. Discover Adaptive Apps, Microsoft’s approach for separating application intent from platform implementation using Azure Arc, Radius, and Kubernetes. Learn proven patterns for building portable, governable, and resilient applications that adapt to changing business, compliance, and technology needs.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856641125001Eql1",
   "slots": [
    {
@@ -13566,7 +13566,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK447",
   "video": "https://medius.microsoft.com/Embed/video-nc/d16821e3-46c9-4cb7-995f-aba7ee3f0195",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/d16821e3-46c9-4cb7-995f-aba7ee3f0195",
   "resources": [],
   "description": "The next generation of software is intelligent, agentic, and connected. Companies developing software have a central role in driving Frontier Transformation. Discover how to use the Microsoft platform to build differentiated AI-powered products, bring your offers to market, and turn your innovation into revenue. Explore the technologies, programs, and commercial capabilities that can help you reach more customers and sell at scale through Microsoft Marketplace.",
   "has_ai_summary": true,
@@ -13610,7 +13610,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK448",
   "video": "https://medius.microsoft.com/Embed/video-nc/d8734a1a-bcf5-4871-ab79-ddfed898b641",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/d8734a1a-bcf5-4871-ab79-ddfed898b641",
   "resources": [],
   "description": "Every enterprise is discovering how running agents in production is a platform problem, not a model problem. Agents need secure isolation, identity, governance, observability and cost control before anyone trusts them. This session defines how Azure Container Apps enables you to deliver an agentic platform with production-ready defaults, microVM isolation and governance. Learn how Copilot Studio and Foundry Agent Service leverage this architecture and how you can implement it in your enterprise.",
   "has_ai_summary": true,
@@ -13652,7 +13652,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK449",
   "video": "https://medius.microsoft.com/Embed/video-nc/9c636b54-a792-402e-818d-d1c306f0c8b9",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/9c636b54-a792-402e-818d-d1c306f0c8b9",
   "resources": [],
   "description": "Most enterprises still run their revenue critical .NET and Windows Server applications on virtual machines that are expensive to maintain and risky to move. This session shows the fastest path to land those applications on Azure using App Service Managed Instance, and GitHub Copilot App Modernization, with real customer migrations that finished in weeks rather than quarters. Attendees leave with an assessment approach, a landing pattern, and a clear view of what stays and what gets modernized.",
   "has_ai_summary": true,
@@ -13810,9 +13810,9 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK452",
-  "video": "",
-  "transcript": "",
-  "slides": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/5e2c33d5-9be7-459c-89b4-4cad32c7d581",
+  "transcript": "https://medius.microsoft.com/video/asset/Transcript/5e2c33d5-9be7-459c-89b4-4cad32c7d581",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/5e2c33d5-9be7-459c-89b4-4cad32c7d581",
   "resources": [],
   "description": "Join Mark Russinovich and Azure resiliency experts to explore how organizations can engineer for failure as they modernize and adopt AI. Learn how customers use Azure to identify critical dependencies, assess resilience gaps, strengthen recovery capabilities, and modernize infrastructure. Attendees will gain practical strategies for building resilient architectures, improving business continuity, and preparing applications and data to better withstand disruption.",
   "has_ai_summary": true,
@@ -13926,7 +13926,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK453",
   "video": "https://medius.microsoft.com/Embed/video-nc/31f602a6-3735-4bb4-989e-0361f983c848",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/31f602a6-3735-4bb4-989e-0361f983c848",
   "resources": [],
   "description": "AI, cloud-native applications, and business-critical workloads are changing how organizations think about storage. In this session, get up to speed on the latest Azure Storage innovations across object, file, block, and data movement solutions. Learn how new capabilities are helping organizations improve performance, strengthen resiliency, simplify operations, optimize costs, and build AI-ready data foundations.",
   "has_ai_summary": true,
@@ -14105,7 +14105,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK456",
   "video": "https://medius.microsoft.com/Embed/video-nc/5d26973d-bf66-42d1-ad69-48b34cd97f2e",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/5d26973d-bf66-42d1-ad69-48b34cd97f2e",
   "resources": [],
   "description": "Only 29% of operators are ready to scale AI on their own data. Learn how leading telecom providers moved from AI pilots to production by automating operations and customer interactions with agentic AI. Explore the connected data foundation, governance model, and practical roadmap needed to scale AI securely and deliver measurable business impact.",
   "has_ai_summary": true,
@@ -14193,7 +14193,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK459",
   "video": "https://medius.microsoft.com/Embed/video-nc/b0a7cdaa-05b1-4c08-ae38-39aad827af95",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/b0a7cdaa-05b1-4c08-ae38-39aad827af95",
   "resources": [],
   "description": "Governments have the ambition for AI. Scaling it is harder. Learn how agencies can move from pilot to production by building on proven AI use cases grounded in their data and designed with trust. Then hear directly from Mikko Laakso, Head of Technology and Platforms product group, Product Management Unit at the Finnish Tax Administration, on what that looks like in practice. Leave ready to follow the path others have marked and make it your own.",
   "has_ai_summary": true,
@@ -14289,7 +14289,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK461",
   "video": "https://medius.microsoft.com/Embed/video-nc/e67236e3-e6e8-48b8-b693-fab164238480",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/e67236e3-e6e8-48b8-b693-fab164238480",
   "resources": [],
   "description": "See how healthcare organizations can turn siloed data into trusted insights and AI-powered action with Microsoft Fabric. Drawing on lessons from Peterborough Regional Health Centre and live demonstrations, experts will unify EHR, operational, and multimodal data with OneLake, Spark, semantic models, and real-time intelligence. Learn how to build analytics that power copilots and agents—and take home proven architectures for scaling healthcare AI.",
   "has_ai_summary": true,
@@ -14449,7 +14449,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK464",
   "video": "https://medius.microsoft.com/Embed/video-nc/3ca45975-58f0-4cdc-9d5c-024174ecb453",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/3ca45975-58f0-4cdc-9d5c-024174ecb453",
   "resources": [],
   "description": "Only about 10% of media workers qualify as Frontier Professionals, versus 16% across industries, yet 51% of M&E AI users already produce work they couldn't have made a year ago. This session shows how to move past isolated tools to an orchestrated media enterprise, connecting trusted data, models, agents, and governance across creation, delivery, and audience intelligence. We'll walk the architecture across Fabric, Foundry, and Microsoft IQ, and show where human judgment stays in the loop.",
   "has_ai_summary": true,
@@ -14702,7 +14702,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK470",
   "video": "https://medius.microsoft.com/Embed/video-nc/2aa2b112-991b-4dd4-b9cf-627fb6263461",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/2aa2b112-991b-4dd4-b9cf-627fb6263461",
   "resources": [],
   "description": "Move beyond supply chain visibility to agentic action and intelligence. Explore Microsoft’s vision for agentic supply chains, emerging opportunities, and practical examples to accelerate your journey. Go inside Microsoft’s cloud supply chain to see AI in action across planning, logistics and operations. Learn how AI-forward architectures and human-in-the-loop workflows drive faster decisions, improve efficiency and deliver measurable business value, with resources to support your transformation.",
   "has_ai_summary": true,
@@ -14751,12 +14751,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK471",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/a1c2d89f-b2eb-4792-9a82-f8038c72b003",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "What happens when IT, OT, and AI converge on the factory floor? Big River Steel and Sight Machine share how Azure-powered industrial AI transformed galvanizing operations by connecting process, quality, and business data into a closed-loop optimization system. Learn how industrial AI helped reduce process variability, improve operational efficiency, and deliver sustainable cost savings while maintaining product quality and customer commitments.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856644921001EHQp",
   "slots": [
    {
@@ -14804,7 +14804,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK472",
   "video": "https://medius.microsoft.com/Embed/video-nc/da6aeb14-dbc1-4b44-8a67-e035580599ad",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/da6aeb14-dbc1-4b44-8a67-e035580599ad",
   "resources": [],
   "description": "Financial services is moving beyond AI assistants to agents that reason over trusted enterprise and market data and run real workflows. See how PIMCO is scaling AI from personal productivity to systems that run the business: automated reporting, analytical tools built on market data, and apps that prepare client meetings. Learn practical patterns for choosing the right approach and scaling agents with the governance and controls financial services requires.",
   "has_ai_summary": true,
@@ -14955,7 +14955,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK475",
   "video": "https://medius.microsoft.com/Embed/video-nc/a2abe33e-360a-4733-9a67-d2ca401817c1",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/a2abe33e-360a-4733-9a67-d2ca401817c1",
   "resources": [],
   "description": "Manufacturing intelligence lives in people, data, and operating systems. See how Azure connects that context with artificial intelligence (AI) agents across edge and cloud. Explore the architecture behind Physical AI for factory operations, with insights from Unilever on existing environments, exception management, and human oversight.",
   "has_ai_summary": true,
@@ -15005,7 +15005,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK476",
   "video": "https://medius.microsoft.com/Embed/video-nc/fe97ac62-6a41-4bde-994c-83d71ee191f2",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/fe97ac62-6a41-4bde-994c-83d71ee191f2",
   "resources": [],
   "description": "Every retailer possesses intelligence that no competitor can replicate: deep customer understanding, frontline expertise, operational knowledge, and years of institutional learning. Agentic AI can help retailers tap into and activate that intelligence. In this session, explore high-value agentic AI use cases shaping the future of retail—from AI shopping assistants and AI-assisted associates to demand planning and forecasting.",
   "has_ai_summary": true,
@@ -15277,7 +15277,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK483",
   "video": "https://medius.microsoft.com/Embed/video-nc/c6956933-deeb-4207-becc-ed5e02f9c9b2",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/c6956933-deeb-4207-becc-ed5e02f9c9b2",
   "resources": [
    {
     "label": "Build skills",
@@ -16396,7 +16396,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK498",
   "video": "https://medius.microsoft.com/Embed/video-nc/7cb15ea7-65ea-4925-801a-3620d71ace33",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/7cb15ea7-65ea-4925-801a-3620d71ace33",
   "resources": [
    {
     "label": "Recognize the market transformation & partner impacts",
@@ -16464,7 +16464,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK499",
   "video": "https://medius.microsoft.com/Embed/video-nc/db634d87-c9bf-4a39-9fc5-3569ffd192fc",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/db634d87-c9bf-4a39-9fc5-3569ffd192fc",
   "resources": [
    {
     "label": "Recognize the market transformation & partner impacts",
@@ -16862,7 +16862,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK505",
   "video": "https://medius.microsoft.com/Embed/video-nc/060ea8d6-0503-4efe-8a9a-4c20a1755bcb",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/060ea8d6-0503-4efe-8a9a-4c20a1755bcb",
   "resources": [
    {
     "label": "Be your own Customer Zero – leverage the Microsoft AI Cloud Partner Program Benefits​",
@@ -16927,7 +16927,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK506",
   "video": "https://medius.microsoft.com/Embed/video-nc/aa51d7e4-f633-4b19-9de3-82b7ba2e1bb9",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/aa51d7e4-f633-4b19-9de3-82b7ba2e1bb9",
   "resources": [
    {
     "label": "Skill your team",
@@ -17123,7 +17123,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK508",
   "video": "https://medius.microsoft.com/Embed/video-nc/95ce6f03-8424-41e4-a700-e258f0bbe723",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/95ce6f03-8424-41e4-a700-e258f0bbe723",
   "resources": [
    {
     "label": "Join the Microsoft AI Cloud Partner Program",
@@ -17228,7 +17228,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK510",
   "video": "https://medius.microsoft.com/Embed/video-nc/9bb0762f-5ea1-430f-bcce-f839caa10fe3",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/9bb0762f-5ea1-430f-bcce-f839caa10fe3",
   "resources": [
    {
     "label": "Join the Microsoft AI Cloud Partner Program",
@@ -17283,7 +17283,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK511",
   "video": "https://medius.microsoft.com/Embed/video-nc/c9284064-0b16-4eee-871b-b58494851193",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/c9284064-0b16-4eee-871b-b58494851193",
   "resources": [
    {
     "label": "Software companies, join Frontier Accelerate for Marketplace​",
@@ -17405,7 +17405,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK512",
   "video": "https://medius.microsoft.com/Embed/video-nc/072fe0ae-5b32-4ad5-9920-34fbbb25211d",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/072fe0ae-5b32-4ad5-9920-34fbbb25211d",
   "resources": [
    {
     "label": "Software companies, join Frontier Accelerate for Marketplace​",
@@ -17649,7 +17649,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK516",
   "video": "https://medius.microsoft.com/Embed/video-nc/ac0e7845-1fcf-45f5-8b41-e48915e86c38",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/ac0e7845-1fcf-45f5-8b41-e48915e86c38",
   "resources": [
    {
     "label": "Differentiate with specialisations​",
@@ -17943,7 +17943,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK521",
   "video": "https://medius.microsoft.com/Embed/video-nc/ebe91a6d-f90b-40f2-961d-052a18d81a3f",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/ebe91a6d-f90b-40f2-961d-052a18d81a3f",
   "resources": [],
   "description": "Discover how manufacturing partners use a case-led GTM strategy and Microsoft Marketplace to expand reach and accelerate growth. Explore opportunities across digital engineering, factory operations, and frontline workforce productivity while aligning solutions to customer priorities. Hear from Sight Machine and Microsoft on proven approaches to customer engagement, solution differentiation, and Marketplace success. Leave with practical ideas to sharpen your GTM strategy and drive growth.​",
   "has_ai_summary": true,
@@ -17988,7 +17988,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK522",
   "video": "https://medius.microsoft.com/Embed/video-nc/b9de2365-b663-4ddd-b361-6ba17f83bcbd",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/b9de2365-b663-4ddd-b361-6ba17f83bcbd",
   "resources": [],
   "description": "Learn how clinical ISVs launch solutions, integrate with Dragon Copilot, and publish through Microsoft Marketplace. Follow GW RhythmX’s journey from publishing a vetted solution to certification, deployment, and first clinical use. Discover how Microsoft Marketplace accelerates impact in healthcare by helping innovative solutions reach providers and patients faster. Hear firsthand how it simplifies integration, compliance, and deployment—creating value for partners and Dragon Copilot customers.​",
   "has_ai_summary": true,
@@ -18031,7 +18031,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK523",
   "video": "https://medius.microsoft.com/Embed/video-nc/ade1ec89-b7dc-4776-a4e8-4b14ef923862",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/ade1ec89-b7dc-4776-a4e8-4b14ef923862",
   "resources": [],
   "description": "After the pilots, what will media companies actually own? The tools are for rent; the intelligence is not. Explore how Frontier Transformation helps customers build owned, trusted intelligence across content, rights, and audiences. Hear proven use cases, partner proof points, and repeatable plays for attaching IP and services, and leave with a blueprint to grow your media business with Microsoft in FY27.",
   "has_ai_summary": true,
@@ -18078,7 +18078,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK524",
   "video": "https://medius.microsoft.com/Embed/video-nc/e8febb83-900b-4501-a317-2ffe4e7cc676",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/e8febb83-900b-4501-a317-2ffe4e7cc676",
   "resources": [],
   "description": "Telecommunications is entering its most consequential shift in a generation - from static infrastructure to autonomous, AI-native operations. Explore the customer challenges and proven use cases driving this shift, and hear how Microsoft partners are helping operators put this into practice with trust and security at the core - equipping you with a playbook to scale your IP and services and build your Frontier telco practice in FY27.",
   "has_ai_summary": true,
@@ -18357,7 +18357,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK530",
   "video": "https://medius.microsoft.com/Embed/video-nc/11dcdadc-b128-4430-8664-f28154386556",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/11dcdadc-b128-4430-8664-f28154386556",
   "resources": [],
   "description": "As AI capabilities expand, human judgment, creativity, domain expertise, and leadership become more valuable, not less. Learn how executives can build an organization where people and AI contribute their distinct strengths, helping teams support better decision-making, new ways of working, and business value.",
   "has_ai_summary": true,
@@ -18454,9 +18454,9 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK532",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/36d3c378-558a-438c-9d84-2f083d2dd8d1",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/36d3c378-558a-438c-9d84-2f083d2dd8d1",
   "resources": [],
   "description": "Ready to turn AI potential into real business impact?\nJoin Ralph Haupter and Sharon Schoenborn to learn how companies of all sizes can scale AI securely, optimize their investment and maximize their ROI. Microsoft leaders will share how the latest innovations can create meaningful value for your business with step-by-step demos. Leave with fresh ideas, practical guidance, and a clearer path to turning AI into business growth.",
   "has_ai_summary": true,
@@ -18542,7 +18542,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK533",
   "video": "https://medius.microsoft.com/Embed/video-nc/461883b6-12e0-4b00-8f46-2a731feaeeb3",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/461883b6-12e0-4b00-8f46-2a731feaeeb3",
   "resources": [
    {
     "label": "Scaling AI value without losing control: Lessons from Frontier Firms",
@@ -18744,7 +18744,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK537",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/b42c8ccd-71d7-4e83-8864-ce6f50e4263e",
   "transcript": "",
   "slides": "",
   "resources": [
@@ -18754,7 +18754,7 @@
    }
   ],
   "description": "As AI moves from experimentation into everyday business operations, growing usage alone does not tell leaders whether an investment is working. Learn how organizations can connect AI consumption to measurable business value, establish the visibility and accountability needed to manage it, and determine whether the economics continue to hold as adoption grows. Leave with a practical approach for deciding where AI has earned the right to scale, where to adjust, and where continued investment may not be justified.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856655030001E5vx",
   "slots": [
    {
@@ -18869,7 +18869,7 @@
   "slides": "",
   "resources": [],
   "description": "本セッションでは、Microsoft Ignite で発表された主要なアナウンスと技術的インサイトを、日本からご参加の皆様に向けて日本語で凝縮して解説します。マイクロソフトのロードマップが、アーキテクチャ、セキュリティ、運用、データ、開発ワークフロー、そしてビジネス戦略に何をもたらすのか。本セッションにご参加いただくことで、すぐに実践に活かせる知見と、「何が変わり、なぜ重要で、自組織として次に何を検討すべきか」という社内共有に使える明確なストーリーを、あわせてお持ち帰りいただけます。 A focused recap of key Microsoft Ignite announcements and technical insights, delivered in Japanese.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856655493001Eeqv",
   "slots": [
    {
@@ -18907,7 +18907,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK542",
   "video": "",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/9441dc33-9528-43bf-b7de-14356d5a0df1",
   "resources": [],
   "description": "Join Mark Russinovich, CTO and Technical Fellow for Microsoft Azure, for a fast-paced tour inside Azure’s latest breakthroughs. See how advances in AI infrastructure, networking, storage, confidential computing, and more are coming together to power intelligent applications and help organizations innovate at global scale.",
   "has_ai_summary": true,
@@ -18985,7 +18985,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK543",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/85dfc791-fe0b-4818-b657-606473a800b9",
   "transcript": "",
   "slides": "",
   "resources": [],
@@ -19035,7 +19035,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK546",
   "video": "https://medius.microsoft.com/Embed/video-nc/4e3c4555-764a-4e70-bbd0-f840e8399bb5",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/4e3c4555-764a-4e70-bbd0-f840e8399bb5",
   "resources": [
    {
     "label": "Discover how leading brands are transforming with Microsoft AI",
@@ -19435,12 +19435,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK570",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/ee8a3aff-d805-428d-b727-c2b3ba01441c",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "You know how to build an agent in code. So what does Copilot Studio add? In this session, we’ll show how developers can bring familiar pro-code practices like GitHub repo-backed development and agentic editing to Copilot Studio's connectors, monitoring and no-code experience. Build what your org needs locally in Visual Studio or even a terminal, then hand off to business owners to maintain and manage in Copilot Studio. Come see how Copilot Studio can complement the way you already build!",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1791404048974001d13C",
   "slots": [
    {
@@ -19486,9 +19486,9 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK571",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/3396087b-841c-4f43-b435-e0630bd79f88",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/3396087b-841c-4f43-b435-e0630bd79f88",
   "resources": [],
   "description": "AI pilots are everywhere. Sustainable business impact is harder. This session explores how organizations have moved beyond experimentation and are creating real enterprise value. Srini Raghavan moderates this panel discussion on prioritizing the right scenarios, aligning stakeholders, and measuring business impact.",
   "has_ai_summary": true,
@@ -19527,12 +19527,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK581",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/5a292242-d430-4a60-aa79-d7f43e661255",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "AI innovation goes beyond models and GPUs. Enterprise value comes from the complete cloud system connecting compute, data, networking, storage, security, orchestration, and applications. This session follows an AI request across Azure to show how an open, connected infrastructure helps organizations build with Microsoft or their technology of choice and operate at enterprise scale.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1791404150314001eN1N",
   "slots": [
    {
@@ -19569,7 +19569,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK582",
   "video": "https://medius.microsoft.com/Embed/video-nc/d0e7668b-b66e-4b52-a3f9-c1cd0d3a4a0f",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/d0e7668b-b66e-4b52-a3f9-c1cd0d3a4a0f",
   "resources": [],
   "description": "See the next evolution of Pages in action. Learn how Pages turns an idea into a dynamic surface that you, your team, and Copilot can iterate and collaborate on together. Microsoft experts will demonstrate how Pages brings together human and AI collaboration, interactive content, and agentic activity in a new type of file that evolves with your work.",
   "has_ai_summary": true,
@@ -19607,7 +19607,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRK583",
   "video": "https://medius.microsoft.com/Embed/video-nc/fdcf490e-61e6-4148-8608-465ff5d772c0",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/fdcf490e-61e6-4148-8608-465ff5d772c0",
   "resources": [],
   "description": "How can business and IT leaders increase AI usage without another major services engagement? Discover how Microsoft Adoption resources and Digital Accelerator’s expert-led journeys can help answer three critical questions: Which AI experience fits the work? How do we turn access into active usage? How do we scale what works? Leave knowing the question to solve, the resource to use now, and the Digital Accelerator journey that can help you put it into practice without additional services spend.",
   "has_ai_summary": true,
@@ -19665,7 +19665,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP590",
   "video": "https://medius.microsoft.com/Embed/video-nc/deac930a-b24c-462c-9e96-fb9c79e331dc",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/deac930a-b24c-462c-9e96-fb9c79e331dc",
   "resources": [],
   "description": "SMBs are eager to adopt AI, but many lack the security, governance, and expertise to do it safely. See how partners can turn Microsoft's SMB offers into a managed intelligence stack, helping customers adopt AI more securely while building profitable services. Leaders at Pax8 will show how to leverage SMB-focused security bundles, partner-led service opportunities, and scalable partner programs to create a repeatable AI adoption motion for SMB customers.",
   "has_ai_summary": true,
@@ -19842,7 +19842,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP594",
   "video": "https://medius.microsoft.com/Embed/video-nc/0874d5e2-2dbc-4c53-9676-e40574c3e996",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/0874d5e2-2dbc-4c53-9676-e40574c3e996",
   "resources": [],
   "description": "Generalized model gains are flattening because the data that would improve a model on your domain sits inside your company. Discover how customers use Fireworks to customize open models and create differentiated AI experiences at lower cost. For architects and technical leaders weighing open models: Explore which workloads to consider, the training needed, and how shifting 2% of weights can propel an application past its category. Hear from PayPal on their experience with Fireworks on Foundry.",
   "has_ai_summary": true,
@@ -20048,7 +20048,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP598",
   "video": "https://medius.microsoft.com/Embed/video-nc/a4e5a02b-bb40-4c3a-8b93-016e93004fd7",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/a4e5a02b-bb40-4c3a-8b93-016e93004fd7",
   "resources": [],
   "description": "See an AI technician resolve incidents end to end by taking real actions across Windows endpoints and servers, Entra ID, Microsoft 365, mainframes, and networks. Watch Robin by Atera demonstrate autonomous incident resolution and explore what 92% autonomous resolution and sub-two-minute fixes can mean for SLAs, IT capacity, and employee productivity.",
   "has_ai_summary": true,
@@ -20155,7 +20155,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP600",
   "video": "https://medius.microsoft.com/Embed/video-nc/a2187ca6-2f06-4257-b1e6-f4765bdc3548",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/a2187ca6-2f06-4257-b1e6-f4765bdc3548",
   "resources": [],
   "description": "Hitachi and Microsoft are scaling physical AI across industries by combining industrial expertise, real-time asset data, operational technology, and advanced AI. Built on a robust digital foundation, the collaboration improves manufacturing productivity, product quality, predictive maintenance, asset reliability, and supply chain performance. Hitachi serves as Customer Zero, validating solutions internally before scaling them globally with Microsoft's technology and go-to-market capabilities.",
   "has_ai_summary": true,
@@ -20393,7 +20393,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP605",
   "video": "https://medius.microsoft.com/Embed/video-nc/a5d8ab9b-6815-49e9-87d1-e57bdbf46960",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/a5d8ab9b-6815-49e9-87d1-e57bdbf46960",
   "resources": [],
   "description": "How do you move AI from pilot to production while keeping control of your data, models, and infrastructure? See how Lenovo and Microsoft bring Smarter AI to Azure Local, from right-sized deployments to sovereign AI factories. Learn how to choose the right infrastructure, protect sensitive AI with confidential computing, operate connected or disconnected, and scale with confidence. Leave with a practical path from assessment to pilot, production, and scale.",
   "has_ai_summary": true,
@@ -20484,7 +20484,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP607",
   "video": "https://medius.microsoft.com/Embed/video-nc/4e2f8f7d-4bb6-453e-ad89-e38671a6fee5",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/4e2f8f7d-4bb6-453e-ad89-e38671a6fee5",
   "resources": [],
   "description": "No enterprise runs on one system, and neither should your AI. Learn how SAP and Microsoft deliver AI interoperability across business processes, data, and workflows. Explore Autonomous Domains, Joule Agents and Joule Assistants, Joule Work, and the bidirectional integration between Joule and Microsoft 365 Copilot. Walk away with a better understanding of how connected AI experiences can work across enterprise systems.",
   "has_ai_summary": true,
@@ -20632,7 +20632,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP610",
   "video": "https://medius.microsoft.com/Embed/video-nc/985de043-4269-4ef0-ac38-57119d369789",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/985de043-4269-4ef0-ac38-57119d369789",
   "resources": [],
   "description": "Many organizations struggle to move beyond isolated AI pilots to enterprise-scale adoption. This session explores how SEI built a governed AI operating model connecting strategy, governance, architecture, and delivery through Project Imagine, an intelligent platform for designing, running, and governing your digital workforce. Learn how use cases were prioritized, moved into production, and measured against business outcomes, creating a repeatable framework for scaling AI organization wide.",
   "has_ai_summary": true,
@@ -20683,10 +20683,10 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP611",
   "video": "https://medius.microsoft.com/Embed/video-nc/7427b83f-078d-4d11-8e99-e2d48e248c22",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/7427b83f-078d-4d11-8e99-e2d48e248c22",
   "resources": [],
   "description": "As McDermott accelerates its digital transformation journey, AI is becoming a strategic catalyst for reimagining business processes, engineering excellence, workforce productivity, and operational decision-making. Learn from McDermott and TCS how a hybrid AI strategy across Microsoft Azure AI, Azure OpenAI, the Microsoft Cloud ecosystem, and NVIDIA accelerated computing is helping build and scale intelligent solutions. Explore real-world use cases and the business outcomes they are delivering.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787854985661001t5Zc",
   "slots": [
    {
@@ -20725,10 +20725,10 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP612",
   "video": "https://medius.microsoft.com/Embed/video-nc/eb47ce68-9d30-49f0-91fa-ac5be624ac83",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/eb47ce68-9d30-49f0-91fa-ac5be624ac83",
   "resources": [],
   "description": "Enterprise token consumption has exploded, leaving engineering teams balancing AI innovation against rising costs. Learn how intelligent model routing for software development can help you do both. Discover how task- and cache-aware routing directs requests to the right open and closed models to maintain code quality while reducing token spend. See real coding workloads in action through a customer example and live demo of Fireworks Nexus.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787854981706001t699",
   "slots": [
    {
@@ -20779,7 +20779,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP613",
   "video": "https://medius.microsoft.com/Embed/video-nc/f03cddcf-5e8e-43a1-a789-12795a65be98",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/f03cddcf-5e8e-43a1-a789-12795a65be98",
   "resources": [],
   "description": "Cyber resilience starts long before an incident occurs. Join Jeremy Nelson, CISO at Insight, to explore how leading organizations are shifting from a response-first mindset to a readiness-first strategy. Learn how greater visibility across assets, identities, and software, risk-based patching, managed SOC services, and well-defined response plans can help your organization reduce risk, accelerate recovery, and create the resilience needed to thrive in today's evolving threat landscape.",
   "has_ai_summary": true,
@@ -20830,7 +20830,7 @@
   "slides": "",
   "resources": [],
   "description": "AI builders need choice, from simple open-model deployment to greater control for inference and training. Learn how Microsoft Foundry Managed Compute and Azure ND MI300X v5 VMs provide access to AMD Instinct GPUs and how ROCm improves performance and token economics. See how the new Azure ND MI455X v7 VM, powered by the AMD Helios rackscale solution, can help teams run more models, serve more users, and scale agentic AI efficiently.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787854982135001twbi",
   "slots": [
    {
@@ -20939,10 +20939,10 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP616",
   "video": "https://medius.microsoft.com/Embed/video-nc/9e9fed70-09cb-4cb0-9776-88246600e42f",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/9e9fed70-09cb-4cb0-9776-88246600e42f",
   "resources": [],
   "description": "Employees lose time daily to IT friction. For years, the answer was more efficient ticketing: detect, flag, suggest, and route faster. But what happens when AI agents eliminate the ticket altogether? See how AI agents autonomously resolve incidents end to end within the tools your team already uses, giving employees their time back; and what that shift means for IT teams when issues no longer require a technician in the loop.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787854982582001trpE",
   "slots": [
    {
@@ -20991,7 +20991,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP617",
   "video": "https://medius.microsoft.com/Embed/video-nc/ffbedf21-2a28-4c8c-a1bf-dd225c0c0977",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/ffbedf21-2a28-4c8c-a1bf-dd225c0c0977",
   "resources": [],
   "description": "Many organizations have AI pilots. Few have AI that can operate reliably in production. Success depends not on the model, but on trusted, governed data. Learn how Azure OpenAI, Azure Databricks, and modern lakehouse architectures help organizations build agentic AI at scale. Through real-world examples in life sciences, insurance, and telecommunications, discover how leading organizations are reducing complexity, improving decisions, and creating AI-ready foundations for autonomous action.",
   "has_ai_summary": true,
@@ -21168,9 +21168,9 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP621",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/ef75b10a-4399-4035-9efe-d91f6dea9bef",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/ef75b10a-4399-4035-9efe-d91f6dea9bef",
   "resources": [],
   "description": "AI is everywhere, but work remains fragmented. Explore how Copilot can become one governed front door across enterprise systems with Microsoft and Cognizant. Through a healthcare scenario and live demo, Srinivasan Venkatarajan and Manpreet Singh show how architecture, governance, and human oversight can connect disconnected AI experiences into production-scale workflows.",
   "has_ai_summary": true,
@@ -21211,10 +21211,10 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP622",
   "video": "https://medius.microsoft.com/Embed/video-nc/b403e2a3-93ce-469f-9afc-cc5e8fcadeb6",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/b403e2a3-93ce-469f-9afc-cc5e8fcadeb6",
   "resources": [],
   "description": "AI agents are changing how work gets done, and the PC is where it happens. As Copilot evolves from assistant to agent, the connection between device and cloud becomes a foundation for enterprise AI. See how Dell Technologies and Microsoft bring together PCs, Windows, Copilot agents, Scout, supercomputers, and infrastructure to support secure agentic workplaces, with a practical path to deploy and scale these experiences across your organization.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787854984283001t29l",
   "slots": [
    {
@@ -21303,7 +21303,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP624",
   "video": "https://medius.microsoft.com/Embed/video-nc/c93bb4b1-e9bb-40b3-9e5f-50b41d529348",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/c93bb4b1-e9bb-40b3-9e5f-50b41d529348",
   "resources": [],
   "description": "Coding agents make sustained, autonomous progress on real software. The question is what happens to the rest of the software development lifecycle. Claude Code runs for hours unattended, works beyond the terminal, and takes on more of the work around the code. We'll show how engineering changes when the whole lifecycle becomes automatable: what engineers do, how review and testing evolve, where quality comes from when code is cheap. Live demos with hosted agents in Microsoft Foundry.",
   "has_ai_summary": true,
@@ -21639,7 +21639,7 @@
   "url": "https://ignite.microsoft.com/en-US/sessions/BRKSP631",
   "video": "https://medius.microsoft.com/Embed/video-nc/3a1b881d-d8af-42c8-a9a0-db2951d42707",
   "transcript": "",
-  "slides": "",
+  "slides": "https://medius.microsoft.com/video/asset/PPT/3a1b881d-d8af-42c8-a9a0-db2951d42707",
   "resources": [],
   "description": "Manufacturers are using AI to rethink operations, supply chains, engineering, workforce productivity, and customer value. In this 45-minute breakout, NTT DATA will be joined by Celanese to share real-world perspectives on moving AI from experimentation to enterprise-scale impact. Hear how these industry leaders are applying AI, data, cloud, automation, and intelligent agents to address complex business challenges, improve decision-making, and unlock new opportunities",
   "has_ai_summary": true,
@@ -25983,6 +25983,64 @@
   "online": false
  },
  {
+  "code": "LIVE101",
+  "title": "Run AI at Scale: Scott Guthrie and Jessica Hawk on the Infrastructure Behind Every Agent",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Scott Guthrie",
+   "Jessica Hawk"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE101",
+  "video": "https://medius.microsoft.com/Embed/video-nc/192a87d9-9861-42a9-91a7-da671feab6a5",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Agents can do remarkable work. Running them raises practical questions. Will it perform? What will it cost at scale? Is the data it touches protected? Scott Guthrie, Executive Vice President of Microsoft's Cloud and AI group, joins Jessica Hawk to answer them, from silicon to data.\nScott explains why AI is now the defining workload in the cloud, and how Azure Cobalt 200, AKS AI Manager for Microsoft Foundry, and Agent Sandbox help developers build agents instead of managing every layer beneath them. He shows how Azure Catalyst turns years of existing apps and data into AI innovation, and how HorizonDB and Microsoft IQ bring AI closer to the context that makes it useful.\nWatch for Scott's advice to leaders on the technology decisions that carry them from experimentation to transformation.",
+  "has_ai_summary": true,
+  "catalog_id": "1793672090206001Aeum",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVE47",
+  "title": "Put Agents to Work: Charles Lamanna and Alysa Taylor on Copilot, Agent 365, and the Future of Work",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Charles Lamanna",
+   "Alysa Taylor"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE47",
+  "video": "https://medius.microsoft.com/Embed/video-nc/aa0d0210-ddd6-4397-8802-bcf011c02676",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Copilots help people get work done. Agents take action. Charles Lamanna joins Alysa Taylor to unpack the biggest announcements from Ignite and what customers should be most excited about.\nCharles explains what's changing as AI moves from assisting to acting, and why this moment matters for every organization. As agents start to access sensitive data and business systems, he names the one security step to take before you scale. He also shows how Copilot, Copilot Studio, and Agent 365 work together to help you build, deploy, and manage agents at scale.\nWatch for Charles's take on how work is changing and what excites him most about what comes next.",
+  "has_ai_summary": true,
+  "catalog_id": "1793670952619001g4OH",
+  "slots": [],
+  "online": true
+ },
+ {
   "code": "LIVE50",
   "title": "Welcome to Live at Microsoft Ignite​",
   "type": "Broadcast Stage",
@@ -26464,6 +26522,35 @@
     "location": "Moscone South | The Hub, Ignite Broadcast Stage"
    }
   ],
+  "online": true
+ },
+ {
+  "code": "LIVE84",
+  "title": "Build on One System: Arun Ulag and Alysa Taylor on Context, Data, and the Future of Azure",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Alysa Taylor",
+   "Arun Ulagaratchagan"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE84",
+  "video": "https://medius.microsoft.com/Embed/video-nc/11afc69d-aaf4-49a3-acd2-893322428808",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Every company already has its own intelligence: its data, its knowledge, its IQ. Arun Ulag, who leads the teams behind Azure's compute, networking, storage, databases, analytics, and Microsoft IQ, sits down with Alysa Taylor to show how to put it to work.\nArun explains how technology is shifting from tool to teammate, and why context will drive the next wave of differentiation. He shows how OneLake unifies data across clouds and platforms without costly migrations, and how Microsoft IQ brings organizational knowledge together so it stays yours. You'll hear why organizations running thousands of agents need one system to build, ground, and govern them, and how Azure connects every layer from silicon to services.\nWatch to learn how to turn your data and knowledge into a lasting advantage.",
+  "has_ai_summary": true,
+  "catalog_id": "1793673666036001lpPt",
+  "slots": [],
   "online": true
  },
  {
@@ -31258,43 +31345,6 @@
     "location": "Moscone South | The Hub, Lightning Talk 9"
    }
   ],
-  "online": false
- },
- {
-  "code": "LTG1292",
-  "title": "Data modernization decision tree for growing businesses",
-  "type": "Lightning Talk",
-  "topics": [
-   "Cloud & AI"
-  ],
-  "tags": [
-   "SMB",
-   "Small Business"
-  ],
-  "level": 200,
-  "audiences": [
-   "Technical Practitioner"
-  ],
-  "industries": [],
-  "delivery": [
-   "In-person"
-  ],
-  "speakers": [
-   "Bob Ward"
-  ],
-  "duration_min": null,
-  "recorded": [
-   "Will not be recorded"
-  ],
-  "url": "https://ignite.microsoft.com/en-US/sessions/LTG1292",
-  "video": "",
-  "transcript": "",
-  "slides": "",
-  "resources": [],
-  "description": "This short session will map out options for migrating and modernizing on-premises SQL Servers, prioritizing cost efficiency, ease of transition, and future readiness. Get tips for assessing your current environment and choose options that are optimal for your business as it grows.",
-  "has_ai_summary": false,
-  "catalog_id": "1787856681905001EjkK",
-  "slots": [],
   "online": false
  },
  {
@@ -40952,7 +41002,7 @@
   "slides": "",
   "resources": [],
   "description": "Every business unit wants its own agent, and most platforms give each one its own identity, tool access and blind spots. This session traces a production multi-domain architecture end to end: one governed entry at the Azure API Management AI gateway, per-domain agents with scoped Entra Agent IDs, brokered tool access through governed MCP with content safety on tool-call arguments, and Foundry Control Plane across the fleet, all in the customer's own tenant.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856597956001EOxm",
   "slots": [
    {
@@ -40994,7 +41044,7 @@
   "slides": "",
   "resources": [],
   "description": "What happens when an autonomous coding agent becomes part of the engineering team? For seven months, seven teams have run isolated agents 24/7, reviewing 100% of pull requests and implementing about 20% of tickets before human review. This session shares the field lessons behind that journey: where autonomy delivered value, where it broke down, where human approval remained essential, and the architectural boundaries needed to run autonomous coding safely and reliably in production.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856598109001Ewcx",
   "slots": [
    {
@@ -41079,7 +41129,7 @@
   "slides": "",
   "resources": [],
   "description": "AI agents are quickly moving from experimentation to enterprise deployment, but most organizations lack a governance model to manage them at scale. Learn how leading enterprises are governing agent lifecycles, ownership, permissions, security, compliance, and business value using Microsoft Copilot, Copilot Studio, Microsoft Purview, and Azure AI. Leave with a practical framework to accelerate innovation while maintaining control and accountability.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856598413001Exz7",
   "slots": [
    {
@@ -41169,7 +41219,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/THR1007",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/bbb39a82-0f41-4341-8a23-f93a2782fe5d",
   "transcript": "",
   "slides": "",
   "resources": [],
@@ -41251,7 +41301,7 @@
   "slides": "",
   "resources": [],
   "description": "Explore guardrails, evaluation, and human-in-the-loop patterns that help agents stay useful, reliable, and easier to trust.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856599195001Eu8D",
   "slots": [
    {
@@ -41505,7 +41555,7 @@
    }
   ],
   "description": "What does the shift to an integrated SOC look like in practice? BlueVoyant shares its early experience ISOC in Microsoft Defender, what they're hearing from customers, and how partners can help organizations bring SIEM and XDR together and take the next step toward agentic security.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856600278001EaPz",
   "slots": [
    {
@@ -41591,7 +41641,7 @@
   "slides": "",
   "resources": [],
   "description": "Every organization runs on transactions, yet most still shuttle that transactional data around with fragile ETL jobs and schedulers, which often leaves AI agents making instant decisions using stale snapshots. Join us to see how Azure SQL Hyperscale, change event streaming, and Real-Time Intelligence in Microsoft Fabric combine to create truly agent-ready data. Build a less fragile, event-driven architecture that keeps your agents current and your data IQ-ready.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856600616001E5FE",
   "slots": [
    {
@@ -41869,7 +41919,7 @@
    }
   ],
   "description": "Join Allison Nachtigal, VP of Azure Customer and Field Experiences and Meena Gowdar, Partner Director of Product Management at Microsoft, leading Azure’s adaptive cloud infrastructure portfolio, including Azure Local, Azure Operator Nexus, Azure Stack, and Sovereign Private Cloud and Steve Melan, Azure MVP and Senior Solution Architect, for an engaging Azure Unplugged conversation on the growing importance of sovereign cloud.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856601712001ErNY",
   "slots": [
    {
@@ -41988,7 +42038,7 @@
   "slides": "",
   "resources": [],
   "description": "Maximizing performance, improving efficiency, increasing reliability, and simplifying operations are essential to delivering AI at scale. Join this session to see how AI Infrastructure Intelligence uses AI-driven insights and predictive analytics to help customers choose optimal AI infrastructure, maximize GPU efficiency, improve resiliency, and accelerate issue resolution. Discover how built-in intelligence across Azure AI Infrastructure helps organizations deploy faster and scale confidently.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856602251001Er15",
   "slots": [
    {
@@ -43338,7 +43388,7 @@
   "slides": "",
   "resources": [],
   "description": "Building an agent is more than writing code; it requires an SDLC that carries it from idea to enterprise operation. Follow one agent end to end as we use GitHub to plan, build, review, secure, and evolve it; deploy it to Microsoft Foundry; and register, secure, govern, and monitor it with Microsoft Agent 365. You'll leave understanding how these platforms connect development and operations into a repeatable lifecycle for production-ready agents at enterprise scale.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856576843001EBg8",
   "slots": [
    {
@@ -43507,7 +43557,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/THR869",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/b3ef753b-d02e-4720-9523-e2e9606e0552",
   "transcript": "",
   "slides": "",
   "resources": [],
@@ -43554,7 +43604,7 @@
   "slides": "",
   "resources": [],
   "description": "AT&T built the Ask Transcripts Insights Ecosystem on Foundry IQ, turning daily call volume into answers business teams act on minutes after a call ends. See the architecture: multi-model routing that holds quality while keeping cost sustainable, near real-time pipelines at telco scale, and a plugins design that ships new use cases without a rewrite. AT&T shares what they would do differently, and how it now powers proactive marketing, care coaching, anomaly detection, and compliance monitoring.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856577771001E5E7",
   "slots": [
    {
@@ -43594,7 +43644,7 @@
   "slides": "",
   "resources": [],
   "description": "See how Fabric IQ can help teams create governed business context once and reuse it across analytics, copilots, and custom agents. This session shows how shared concepts, relationships, and rules can reduce duplicated grounding work, improve consistency, and help organizations prepare for broader AI adoption across domains with ontologies in Fabric IQ.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856577935001EMGH",
   "slots": [
    {
@@ -43678,7 +43728,7 @@
   "slides": "",
   "resources": [],
   "description": "Learn how agents move beyond waiting for prompts. A live scenario shows and agent detecting an approved business signal, gather relevant context, doing the next action and involving a person for HITL.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856578385001EfjU",
   "slots": [
    {
@@ -43914,7 +43964,7 @@
   "slides": "",
   "resources": [],
   "description": "Users move between devices, browsers, apps, and AI experiences faster than ever. Learn how Microsoft Purview Data Loss Prevention combines endpoint, browser, and network controls to eliminate blind spots and create a layered defense against data exfiltration. See real-world scenarios and how each enforcement layer stops them.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856578972001EOgm",
   "slots": [
    {
@@ -44265,7 +44315,7 @@
   "slides": "",
   "resources": [],
   "description": "One prompt. One coding agent. One working app, built live. See how app building in Copilot Studio turns natural language into an intelligent business application and dramatically changes how reliable business software gets created. Watch the experience unfold end to end, then see how easily an idea becomes an enterprise ready business solution.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856580323001EG0e",
   "slots": [
    {
@@ -44521,7 +44571,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/THR892",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/8da8d3d1-2d9d-4cc9-ba87-4afc46abe801",
   "transcript": "",
   "slides": "",
   "resources": [],
@@ -44575,7 +44625,7 @@
   "slides": "",
   "resources": [],
   "description": "Learn more about DirectStream, a collection of protocols, encoders, drivers, apps, services, and SDKs that work together to enable a like-local streaming experience for Microsoft’s enterprise end users.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856581235001EnhG",
   "slots": [
    {
@@ -45071,12 +45121,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/THR905",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/668701a3-0865-4397-b150-37e63af75ea3",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "As AI, IoT, and physical AI converge, Manufacturing and Energy organizations are bringing intelligence closer to where work happens. Discover how leaders are turning real-time operational data into actionable insights that improve reliability, productivity, safety, and resilience across assets and operations. Learn how intelligent systems support faster decisions and more autonomous operations, powering the next generation of connected industrial enterprises.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856583052001EXeB",
   "slots": [
    {
@@ -45169,7 +45219,7 @@
   "slides": "",
   "resources": [],
   "description": "Learn how Duke Health modernized disaster recovery with Epic on Azure. In this session you’ll discover how Duke Health improved resilience and strengthened security with Microsoft Defender - resulting in reduced downtime risk and lowered costs, while enabling future AI readiness.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856583350001Eojv",
   "slots": [
    {
@@ -45212,7 +45262,7 @@
   "slides": "",
   "resources": [],
   "description": "In the era of modern hybrid work, connectivity can make or break enterprise momentum. Join Verizon Business to explore how deploying PCs powered by Verizon 5G yields up to 50% ROI for organizations. Grounded in recent Forrester research, this session unpacks the operational playbook for maximizing field productivity, streamlining device management, and eliminating public Wi-Fi risks. Learn how real-time network access transforms workflows and unlocks measurable value.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856583500001E4Ri",
   "slots": [
    {
@@ -45396,7 +45446,7 @@
   "slides": "",
   "resources": [],
   "description": "Bosch and Microsoft are taking AI from the workplace to the vehicle with an AI-powered cockpit that combines automotive expertise and Microsoft AI. A custom-trained SLM delivers low-latency, context-aware experiences, voice, memory, and vehicle functions across offline and online scenarios. Microsoft AI adds cloud intelligence, orchestration, APIs, and governance. See how Bosch is building the journey from AI assistant to AI-powered companion.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856584119001EX6C",
   "slots": [
    {
@@ -45591,7 +45641,7 @@
   "slides": "",
   "resources": [],
   "description": "Vanguard and Microsoft have built a sales advisor assist experience for Vanguard FAS using Microsoft 365 Sales Agent, Dynamics, and Microsoft Fabric. This session explores how the team is connecting relationship context, meeting preparation, outreach drafting, and coordinated follow-through into a human-reviewed workflow designed to reduce administrative effort and support more informed client conversations. Go behind the architecture to see how Dataverse Business Skills bring CRM capabilities into a conversational experience, alongside a Fabric-based approach to enterprise insights.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856584719001EqrK",
   "slots": [
    {
@@ -46616,7 +46666,7 @@
   "slides": "",
   "resources": [],
   "description": "Organizations can scale their cloud and AI strategy with solutions and expertise from across the Microsoft partner ecosystem. Learn how leaders can use Microsoft Marketplace to explore solutions and expertise that can support deployment and governance while building on existing Microsoft cloud and AI investments.​",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856588617001EMcj",
   "slots": [
    {
@@ -46704,7 +46754,7 @@
   "slides": "",
   "resources": [],
   "description": "As AI adoption expands, leaders may not always have visibility into how AI is being used across the organization. In this interactive tabletop, join the leadership team of a company confronting the risks of AI agents operating across the enterprise. Navigate decisions spanning visibility, governance, security, accountability, and human oversight, and explore the capabilities leaders need to govern and scale agents responsibly.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856588932001EJjm",
   "slots": [
    {
@@ -46749,7 +46799,7 @@
   "slides": "",
   "resources": [],
   "description": "AI doesn't create value on its own. People create value with AI. Explore how leading organizations are connecting workforce readiness, role-based skilling, and practical application to help employees adopt AI with confidence and turn AI investments into business results.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856589087001E8lk",
   "slots": [
    {
@@ -47024,7 +47074,7 @@
   "slides": "",
   "resources": [],
   "description": "What could learning look like if the right support appeared exactly when you needed it? For learners and team leaders, this session shows how AI Skills Navigator uses AI to turn a broad goal into a clear path, offer guidance as questions arise, reinforce understanding, and keep learning moving forward. You’ll leave with a practical view of how AI-powered support can make skill building more focused, responsive, and effective.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856590017001EZnO",
   "slots": [
    {
@@ -47151,7 +47201,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/THR953",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/cad179ef-91fd-4011-b916-ed317dd582d4",
   "transcript": "",
   "slides": "",
   "resources": [],
@@ -47202,7 +47252,7 @@
   "slides": "",
   "resources": [],
   "description": "Confused by the growing credential portfolio? Learn the purpose of Applied Skills, Certifications, and Pro Badge, how they complement one another, and where to invest your time to maximize career impact.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856590633001EupX",
   "slots": [
    {
@@ -47342,7 +47392,7 @@
   "slides": "",
   "resources": [],
   "description": "Discover how Microsoft Training Services Partners help organizations bridge the gap between AI ambition and workforce readiness through role-based skilling, hands-on learning, and tailored adoption strategies. You'll learn how strategic programs build confidence, accelerate AI adoption, and equip employees with the skills needed to thrive in the era of AI. Walk away with practical insights on how training partners can help you create a workforce ready to drive meaningful business outcomes.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856591107001EiWo",
   "slots": [
    {
@@ -47390,7 +47440,7 @@
   "slides": "",
   "resources": [],
   "description": "Technology alone doesn't drive AI transformation, people do. Learn how Microsoft Training Services Partners help customers translate newly acquired AI skills into measurable business impact. Through a customer success story, see how organizations move from learning concepts to implementing AI-powered solutions that improve productivity, streamline operations, and deliver tangible results.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856591256001Etjz",
   "slots": [
    {
@@ -47568,7 +47618,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/THR962",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/f30f0b82-7ff2-48f7-809f-2ce5caba7e1f",
   "transcript": "",
   "slides": "",
   "resources": [],
@@ -47660,7 +47710,7 @@
   "slides": "",
   "resources": [],
   "description": "See the new Microsoft Copilot harness in action and discover what it unlocks for Copilot Studio makers. In a live demo, learn how it expands what agents can do, enables richer experiences, and changes how makers build and extend agents.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856592220001EVen",
   "slots": [
    {
@@ -47702,7 +47752,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/THR965",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/4ac8aee8-e24c-4e8a-a78d-c0c42703f612",
   "transcript": "",
   "slides": "",
   "resources": [],
@@ -47797,7 +47847,7 @@
   "slides": "",
   "resources": [],
   "description": "An IT Pro and a business pro trade perspectives on the real cost of running AI. In 25 minutes, see how token spend, model choice, and workload placement translate into budget lines — and how each side can stop surprising the other.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856592677001Eu4q",
   "slots": [
    {
@@ -47929,7 +47979,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/THR970",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/a4fb8b08-131d-4886-911a-db38130380ca",
   "transcript": "",
   "slides": "",
   "resources": [],
@@ -47977,7 +48027,7 @@
   "slides": "",
   "resources": [],
   "description": "Microsoft Certified Trainers (MCTs) help learners and organizations build critical technology skills through expert instruction and real-world experience. Hear inspiring stories of customer success, social impact, and community leadership that demonstrate how MCTs empower learners and advance Microsoft's global skilling mission.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856593299001EbaV",
   "slots": [
    {
@@ -48168,7 +48218,7 @@
   "slides": "",
   "resources": [],
   "description": "Many organizations have deployed AI assistants, but few have unlocked true end-to-end resolution. Join this session for a hands-on look at how AI can understand intent, access business systems, execute workflows, and resolve customer requests with minimal human intervention. Through demonstrations and implementation examples, explore the architectural decisions, safeguards, and integrations required to deliver autonomous customer experiences.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856594064001Eu7D",
   "slots": [
    {
@@ -48340,7 +48390,7 @@
   "slides": "",
   "resources": [],
   "description": "Building an AI agent is easy. Governing it is the hard part.\nA Microsoft Foundry agent can access Microsoft 365, Microsoft IQ data, identities, and business content across multiple platforms. But who owns it, what can it access, and how do you retire it safely? Follow a real-world agent from deployment to decommissioning and learn the four governance controls every production agent needs: Ownership, Identity, Data Boundary, and Lifecycle.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856594675001EgFw",
   "slots": [
    {
@@ -48467,7 +48517,7 @@
   "slides": "",
   "resources": [],
   "description": "How does a regulated financial services organization turn M365 Copilot experiments into an everyday capability? OP Pohjola, FinlandÆs largest financial services group, shares its journey from the early pilots in 2023 to organization-wide adoption in 2026. Learn the practical operating model behind training, support and communications, focusing on how to move from providing access to driving active use. See how to drive value and create measurable changes in ways of working and business outcomes.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856595135001EFIt",
   "slots": [
    {
@@ -48547,7 +48597,7 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/THR985",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/f58be471-6ee4-4b9b-b5ec-956a9a517351",
   "transcript": "",
   "slides": "",
   "resources": [],
@@ -48556,9 +48606,9 @@
   "catalog_id": "1787856595452001ENDX",
   "slots": [
    {
-    "start": "2026-11-19T00:20:00Z",
-    "end": "2026-11-19T00:45:00Z",
-    "location": "Moscone South | The Hub, Theater G"
+    "start": "2026-11-20T17:35:00Z",
+    "end": "2026-11-20T18:00:00Z",
+    "location": "Moscone West | Level 3, Theater B"
    }
   ],
   "online": true
@@ -48594,7 +48644,7 @@
   "slides": "",
   "resources": [],
   "description": "Agentic AI starts with trusted data. This session shows how Microsoft Fabric helps enterprises build AI-ready data with governance and compliance. Learn practical architecture patterns for connecting operational data to context-aware AI agents.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787856595612001EVl7",
   "slots": [
    {
@@ -49884,7 +49934,7 @@
   "slides": "",
   "resources": [],
   "description": "As organizations adopt AI agents, copilots, and generative AI, visibility, governance, and cost control become increasingly important. Learn how to discover AI usage, understand token consumption, optimize costs, and govern access at scale. Through practical examples and real-world insights, you'll gain strategies for managing AI investments, reducing risk, and establishing accountability across the enterprise.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787858587701001SEf3",
   "slots": [
    {
@@ -49931,7 +49981,7 @@
   "slides": "",
   "resources": [],
   "description": "Enterprise AI has moved far beyond answering questions and completing tasks. Today, agentic AI can reason, act, adapt, and continuously optimize to deliver measurable business outcomes. Hear Kore.ai Chief Commercial Officer Uma Sandilya share how global financial institutions are putting agentic AI to work to transform experiences and deliver meaningful business outcomes.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787858587847001Sjkj",
   "slots": [
    {
@@ -50040,7 +50090,7 @@
   "slides": "",
   "resources": [],
   "description": "Move beyond AI pilots to measurable business value. Discover how Frontier Companies bring people, Copilot, and intelligent agents together to transform work. Through real-world customer scenarios, learn to secure executive sponsorship, balance innovation with governance, scale AI in production, and drive enterprise-wide adoption. Leave with practical steps to build an AI operating model that delivers sustainable business outcomes.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787858588140001Ssju",
   "slots": [
    {
@@ -50082,7 +50132,7 @@
   "slides": "",
   "resources": [],
   "description": "Scaling AI value requires connected context across the business, from R&D and IT to operations and GTM. See how the Atlassian platform brings organizational context together across teams, agents, and apps to help businesses scale AI. Learn how SpotOn used this connected foundation to expand AI adoption across 1,000+ employees in under six months, achieving a 55% question deflection rate and saving hundreds of operational hours each month.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787858588293001Slkf",
   "slots": [
    {
@@ -50128,7 +50178,7 @@
   "slides": "",
   "resources": [],
   "description": "AI is only as effective as the data, architecture, and domain expertise behind it. See how Baker Hughes and EPAM are modernizing industrial software architecture, streamlining data strategies, and building a foundation for AI-powered operations. Explore approaches to platform simplification, trusted analytics, security, scalability, and user experience design to prepare industrial platforms for intelligent operations.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787858588435001SOwl",
   "slots": [
    {
@@ -50174,7 +50224,7 @@
   "slides": "",
   "resources": [],
   "description": "Enterprises face a catch-22: modernize for AI, yet maintain control of your intelligence. Concierto breaks the bind. The speakers present a sovereign platform for migrating, modernizing, and managing enterprises for agentic AI within your VPC. Dual-engine architecture combines deterministic rules with private inference. Concierto delivers versatility, protecting and growing your intelligence solely for your company’s benefit.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787858588582001SAMi",
   "slots": [
    {
@@ -50300,7 +50350,7 @@
   "slides": "",
   "resources": [],
   "description": "AI mistakes are hard to reverse. Copilot and AI agents inherit every permission, stale file, and mislabeled document already in your Microsoft 365 estate. Most teams find that out after they deploy. In 25 minutes, we’ll show you how to see what your AI can actually reach, clean up what it shouldn’t, and keep the whole estate recoverable while you do it. You’ll leave with the three checks to run before your next AI rollout.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787858588894001SXYv",
   "slots": [
    {
@@ -50473,7 +50523,7 @@
   "slides": "",
   "resources": [],
   "description": "Start using business-critical data to fuel your AI journey. Discover how migrating Oracle workloads to Azure with Oracle AI Database@Azure enables Azure AI services like Microsoft IQ and Copilot to securely and instantly access enterprise data. Explore how collocating Oracle infrastructure in Azure data centers and natively integrating Oracle and Azure services powers innovation by turning trusted data into intelligent agentic workflows.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787858589511001SVYY",
   "slots": [
    {
@@ -50662,7 +50712,7 @@
   "slides": "",
   "resources": [],
   "description": "AI agents now act, not just read, and that action lands on the endpoint. Join ASUS and Intel to see how cloud policy, platform telemetry, and hardware root of trust combine to strengthen protection when a device is at risk or lost, and why post-quantum readiness starts today, years ahead of your next refresh cycle.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787858590121001Sovz",
   "slots": [
    {
@@ -50850,7 +50900,7 @@
   "slides": "",
   "resources": [],
   "description": "Organizations are under pressure to modernize aging infrastructure, protect critical data, and prepare for AI. What if one modernization strategy could address all three? See how HPE and Microsoft can turn a Windows Server refresh into a modernization opportunity that strengthens security, supports sovereignty, and creates an AI-ready foundation for what comes next.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787858590854001S249",
   "slots": [
    {
@@ -50897,7 +50947,7 @@
   "slides": "",
   "resources": [],
   "description": "Discover how Quest Diagnostics is enhancing customer-facing processes to improve experience, quality, and productivity for patients and providers. Learn how an AI-infused SDLC is accelerating innovation and reducing friction across the testing ecosystem, and how HCLTech is enabling this transformation through AI engineering with GitHub Copilot and application modernization to improve development, code quality, and scalability for future innovation.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787858591006001SPXW",
   "slots": [
    {
@@ -52384,12 +52434,12 @@
    "Will be recorded"
   ],
   "url": "https://ignite.microsoft.com/en-US/sessions/THRSP1123",
-  "video": "",
+  "video": "https://medius.microsoft.com/Embed/video-nc/fe8d2920-ce2e-45c1-ad3d-015fab947ea4",
   "transcript": "",
   "slides": "",
   "resources": [],
   "description": "A booking shows intent. What happens when people arrive? Join our panel to explore how Microsoft Places and digital signs connect workplace information with the experience at the desk or meeting room. Through customer stories and workplace transformation experience, see what drives adoption, what bookings leave out, and how better evidence supports decisions about space. Leave with practical questions to apply to your own workplace.",
-  "has_ai_summary": false,
+  "has_ai_summary": true,
   "catalog_id": "1787858596822001SJyI",
   "slots": [
    {
