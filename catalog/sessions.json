@@ -25983,6 +25983,36 @@
   "online": false
  },
  {
+  "code": "LIVE07",
+  "title": "Copilot Managed Runtime: Build where you want, run with confidence.",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Jiun Hong",
+   "Clay Wesener",
+   "Malavika Balachandran Tadeusz"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE07",
+  "video": "https://medius.microsoft.com/Embed/video-nc/0c28b348-0e35-4615-9f32-d9bbcc40e458",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Building an app is one thing. Making it ready for work is another. Explore how apps built with Microsoft and third-party tools like Lovable can become secure, governed business applications with Microsoft Copilot Managed Runtime. This quick conversation connects the freedom to build with the confidence to put apps to work—and previews what you can explore further at Ignite.",
+  "has_ai_summary": true,
+  "catalog_id": "1793676097907001gh3w",
+  "slots": [],
+  "online": true
+ },
+ {
   "code": "LIVE101",
   "title": "Run AI at Scale: Scott Guthrie and Jessica Hawk on the Infrastructure Behind Every Agent",
   "type": "Broadcast Stage",
@@ -26008,6 +26038,300 @@
   "description": "Agents can do remarkable work. Running them raises practical questions. Will it perform? What will it cost at scale? Is the data it touches protected? Scott Guthrie, Executive Vice President of Microsoft's Cloud and AI group, joins Jessica Hawk to answer them, from silicon to data.\nScott explains why AI is now the defining workload in the cloud, and how Azure Cobalt 200, AKS AI Manager for Microsoft Foundry, and Agent Sandbox help developers build agents instead of managing every layer beneath them. He shows how Azure Catalyst turns years of existing apps and data into AI innovation, and how HorizonDB and Microsoft IQ bring AI closer to the context that makes it useful.\nWatch for Scott's advice to leaders on the technology decisions that carry them from experimentation to transformation.",
   "has_ai_summary": true,
   "catalog_id": "1793672090206001Aeum",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVE122",
+  "title": "Security mythbusters: Securing Windows for humans and agents",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Amy Boyd",
+   "Peter Waxman"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE122",
+  "video": "https://medius.microsoft.com/Embed/video-nc/2087527a-856a-4a2d-98ee-dff691f33f07",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Does securing Windows still mean a long configuration checklist? Is it game over once an attacker gets admin? Do AI agents on your PCs mean losing control? Join us for a fast, candid conversation on what's actually true about endpoint security in the agentic era, from secure-by-default Baseline Security Mode and Pluton-protected credentials to contained, governed AI agents and quantum-ready crypto. Microsoft secures the environment. Windows enforces it.​",
+  "has_ai_summary": true,
+  "catalog_id": "1793674549948001linU",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVE126",
+  "title": "What’s new in Databases at Ignite?",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Shireesh Thota",
+   "Dave Byrne"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE126",
+  "video": "https://medius.microsoft.com/Embed/video-nc/119f3637-7578-4a55-bb09-689a55dc802d",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Every AI app and agent depends on a strong data foundation. Join Shireesh Thota, CVP of Azure Databases, for a look at what's new in Microsoft Databases at Ignite. Shireesh shares how databases help you modernize mission-critical apps, build cloud-native intelligent experiences, and run your data estate with agents. He'll walk through the top announcements, and you'll hear from customers about how they're building on Microsoft databases today.",
+  "has_ai_summary": true,
+  "catalog_id": "1793673388227001FDEX",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVE127",
+  "title": "Azure HorizonDB: Enterprise-Scale PostgreSQL",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Amy Boyd",
+   "Charles Feddersen"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE127",
+  "video": "https://medius.microsoft.com/Embed/video-nc/2c852715-a899-49af-9204-a4a812e60f83",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "PostgreSQL has become the database of choice for modern application development, and organizations are increasingly looking for solutions that can scale to their most demanding workloads. Join Charles Feddersen for a live demo of Azure HorizonDB, now generally available",
+  "has_ai_summary": true,
+  "catalog_id": "1793674703845001oX58",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVE132",
+  "title": "Modernization to AI transformation: How Aon enables better decisions",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Jiun Hong",
+   "Wes Reisz",
+   "Jennifer Riggins"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE132",
+  "video": "https://medius.microsoft.com/Embed/video-nc/13eb1a11-eb7d-42d6-86f1-5b33cb867a7a",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Aon is turning AI from experiment into better decisions for clients and colleagues. In this 9-minute segment, Aon's leaders share how a trusted data and Azure foundation, Microsoft 365 Copilot in colleagues' hands, and end-to-end workflow redesign, like Certificate Center, move AI beyond productivity into transformation. They also cover change management, governed agents, and AI FinOps, then offer practical advice on what leaders should get right first as they scale.​",
+  "has_ai_summary": true,
+  "catalog_id": "1793674944549001i1mn",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVE144",
+  "title": "The compute estate running Windows for the Agentic era",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Jiun Hong",
+   "Stefan Kinnestrand",
+   "Rahul Tikoo"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE144",
+  "video": "https://medius.microsoft.com/Embed/video-nc/4330edd6-87df-4eea-8a50-6de792fd2b5c",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "AI is entering the agentic era, transforming how work gets done and where intelligence runs. Join Microsoft and AMD to explore how Windows is evolving as the trusted platform connecting cloud and local intelligence across the compute estate, and how advances in silicon are unlocking new levels of performance, efficiency, and choice for the next generation of AI.​",
+  "has_ai_summary": true,
+  "catalog_id": "1793675404718001PCTt",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVE147",
+  "title": "Windows 365 and NVIDIA: Bringing High-Performance Cloud PC Experiences to Life​",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Bhavya Chopra",
+   "Jiun Hong",
+   "John Fanelli"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE147",
+  "video": "https://medius.microsoft.com/Embed/video-nc/0618f6a1-7626-45ee-bbe2-e10a78fb4ae7",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Join John Fanelli and Bhavya Chopra for a 10-minute fireside chat on how GPU-enabled Windows 365 Cloud PCs, powered by NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs, bring graphics- and compute-intensive work to the cloud. Discover how Direct Stream, a new streaming technology, delivers a high-performance, like-local experience to Cloud PC users, even in demanding graphics applications.​",
+  "has_ai_summary": true,
+  "catalog_id": "1793675498578001lfz1",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVE149",
+  "title": "Behind the Curtain: Building Copilot Studio",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Ryan Cunningham",
+   "Lauren Soni"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE149",
+  "video": "https://medius.microsoft.com/Embed/video-nc/2c5e35c0-7c4b-4907-bf96-2e47d2c8580d",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Inside how the Copilot Studio engineering team builds the product with its own agents: which agents they run, what got faster, what broke, and what a small team can now ship. ​",
+  "has_ai_summary": true,
+  "catalog_id": "1793675965297001onQI",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVE196",
+  "title": "Build what's next with GitHub",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Jeremy Chapman",
+   "Mario Rodriguez"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE196",
+  "video": "https://medius.microsoft.com/Embed/video-nc/0976ba83-04c7-4a15-be94-fa20c4a597b1",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Get a look at the latest GitHub announcements and what they mean for developers and organizations. Discover how new AI-powered capabilities across GitHub and the broader developer toolchain can help teams work more effectively throughout the software development lifecycle.",
+  "has_ai_summary": true,
+  "catalog_id": "1793670854802001shva",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVE197",
+  "title": "Inside a Frontier Company: How AI Changes the Way Business Gets Done",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Rodrigo Kede Lima",
+   "Lauren Soni"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE197",
+  "video": "https://medius.microsoft.com/Embed/video-nc/1b8b3666-dcdb-4dc0-b3e0-5063173d2657",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Most leaders no longer need convincing that AI works. The harder question is how to move from pilots and demos to AI that changes how the business actually runs. Forbes' Lauren Soni sits down with Rodrigo Kede Lima, President of Microsoft Frontier Company, to discuss why the value comes from redesigning workflows rather than adding tools, what customers are learning from working side by side with forward deployed engineers, and how to scale AI agents with trust built in from day one.​",
+  "has_ai_summary": true,
+  "catalog_id": "1793673113437001lWcS",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVE198",
+  "title": "Mark Russinovich & Jeffrey Snover Unscripted",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Mark Russinovich",
+   "Seth Juarez",
+   "Jeffrey Snover"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE198",
+  "video": "https://medius.microsoft.com/Embed/video-nc/4e209781-5a3d-4570-a86a-c83444c7c375",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Two of the engineers who shaped how IT pros work sit down for an unscripted conversation. Mark Russinovich (Azure CTO, Deputy CISO, Technical Fellow, and co-creator of Sysinternals) and Jeffrey Snover (inventor of PowerShell) swap stories from decades of building tools people rely on. They'll also trade candid views on what AI agents change about running technology, what stays the same, and what it means for people building their careers today.",
+  "has_ai_summary": true,
+  "catalog_id": "1793674827692001Azia",
   "slots": [],
   "online": true
  },
@@ -26525,6 +26849,35 @@
   "online": true
  },
  {
+  "code": "LIVE83",
+  "title": "Build enterprise apps that run on Fabric",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Amy Boyd",
+   "Sachin Patney"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE83",
+  "video": "https://medius.microsoft.com/Embed/video-nc/07fe9c0c-8fed-4057-9b90-ce150f84335c",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "See how Rayfin and Fabric apps help developers and AI coding agents build, deploy, and govern enterprise-ready applications in minutes. Explore how to create apps with built-in databases, authentication, and APIs, connect to trusted data in OneLake, and leverage Fabric’s enterprise security and governance—all without managing infrastructure.",
+  "has_ai_summary": true,
+  "catalog_id": "1793673614850001ih5D",
+  "slots": [],
+  "online": true
+ },
+ {
   "code": "LIVE84",
   "title": "Build on One System: Arun Ulag and Alysa Taylor on Context, Data, and the Future of Azure",
   "type": "Broadcast Stage",
@@ -26550,6 +26903,742 @@
   "description": "Every company already has its own intelligence: its data, its knowledge, its IQ. Arun Ulag, who leads the teams behind Azure's compute, networking, storage, databases, analytics, and Microsoft IQ, sits down with Alysa Taylor to show how to put it to work.\nArun explains how technology is shifting from tool to teammate, and why context will drive the next wave of differentiation. He shows how OneLake unifies data across clouds and platforms without costly migrations, and how Microsoft IQ brings organizational knowledge together so it stays yours. You'll hear why organizations running thousands of agents need one system to build, ground, and govern them, and how Azure connects every layer from silicon to services.\nWatch to learn how to turn your data and knowledge into a lasting advantage.",
   "has_ai_summary": true,
   "catalog_id": "1793673666036001lpPt",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVE93",
+  "title": "FinOps for AI: Rashida Hodge and Zia Mansoor on Scaling AI with Confidence",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Cyril Belikoff",
+   "Zia Mansoor",
+   "Rashida Hodge"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE93",
+  "video": "https://medius.microsoft.com/Embed/video-nc/225a29c8-4aa1-4c77-8716-511fda76f824",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "As AI moves from pilots to production, organizations want to scale it with confidence. In this conversation from Microsoft Ignite, Cyril Belikoff is joined by Rashida Hodge, Corporate Vice President of AI Business Solutions, and Zia Mansoor, Corporate Vice President of Cloud & AI Platforms, for a look at what organizations are focused on and how FinOps for AI can help.",
+  "has_ai_summary": true,
+  "catalog_id": "1794791064325001n9mu",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVE96",
+  "title": "The Voice Renaissance: Why AI Is Bringing the Phone Call Back",
+  "type": "Broadcast Stage",
+  "topics": [],
+  "tags": [],
+  "level": null,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "Online"
+  ],
+  "speakers": [
+   "Darya Mazandarany",
+   "Jiun Hong"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVE96",
+  "video": "https://medius.microsoft.com/Embed/video-nc/42a84644-4516-478c-ab6e-26cc90b1177a",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "A decade ago, pundits predicted voice was supposed to fade – PSTN was predicted to exit stage left. Instead, voice is having a renaissance. Customers still call when it matters most, and AI voice agents can now listen, reason, and act in real time. Darya Mazandarany share why voice is back and what's new at Ignite. Microsoft Contact Center Intelligence is now generally available and brings voice agents to the contact center you already run. Dynamics 365 Contact Center unites CRM, CCaaS, and AI and can bring your contact center into the agentic era.",
+  "has_ai_summary": true,
+  "catalog_id": "1793672884595001lsA3",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP150",
+  "title": "Own your intelligence with Fireworks on Foundry",
+  "type": "Pre-recorded",
+  "topics": [
+   "Cloud & AI"
+  ],
+  "tags": [
+   "Microsoft Foundry"
+  ],
+  "level": 200,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Rob Ferguson"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP150",
+  "video": "https://medius.microsoft.com/Embed/video-nc/87965b99-b891-431d-8afa-ee671fe9f365",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Your organization’s data can be the key to creating differentiated AI experiences with open models. Discover how customers use Fireworks on Foundry to customize models for their domains while helping lower costs. For architects and technical leaders evaluating open models, explore which workloads to consider, what training is needed, and how shifting 2% of weights can propel an application past its category.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855007793001tTpl",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP151",
+  "title": "Could agent stores do for AI what app stores did for software?",
+  "type": "Pre-recorded",
+  "topics": [
+   "Agentic Business Applications"
+  ],
+  "tags": [
+   "AI",
+   "Microsoft 365 apps",
+   "Agents",
+   "Microsoft Copilot",
+   "Microsoft 365",
+   "Get Ready for AI",
+   "Microsoft Agent 365"
+  ],
+  "level": 200,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Sunny Wang"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP151",
+  "video": "https://medius.microsoft.com/Embed/video-nc/905294b2-b457-4427-bc95-6d0a837e53ca",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "What if adopting AI became as simple as selecting the right solution instead of launching a new development project? Explore why this emerging model is gaining momentum and how pre-built AI agents can help businesses accelerate productivity, streamline operations, and create faster paths to value. Join Sunny Wang for a fast-paced conversation on how agent stores can make AI more accessible, scalable, and actionable for businesses.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855008027001teC9",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP155",
+  "title": "Turn AI speed into trusted outcomes",
+  "type": "Pre-recorded",
+  "topics": [
+   "Frontier Transformation"
+  ],
+  "tags": [],
+  "level": 300,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Prem Balasubramanian",
+   "Anand Birje"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP155",
+  "video": "https://medius.microsoft.com/Embed/video-nc/509c72db-9ca5-44cb-9298-639dc9140d1c",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "AI can generate software and agents faster than enterprises can confidently deploy and operate them. Explore how HARC Compose connects business intent and governed context with AI-led and failure-conscious engineering to help bridge that gap. See how teams can move more quickly with greater assurance, govern agent behavior, and build trusted products for mission-critical environments while keeping people in control of consequential decisions.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855008907001tTrh",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP156",
+  "title": "Build secure agents across the Microsoft stack",
+  "type": "Pre-recorded",
+  "topics": [
+   "Agent Platform"
+  ],
+  "tags": [
+   "Security",
+   "Identity and network access",
+   "Governance",
+   "Community",
+   "Microsoft Purview",
+   "Microsoft Defender",
+   "Microsoft Agent 365"
+  ],
+  "level": 100,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Rafsan Huseynov"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP156",
+  "video": "https://medius.microsoft.com/Embed/video-nc/5e6a1af0-3acb-48e2-b4cf-86cf12dd3a6f",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Anyone can build a demo agent. Shipping one that's secure and production-ready is the hard part. Learn how to build production-ready agents across the Microsoft stack, from Copilot Studio for business users to Microsoft Foundry for pro-code development, with security and governance considered from day one. See how governance zones, least-privilege access, agent identity, and lifecycle management can help turn a prototype into a production agent you can trust across industries.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855009112001tM9c",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP157",
+  "title": "From service management to frontier transformation",
+  "type": "Pre-recorded",
+  "topics": [
+   "Frontier Transformation"
+  ],
+  "tags": [],
+  "level": 400,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP157",
+  "video": "https://medius.microsoft.com/Embed/video-nc/dccd1c07-11b0-495d-a4fa-67418b3e31ab",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Organizations everywhere are experimenting with AI, but few have figured out how to scale it into meaningful business impact. Join Patrick McNulty of Newell Brands and Charlie Doubek of NTT DATA as they share how Newell moved from a focused AI-powered MVP to governed multi-agent operations by reimagining service management around employee and business outcomes.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855009314001tMvg",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP158",
+  "title": "How AI is changing enterprise cyber defense",
+  "type": "Pre-recorded",
+  "topics": [
+   "Security"
+  ],
+  "tags": [
+   "AI",
+   "Security",
+   "AI controls",
+   "AI Security",
+   "Secure AI",
+   "Defend with AI",
+   "Agentic defense"
+  ],
+  "level": 200,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Rahul Sontake"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP158",
+  "video": "https://medius.microsoft.com/Embed/video-nc/6723057d-12e2-4c42-9e1b-181381863703",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "As cyber threats evolve, periodic security assessments can leave gaps between when vulnerabilities emerge and when teams respond. See how AI is helping organizations continuously identify, prioritize, and remediate vulnerabilities. Through a real-world demonstration, learn how AI can help security teams focus on the highest-risk issues, accelerate response times, and strengthen enterprise resilience.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855009514001tYgi",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP159",
+  "title": "Scale agentic AI from deskside to data center with Dell and Microsoft",
+  "type": "Pre-recorded",
+  "topics": [
+   "Cloud & AI"
+  ],
+  "tags": [],
+  "level": 200,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Jon Siegal"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP159",
+  "video": "https://medius.microsoft.com/Embed/video-nc/68b3f9da-fd19-4d64-b4b5-495d7cbee636",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Agentic AI is changing not only how work gets done, but where AI runs. From AI PCs and powerful deskside systems to the data center and cloud, explore how Dell Technologies and Microsoft help organizations put AI where it delivers the greatest value. See how strategy, deployment, governance, and operational readiness can help accelerate adoption and move agentic AI from experimentation to scale.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855009729001tTDo",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP160",
+  "title": "Build sovereign AI with Azure where you want it",
+  "type": "Pre-recorded",
+  "topics": [
+   "Cloud & AI"
+  ],
+  "tags": [
+   "AI",
+   "AI Security",
+   "Data governance",
+   "Microsoft Foundry on Windows",
+   "Secure AI",
+   "Get Ready for AI"
+  ],
+  "level": 100,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Alan Kerr"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP160",
+  "video": "https://medius.microsoft.com/Embed/video-nc/00ea3330-84b6-457b-aa11-b605e264e0ec",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "How do you move AI from pilot to production without giving up control of your data, models, or infrastructure? See how Lenovo and Microsoft bring Smarter AI to Azure Local, from right-sized deployments to sovereign AI factories. Learn how to match infrastructure to the workload, protect sensitive AI with confidential computing, operate connected or disconnected, and scale from assessment to production with confidence.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855009947001t2K8",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP165",
+  "title": "Build an agentic platform to scale and govern digital workforces",
+  "type": "Pre-recorded",
+  "topics": [
+   "Agent Platform"
+  ],
+  "tags": [
+   "AI",
+   "AI controls",
+   "Agents",
+   "Github Copilot",
+   "Microsoft Foundry",
+   "GitHub",
+   "Foundry IQ",
+   "Work IQ",
+   "Microsoft Copilot",
+   "Azure Copilot",
+   "Microsoft Agent 365",
+   "Microsoft Copilot Studio",
+   "Fabric IQ",
+   "Microsoft IQ",
+   "Migration and modernization",
+   "AI Transformation",
+   "Application Modernization"
+  ],
+  "level": 200,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Josh Scriven"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP165",
+  "video": "https://medius.microsoft.com/Embed/video-nc/67cf14de-0e47-4c29-a542-c498eb8587b6",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Discover how IBM and Microsoft are jointly developing Imagine Enterprise to help enterprises build, run, and govern digital workforces. In this live demo, you’ll see how Imagine Enterprise combines IBM Consulting’s 6,000+ pre-built agents with Microsoft Azure, Copilot Studio, and Fabric to design, deploy, and govern a tailored digital workforce at scale. Learn how your organization can move from AI ambition to measurable business impact.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855010982001tzJO",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP166",
+  "title": "AI-first financial services: From modernization to intelligence",
+  "type": "Pre-recorded",
+  "topics": [
+   "Agentic Business Applications"
+  ],
+  "tags": [
+   "AI",
+   "Security",
+   "AI Security",
+   "Data governance",
+   "Governance",
+   "Data protection",
+   "Migration and modernization",
+   "AI Transformation",
+   "AI Infrastructure",
+   "Application Modernization"
+  ],
+  "level": 100,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Rakesh Kumar Kumar",
+   "BABU UNNIKRISHNAN Unnikrishnan"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP166",
+  "video": "https://medius.microsoft.com/Embed/video-nc/52f32e25-c7df-46d1-b2f4-cb103d35710d",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Financial institutions are moving beyond AI experiments to enterprise-wide transformation. Explore how banks, insurers, and capital markets firms are using AI and modern data foundations to drive growth, customer experience, compliance, and productivity. See how TCS works back from business outcomes, disaggregates value chains, and applies layered and AI-native approaches, specialized agents, and AI-led modernization to rethink how value is delivered.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855011195001tUTk",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP167",
+  "title": "See autonomous IT take on the ticket queue",
+  "type": "Pre-recorded",
+  "topics": [
+   "Agentic Business Applications"
+  ],
+  "tags": [
+   "AI",
+   "Windows 365",
+   "Agents",
+   "Microsoft Teams",
+   "Microsoft Entra",
+   "Windows",
+   "Microsoft Intune",
+   "Copilot Chat",
+   "Intune",
+   "Secure AI",
+   "Get Ready for AI",
+   "Windows Agents",
+   "SMB",
+   "Lean IT",
+   "Knowledge retrieval",
+   "AI Transformation"
+  ],
+  "level": 100,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Tal Dagan"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP167",
+  "video": "https://medius.microsoft.com/Embed/video-nc/8edd0f48-38ef-403e-a605-2481ec39aa4d",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Autonomous agents can change the IT support model entirely. In six minutes, watch Robin by Atera diagnose, remediate, verify, and resolve real employee IT issues end to end, with no technician in the loop. See incidents resolved one after another and learn what changes when IT shifts from managing tickets to governing autonomous outcomes.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855011416001tK3p",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP171",
+  "title": "Could agent stores do for AI what app stores did for software?",
+  "type": "Pre-recorded",
+  "topics": [
+   "Agentic Business Applications"
+  ],
+  "tags": [
+   "AI",
+   "Microsoft 365 apps",
+   "AI controls",
+   "Agents",
+   "Microsoft Copilot",
+   "Microsoft 365",
+   "Get Ready for AI",
+   "Microsoft Agent 365"
+  ],
+  "level": 100,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Sunny Wang"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP171",
+  "video": "https://medius.microsoft.com/Embed/video-nc/e1e5d1eb-0fb2-4bd5-a1fc-1e72ca9d6073",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "What if adopting AI became as simple as selecting the right solution instead of launching a new development project? Explore why this emerging model is gaining momentum and how pre-built AI agents can help businesses accelerate productivity, streamline operations, and create faster paths to value. Join Sunny Wang for a fast-paced conversation on how agent stores can make AI more accessible, scalable, and actionable for businesses.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855008130001twAI",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP174",
+  "title": "From cloud-ready to agent-ready: Cattle, not pets",
+  "type": "Pre-recorded",
+  "topics": [
+   "Agent Platform"
+  ],
+  "tags": [
+   "Agents",
+   "AI Transformation"
+  ],
+  "level": 200,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Greg Inks"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP174",
+  "video": "https://medius.microsoft.com/Embed/video-nc/7dedec7c-3fdf-41f9-b5a8-a988e9e0ae6d",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "In this 4-minute Microsoft Ignite broadcast, PwC Advisory Partner Greg Inks discusses why the limiting factor for agentic AI may not be the capability of the agent, but the environment it is asked to operate in. He shares how agent-ready infrastructure, with governance encoded into the environment and a tiered model for agent autonomy, helps enterprises move from automation toward governed autonomy on Microsoft Azure.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855009011001tIxI",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP175",
+  "title": "How frontier firms are building the AI-powered enterprise",
+  "type": "Pre-recorded",
+  "topics": [
+   "Frontier Transformation"
+  ],
+  "tags": [
+   "Partner",
+   "Customer"
+  ],
+  "level": 100,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Anand Birje"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP175",
+  "video": "https://medius.microsoft.com/Embed/video-nc/04b4000f-2563-4d4b-9ed7-70f0b0d4174e",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "What will separate AI leaders from everyone else in 2027? Explore how organizations are evolving into Frontier Firms, where AI, agents, and human expertise work together to drive growth. Gain executive perspectives on the opportunities and challenges shaping this transition, and learn how the One Hitachi model brings consulting, engineering, and innovation together to accelerate value creation.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855009215001tk8c",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP177",
+  "title": "Transform trusted AI innovation into business impact",
+  "type": "Pre-recorded",
+  "topics": [
+   "Frontier Transformation"
+  ],
+  "tags": [
+   "AI",
+   "Agents",
+   "Partner",
+   "Customer",
+   "Partner-Led",
+   "AI Transformation"
+  ],
+  "level": 400,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP177",
+  "video": "https://medius.microsoft.com/Embed/video-nc/278cbe46-aca1-4cfa-9ad1-4dbdd8457990",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "How can enterprises turn trusted AI innovation into measurable business impact? Join Microsoft and NTT DATA to explore how Microsoft’s secure cloud and AI platforms combine with NTT DATA’s industry expertise and global delivery to move AI beyond pilots, scale responsibly, and address real-world challenges across banking, healthcare, manufacturing, and insurance.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855009619001ttb1",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP180",
+  "title": "Build the foundation for AI-ready sovereign private clouds",
+  "type": "Pre-recorded",
+  "topics": [
+   "Cloud & AI"
+  ],
+  "tags": [
+   "Security",
+   "Multicloud",
+   "Secure AI",
+   "Get Ready for AI"
+  ],
+  "level": 100,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Scott Patti"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP180",
+  "video": "https://medius.microsoft.com/Embed/video-nc/bb808769-9fed-4bf2-aedc-60c51f58a5d9",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "As sovereignty evolves from a compliance requirement to a business strategy, organizations need technology choices that balance innovation, economics, and control. Join Scott Patti, VP Lenovo Infrastructure Solutions Group, to explore how Lenovo and Microsoft are helping customers build a foundation for sovereign private cloud and AI. Learn how Lenovo infrastructure and Azure innovation come together to securely run and manage workloads wherever data, performance, and economics matter most.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855010247001tqAF",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP185",
+  "title": "Accelerate the enterprise with IBM and Microsoft",
+  "type": "Pre-recorded",
+  "topics": [
+   "Other"
+  ],
+  "tags": [],
+  "level": 100,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP185",
+  "video": "https://medius.microsoft.com/Embed/video-nc/cefa5864-8b0f-420b-975e-9840b27ffad5",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Learn how IBM and Microsoft are partnering to simplify and accelerate enterprise technology adoption across the enterprise. Hear from IBM's Michelle Pellegrin, Global Managing Director, Microsoft partnership, and Chris McGuire, General Manager, Global Strategic Partnership Consulting, as they explore what the partnership is focused on for clients in 2026 and beyond.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855011296001tgwA",
+  "slots": [],
+  "online": true
+ },
+ {
+  "code": "LIVESP187",
+  "title": "Make the best IT ticket the one that never reaches your team",
+  "type": "Pre-recorded",
+  "topics": [
+   "Agentic Business Applications"
+  ],
+  "tags": [
+   "AI",
+   "Windows 365",
+   "Agents",
+   "Microsoft Teams",
+   "Microsoft Entra",
+   "Windows",
+   "Microsoft Intune",
+   "Copilot Chat",
+   "Intune",
+   "Microsoft 365",
+   "Get Ready for AI",
+   "Windows Agents",
+   "SMB",
+   "Lean IT",
+   "Knowledge retrieval",
+   "AI Transformation"
+  ],
+  "level": 100,
+  "audiences": [],
+  "industries": [],
+  "delivery": [
+   "In-person",
+   "Online"
+  ],
+  "speakers": [
+   "Yoav Susz"
+  ],
+  "duration_min": null,
+  "recorded": [],
+  "url": "https://ignite.microsoft.com/en-US/sessions/LIVESP187",
+  "video": "https://medius.microsoft.com/Embed/video-nc/74a0dd90-bc83-40f3-8a8f-d392b731d125",
+  "transcript": "",
+  "slides": "",
+  "resources": [],
+  "description": "Most IT teams measure success by how fast they close tickets. Yoav Susz, GM North America at Atera, makes the case for a different model: the best ticket is the one that never reaches your team. In this quickfire interview, learn how autonomous agents like Robin by Atera can resolve employee IT issues end to end, and why governing outcomes is becoming a critical role for IT.",
+  "has_ai_summary": true,
+  "catalog_id": "1787855008807001tsOI",
   "slots": [],
   "online": true
  },
