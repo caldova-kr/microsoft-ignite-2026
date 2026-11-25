@@ -8,6 +8,8 @@ hide:
 
 <div class="dg-landing dg-home" markdown="1">
 
+<div id="icn-chat-home" class="icn-chat-home" markdown="0"></div>
+
 <div class="dg-hero" markdown="1">
 
 <p class="dg-eyebrow">MICROSOFT IGNITE 2026 · SAN FRANCISCO · NOV 17–20</p>

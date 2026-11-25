@@ -80,11 +80,12 @@ test("runAgent executes streamed tool calls and returns the final answer", async
   const r = await A.runAgent({
     fetchImpl, token: "t", model: "m", knowledge: k(), history: [{ role: "user", content: "Foundry?" }],
     page: { title: "KEY01", url: ROOT + "sessions/KEY01-keynote/" },
-    onText: (d) => { streamed += d; }, onTool: (n, a) => tools.push([n, a])
+    onText: (d) => { streamed += d; },
+    onToolStart: (e) => tools.push(["start", e.name, e.kind]), onToolEnd: (e) => tools.push(["end", e.name, e.result.results.length])
   });
   assert.equal(r.text, "답: Foundry");
   assert.equal(streamed, r.text);
-  assert.deepEqual(tools, [["search_notes", { query: "Foundry" }]]);
+  assert.deepEqual(tools, [["start", "search_notes", "tool"], ["end", "search_notes", 1]]);
   assert.equal(seen[0].url, "https://api.githubcopilot.com/chat/completions");
   assert.match(seen[0].body.messages[0].content, /사용자가 지금 보고 있는 페이지: KEY01/);
   const second = seen[1].body.messages;
@@ -133,4 +134,46 @@ test("token template asks for the Copilot requests permission only", () => {
   const u = new URL(A.TOKEN_CREATE_URL);
   assert.equal(u.searchParams.get("copilot_requests"), "write");
   assert.deepEqual([...u.searchParams.keys()].sort(), ["copilot_requests", "description", "expires_in", "name"]);
+});
+
+const call = (id, name, args) => ({ choices: [{ index: 0, delta: { tool_calls: [{ index: 0, id, function: { name, arguments: JSON.stringify(args) } }] } }] });
+const say = (text) => ({ choices: [{ index: 0, delta: { content: text } }] });
+
+test("component tools render from site data and end the turn once text was written", async () => {
+  const seen = [];
+  const fetchImpl = fakeFetch([[say("두 세션입니다."), call("u1", "show_sessions", { codes: ["key01", "BRK220", "NOPE1", "KEY01"] })]], seen);
+  const ends = [];
+  const r = await A.runAgent({ fetchImpl, token: "t", model: "m", knowledge: k(), history: [{ role: "user", content: "?" }], onToolEnd: (e) => ends.push(e) });
+  assert.equal(seen.length, 1, "no extra model round after a display-only component");
+  assert.equal(r.text, "두 세션입니다.");
+  const d = ends[0].result;
+  assert.deepEqual(d.items.map((s) => [s.code, s.note_url]), [["KEY01", ROOT + "sessions/KEY01-keynote/"], ["BRK220", null]]);
+  assert.deepEqual(d.missing, ["NOPE1"]);
+  assert.equal(ends[0].kind, "render");
+});
+
+test("show_sources keeps only real note sections and tells the model what was shown", async () => {
+  const seen = [];
+  const fetchImpl = fakeFetch([
+    [call("s1", "show_sources", { urls: [ROOT + "sessions/KEY01-keynote/#foundry", "sessions/KEY01-keynote/#foundry", "https://example.com/x"] })],
+    [say("끝")]
+  ], seen);
+  const ends = [];
+  await A.runAgent({ fetchImpl, token: "t", model: "m", knowledge: k(), history: [{ role: "user", content: "?" }], onToolEnd: (e) => ends.push(e) });
+  assert.deepEqual(ends[0].result.items.map((s) => [s.section, s.url]), [["Microsoft Foundry", ROOT + "sessions/KEY01-keynote/#foundry"]]);
+  assert.deepEqual(JSON.parse(seen[1].body.messages.at(-1).content), { shown: 1, missing: ["https://example.com/x"] });
+});
+
+test("ask_user_choice waits for the user and returns the pick to the model", async () => {
+  const seen = [];
+  const fetchImpl = fakeFetch([[call("q1", "ask_user_choice", { question: "어느 토픽?", options: ["Security", "Data", "", "Copilot"] })], [say("Security 기준으로 답합니다.")]], seen);
+  let asked;
+  const r = await A.runAgent({
+    fetchImpl, token: "t", model: "m", knowledge: k(), history: [{ role: "user", content: "?" }],
+    onInteract: async (e) => { asked = e.args; return { chosen: e.args.options[0] }; }
+  });
+  assert.deepEqual(asked, { question: "어느 토픽?", options: ["Security", "Data", "Copilot"] });
+  assert.deepEqual(JSON.parse(seen[1].body.messages.at(-1).content), { chosen: "Security" });
+  assert.equal(r.text, "Security 기준으로 답합니다.");
+  assert.ok(seen[0].body.tools.some((t) => t.function.name === "ask_user_choice"));
 });
