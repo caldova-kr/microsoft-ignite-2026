@@ -38,11 +38,11 @@ Microsoft Ignite 2026 공식 세션 카탈로그입니다. 기본으로 **온라
       <button type="button" class="dg-cat-reset">초기화</button>
     </div>
     <fieldset class="dg-cat-chipsets">
-      <span class="dg-cat-chipset"><span>Type</span><span class="dg-cat-chips" data-chips="type"></span></span>
-      <span class="dg-cat-chipset"><span>Topic</span><span class="dg-cat-chips" data-chips="topic"></span></span>
-      <span class="dg-cat-chipset"><span>Level</span><span class="dg-cat-chips" data-chips="level"></span></span>
-      <span class="dg-cat-chipset"><span>미디어</span><span class="dg-cat-chips" data-chips="media"></span></span>
-      <span class="dg-cat-chipset"><span>정리 상태</span><span class="dg-cat-chips" data-chips="progress"></span></span>
+      <span class="dg-cat-chipset" role="group" aria-labelledby="dg-chips-type"><span id="dg-chips-type">Type</span><span class="dg-cat-chips" data-chips="type"></span></span>
+      <span class="dg-cat-chipset" role="group" aria-labelledby="dg-chips-topic"><span id="dg-chips-topic">Topic</span><span class="dg-cat-chips" data-chips="topic"></span></span>
+      <span class="dg-cat-chipset" role="group" aria-labelledby="dg-chips-level"><span id="dg-chips-level">Level</span><span class="dg-cat-chips" data-chips="level"></span></span>
+      <span class="dg-cat-chipset" role="group" aria-labelledby="dg-chips-media"><span id="dg-chips-media">미디어</span><span class="dg-cat-chips" data-chips="media"></span></span>
+      <span class="dg-cat-chipset" role="group" aria-labelledby="dg-chips-progress"><span id="dg-chips-progress">정리 상태</span><span class="dg-cat-chips" data-chips="progress"></span></span>
     </fieldset>
     <span hidden>
       <select name="type"><option value="">전체</option></select>

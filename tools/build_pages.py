@@ -73,6 +73,7 @@ _TLDR_RE = re.compile(r"^## TL;DR[^\n]*\n+((?:>[^\n]*\n?)+)", re.M)
 
 def note_preview(body: str, limit: int = 160) -> tuple[str, str]:
     """(first local image path relative to the note file, plain-text TL;DR excerpt) for note cards."""
+    body = re.sub(r"<!--.*?-->", "", body, flags=re.S)  # template guidance comments carry example images
     thumb = next((m.group(1) for m in _IMG_RE.finditer(body) if not re.match(r"[a-z]+:", m.group(1))), "")
     m = _TLDR_RE.search(body)
     text = " ".join(line.lstrip("> ").strip() for line in m.group(1).splitlines()) if m else ""

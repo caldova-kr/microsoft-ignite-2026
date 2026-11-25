@@ -195,6 +195,7 @@ def test_note_preview_uses_first_local_image_and_plain_tldr():
         > **Decision 1.1** 은 [판단](https://x) 전용 `모델` 입니다.
         > 둘째 줄.
 
+        <!-- 예: ![x](BRK000-x/agent-architecture.jpg) -->
         <figure markdown="span">
           ![a](https://example.com/hot.jpg)
           ![b](BRK1-x/slide.jpg)

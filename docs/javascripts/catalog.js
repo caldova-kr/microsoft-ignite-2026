@@ -85,15 +85,32 @@
       try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY) || "[]")); } catch (e) { return new Set(); }
     }
 
+    function setFavState(b, code) {
+      var on = favs.has(code);
+      b.setAttribute("aria-pressed", String(on));
+      b.setAttribute("aria-label", code + " 즐겨찾기");
+      b.title = on ? "즐겨찾기 해제" : "즐겨찾기";
+      b.textContent = on ? "★" : "☆";
+    }
+
     function favButton(r) {
-      var on = favs.has(r.c);
-      var b = el("button", { type: "button", class: "dg-fav", "aria-pressed": String(on),
-        "aria-label": r.c + (on ? " 즐겨찾기 해제" : " 즐겨찾기"), title: on ? "즐겨찾기 해제" : "즐겨찾기", text: on ? "★" : "☆" });
+      var b = el("button", { type: "button", class: "dg-fav" });
+      setFavState(b, r.c);
       b.addEventListener("click", function (e) {
         e.stopPropagation();
         if (favs.has(r.c)) favs.delete(r.c); else favs.add(r.c);
         try { localStorage.setItem(FAV_KEY, JSON.stringify(Array.from(favs))); } catch (err) { /* private mode */ }
+        if (!favOnly) {
+          // Update in place: keeps keyboard focus and any expanded detail rows.
+          setFavState(b, r.c);
+          syncControls();
+          return;
+        }
+        // Favorites-only view drops the item: move focus to the next result (or the toggle when none are left).
+        var before = Array.prototype.indexOf.call(root.querySelectorAll(".dg-fav"), b);
         render();
+        var after = root.querySelectorAll(".dg-fav");
+        (after[before] || after[before - 1] || favBtn).focus();
       });
       return b;
     }
