@@ -47,6 +47,14 @@ python tools/validate.py && mkdocs serve # 검증 후 미리보기 http://127.0.
 
 `main` 에 푸시하면 `.github/workflows/deploy-site.yml` 이 검증 후 GitHub Pages 로 배포합니다.
 
+## 사이트 챗봇
+
+모든 페이지 우하단 **💬 노트에 물어보기** 는 이 사이트의 노트·카탈로그만 근거로 답하는 챗봇입니다. 서버 없이 브라우저에서 돌고, 모델은 방문자 본인의 GitHub Copilot 을 씁니다.
+
+- 연결: 패널의 링크로 **Copilot requests 권한 하나만** 가진 fine-grained 토큰을 만들어 붙여 넣습니다. 토큰은 브라우저에서 `api.github.com` · `api.githubcopilot.com` 으로만 가고, 사용량은 본인 premium requests 에서 차감됩니다.
+- 지식: MkDocs 가 만드는 `search/search_index.json` 과 `catalog/sessions.json` 만 도구(`search_notes` · `get_note` · `search_catalog` · `get_session`)로 읽습니다. 노트를 쓰면 다음 배포부터 자동 반영됩니다.
+- 코드: [`docs/javascripts/chat-agent.js`](docs/javascripts/chat-agent.js)(로직) · [`chat.js`](docs/javascripts/chat.js)(패널) · 테스트 `node --test "tests/*.test.mjs"` · 설계 [`design/2026-11-25-site-chat-agent-design.md`](design/2026-11-25-site-chat-agent-design.md)
+
 ## 사이트 완성 로드맵
 
 | 단계 | 목표 | 완료 기준 |
