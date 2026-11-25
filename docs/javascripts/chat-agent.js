@@ -533,16 +533,11 @@
     return { login: u.login, name: u.name || u.login, avatar: u.avatar_url };
   }
 
-  // GPT-5/6-class models only speak /responses; everything else (and lists without endpoints) uses /chat/completions.
-  function endpointOf(m) {
-    var eps = m.supported_endpoints;
-    if (!eps || eps.indexOf("/chat/completions") >= 0) return "chat";
-    return eps.indexOf("/responses") >= 0 ? "responses" : "";
-  }
-
   function chatToolModel(m) {
     var caps = m.capabilities || {};
-    return caps.type === "chat" && !!(caps.supports && caps.supports.tool_calls) && !!endpointOf(m);
+    return caps.type === "chat" &&
+      !!(caps.supports && caps.supports.tool_calls) &&
+      (!m.supported_endpoints || m.supported_endpoints.indexOf("/chat/completions") >= 0);
   }
 
   // Third-party OAuth App tokens get a smaller model set with no picker flags; fall back to it.
@@ -555,7 +550,7 @@
     // Drop dated snapshots (gpt-4o-2024-11-20) when the undated alias is also offered.
     list = list.filter(function (m) { var base = m.id.replace(/-\d{4}(-\d{2}-\d{2})?$/, ""); return base === m.id || ids.indexOf(base) < 0; });
     return list.map(function (m) {
-      return { id: m.id, name: m.name || m.id, vendor: m.vendor || "", endpoint: endpointOf(m) };
+      return { id: m.id, name: m.name || m.id, vendor: m.vendor || "" };
     });
   }
 
@@ -592,56 +587,7 @@
     if (fn.arguments) slot.function.arguments += fn.arguments;
   }
 
-  // Chat-format history → Responses API input. Raw output items (reasoning + function_call) are replayed as-is.
-  function toResponsesInput(messages) {
-    var instructions = [];
-    var input = [];
-    messages.forEach(function (m) {
-      if (m.role === "system") { instructions.push(m.content); return; }
-      if (m.role === "tool") { input.push({ type: "function_call_output", call_id: m.tool_call_id, output: m.content }); return; }
-      if (m.role === "assistant" && m.tool_calls) {
-        if (m.content) input.push({ role: "assistant", content: m.content });
-        if (m.items) input.push.apply(input, m.items);
-        else m.tool_calls.forEach(function (tc) { input.push({ type: "function_call", call_id: tc.id, name: tc.function.name, arguments: tc.function.arguments }); });
-        return;
-      }
-      input.push({ role: m.role, content: m.content || "" });
-    });
-    return { instructions: instructions.join("\n\n"), input: input };
-  }
-
-  async function streamResponses(opts) {
-    var conv = toResponsesInput(opts.messages);
-    var body = { model: opts.model, instructions: conv.instructions, input: conv.input, stream: true };
-    if (opts.tools) body.tools = opts.tools.map(function (t) { return { type: "function", name: t.function.name, description: t.function.description, parameters: t.function.parameters }; });
-    var headers = authHeaders(opts.token);
-    headers["Content-Type"] = "application/json";
-    headers.Accept = "text/event-stream";
-    var res = await failIfNotOk(await opts.fetchImpl(COPILOT_API + "/responses", {
-      method: "POST", headers: headers, body: JSON.stringify(body), signal: opts.signal
-    }));
-    var content = "";
-    var items = [];
-    var toolCalls = [];
-    for await (var ev of sseData(res.body)) {
-      if (ev.type === "response.output_text.delta" && ev.delta) {
-        content += ev.delta;
-        if (opts.onText) opts.onText(ev.delta);
-      } else if (ev.type === "response.output_item.done" && ev.item) {
-        if (ev.item.type === "reasoning" || ev.item.type === "function_call") items.push(ev.item);
-        if (ev.item.type === "function_call") {
-          toolCalls.push({ id: ev.item.call_id, type: "function", function: { name: ev.item.name, arguments: ev.item.arguments || "" } });
-        }
-      } else if (ev.type === "response.failed" || ev.type === "error") {
-        var msg = (ev.response && ev.response.error && ev.response.error.message) || ev.message || "응답 실패";
-        throw new ChatError("http", "Copilot API 오류: " + msg);
-      }
-    }
-    return { content: content, toolCalls: toolCalls, items: items };
-  }
-
   async function streamCompletion(opts) {
-    if (opts.endpoint === "responses") return streamResponses(opts);
     var body = { model: opts.model, messages: opts.messages, stream: true };
     if (opts.tools) { body.tools = opts.tools; body.tool_choice = "auto"; }
     var headers = authHeaders(opts.token);
@@ -708,15 +654,13 @@
     for (var round = 0; round <= MAX_TOOL_ROUNDS; round++) {
       var allowTools = round < MAX_TOOL_ROUNDS;
       var r = await streamCompletion({
-        fetchImpl: opts.fetchImpl, token: opts.token, model: opts.model, endpoint: opts.endpoint, messages: messages,
+        fetchImpl: opts.fetchImpl, token: opts.token, model: opts.model, messages: messages,
         tools: allowTools ? tools : null, signal: opts.signal,
         onText: function (t) { shown += t; if (opts.onText) opts.onText(t); }
       });
       if (!allowTools || !r.toolCalls.length) return finish(shown);
       if (r.content) shown += "\n\n";
-      var turn = { role: "assistant", content: r.content || null, tool_calls: r.toolCalls };
-      if (r.items) Object.defineProperty(turn, "items", { value: r.items, enumerable: false }); // never sent to /chat/completions
-      messages.push(turn);
+      messages.push({ role: "assistant", content: r.content || null, tool_calls: r.toolCalls });
       var onlyRender = true;
       for (var i = 0; i < r.toolCalls.length; i++) {
         var tc = r.toolCalls[i];

@@ -123,7 +123,7 @@ PAT 붙여 넣기는 30일짜리 토큰을 사용자가 직접 다루게 해 위
   - 두 보기와 다른 페이지의 플로팅 패널은 같은 대화를 공유한다. `docs/index.md` 에는 빈 마운트(`#icn-chat-home`)만 있어 JS 가 없으면 기존 랜딩 그대로.
 - 다른 페이지: 플로팅 버튼 → 오른쪽 패널(모바일은 전체 화면). Material 팔레트 변수 사용, 라이트/다크 자동.
 - 미연결: 설명 + "GitHub 로 로그인" → 코드 · "GitHub 에서 승인하기" 링크 · 대기 표시 · 취소.
-- 연결: 아바타·로그인 이름, 모델 선택(tool calls 지원 chat 모델 — `/chat/completions` 모델과 GPT-5/6·Grok 처럼 `/responses` 만 지원하는 모델 모두. `/responses` 는 같은 대화 기록을 input 항목으로 바꿔 보내고 reasoning·function_call 항목을 다음 라운드에 그대로 돌려준다), 대화, 새 대화, 연결 해제.
+- 연결: 아바타·로그인 이름, 모델 선택(`model_picker_enabled` + `/chat/completions` 지원 + tool calls 지원 모델만), 대화, 새 대화, 연결 해제.
 - 답변 렌더링: HTML 이스케이프 후 최소 마크다운(굵게·코드·링크·목록·줄바꿈)만, 링크는 `http(s)`/사이트 상대경로만 허용.
 
 ### 오류 처리
@@ -166,7 +166,7 @@ PAT 붙여 넣기는 30일짜리 토큰을 사용자가 직접 다루게 해 위
 
 ## 범위 밖 (YAGNI)
 
-- OAuth 버튼·device flow 로그인(서버 필요), CopilotKit SDK 자체 도입(런타임 서버 또는 Enterprise 기능 필요), 대화 기록 영구 저장, WASM 검색.
+- OAuth 버튼·device flow 로그인(서버 필요), CopilotKit SDK 자체 도입(런타임 서버 또는 Enterprise 기능 필요), `/responses` 전용 모델(GPT 계열) 지원, 대화 기록 영구 저장, WASM 검색.
 
 ## 테스트
 
