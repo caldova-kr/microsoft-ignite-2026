@@ -59,9 +59,9 @@ gh pr create --draft --title "[BRK220] <제목>" --body "Closes #<이슈번호>"
 - 처음엔 `status: draft`. 원문 근거로 다 쓰면 `review` 로 바꾸고 Ready for review. 리뷰 반영 후 `done`.
 - 영상·트랜스크립트·슬라이드가 아직 없으면 노트를 시작하지 말고 이슈에 그 사실을 남겨 둡니다.
 
-## 이미지 우선 — 영상 캡처 + 공식 블로그 이미지
+## 이미지 — 영상 캡처 + 공식 블로그 이미지
 
-**기여자는 모두 Microsoft 직원**이라 Microsoft 가 공개한 세션 영상의 캡처와 공식 발표 블로그 이미지를 출처와 함께 노트에 넣을 수 있습니다. 노트는 글보다 이미지로 보여 주세요.
+**기여자는 모두 Microsoft 직원**이라 Microsoft 가 공개한 세션 영상의 캡처와 공식 발표 블로그 이미지를 출처와 함께 노트에 넣을 수 있습니다. 핵심 장면(키 슬라이드·발표 수치·데모 화면)만 이미지로 보여 주고, 더 궁금한 사람을 위해서는 공식 소개 블로그 링크를 걸어 주세요.
 
 ```bash
 python tools/capture_frame.py BRK220 18:40 agent-architecture             # 영상 18:40 프레임 → 노트 폴더
@@ -78,7 +78,8 @@ python tools/fetch_image.py BRK220 --page <공식 블로그 포스트 URL> --ima
 </figure>
 ```
 
-- 섹션마다 **이미지 1장 + bullet 2~4개**. 긴 문단은 쓰지 않습니다.
+- 이미지는 항목을 가장 잘 보여 주는 장면이 있을 때만 넣고, 이미지를 글로 다시 설명하지 않습니다. 캡션은 출처만 짧게. 긴 문단은 쓰지 않습니다.
+- 문체는 주변에 공유하는 **참관 후기**(합니다체)입니다. Keynote 처럼 발표가 많은 세션은 핵심 의제 → 제품 소개(의미 포함) → 고객 사례 → GA / Preview 구분 순서로 씁니다 (instructions 6장 "Keynote · 발표 중심 노트의 구성").
 - 공식 블로그는 Ignite 2026 발표 포스트(Book of News, Azure/Tech Community/Microsoft 블로그, GitHub Blog 등)만. 블로그에서만 나온 *글* 정보는 `세션 외 보충` 블록에 둡니다.
 - 캡처 전에 테넌트·구독 ID, 이메일, 토큰이 보이는지 확인하고 `--crop` 으로 잘라냅니다. 공개되지 않은 사내 자료는 넣지 않습니다.
 - 영상 프레임 캡처에는 `ffmpeg` 가 필요합니다 (`brew install ffmpeg`).
