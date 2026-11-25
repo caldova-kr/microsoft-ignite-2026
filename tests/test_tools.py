@@ -1,3 +1,4 @@
+import re
 import sys
 import textwrap
 from pathlib import Path
@@ -46,7 +47,7 @@ CATALOG = {
 }
 
 
-def note(tmp_path, title="Real title", status="draft", basis="[catalog]", extra_body=""):
+def note(tmp_path, title="Real title", status="draft", basis="[catalog]", extra_body="", description="한 문장 요약"):
     p = tmp_path / "BRK1-real-title.md"
     p.write_text(textwrap.dedent(f"""\
         ---
@@ -60,6 +61,7 @@ def note(tmp_path, title="Real title", status="draft", basis="[catalog]", extra_
         session_url: https://ignite.microsoft.com/en-US/sessions/BRK1
         video_url: ""
         source_basis: {basis}
+        description: "{description}"
         tags: []
         status: {status}
         last_updated: 2026-11-20
@@ -257,3 +259,12 @@ def test_llm_text_drops_markup_but_keeps_meaning():
     assert "**세션 외 보충 · 블로그**\n[포스트](https://example.com)" in out
     assert "<!--" not in out and "{ ." not in out and "내부 메모" not in out
     assert "[버튼](a.md)\n" in out
+
+
+def test_review_notes_need_a_short_description(tmp_path):
+    errors, _ = check_note(note(tmp_path, status="review", basis="[transcript]", description=""), CATALOG)
+    assert len(errors) == 1 and "description" in errors[0]
+    errors, _ = check_note(note(tmp_path, description=""), CATALOG)
+    assert errors == []
+    errors, warnings = check_note(note(tmp_path, description="가" * 200), CATALOG)
+    assert errors == [] and any("160" in w for w in warnings)

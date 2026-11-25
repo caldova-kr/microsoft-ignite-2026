@@ -36,6 +36,7 @@ def frontmatter(s: dict) -> str:
         ("session_url", s["url"]),
         ("video_url", s["video"]),
         ("source_basis", ["catalog"]),
+        ("description", ""),
         ("tags", []),
         ("status", "draft"),
         ("last_updated", dt.date.today()),

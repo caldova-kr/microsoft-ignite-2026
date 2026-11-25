@@ -21,8 +21,9 @@
     if (!knowledge) {
       knowledge = Promise.all([
         fetch(SITE_ROOT + "search/search_index.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }),
-        fetch(SITE_ROOT + "catalog/sessions.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      ]).then(function (d) { return A.buildKnowledge(d[0], d[1], SITE_ROOT); }, function (e) {
+        fetch(SITE_ROOT + "catalog/sessions.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }),
+        fetch(SITE_ROOT + "sessions/notes.json").then(function (r) { return r.ok ? r.json() : {}; }, function () { return {}; })
+      ]).then(function (d) { return A.buildKnowledge(d[0], d[1], SITE_ROOT, d[2]); }, function (e) {
         knowledge = null;
         throw new A.ChatError("knowledge", "사이트 노트 데이터를 불러오지 못했습니다 (" + e.message + ").");
       });

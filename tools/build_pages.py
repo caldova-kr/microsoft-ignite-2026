@@ -176,7 +176,7 @@ def notes_json(sessions: list[dict]) -> str:
         meta[s["code"]] = {
             "y": s["type"], "p": s["topics"], "l": s["level"], "s": s["speakers"], "d": s["duration_min"], "u": s["url"],
             "v": s["video"], "k": s["slides"], "pr": s["progress"], "sb": s["note_fm"].get("source_basis") or [],
-            "up": str(s["note_fm"].get("last_updated", "")),
+            "up": str(s["note_fm"].get("last_updated", "")), "ds": str(s["note_fm"].get("description") or ""),
         }
     return json.dumps(meta, ensure_ascii=False, indent=1, sort_keys=True) + "\n"
 
@@ -382,7 +382,8 @@ def llms_txt(sessions: list[dict], meta: dict) -> str:
         _, body = parse_note(s["note_path"])
         info = " · ".join(x for x in (s["type"], f"status {fm.get('status', '')}",
                                       "근거 " + ", ".join(fm.get("source_basis") or []), str(fm.get("last_updated", ""))) if x)
-        lines.append(f"- [{s['code']} — {s['title']}]({page_url(site, s['note_path'])}): {tldr(body)} ({info})")
+        summary = str(fm.get("description") or "").strip() or tldr(body)
+        lines.append(f"- [{s['code']} — {s['title']}]({page_url(site, s['note_path'])}): {summary} ({info})")
     if not notes:
         lines.append("- (아직 작성된 노트가 없습니다)")
     if themes:

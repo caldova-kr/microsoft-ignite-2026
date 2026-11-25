@@ -147,6 +147,7 @@ speakers: []              # │
 session_url: ""           # │
 video_url: ""             # ┘
 source_basis: []          # 실제로 확인한 근거: catalog | video | transcript | slides | resources
+description: ""           # 한 문장 요약, 160자 이내, 본문(T1) 근거만 — meta description·llms.txt·챗봇 개요. review/done 필수
 tags: []                  # (선택) 우리 분류, 소문자-하이픈
 status: draft             # draft | review | done
 last_updated: YYYY-MM-DD

@@ -6,7 +6,7 @@
 
 ## Notes
 
-- [KEY01 — Microsoft Ignite opening keynote](https://caldova-kr.github.io/microsoft-ignite-2026/sessions/KEY01-microsoft-ignite-opening-keynote/): Ignite 2026 오프닝 키노트는 Human Ambition · Intelligence · Trust 세 가지 의제로 짜여 있었습니다. Satya Nadella 는 이를 AI 시대의 세 가지 "architectural imperative" 로, Judson Althoff 는 frontier transformation 의 세 가지 "durable asset" 으로 소개했습니다. Azure 관점에서 보면 Intelligence 기둥에는 Decision 1.1 GA, Foundry 의 지속 개선 루프, 에이전트 규모에 맞춰 다시 짜고 있는 GitHub·Azure 인프라, HorizonDB GA 가, Trust 기둥에는 Perception GA 와 Agent 365 비용 통제가 놓였습니다. (Keynote · status review · 근거 catalog, transcript, video · 2026-11-25)
+- [KEY01 — Microsoft Ignite opening keynote](https://caldova-kr.github.io/microsoft-ignite-2026/sessions/KEY01-microsoft-ignite-opening-keynote/): Ignite 2026 오프닝 키노트를 Human Ambition · Intelligence · Trust 세 의제로 정리 — Decision 1.1·HorizonDB·Perception GA, Foundry 지속 개선 루프, Agent 365 비용 통제. (Keynote · status review · 근거 catalog, transcript, video · 2026-11-25)
 
 ## Catalog
 

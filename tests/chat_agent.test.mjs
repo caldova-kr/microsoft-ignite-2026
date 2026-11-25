@@ -210,6 +210,8 @@ test("get_site_overview lists notes with their TL;DR and catalog counts", () => 
   const o = A.runTool(k(), "get_site_overview", {});
   assert.deepEqual(o.notes.map((n) => [n.code, n.url]), [["KEY01", ROOT + "sessions/KEY01-keynote/"]]);
   assert.match(o.notes[0].summary, /Human Ambition/);
+  const withMeta = A.runTool(A.buildKnowledge(INDEX, CATALOG, ROOT, { KEY01: { ds: "한 문장 요약" } }), "get_site_overview", {});
+  assert.equal(withMeta.notes[0].summary, "한 문장 요약");
   assert.deepEqual([o.catalog.sessions, o.catalog.online], [2, 2]);
   assert.equal(A.TOOL_SPECS[0].function.name, "get_site_overview");
 });

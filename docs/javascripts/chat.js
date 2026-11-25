@@ -98,8 +98,9 @@
     if (!ownKnowledge) {
       ownKnowledge = Promise.all([
         fetch(SITE_ROOT + "search/search_index.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }),
-        fetch(SITE_ROOT + "catalog/sessions.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      ]).then(function (d) { return A.buildKnowledge(d[0], d[1], SITE_ROOT); }, function (e) {
+        fetch(SITE_ROOT + "catalog/sessions.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }),
+        fetch(SITE_ROOT + "sessions/notes.json").then(function (r) { return r.ok ? r.json() : {}; }, function () { return {}; })
+      ]).then(function (d) { return A.buildKnowledge(d[0], d[1], SITE_ROOT, d[2]); }, function (e) {
         ownKnowledge = null;
         throw new A.ChatError("knowledge", "사이트 노트 데이터를 불러오지 못했습니다 (" + e.message + ").");
       });
@@ -233,6 +234,7 @@
     search_catalog: function (a) { return "🗂️ 카탈로그 검색 · " + [a.query, a.type, a.topic, a.has_note ? "노트 있음" : ""].filter(Boolean).join(" · "); },
     get_session: function (a) { return "🎫 세션 정보 · " + (a.code || ""); },
     get_current_page: function () { return "👀 현재 페이지 읽기"; },
+    get_site_overview: function () { return "🗺️ 사이트 개요"; },
     open_page: function (a) { return "🧭 페이지 열기 · " + (a.path || "") + (a.anchor ? "#" + a.anchor : ""); },
     highlight_section: function (a) { return "🖍️ 섹션 강조 · " + (a.anchor || ""); },
     filter_catalog: function (a) { return "🗂️ 카탈로그 필터 · " + ["text", "type", "topic", "level", "progress", "media"].map(function (k) { return a[k]; }).filter(Boolean).join(" · "); }
@@ -252,11 +254,12 @@
     }
     if (name === "get_session") return { status: r.code + " · " + r.title, links: [{ text: r.note_url ? "노트 보기" : "세션 페이지", url: r.note_url || r.session_page }] };
     if (r.navigating) return { status: "답을 마친 뒤 이동", links: [{ text: decodeURI(r.navigating.replace(SITE_ROOT, "/")), url: r.navigating }] };
+    if (name === "get_site_overview") return { status: "노트 " + (r.notes || []).length + "건 · 세션 " + ((r.catalog || {}).sessions || 0).toLocaleString() + "개", links: (r.notes || []).slice(0, 5).map(function (n) { return { text: n.title, url: n.url }; }) };
+    if (name === "filter_catalog" && !r.navigating) return { status: "필터 적용 · " + (r.summary || "").split("·")[0].trim(), links: [] };
     if (r.opened) return { status: "열림 · " + String(r.title || "").split(" - ")[0], links: [{ text: decodeURI(r.opened.replace(SITE_ROOT, "/")), url: r.opened }] };
     if (name === "get_current_page") return { status: r.title + (r.selected_text ? " · 선택한 텍스트 포함" : ""), links: [] };
     if (r.highlighted) return { status: "강조: " + r.heading, links: [] };
     if (r.already_here) return { status: "이미 이 페이지입니다", links: [] };
-    if (name === "filter_catalog") return { status: "필터 적용 · " + (r.summary || ""), links: [] };
     return { status: "완료", links: [] };
   }
 
