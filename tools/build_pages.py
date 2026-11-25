@@ -7,6 +7,8 @@ Outputs (all generated — never edit by hand):
   docs/sessions/index.md     index of written notes
   docs/sessions/notes.json   per-note catalog facts for the note page meta card (small; avoids loading sessions.json)
   docs/index.md              stats + recent notes + topic cards blocks between <!-- gen:* --> markers
+  docs/llms.txt              site map for AI engines/agents (llms.txt format) — GEO
+  docs/llms-full.txt         every note as clean text with URL, session and sources — GEO
 
 `--check` exits non-zero when any output is stale (used in CI).
 """
@@ -296,6 +298,126 @@ def mkdocs_nav(sessions: list[dict], text: str) -> str:
     return pattern.sub(lambda _: "\n".join(lines), text)
 
 
+# ---------- GEO: llms.txt / llms-full.txt ----------
+
+def site_meta(mkdocs_text: str) -> dict:
+    def field(name: str) -> str:
+        m = re.search(rf"^{name}:\s*(.+)$", mkdocs_text, re.M)
+        return m.group(1).strip() if m else ""
+    return {"url": field("site_url").rstrip("/") + "/", "name": field("site_name"), "description": field("site_description")}
+
+
+def page_url(site: str, path: Path) -> str:
+    return f"{site}{path.relative_to(DOCS_DIR).with_suffix('').as_posix()}/"
+
+
+def plain(md: str) -> str:
+    md = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", md)
+    md = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", md)
+    md = re.sub(r"(\*\*|__|`)", "", md)
+    return re.sub(r"\s+", " ", md).strip()
+
+
+def tldr(body: str) -> str:
+    """The note's own TL;DR blockquote as plain text, untruncated."""
+    return note_preview(body, limit=10**6)[1]
+
+
+_ADMONITION = re.compile(r'^(?:!!!|\?\?\?\+?)\s+([\w-]+)(?:\s+"([^"]*)")?\s*$')
+
+
+def llm_text(body: str) -> str:
+    """Note markdown → plain markdown for language models: no comments, figures, attr lists or admonition syntax."""
+    body = re.sub(r"<!--.*?-->", "", body, flags=re.S)
+
+    def figure(m: re.Match) -> str:
+        alt = re.search(r"!\[([^\]]*)\]", m.group(0))
+        cap = re.search(r"<figcaption>(.*?)</figcaption>", m.group(0), re.S)
+        bits = [b for b in ((alt.group(1) if alt else ""), (plain(cap.group(1)) if cap else "")) if b]
+        return f"(이미지: {' — '.join(bits)})" if bits else ""
+
+    body = re.sub(r"<figure.*?</figure>", figure, body, flags=re.S)
+    body = re.sub(r"\{\s*[.#:][^}\n]*\}", "", body)
+    out, in_block = [], False
+    for line in body.splitlines():
+        m = _ADMONITION.match(line)
+        if m:
+            out.append(f"**{m.group(2) or m.group(1)}**")
+            in_block = True
+            continue
+        if in_block and (line.startswith("    ") or not line.strip()):
+            out.append(line[4:] if line.startswith("    ") else line)
+            continue
+        in_block = False
+        out.append(line)
+    text = "\n".join(out)
+    start = text.find("\n## ")
+    text = text[start + 1:] if start >= 0 else text
+    return re.sub(r"\n{3,}", "\n\n", text).strip() + "\n"
+
+
+def written_pages(sessions: list[dict]) -> tuple[list[dict], list[Path]]:
+    notes = sorted((s for s in sessions if s["note_path"]), key=lambda s: s["code"])
+    themes = sorted(p for p in (DOCS_DIR / "themes").glob("*.md") if not p.name.startswith(("_", "index")))
+    return notes, themes
+
+
+def page_title(path: Path) -> str:
+    m = re.search(r"^# (.+)$", path.read_text(encoding="utf-8"), re.M)
+    return m.group(1).strip() if m else path.stem
+
+
+GROUNDING = ("모든 노트는 해당 세션의 영상·트랜스크립트·슬라이드로 추적 가능한 내용만 담습니다. "
+             "인용할 때는 노트 URL 을 함께 쓰고, 노트가 없는 세션은 카탈로그 정보(제목·발표자·세션 페이지)만 쓰세요. "
+             "카탈로그 초록은 세션에서 다룰 예정이라고 소개된 내용이지 발표 내용이 아닙니다.")
+
+
+def llms_txt(sessions: list[dict], meta: dict) -> str:
+    site = meta["url"]
+    notes, themes = written_pages(sessions)
+    online = sum(1 for s in sessions if s.get("online"))
+    lines = [f"# {meta['name']}", "", f"> {meta['description']}. 비공식 커뮤니티 노트입니다.", "", GROUNDING, "", "## Notes", ""]
+    for s in notes:
+        fm = s["note_fm"]
+        _, body = parse_note(s["note_path"])
+        info = " · ".join(x for x in (s["type"], f"status {fm.get('status', '')}",
+                                      "근거 " + ", ".join(fm.get("source_basis") or []), str(fm.get("last_updated", ""))) if x)
+        lines.append(f"- [{s['code']} — {s['title']}]({page_url(site, s['note_path'])}): {tldr(body)} ({info})")
+    if not notes:
+        lines.append("- (아직 작성된 노트가 없습니다)")
+    if themes:
+        lines += ["", "## Themes", ""] + [f"- [{page_title(p)}]({page_url(site, p)})" for p in themes]
+    lines += [
+        "", "## Catalog", "",
+        f"- [세션 카탈로그]({site}catalog/): Ignite 2026 공식 카탈로그 스냅샷 — {len(sessions):,}개 세션, 온라인 {online:,}개. 필터를 URL 로 지정 가능 (예: `catalog/?type=Keynote&topic=Security`)",
+        f"- [sessions.json]({site}catalog/sessions.json): 카탈로그 데이터 (JSON, 세션별 노트 경로 `n` 포함)",
+        "", "## Optional", "",
+        f"- [llms-full.txt]({site}llms-full.txt): 모든 노트 전문",
+        f"- [작성 규약]({site}contributing/): 근거 등급과 노트 구조",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def llms_full_txt(sessions: list[dict], meta: dict) -> str:
+    site = meta["url"]
+    notes, themes = written_pages(sessions)
+    parts = [f"# {meta['name']} — 노트 전문", "", f"> {meta['description']}. 비공식 커뮤니티 노트입니다.", "", GROUNDING, "",
+             f"사이트 지도: {site}llms.txt", ""]
+    for s in notes:
+        fm, body = parse_note(s["note_path"])
+        parts += [
+            "---", "", f"# [{s['code']}] {s['title']}", "",
+            f"- URL: {page_url(site, s['note_path'])}",
+            f"- Session: {s['code']} · {s['type']} · {', '.join(s['speakers'])} · {s['url']}",
+            f"- Status: {fm.get('status', '')} · Sources: {', '.join(fm.get('source_basis') or [])} · Updated: {fm.get('last_updated', '')}",
+            "", llm_text(body),
+        ]
+    for p in themes:
+        _, body = parse_note(p)
+        parts += ["---", "", f"# {page_title(p)}", "", f"- URL: {page_url(site, p)}", "", llm_text(body)]
+    return "\n".join(parts).rstrip() + "\n"
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--check", action="store_true", help="fail if generated files are out of date")
@@ -312,6 +434,9 @@ def main() -> None:
         home: home_blocks(sessions, home.read_text(encoding="utf-8")),
         mkdocs_yml: mkdocs_nav(sessions, mkdocs_yml.read_text(encoding="utf-8")),
     }
+    meta = site_meta(mkdocs_yml.read_text(encoding="utf-8"))
+    outputs[DOCS_DIR / "llms.txt"] = llms_txt(sessions, meta)
+    outputs[DOCS_DIR / "llms-full.txt"] = llms_full_txt(sessions, meta)
     stale = [p for p, body in outputs.items() if not p.exists() or p.read_text(encoding="utf-8") != body]
     if args.check:
         if stale:

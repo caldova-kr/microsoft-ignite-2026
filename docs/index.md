@@ -86,5 +86,7 @@ hide:
 
 [작성 규약과 정리 과정 보기](contributing.md){ .dg-text-link }
 
+AI 에이전트·검색 엔진용 요약: [llms.txt](llms.txt) · 노트 전문: [llms-full.txt](llms-full.txt)
+
 </div>
 </div>

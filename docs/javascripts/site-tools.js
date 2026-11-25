@@ -106,25 +106,25 @@
   var SPECS = [
     {
       name: "get_current_page",
-      description: "사용자가 지금 보고 있는 이 사이트 페이지의 제목·URL·종류(home/note/catalog)·목차(앵커)·현재 보이는 섹션·사용자가 선택한 텍스트를 읽습니다.",
+      description: "현재 페이지(제목·목차·선택한 텍스트)를 읽습니다.",
       parameters: { type: "object", properties: {} },
       readOnly: true
     },
     {
       name: "open_page",
-      description: "이 사이트 안의 페이지(노트·카탈로그·홈)로 이동합니다. 노트 경로, 사이트 URL 또는 노트가 있는 세션 코드를 받고, anchor 를 주면 그 섹션을 강조합니다. 채팅에서는 답을 마친 뒤 이동합니다.",
+      description: "사이트 안 페이지를 엽니다(anchor 를 주면 그 섹션을 강조).",
       parameters: {
         type: "object",
         properties: {
-          path: { type: "string", description: "예: sessions/KEY01-…/, catalog/, KEY01" },
-          anchor: { type: "string", description: "섹션 앵커 (예: tldr, ga)" }
+          path: { type: "string", description: "노트 경로·URL·세션 코드" },
+          anchor: { type: "string", description: "섹션 앵커" }
         },
         required: ["path"]
       }
     },
     {
       name: "highlight_section",
-      description: "현재 페이지의 섹션으로 스크롤하고 잠시 강조합니다. 앵커는 get_current_page 목차나 노트 섹션 URL 의 # 뒤 값입니다.",
+      description: "현재 페이지의 섹션을 강조합니다.",
       parameters: {
         type: "object",
         properties: { anchor: { type: "string", description: "섹션 앵커" } },
@@ -133,16 +133,16 @@
     },
     {
       name: "filter_catalog",
-      description: "세션 카탈로그 탐색기의 필터를 적용해 화면에 보여 줍니다. 카탈로그 페이지가 아니면 필터가 걸린 카탈로그로 이동합니다.",
+      description: "카탈로그를 필터해 화면에 보여 줍니다.",
       parameters: {
         type: "object",
         properties: {
-          text: { type: "string", description: "검색어 (코드·제목·발표자·태그)" },
-          type: { type: "string", description: "세션 타입 (예: Breakout, Keynote, Lab)" },
-          topic: { type: "string", description: "카탈로그 토픽 (예: Agent Platform)" },
-          level: { type: "string", description: "레벨 (100·200·300·400)" },
+          text: { type: "string", description: "검색어" },
+          type: { type: "string", description: "세션 타입" },
+          topic: { type: "string", description: "토픽" },
+          level: { type: "string", description: "레벨" },
           progress: { type: "string", enum: ["done", "review", "draft", "claimed", "proposed", "hold", "skip", "todo"], description: "정리 상태" },
-          media: { type: "string", enum: ["video", "transcript", "slides", "none"], description: "미디어 조건" }
+          media: { type: "string", enum: ["video", "transcript", "slides", "none"], description: "미디어" }
         }
       }
     }
@@ -313,10 +313,7 @@
     }
   } catch (e) { /* ignore */ }
 
-  var PAGE_PROMPT = "9. 사이트 탐색: 사용자가 노트·섹션·카탈로그를 \"보여 줘·열어 줘·이동해 줘\" 라고 하면 내용을 본문에 옮겨 적지 말고 open_page(섹션은 anchor 포함) / highlight_section / filter_catalog 로 화면에서 직접 보여 주고, 본문에는 무엇을 보여 주는지와 핵심 한두 문장만 씁니다. \"이 페이지·이 부분·선택한 내용\" 은 get_current_page 로 먼저 읽습니다. " +
-    (INSTANT
-      ? "페이지를 열면 대화는 유지된 채 바로 이동하고 결과로 새 페이지 정보가 돌아오므로, 필요하면 이어서 다른 섹션을 강조하거나 다른 페이지를 여는 식으로 여러 단계를 진행할 수 있습니다."
-      : "다른 페이지 이동은 답을 마친 뒤 실행됩니다.");
+  var PAGE_PROMPT = "\"보여 줘·열어 줘\" 는 페이지 열기·섹션 강조·카탈로그 필터로 화면에서 보여 주고, \"이 페이지·선택한 부분\" 은 현재 페이지를 먼저 읽습니다.";
 
   window.IgniteSiteTools = {
     siteRoot: SITE_ROOT,
@@ -353,7 +350,7 @@
     var f = t.function;
     register({
       name: f.name,
-      description: "[Ignite 2026 Session Notes] " + f.description,
+      description: f.description,
       inputSchema: f.parameters,
       annotations: { readOnlyHint: true },
       execute: function (args) {
@@ -364,7 +361,7 @@
   SPECS.forEach(function (s) {
     register({
       name: s.name,
-      description: "[Ignite 2026 Session Notes] " + s.description.replace(" 채팅에서는 답을 마친 뒤 이동합니다.", ""),
+      description: s.description,
       inputSchema: s.parameters,
       annotations: { readOnlyHint: !!s.readOnly },
       execute: function (args) {

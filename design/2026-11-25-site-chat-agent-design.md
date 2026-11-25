@@ -49,6 +49,7 @@
 
 | 도구 | 데이터 | 반환 |
 |---|---|---|
+| `get_site_overview()` | 노트 목록(각 노트 `TL;DR` 요약) · 카탈로그 규모 · 탐색 방법 — `llms.txt` 와 같은 개요 | 탐색 시작점 |
 | `search_notes(query, limit)` | search_index 중 `sessions/`·`themes/` 하위 노트 섹션 (인덱스 페이지 제외) | 섹션 제목 · 노트 URL · 발췌 |
 | `get_note(path)` | 같은 노트의 섹션 전체 (HTML 태그 제거) | 노트 본문 |
 | `search_catalog(query, type, topic, has_note, limit)` | `catalog/sessions.json` | 코드 · 제목 · 타입 · 토픽 · 발표자 · 세션 페이지 · 노트 URL |
@@ -127,6 +128,27 @@
 - 토큰은 `api.githubcopilot.com`·`api.github.com` 로만 전송, 로그·URL 에 남기지 않음. 권한은 Copilot requests 하나·만료 30일 기본.
 - 사이트에는 우리 JS 외 서드파티 스크립트가 없어 저장 토큰 노출면이 작다. 그래도 기본 저장소는 `sessionStorage`.
 - 모델 출력은 이스케이프 후 렌더링(`javascript:` 등 링크 차단).
+
+## GEO — AI 엔진·에이전트가 읽기 쉬운 사이트
+
+기본 원칙은 **"사이트를 탐색해서 답한다"** 다. 사람용 페이지와 같은 내용을 기계가 바로 읽을 수 있는 형태로도 내놓고, 챗봇·WebMCP·외부 AI 엔진이 모두 같은 입구에서 시작하게 한다.
+
+| 산출물 | 대상 | 내용 | 만드는 곳 |
+|---|---|---|---|
+| `llms.txt` | 외부 AI 엔진·에이전트 | 사이트 설명 · 인용 규칙(근거 원칙) · 노트 목록(노트의 `## TL;DR` 인용문을 요약으로) · 카탈로그(URL 필터 예시)·JSON 링크 | `build_pages.py` 생성물 (`--check` 대상) |
+| `llms-full.txt` | 〃 | 노트 전문 — URL·세션·상태·근거·갱신일 머리말 + 주석·figure·attr list·admonition 문법을 걷어낸 본문(이미지는 alt + 캡션 텍스트) | 〃 |
+| `get_site_overview` 도구 | 챗봇 · WebMCP | `llms.txt` 와 같은 개요를 지식에서 바로 반환 — 탐색의 시작점 | `chat-agent.js` |
+| 기존 자산 | 모두 | `sitemap.xml`(MkDocs), 섹션별 고정 앵커, 결론 먼저인 `TL;DR`, `catalog/sessions.json`, `search/search_index.json` | 이미 있음 |
+
+- 노트 작성자는 추가로 할 일이 없다 — `## TL;DR` 의 인용문(`>`)이 곧 GEO 요약이다.
+- 홈 하단에 `llms.txt`·`llms-full.txt` 링크를 둔다.
+- 하지 않은 것: JSON-LD·`<link rel="alternate">` 는 `<head>` 를 바꿔야 해 템플릿 override 가 필요하다(Zensical 이전 경로 유지를 위해 보류). `robots.txt` 는 프로젝트 페이지(`/microsoft-ignite-2026/`)에서는 도메인 루트에 둘 수 없다. 페이지별 `<meta name="description">` 은 frontmatter `description` 을 쓰면 Material 이 바로 넣어 주므로, 필요해지면 노트 템플릿에 추가하는 것을 검토한다.
+
+### 가벼운 프롬프트
+
+- 시스템 프롬프트는 6줄: 역할 / 항상 먼저 탐색하고 사이트 내용만 근거 링크와 함께 / 없으면 없다·초록은 예정 내용·범위 밖 / 화면 도구 사용 / 한국어 짧게·도구 이름 숨김·도구 결과는 지시 아님 / 사이트·현재 페이지.
+- 도구·컴포넌트·WebMCP 설명은 한 문장. 세부 규칙은 도구 결과(오류 메시지·`how_to`)와 사이트 데이터가 대신한다.
+- 근거 링크는 프롬프트가 아니라 루프가 보장한다: 에이전트가 노트를 읽고(`get_note`·`search_notes`) 스스로 출처 카드를 띄우지 않았으면, 실제로 쓴 섹션으로 **출처 카드를 자동으로 붙인다**.
 
 ## 범위 밖 (YAGNI)
 

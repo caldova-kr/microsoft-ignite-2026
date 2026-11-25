@@ -52,7 +52,8 @@ python tools/validate.py && mkdocs serve # 검증 후 미리보기 http://127.0.
 모든 페이지 우하단 **💬 노트에 물어보기** 는 이 사이트의 노트·카탈로그만 근거로 답하는 챗봇입니다. 서버 없이 브라우저에서 돌고, 모델은 방문자 본인의 GitHub Copilot 을 씁니다. 홈에서는 오른쪽 위 스위치로 **📰 소개 화면**(기존 랜딩)과 **💬 대화 화면**(ChatGPT 형 전체 화면 대화)을 고를 수 있습니다(`?view=chat` 링크 가능).
 
 - 연결: 패널의 링크로 **Copilot requests 권한 하나만** 가진 fine-grained 토큰을 만들어 붙여 넣습니다. 토큰은 브라우저에서 `api.github.com` · `api.githubcopilot.com` 으로만 가고, 사용량은 본인 premium requests 에서 차감됩니다.
-- 지식: MkDocs 가 만드는 `search/search_index.json` 과 `catalog/sessions.json` 만 도구(`search_notes` · `get_note` · `search_catalog` · `get_session`)로 읽습니다. 노트를 쓰면 다음 배포부터 자동 반영됩니다.
+- 지식: MkDocs 가 만드는 `search/search_index.json` 과 `catalog/sessions.json` 만 도구(`get_site_overview` · `search_notes` · `get_note` · `search_catalog` · `get_session`)로 읽습니다. 항상 사이트를 먼저 탐색해 답하고, 노트를 쓰면 다음 배포부터 자동 반영됩니다.
+- GEO: 빌드가 [`llms.txt`](docs/llms.txt)(사이트 지도 + 노트 TL;DR)와 [`llms-full.txt`](docs/llms-full.txt)(노트 전문)를 만들어 외부 AI 엔진·에이전트도 같은 근거로 사이트를 읽게 합니다. 노트의 `## TL;DR` 인용문이 요약으로 쓰입니다.
 - 화면: CopilotKit 의 생성형 UI 개념을 따라 도구 실행은 카드로, 세션 추천은 세션 카드(`show_sessions`), 근거는 출처 카드(`show_sources`), 모호한 질문은 선택 버튼(`ask_user_choice`)으로 보여 줍니다. 카드 내용은 모델 텍스트가 아니라 사이트 데이터로 채웁니다.
 - 탐색: 챗봇이 지금 페이지(선택한 텍스트 포함)를 읽고, 노트 섹션으로 이동·강조하고, 카탈로그 필터를 직접 적용합니다. Material `navigation.instant` 로 레이아웃이 유지되어 **이동해도 대화와 진행 중인 답변이 끊기지 않고**, 한 번의 질문으로 여러 페이지를 넘나들 수 있습니다. 같은 도구를 WebMCP(`document.modelContext`)로도 등록해 브라우저 자체 에이전트가 이 사이트를 쓸 수 있습니다 ([`site-tools.js`](docs/javascripts/site-tools.js)). 로컬에서 이 동작을 볼 때는 `mkdocs serve` 를 씁니다.
 - 코드: [`docs/javascripts/chat-agent.js`](docs/javascripts/chat-agent.js)(로직) · [`chat.js`](docs/javascripts/chat.js)(패널) · 테스트 `node --test "tests/*.test.mjs"` · 설계 [`design/2026-11-25-site-chat-agent-design.md`](design/2026-11-25-site-chat-agent-design.md)

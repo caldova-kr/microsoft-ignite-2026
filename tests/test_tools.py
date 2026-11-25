@@ -219,3 +219,41 @@ def test_topic_cards_count_online_sessions_and_link_filtered_catalog():
     assert out.index("Cloud &amp; AI") < out.index(">Data<")
     assert 'href="catalog/?topic=Cloud%20%26%20AI"' in out
     assert "2<small> sessions</small>" in out and "▶ 1 · 📝 노트 1" in out
+
+
+def test_tldr_prefers_the_blockquote_summary():
+    from build_pages import tldr
+
+    body = "## TL;DR\n\n> 키노트는 **세 가지** 의제였습니다. [노트](x/)\n\n- bullet\n\n## Top highlights\n\n> other\n"
+    assert tldr(body) == "키노트는 세 가지 의제였습니다. 노트"
+
+
+def test_llm_text_drops_markup_but_keeps_meaning():
+    from build_pages import llm_text
+
+    body = textwrap.dedent('''\
+        # [KEY01] Title
+
+        `Keynote` · 120 min
+        { .dg-factsheet }
+
+        <!-- 범위: 내부 메모 -->
+
+        ## TL;DR
+
+        <figure markdown="span">
+          ![세 기둥 슬라이드](KEY01/a.jpg)
+          <figcaption>▶ 영상 2:21 — 세 기둥</figcaption>
+        </figure>
+
+        !!! supplement "세션 외 보충 · 블로그"
+            [포스트](https://example.com)
+
+        [버튼](a.md){ .dg-button }
+        ''')
+    out = llm_text(body)
+    assert out.startswith("## TL;DR")
+    assert "(이미지: 세 기둥 슬라이드 — ▶ 영상 2:21 — 세 기둥)" in out
+    assert "**세션 외 보충 · 블로그**\n[포스트](https://example.com)" in out
+    assert "<!--" not in out and "{ ." not in out and "내부 메모" not in out
+    assert "[버튼](a.md)\n" in out

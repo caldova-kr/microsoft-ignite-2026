@@ -81,13 +81,13 @@ test("runAgent executes streamed tool calls and returns the final answer", async
     fetchImpl, token: "t", model: "m", knowledge: k(), history: [{ role: "user", content: "Foundry?" }],
     page: { title: "KEY01", url: ROOT + "sessions/KEY01-keynote/" },
     onText: (d) => { streamed += d; },
-    onToolStart: (e) => tools.push(["start", e.name, e.kind]), onToolEnd: (e) => tools.push(["end", e.name, e.result.results.length])
+    onToolStart: (e) => { if (!e.auto) tools.push(["start", e.name, e.kind]); }, onToolEnd: (e) => { if (!e.auto) tools.push(["end", e.name, e.result.results.length]); }
   });
   assert.equal(r.text, "답: Foundry");
   assert.equal(streamed, r.text);
   assert.deepEqual(tools, [["start", "search_notes", "tool"], ["end", "search_notes", 1]]);
   assert.equal(seen[0].url, "https://api.githubcopilot.com/chat/completions");
-  assert.match(seen[0].body.messages[0].content, /사용자가 지금 보고 있는 페이지: KEY01/);
+  assert.match(seen[0].body.messages[0].content, /현재 페이지: KEY01/);
   const second = seen[1].body.messages;
   assert.equal(second.at(-2).tool_calls[0].function.name, "search_notes");
   assert.equal(second.at(-1).role, "tool");
@@ -204,4 +204,27 @@ test("renderMarkdown turns pipe tables into escaped HTML tables", () => {
   assert.match(html, /<td><strong>Perception<\/strong><\/td><td>GA<\/td>/);
   assert.match(html, /<td>&lt;b&gt;x&lt;\/b&gt;<\/td>/);
   assert.match(html, /<\/tbody><\/table><\/div><p>뒤<\/p>$/);
+});
+
+test("get_site_overview lists notes with their TL;DR and catalog counts", () => {
+  const o = A.runTool(k(), "get_site_overview", {});
+  assert.deepEqual(o.notes.map((n) => [n.code, n.url]), [["KEY01", ROOT + "sessions/KEY01-keynote/"]]);
+  assert.match(o.notes[0].summary, /Human Ambition/);
+  assert.deepEqual([o.catalog.sessions, o.catalog.online], [2, 2]);
+  assert.equal(A.TOOL_SPECS[0].function.name, "get_site_overview");
+});
+
+test("notes the agent read become an automatic sources card unless it showed sources itself", async () => {
+  const run = async (script) => {
+    const ends = [];
+    await A.runAgent({ fetchImpl: fakeFetch(script, []), token: "t", model: "m", knowledge: k(), history: [{ role: "user", content: "?" }], onToolEnd: (e) => ends.push(e) });
+    return ends;
+  };
+  const auto = await run([[call("a", "search_notes", { query: "Foundry" })], [call("b", "get_note", { path: "KEY01" })], [say("답")]]);
+  assert.deepEqual(auto.map((e) => [e.name, !!e.auto]), [["search_notes", false], ["get_note", false], ["show_sources", true]]);
+  assert.deepEqual(auto.at(-1).result.items.map((s) => s.url), [ROOT + "sessions/KEY01-keynote/#foundry"]);
+  const own = await run([[call("a", "get_note", { path: "KEY01" })], [say("답"), call("s", "show_sources", { urls: [ROOT + "sessions/KEY01-keynote/#tldr"] })]]);
+  assert.equal(own.filter((e) => e.name === "show_sources").length, 1);
+  const none = await run([[call("a", "get_session", { code: "BRK220" })], [say("답")]]);
+  assert.ok(!none.some((e) => e.name === "show_sources"));
 });

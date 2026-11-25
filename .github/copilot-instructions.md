@@ -132,7 +132,7 @@ tools/                   # fetch_catalog · fetch_sources · new_session · buil
 ```
 
 - 파일명: `<CODE>-<slug>.md`. CODE 는 카탈로그 `sessionCode` 그대로(`KEY01`, `BRK220`, `THRSP312`, `LTG401` …), slug 는 소문자·하이픈.
-- **생성물은 손으로 고치지 않는다**: `catalog/SESSIONS.md`, `catalog/sessions.*`, `catalog/meta.json`, `docs/catalog/sessions.json`, `docs/sessions/index.md`, `docs/sessions/notes.json`, `docs/index.md` 의 `gen:` 블록, `mkdocs.yml` 의 `gen:nav` 블록. CI 가 `build_pages.py --check` 로 확인한다.
+- **생성물은 손으로 고치지 않는다**: `catalog/SESSIONS.md`, `catalog/sessions.*`, `catalog/meta.json`, `docs/catalog/sessions.json`, `docs/sessions/index.md`, `docs/sessions/notes.json`, `docs/index.md` 의 `gen:` 블록, `mkdocs.yml` 의 `gen:nav` 블록, `docs/llms.txt`·`docs/llms-full.txt`(GEO — 노트의 `## TL;DR` 인용문이 요약으로 쓰인다). CI 가 `build_pages.py --check` 로 확인한다.
 
 ## 5. Frontmatter schema
 
