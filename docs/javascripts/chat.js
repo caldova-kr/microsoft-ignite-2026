@@ -10,9 +10,9 @@
   var K = { token: "icn-chat-token", profile: "icn-chat-profile", history: "icn-chat-history", open: "icn-chat-open", model: "icn-chat-model" };
   var HISTORY_LIMIT = 12;
   var homeMount = document.getElementById("icn-chat-home");
-  var SUGGESTIONS = homeMount
-    ? ["키노트의 핵심 의제가 뭐야?", "노트가 정리된 세션은 어떤 게 있어?", "키노트 노트의 GA 섹션 보여 줘", "Security 토픽 Breakout 을 카탈로그에서 보여 줘"]
-    : ["이 페이지 내용을 요약해 줘", "지금 보는 섹션 설명해 줘", "이 노트와 관련된 세션을 카탈로그에서 보여 줘"];
+  function suggestions() { return document.getElementById("icn-chat-home") ? HOME_SUGGESTIONS : PAGE_SUGGESTIONS; }
+  var HOME_SUGGESTIONS = ["키노트의 핵심 의제가 뭐야?", "노트가 정리된 세션은 어떤 게 있어?", "키노트 노트의 GA 섹션 보여 줘", "Security 토픽 Breakout 을 카탈로그에서 보여 줘"];
+  var PAGE_SUGGESTIONS = ["이 페이지 내용을 요약해 줘", "지금 보는 섹션 설명해 줘", "이 노트와 관련된 세션을 카탈로그에서 보여 줘"];
   var inline = false;
 
   // ---------- storage (private mode / disabled storage must not break the page) ----------
@@ -122,6 +122,8 @@
     foot.hidden = !t;
     newBtn.hidden = !t;
     closeBtn.hidden = inline;
+    // A running turn owns the message list; moving the panel must not redraw it.
+    if (busy) return;
     userBox.textContent = "";
     panel.classList.toggle("icn-chat--empty", !t || !history.length);
     if (!t) return renderSetup();
@@ -250,6 +252,7 @@
     }
     if (name === "get_session") return { status: r.code + " · " + r.title, links: [{ text: r.note_url ? "노트 보기" : "세션 페이지", url: r.note_url || r.session_page }] };
     if (r.navigating) return { status: "답을 마친 뒤 이동", links: [{ text: decodeURI(r.navigating.replace(SITE_ROOT, "/")), url: r.navigating }] };
+    if (r.opened) return { status: "열림 · " + String(r.title || "").split(" - ")[0], links: [{ text: decodeURI(r.opened.replace(SITE_ROOT, "/")), url: r.opened }] };
     if (name === "get_current_page") return { status: r.title + (r.selected_text ? " · 선택한 텍스트 포함" : ""), links: [] };
     if (r.highlighted) return { status: "강조: " + r.heading, links: [] };
     if (r.already_here) return { status: "이미 이 페이지입니다", links: [] };
@@ -402,7 +405,7 @@
       } else {
         body.appendChild(el("p", { class: "icn-chat__status", text: "예를 들어 이렇게 물어보세요." }));
       }
-      body.appendChild(el("div", { class: "icn-chat__chips" }, SUGGESTIONS.map(function (s) {
+      body.appendChild(el("div", { class: "icn-chat__chips" }, suggestions().map(function (s) {
         return el("button", { type: "button", class: "icn-chat__chip", text: s, onclick: function () { input.value = s; submit(); } });
       })));
       return;
@@ -539,8 +542,30 @@
     applyHomeMode(mode, stage);
   }
 
+  // Instant navigation swaps the page content but keeps <body>, so the panel (and a running
+  // agent turn) survives. Re-place it whenever a new page arrives.
+  function onPage() {
+    homeMount = document.getElementById("icn-chat-home");
+    if (homeMount) {
+      if (!homeMount.firstChild) mountHome();
+      return;
+    }
+    document.body.classList.remove("icn-home--chat");
+    if (inline || !panel.parentNode || panel.parentNode !== document.body) {
+      var wasInline = inline;
+      inline = false;
+      panel.classList.remove("icn-chat--inline");
+      panel.setAttribute("role", "dialog");
+      document.body.appendChild(panel);
+      fab.hidden = false;
+      if (wasInline) { set("sessionStorage", K.open, "1"); panel.hidden = true; toggle(true); }
+      else render();
+    }
+  }
+
   document.body.appendChild(fab);
   document.body.appendChild(panel);
   if (homeMount) mountHome();
   else if (get("sessionStorage", K.open)) toggle(true);
+  if (window.document$ && typeof window.document$.subscribe === "function") window.document$.subscribe(onPage);
 })();

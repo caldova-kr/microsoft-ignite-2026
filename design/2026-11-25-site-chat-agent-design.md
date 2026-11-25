@@ -81,11 +81,18 @@
 | `highlight_section(anchor)` | 현재 페이지 섹션으로 스크롤하고 잠시 강조 | 없음 |
 | `filter_catalog(text, type, topic, level, progress, media)` | 카탈로그 탐색기 폼에 값을 넣고 `change` 를 보내 실제 화면을 필터. 다른 페이지면 `catalog/?…` 로 이동 (기존 URL 상태 규약 재사용) | 이동 |
 
-1. **우리 챗봇**: `runAgent({ extraTools })` 로 들어가 kind `page` 도구 카드로 보인다. 다른 페이지 이동은 **답이 끝난 뒤** "🧭 … 로 이동합니다 · 취소" 카드로 1.6초 뒤 실행하고, 이동한 페이지에서 플로팅 패널이 같은 대화로 열리며 anchor 섹션이 강조된다.
+1. **우리 챗봇**: `runAgent({ extraTools })` 로 들어가 kind `page` 도구 카드로 보인다. 이동은 아래 "레이아웃 유지(instant navigation)" 방식으로 **턴 도중에** 일어나고, 결과로 새 페이지 정보(제목·종류·목차)가 돌아와 에이전트가 이어서 강조·이동·필터를 할 수 있다.
 2. **WebMCP**: `document.modelContext.registerTool` 이 있으면(Chrome origin trial) 지식 도구 4개 + 페이지 도구 4개를 등록해, 브라우저 자체 에이전트가 우리 모델 호출 없이 사이트를 검색·탐색할 수 있다. 지식 도구는 `readOnlyHint: true`. 등록 실패는 무시(사이트 동작에 영향 없음).
 
 - 이동은 이 사이트 안으로만 허용한다(사이트 밖 URL·노트 없는 세션은 오류로 돌려 모델이 안내하게 함).
 - "보여 줘·열어 줘" 요청은 본문에 옮겨 적지 말고 화면에서 직접 보여 주도록 시스템 프롬프트에 규칙을 둔다.
+
+### 레이아웃 유지 — `navigation.instant`
+
+- Material 의 `navigation.instant`(내장 기능, 플러그인·hooks 아님)를 켠다. 내부 링크를 XHR 로 받아 `[data-md-component]` 영역(container·header-topic·tabs 등)만 바꾸고 `<body>` 는 유지하므로, `<body>` 에 붙인 채팅 패널과 **진행 중인 에이전트 턴이 페이지 이동 후에도 살아 있다**. Zensical 도 같은 키(`navigation.instant`)를 지원해 이전 경로를 해치지 않는다 — `theme.features` 변경은 이 이유로만 했다.
+- 이동은 Material 과 같은 방식(임시 `<a>` 를 붙여 클릭)으로 한다. 클릭 직후 `window` 단계에서 `defaultPrevented` 를 확인해 instant navigation 이 받지 않았으면(예: sitemap 에 없는 URL) 그 클릭을 취소하고 "답을 마친 뒤 이동" 방식으로 바꾼다 → 전체 새로고침이 진행 중인 턴을 끊지 않는다.
+- `document$` 를 구독해 새 페이지가 올 때마다 패널 자리를 다시 잡는다: 홈 대화 화면에서 다른 페이지로 가면 패널이 플로팅으로 옮겨 열린 채 유지, 홈으로 오면 보기 스위치를 다시 붙인다. 턴이 진행 중이면 메시지 목록을 다시 그리지 않는다.
+- 로컬 확인: Material 은 sitemap URL 의 protocol·hostname 만 현재 위치로 바꾸고 port 는 바꾸지 않는다. `python -m http.server` 로 빌드 결과를 열면 instant navigation 이 동작하지 않으므로(폴백 경로만 확인됨) **`mkdocs serve`** 로 확인한다. GitHub Pages(포트 없음)에서는 그대로 동작한다.
 
 ### 근거 정책 (시스템 프롬프트)
 
@@ -123,11 +130,11 @@
 
 ## 범위 밖 (YAGNI)
 
-- OAuth 버튼·device flow 로그인(서버 필요), CopilotKit SDK 자체 도입(런타임 서버 또는 Enterprise 기능 필요), `/responses` 전용 모델(GPT 계열) 지원, 대화 기록 영구 저장, WASM 검색, 여러 페이지를 넘나드는 연속 작업(이동 후 에이전트가 이어서 행동 — 지금은 이동이 답의 마지막 동작).
+- OAuth 버튼·device flow 로그인(서버 필요), CopilotKit SDK 자체 도입(런타임 서버 또는 Enterprise 기능 필요), `/responses` 전용 모델(GPT 계열) 지원, 대화 기록 영구 저장, WASM 검색.
 
 ## 테스트
 
 - `tests/chat_agent.test.mjs` (`node --test "tests/*.test.mjs"`): 검색 점수·노트 필터, get_note 조립, 카탈로그 필터, 스트리밍 tool-call 누적, 에이전트 루프(가짜 fetch), 생성형 UI(카탈로그로 채운 세션 카드·사이트 밖 출처 제거·선택 대기), 페이지 도구 경로(extraTools·오류 전달), 마크다운 렌더러 XSS 방지·표 렌더링.
-- 브라우저: 실제 노트·카탈로그 DOM 에서 페이지 도구, 가짜 `document.modelContext` 로 WebMCP 등록·실행, 홈 대화 화면 → 노트 이동·강조·패널 유지 흐름.
+- 브라우저: 실제 노트·카탈로그 DOM 에서 페이지 도구, 가짜 `document.modelContext` 로 WebMCP 등록·실행, `mkdocs serve` 에서 한 턴에 홈 대화 화면 → 노트 열기 → `#ga` 강조 → 카탈로그 필터(새로고침 없이, 패널 유지), instant navigation 이 안 되는 환경의 폴백(턴 유지 후 이동).
 - CI(`deploy-site.yml`)에 `node --test "tests/*.test.mjs"` 추가. 기존 `validate.py`·`build_pages.py --check`·`pytest`·`mkdocs build --strict` 유지.
 - 실제 Copilot API 로 tool calling·컴포넌트 호출 수동 확인.

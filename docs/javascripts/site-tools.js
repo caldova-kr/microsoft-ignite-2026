@@ -12,6 +12,10 @@
   var FLASH_KEY = "icn-flash";
   var CATALOG_FIELDS = { text: "q", type: "type", topic: "topic", level: "level", tag: "tag", progress: "progress", media: "media" };
 
+  var INSTANT = (function () {
+    try { return JSON.parse(document.getElementById("__config").textContent).features.indexOf("navigation.instant") >= 0; } catch (e) { return false; }
+  })();
+
   var knowledge = null;
   function loadKnowledge() {
     if (!knowledge) {
@@ -194,7 +198,72 @@
     return { applied: applied, rejected: rejected, summary: summary ? summary.textContent.trim() : "" };
   }
 
-  // ctx.navigate(url) decides when to leave the page (chat: after the answer; WebMCP: now).
+  // With instant navigation the layout (and the chat) survives, so tools can move and keep going.
+  function container() { return document.querySelector("[data-md-component=container]"); }
+
+  function waitForPage(before, timeoutMs) {
+    return new Promise(function (resolve) {
+      var t0 = Date.now();
+      (function poll() {
+        if (container() !== before || Date.now() - t0 > timeoutMs) return setTimeout(resolve, 60);
+        setTimeout(poll, 50);
+      })();
+    });
+  }
+
+  function waitFor(test, timeoutMs) {
+    return new Promise(function (resolve) {
+      var t0 = Date.now();
+      (function poll() { if (test() || Date.now() - t0 > timeoutMs) return resolve(); setTimeout(poll, 80); })();
+    });
+  }
+
+  // Click a temporary link the way Material does. If instant navigation did not take the click
+  // (e.g. URL not in the sitemap), cancel it so a full reload cannot kill a running chat turn.
+  function clickThrough(url) {
+    var a = document.createElement("a");
+    a.href = url;
+    var handled = false;
+    function probe(e) {
+      if (e.target !== a) return;
+      handled = e.defaultPrevented;
+      if (!handled) e.preventDefault();
+    }
+    window.addEventListener("click", probe);
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.removeEventListener("click", probe);
+    return handled;
+  }
+
+  function openInstant(url, ctx) {
+    var before = container();
+    if (!clickThrough(url)) {
+      ctx.navigate(url);
+      return Promise.resolve({ navigating: url, note: "답을 마친 뒤 이동합니다." });
+    }
+    return waitForPage(before, 8000).then(function () {
+      var id = new URL(url).hash.slice(1);
+      var target = id && document.getElementById(id);
+      if (target) flash(target);
+      var cur = getCurrentPage();
+      return { opened: cur.url + (id ? "#" + id : ""), title: cur.title, kind: cur.kind, headings: cur.headings.slice(0, 20) };
+    });
+  }
+
+  function catalogSummaryReady() {
+    var el = document.querySelector(".dg-cat-summary");
+    return el && /sessions/.test(el.textContent);
+  }
+
+  // ctx.navigate(url): how to leave the page without instant navigation (chat: after the answer; WebMCP: now).
+  function go(url, ctx) {
+    if (INSTANT) return openInstant(url, ctx);
+    ctx.navigate(url);
+    return { navigating: url };
+  }
+
   function runPageTool(name, args, ctx) {
     args = args || {};
     if (name === "get_current_page") return getCurrentPage();
@@ -203,8 +272,16 @@
       var form = document.querySelector(".dg-cat-controls");
       if (form) return applyCatalogFilters(form, args);
       var url = catalogUrl(args);
-      ctx.navigate(url);
-      return { navigating: url };
+      if (!INSTANT) { ctx.navigate(url); return { navigating: url }; }
+      return openInstant(url, ctx).then(function (page) {
+        if (page.navigating) return page;
+        return waitFor(catalogSummaryReady, 5000).then(function () {
+          var f = document.querySelector(".dg-cat-controls");
+          var out = f ? applyCatalogFilters(f, args) : {};
+          out.opened = page.opened;
+          return out;
+        });
+      });
     }
     if (name === "open_page") {
       return loadKnowledge().catch(function () { return null; }).then(function (k) {
@@ -214,8 +291,7 @@
           var id = new URL(t.url).hash.slice(1);
           return id ? highlightSection({ anchor: id }) : { already_here: t.url };
         }
-        ctx.navigate(t.url);
-        return { navigating: t.url };
+        return go(t.url, ctx);
       });
     }
     return { error: "알 수 없는 도구: " + name };
@@ -237,10 +313,14 @@
     }
   } catch (e) { /* ignore */ }
 
-  var PAGE_PROMPT = "9. 사이트 탐색: 사용자가 노트·섹션·카탈로그를 \"보여 줘·열어 줘·이동해 줘\" 라고 하면 내용을 본문에 옮겨 적지 말고 open_page(섹션은 anchor 포함) / highlight_section / filter_catalog 로 화면에서 직접 보여 주고, 본문에는 무엇을 보여 주는지와 핵심 한두 문장만 씁니다. \"이 페이지·이 부분·선택한 내용\" 은 get_current_page 로 먼저 읽습니다. 다른 페이지 이동은 답을 마친 뒤 실행됩니다.";
+  var PAGE_PROMPT = "9. 사이트 탐색: 사용자가 노트·섹션·카탈로그를 \"보여 줘·열어 줘·이동해 줘\" 라고 하면 내용을 본문에 옮겨 적지 말고 open_page(섹션은 anchor 포함) / highlight_section / filter_catalog 로 화면에서 직접 보여 주고, 본문에는 무엇을 보여 주는지와 핵심 한두 문장만 씁니다. \"이 페이지·이 부분·선택한 내용\" 은 get_current_page 로 먼저 읽습니다. " +
+    (INSTANT
+      ? "페이지를 열면 대화는 유지된 채 바로 이동하고 결과로 새 페이지 정보가 돌아오므로, 필요하면 이어서 다른 섹션을 강조하거나 다른 페이지를 여는 식으로 여러 단계를 진행할 수 있습니다."
+      : "다른 페이지 이동은 답을 마친 뒤 실행됩니다.");
 
   window.IgniteSiteTools = {
     siteRoot: SITE_ROOT,
+    instant: INSTANT,
     loadKnowledge: loadKnowledge,
     navigateNow: navigateNow,
     // Shape consumed by IgniteChatAgent.runAgent({ extraTools })
