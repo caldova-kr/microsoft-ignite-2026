@@ -93,6 +93,8 @@ nav:
   - 세션 카탈로그: catalog/index.md
   - 세션 노트:
       - sessions/index.md
+      - "Keynote":
+          - "KEY01 — Microsoft Ignite opening keynote": sessions/KEY01-microsoft-ignite-opening-keynote.md
   - 테마:
       - themes/index.md
   - 기여하기: contributing.md

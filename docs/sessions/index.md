@@ -12,8 +12,12 @@ hide:
 
 # 세션 노트
 
-Ignite 2026 세션 1426개 중 **0개** 정리됨. 전체 목록과 필터는 [세션 카탈로그](../catalog/index.md)에서.
+Ignite 2026 세션 1426개 중 **1개** 정리됨. 전체 목록과 필터는 [세션 카탈로그](../catalog/index.md)에서.
 
 </div>
 
-아직 작성된 노트가 없습니다. [기여 가이드](../contributing.md)를 참고해 첫 노트를 추가하세요.
+## Keynote
+
+| Code | Title | Type | 상태 | Updated |
+|---|---|---|:-:|---|
+| `KEY01` | [Microsoft Ignite opening keynote](KEY01-microsoft-ignite-opening-keynote.md) | Keynote | ✍️ 작성 중 | 2026-11-25 |
