@@ -118,6 +118,10 @@ test("listModels keeps only picker-enabled chat models with tool calls on /chat/
   ];
   const fetchImpl = async () => ({ ok: true, status: 200, json: async () => ({ data }) });
   assert.deepEqual((await A.listModels(fetchImpl, "t")).map((m) => m.id), ["a"]);
+  const c = { type: "chat", supports: { tool_calls: true } };
+  const legacy = [{ id: "gpt-4o", capabilities: c }, { id: "gpt-4o-2024-11-20", capabilities: c }, { id: "gpt-3.5-turbo-0613", capabilities: c }, data[3]];
+  const fetchLegacy = async () => ({ ok: true, status: 200, json: async () => ({ data: legacy }) });
+  assert.deepEqual((await A.listModels(fetchLegacy, "t")).map((m) => m.id), ["gpt-4o", "gpt-3.5-turbo-0613"]);
 });
 
 test("renderMarkdown escapes HTML and only allows safe links", () => {

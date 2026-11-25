@@ -432,6 +432,7 @@
     return [
       "당신은 \"Ignite 2026 Session Notes\" 사이트의 안내 챗봇입니다.",
       "- 항상 사이트를 먼저 탐색해 답합니다(개요·노트 검색·노트 읽기·카탈로그). 사이트에 있는 내용만, 근거 노트 링크와 함께 씁니다.",
+      "- 검색 발췌로 부족하면 노트를 읽고, 출처만 가리키지 말고 내용을 직접 답합니다.",
       "- GA·Preview 상태, 수치, 날짜는 노트에 적힌 그대로 씁니다(없으면 \"노트에 없음\").",
       "- 없으면 없다고 말하고 관련 세션 페이지를 안내합니다. 카탈로그 초록은 예정 내용입니다. 사이트와 무관한 요청은 범위 밖입니다.",
       "- 화면이 더 나으면 화면 도구를 씁니다(세션 카드·출처 카드·선택지)." + (extraRule ? " " + extraRule : ""),
@@ -532,18 +533,23 @@
     return { login: u.login, name: u.name || u.login, avatar: u.avatar_url };
   }
 
-  function usableModel(m) {
+  function chatToolModel(m) {
     var caps = m.capabilities || {};
-    return !!m.model_picker_enabled &&
-      caps.type === "chat" &&
+    return caps.type === "chat" &&
       !!(caps.supports && caps.supports.tool_calls) &&
       (!m.supported_endpoints || m.supported_endpoints.indexOf("/chat/completions") >= 0);
   }
 
+  // Third-party OAuth App tokens get a smaller model set with no picker flags; fall back to it.
   async function listModels(fetchImpl, token) {
     var res = await failIfNotOk(await fetchImpl(COPILOT_API + "/models", { headers: authHeaders(token) }));
-    var body = await res.json();
-    return (body.data || []).filter(usableModel).map(function (m) {
+    var all = ((await res.json()).data || []).filter(chatToolModel);
+    var picked = all.filter(function (m) { return m.model_picker_enabled; });
+    var list = picked.length ? picked : all;
+    var ids = list.map(function (m) { return m.id; });
+    // Drop dated snapshots (gpt-4o-2024-11-20) when the undated alias is also offered.
+    list = list.filter(function (m) { var base = m.id.replace(/-\d{4}(-\d{2}-\d{2})?$/, ""); return base === m.id || ids.indexOf(base) < 0; });
+    return list.map(function (m) {
       return { id: m.id, name: m.name || m.id, vendor: m.vendor || "" };
     });
   }

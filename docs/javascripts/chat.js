@@ -145,7 +145,7 @@
   function renderModels() {
     var saved = get("localStorage", K.model);
     var ids = profile.models.map(function (m) { return m.id; });
-    var pick = ids.indexOf(saved) >= 0 ? saved : (ids.filter(function (id) { return /haiku|flash|mini/i.test(id); })[0] || ids[0]);
+    var pick = ids.indexOf(saved) >= 0 ? saved : (ids.filter(function (id) { return /haiku|flash/i.test(id); })[0] || (ids.indexOf("gpt-4o") >= 0 ? "gpt-4o" : ids[0]));
     modelSel.textContent = "";
     profile.models.forEach(function (m) { modelSel.appendChild(el("option", { value: m.id, text: m.name })); });
     modelSel.value = pick;
