@@ -185,3 +185,36 @@ def test_new_issues_go_to_the_milestone_due_soonest():
     assert nearest_milestone(ms)["number"] == 1
     assert nearest_milestone([{"number": 5, "dueOn": None}, {"number": 4, "dueOn": None}])["number"] == 4
     assert nearest_milestone([]) is None
+
+
+def test_note_preview_uses_first_local_image_and_plain_tldr():
+    from build_pages import note_preview
+    body = textwrap.dedent("""\
+        ## TL;DR
+
+        > **Decision 1.1** 은 [판단](https://x) 전용 `모델` 입니다.
+        > 둘째 줄.
+
+        <figure markdown="span">
+          ![a](https://example.com/hot.jpg)
+          ![b](BRK1-x/slide.jpg)
+        </figure>
+        """)
+    thumb, excerpt = note_preview(body)
+    assert thumb == "BRK1-x/slide.jpg"
+    assert excerpt == "Decision 1.1 은 판단 전용 모델 입니다. 둘째 줄."
+    assert note_preview(body, limit=10)[1] == "Decision 1…"
+    assert note_preview("no tldr here") == ("", "")
+
+
+def test_topic_cards_count_online_sessions_and_link_filtered_catalog():
+    from build_pages import topics_block
+    sessions = [
+        {"online": True, "topics": ["Cloud & AI"], "video": "v", "note_path": None},
+        {"online": True, "topics": ["Cloud & AI", "Data"], "video": "", "note_path": Path("n.md")},
+        {"online": False, "topics": ["Data"], "video": "v", "note_path": None},
+    ]
+    out = topics_block(sessions)
+    assert out.index("Cloud &amp; AI") < out.index(">Data<")
+    assert 'href="catalog/?topic=Cloud%20%26%20AI"' in out
+    assert "2<small> sessions</small>" in out and "▶ 1 · 📝 노트 1" in out

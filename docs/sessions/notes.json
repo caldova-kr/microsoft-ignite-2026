@@ -1,0 +1,29 @@
+{
+ "KEY01": {
+  "d": 120,
+  "k": "",
+  "l": null,
+  "p": [
+   "Security",
+   "Frontier Transformation",
+   "Agent Platform",
+   "Cloud & AI",
+   "Microsoft IQ",
+   "Copilot"
+  ],
+  "pr": "review",
+  "s": [
+   "Satya Nadella",
+   "Judson Althoff"
+  ],
+  "sb": [
+   "catalog",
+   "transcript",
+   "video"
+  ],
+  "u": "https://ignite.microsoft.com/en-US/sessions/KEY01",
+  "up": "2026-11-25",
+  "v": "https://medius.microsoft.com/Embed/video-nc/03c19114-cb6e-42d3-9be3-f8b310426589",
+  "y": "Keynote"
+ }
+}

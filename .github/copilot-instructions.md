@@ -123,6 +123,7 @@ docs/
 ├── sessions/
 │   ├── _TEMPLATE.md     # 노트 템플릿 (사이트 빌드 제외, 직접 복사하지 말고 new_session.py 사용)
 │   ├── index.md         # 생성물
+│   ├── notes.json       # 생성물 — 노트 상단 메타 카드용 (javascripts/site.js)
 │   ├── <CODE>-<slug>.md # 세션 1개 = 파일 1개
 │   └── <CODE>-<slug>/   # 그 노트의 이미지·다이어그램
 ├── themes/              # 여러 노트를 묶는 주제 페이지 (작성된 노트만 근거)
@@ -131,7 +132,7 @@ tools/                   # fetch_catalog · fetch_sources · new_session · buil
 ```
 
 - 파일명: `<CODE>-<slug>.md`. CODE 는 카탈로그 `sessionCode` 그대로(`KEY01`, `BRK220`, `THRSP312`, `LTG401` …), slug 는 소문자·하이픈.
-- **생성물은 손으로 고치지 않는다**: `catalog/SESSIONS.md`, `catalog/sessions.*`, `catalog/meta.json`, `docs/catalog/sessions.json`, `docs/sessions/index.md`, `docs/index.md` 의 `gen:` 블록, `mkdocs.yml` 의 `gen:nav` 블록. CI 가 `build_pages.py --check` 로 확인한다.
+- **생성물은 손으로 고치지 않는다**: `catalog/SESSIONS.md`, `catalog/sessions.*`, `catalog/meta.json`, `docs/catalog/sessions.json`, `docs/sessions/index.md`, `docs/sessions/notes.json`, `docs/index.md` 의 `gen:` 블록, `mkdocs.yml` 의 `gen:nav` 블록. CI 가 `build_pages.py --check` 로 확인한다.
 
 ## 5. Frontmatter schema
 

@@ -11,5 +11,5 @@
 - 문체: 주변에 공유하는 **참관 후기**(합니다체). 발표 내용 + "그래서 무엇이 달라지나" 를 함께 쓰고, bullet 마다 `(transcript: …)`·`(영상 MM:SS)` 를 달지 않는다 — 근거는 `Key announcements` 표의 `근거` 열에.
 - Keynote 등 발표 중심 노트: `TL;DR` 에 이벤트 핵심 의제 + 키노트 영상·Book of News 링크 → `Top highlights` 는 제품 소개만(의미 포함, `Why it matters` 생략 가능) → `Customer scenarios` 에 고객·현장 사례 분리(근거는 키노트 영상 + Microsoft 공식 블로그, 화면에 나온 SNS 원문은 링크하지 않음) → 제품마다 GA / Preview 콜아웃, `Key announcements` 는 GA · Preview 표만(한 제품은 한 행, 상태 미언급 표·Caveats 생략) → 제품별 공식 소개 글 링크. 자세한 내용은 instructions 6장 "Keynote · 발표 중심 노트의 구성".
 - 세션 메타데이터는 `catalog/sessions.json` 이 정답이며, 노트는 `python tools/new_session.py <CODE>` 로 만든다.
-- 생성물(`catalog/SESSIONS.md`, `docs/catalog/sessions.json`, `docs/sessions/index.md`, `gen:` 블록)은 직접 고치지 않고 `python tools/build_pages.py` 로 갱신한다.
+- 생성물(`catalog/SESSIONS.md`, `docs/catalog/sessions.json`, `docs/sessions/index.md`, `docs/sessions/notes.json`, `gen:` 블록)은 직접 고치지 않고 `python tools/build_pages.py` 로 갱신한다.
 - 끝나면 `python tools/validate.py && python tools/build_pages.py --check && mkdocs build --strict`.
