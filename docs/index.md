@@ -47,30 +47,42 @@ hide:
 
 <!-- gen:recent -->
 <div class="dg-note-grid" markdown="0">
-<a class="dg-note-card dg-note-card--review" href="sessions/KEY01-microsoft-ignite-opening-keynote/"><span class="dg-note-meta"><code>KEY01</code><span>Keynote</span><span>🔍 검토 중</span></span><strong>Microsoft Ignite opening keynote</strong><span class="dg-note-topics">Security · Frontier Transformation · Agent Platform</span></a>
+<a class="dg-note-card dg-note-card--review" href="sessions/KEY01-microsoft-ignite-opening-keynote/"><span class="dg-note-thumb"><img src="sessions/KEY01-microsoft-ignite-opening-keynote/frontier-ecosystem-three-pillars.jpg" alt="" loading="lazy"></span><span class="dg-note-body"><span class="dg-note-meta"><code>KEY01</code><span>Keynote</span><span>🔍 검토 중</span></span><strong>Microsoft Ignite opening keynote</strong><span class="dg-note-excerpt">Ignite 2026 오프닝 키노트는 Human Ambition · Intelligence · Trust 세 가지 의제로 짜여 있었습니다. Satya Nadella 는 이를 AI 시대의 세 가지 &quot;architectural imperative&quot; 로, Judson Althoff 는 fron…</span><span class="dg-note-topics">Security · Frontier Transformation · Agent Platform</span></span></a>
 </div>
 <!-- /gen:recent -->
 
 <div class="dg-section-heading" markdown="1">
 
-<p class="dg-eyebrow">HOW THIS WORKS</p>
+<p class="dg-eyebrow">BROWSE BY TOPIC</p>
 
-## 정리 파이프라인
+## 토픽으로 둘러보기
+
+온라인으로 볼 수 있는 세션을 카탈로그 토픽별로 모았습니다. 카드를 누르면 그 토픽으로 걸러진 카탈로그가 열립니다.
 
 </div>
 
-<div class="dg-pipeline" markdown="0">
-<div class="dg-step"><code>01</code><strong>Catalog</strong><span>공식 카탈로그 API → <code>catalog/sessions.json</code></span></div>
-<div class="dg-step"><code>02</code><strong>Issue</strong><span>공유할 세션 이슈 등록 · assignee 로 점유</span></div>
-<div class="dg-step"><code>03</code><strong>Sources</strong><span>영상 · 트랜스크립트 · 슬라이드 확보</span></div>
-<div class="dg-step"><code>04</code><strong>Note</strong><span>근거 기반 노트 작성 · 검증 · 배포</span></div>
+<!-- gen:topics -->
+<div class="dg-topic-grid" markdown="0">
+<a class="dg-topic-card" href="catalog/?topic=Cloud%20%26%20AI"><strong>Cloud &amp; AI</strong><span class="dg-topic-count">192<small> sessions</small></span><span class="dg-topic-meta">▶ 175 · 📝 노트 1</span></a>
+<a class="dg-topic-card" href="catalog/?topic=Agent%20Platform"><strong>Agent Platform</strong><span class="dg-topic-count">136<small> sessions</small></span><span class="dg-topic-meta">▶ 118 · 📝 노트 1</span></a>
+<a class="dg-topic-card" href="catalog/?topic=Security"><strong>Security</strong><span class="dg-topic-count">116<small> sessions</small></span><span class="dg-topic-meta">▶ 100 · 📝 노트 1</span></a>
+<a class="dg-topic-card" href="catalog/?topic=Copilot"><strong>Copilot</strong><span class="dg-topic-count">92<small> sessions</small></span><span class="dg-topic-meta">▶ 81 · 📝 노트 1</span></a>
+<a class="dg-topic-card" href="catalog/?topic=Agentic%20Business%20Applications"><strong>Agentic Business Applications</strong><span class="dg-topic-count">87<small> sessions</small></span><span class="dg-topic-meta">▶ 79 · 📝 노트 0</span></a>
+<a class="dg-topic-card" href="catalog/?topic=Data"><strong>Data</strong><span class="dg-topic-count">75<small> sessions</small></span><span class="dg-topic-meta">▶ 67 · 📝 노트 0</span></a>
+<a class="dg-topic-card" href="catalog/?topic=Frontier%20Transformation"><strong>Frontier Transformation</strong><span class="dg-topic-count">71<small> sessions</small></span><span class="dg-topic-meta">▶ 65 · 📝 노트 1</span></a>
+<a class="dg-topic-card" href="catalog/?topic=Windows"><strong>Windows</strong><span class="dg-topic-count">56<small> sessions</small></span><span class="dg-topic-meta">▶ 47 · 📝 노트 0</span></a>
+<a class="dg-topic-card" href="catalog/?topic=Microsoft%20IQ"><strong>Microsoft IQ</strong><span class="dg-topic-count">44<small> sessions</small></span><span class="dg-topic-meta">▶ 36 · 📝 노트 1</span></a>
+<a class="dg-topic-card" href="catalog/?topic=Other"><strong>Other</strong><span class="dg-topic-count">35<small> sessions</small></span><span class="dg-topic-meta">▶ 34 · 📝 노트 0</span></a>
+<a class="dg-topic-card" href="catalog/?topic=MAICPP"><strong>MAICPP</strong><span class="dg-topic-count">32<small> sessions</small></span><span class="dg-topic-meta">▶ 27 · 📝 노트 0</span></a>
 </div>
+<!-- /gen:topics -->
 
 <div class="dg-contribute" markdown="1">
 
 **원문 우선.** 모든 노트는 해당 세션의 공식 자료로 추적 가능해야 하고, 카탈로그와 다른 메타데이터는 CI에서 거부됩니다.
+카탈로그 → 이슈 → 원문 확보 → 노트로 이어지는 정리 과정은 기여 가이드에 있습니다.
 
-[작성 규약 보기](contributing.md){ .dg-text-link }
+[작성 규약과 정리 과정 보기](contributing.md){ .dg-text-link }
 
 </div>
 </div>

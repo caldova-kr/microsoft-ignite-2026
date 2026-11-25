@@ -5,18 +5,21 @@ Outputs (all generated — never edit by hand):
   catalog/SESSIONS.md        GitHub-browsable list of every session, grouped by session type
   docs/catalog/sessions.json compact data for the site's session explorer
   docs/sessions/index.md     index of written notes
-  docs/index.md              stats + recent notes blocks between <!-- gen:* --> markers
+  docs/sessions/notes.json   per-note catalog facts for the note page meta card (small; avoids loading sessions.json)
+  docs/index.md              stats + recent notes + topic cards blocks between <!-- gen:* --> markers
 
 `--check` exits non-zero when any output is stale (used in CI).
 """
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import re
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
+from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from catalog_lib import (  # noqa: E402
@@ -48,8 +51,8 @@ def collect():
     for path in note_files():
         code = note_code(path, by_code)
         if code:
-            fm, _ = parse_note(path)
-            notes[code] = {"path": path, "fm": fm}
+            fm, body = parse_note(path)
+            notes[code] = {"path": path, "fm": fm, "body": body}
     for s in sessions:
         n = notes.get(s["code"])
         t = triage.get(s["code"], {})
@@ -60,7 +63,25 @@ def collect():
         s["triage_note"] = t.get("note", "") or ""
         s["note_path"] = n["path"] if n else None
         s["note_fm"] = n["fm"] if n else {}
+        s["note_body"] = n["body"] if n else ""
     return sessions
+
+
+_IMG_RE = re.compile(r"!\[[^\]]*\]\(([^)\s]+)")
+_TLDR_RE = re.compile(r"^## TL;DR[^\n]*\n+((?:>[^\n]*\n?)+)", re.M)
+
+
+def note_preview(body: str, limit: int = 160) -> tuple[str, str]:
+    """(first local image path relative to the note file, plain-text TL;DR excerpt) for note cards."""
+    body = re.sub(r"<!--.*?-->", "", body, flags=re.S)  # template guidance comments carry example images
+    thumb = next((m.group(1) for m in _IMG_RE.finditer(body) if not re.match(r"[a-z]+:", m.group(1))), "")
+    m = _TLDR_RE.search(body)
+    text = " ".join(line.lstrip("> ").strip() for line in m.group(1).splitlines()) if m else ""
+    text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", text)
+    text = re.sub(r"[*_`]+", "", text).strip()
+    if len(text) > limit:
+        text = text[:limit].rstrip() + "…"
+    return thumb, text
 
 
 def media(s: dict) -> str:
@@ -145,6 +166,19 @@ def explorer_json(sessions: list[dict]) -> str:
     return json.dumps(rows, ensure_ascii=False, separators=(",", ":")) + "\n"
 
 
+def notes_json(sessions: list[dict]) -> str:
+    meta = {}
+    for s in sessions:
+        if not s["note_path"]:
+            continue
+        meta[s["code"]] = {
+            "y": s["type"], "p": s["topics"], "l": s["level"], "s": s["speakers"], "d": s["duration_min"], "u": s["url"],
+            "v": s["video"], "k": s["slides"], "pr": s["progress"], "sb": s["note_fm"].get("source_basis") or [],
+            "up": str(s["note_fm"].get("last_updated", "")),
+        }
+    return json.dumps(meta, ensure_ascii=False, indent=1, sort_keys=True) + "\n"
+
+
 def notes_index(sessions: list[dict]) -> str:
     written = [s for s in sessions if s["note_path"]]
     out = [
@@ -189,10 +223,16 @@ def home_blocks(sessions: list[dict], text: str) -> str:
         cards = ['<div class="dg-note-grid" markdown="0">']
         for s in recent:
             emoji, label = PROGRESS[s["progress"]]
+            thumb, excerpt = note_preview(s["note_body"])
+            img = (f'<span class="dg-note-thumb"><img src="sessions/{html.escape(thumb)}" alt="" loading="lazy"></span>'
+                   if thumb else "")
             cards.append(
-                f'<a class="dg-note-card dg-note-card--{s["progress"]}" href="sessions/{s["note_path"].stem}/">'
-                f'<span class="dg-note-meta"><code>{s["code"]}</code><span>{s["type"]}</span><span>{emoji} {label}</span></span>'
-                f'<strong>{s["title"]}</strong><span class="dg-note-topics">{" · ".join(s["topics"][:3])}</span></a>'
+                f'<a class="dg-note-card dg-note-card--{s["progress"]}" href="sessions/{s["note_path"].stem}/">{img}'
+                f'<span class="dg-note-body"><span class="dg-note-meta"><code>{s["code"]}</code><span>{s["type"]}</span>'
+                f'<span>{emoji} {label}</span></span>'
+                f'<strong>{html.escape(s["title"])}</strong>'
+                + (f'<span class="dg-note-excerpt">{html.escape(excerpt)}</span>' if excerpt else "")
+                + f'<span class="dg-note-topics">{" · ".join(s["topics"][:3])}</span></span></a>'
             )
         cards.append("</div>")
         recent_md = "\n".join(cards)
@@ -205,7 +245,27 @@ def home_blocks(sessions: list[dict], text: str) -> str:
             raise SystemExit(f"docs/index.md is missing <!-- gen:{name} --> markers")
         return pattern.sub(lambda m: m.group(1) + body + "\n" + m.group(2), src)
 
-    return put("recent", recent_md, put("stats", stats, text))
+    return put("topics", topics_block(sessions), put("recent", recent_md, put("stats", stats, text)))
+
+
+def topics_block(sessions: list[dict]) -> str:
+    """Topic entry cards linking to the catalog pre-filtered by topic (online sessions only)."""
+    online = [s for s in sessions if s["online"]]
+    count, videos, notes = Counter(), Counter(), Counter()
+    for s in online:
+        for t in s["topics"]:
+            count[t] += 1
+            videos[t] += bool(s["video"])
+            notes[t] += bool(s["note_path"])
+    cards = ['<div class="dg-topic-grid" markdown="0">']
+    for t, n in sorted(count.items(), key=lambda kv: (-kv[1], kv[0])):
+        cards.append(
+            f'<a class="dg-topic-card" href="catalog/?topic={quote(t)}"><strong>{html.escape(t)}</strong>'
+            f'<span class="dg-topic-count">{n:,}<small> sessions</small></span>'
+            f'<span class="dg-topic-meta">▶ {videos[t]:,} · 📝 노트 {notes[t]}</span></a>'
+        )
+    cards.append("</div>")
+    return "\n".join(cards)
 
 
 def mkdocs_nav(sessions: list[dict], text: str) -> str:
@@ -248,6 +308,7 @@ def main() -> None:
         CATALOG_DIR / "SESSIONS.md": sessions_md(sessions),
         DOCS_DIR / "catalog" / "sessions.json": explorer_json(sessions),
         NOTES_DIR / "index.md": notes_index(sessions),
+        NOTES_DIR / "notes.json": notes_json(sessions),
         home: home_blocks(sessions, home.read_text(encoding="utf-8")),
         mkdocs_yml: mkdocs_nav(sessions, mkdocs_yml.read_text(encoding="utf-8")),
     }
