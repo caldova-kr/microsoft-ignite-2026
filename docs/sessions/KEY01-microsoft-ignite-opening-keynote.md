@@ -27,17 +27,17 @@ last_updated: 2026-11-25
 
 ## TL;DR
 
-> Ignite 2026 오프닝 키노트는 **Human Ambition · Intelligence · Trust** 세 가지 의제로 짜여 있었습니다. Satya Nadella 는 이를 AI 시대의 세 가지 "architectural imperative" 로, Judson Althoff 는 frontier transformation 의 세 가지 "durable asset" 으로 소개했습니다. Azure 관점에서 보면 **Intelligence** 기둥에는 Decision 1.1 GA, Foundry 의 지속 개선 루프, 에이전트 규모에 맞춰 다시 짠 GitHub·Azure 인프라, HorizonDB GA 가, **Trust** 기둥에는 Perception GA 와 Agent 365 비용 통제가 놓였습니다.
+> Ignite 2026 오프닝 키노트는 **Human Ambition · Intelligence · Trust** 세 가지 의제로 짜여 있었습니다. Satya Nadella 는 이를 AI 시대의 세 가지 "architectural imperative" 로, Judson Althoff 는 frontier transformation 의 세 가지 "durable asset" 으로 소개했습니다. Azure 관점에서 보면 **Intelligence** 기둥에는 Decision 1.1 GA, Foundry 의 지속 개선 루프, 에이전트 규모에 맞춰 다시 짜고 있는 GitHub·Azure 인프라, HorizonDB GA 가, **Trust** 기둥에는 Perception GA 와 Agent 365 비용 통제가 놓였습니다.
 
 <figure markdown="span">
   ![Building the frontier ecosystem 슬라이드. Human Ambition(Copilot 등), Intelligence(Your IQ, Microsoft IQ, GitHub, Foundry, Fabric, Azure), Trust(Agent 365, Foundry, Perception, Defender, Entra, Purview) 세 기둥과 하단의 Open, Model diverse, Heterogeneous](KEY01-microsoft-ignite-opening-keynote/frontier-ecosystem-three-pillars.jpg)
   <figcaption>▶ 영상 2:21:45 — Building the frontier ecosystem</figcaption>
 </figure>
 
-- **Human Ambition** — AI 는 사람을 대체하는 것이 아니라 의도·판단·전문성을 증폭하는 도구입니다. 개발자가 코드를 쓰는 사람에서 "소프트웨어를 만드는 공장(software factory)을 만드는 사람" 으로 바뀌어도 판단과 craft 는 여전히 사람의 몫이라는 것이 Satya 의 설명입니다. Judson 은 "Infinite cognitive compute will never replace human purpose." 로 키노트를 닫았습니다.
-- **Intelligence** — "Not artificial, yours." 모든 회사가 같은 frontier 모델을 쓸 수 있는 시대에 차이를 만드는 것은 **조직 고유의 데이터·프로세스·암묵지(IQ)** 이고, 그것이 모델 회사가 아니라 **고객 안에 쌓여야 한다**는 메시지입니다. GitHub · Foundry · Fabric · Azure 가 이 기둥에 있습니다.
+- **Human Ambition** — AI 는 사람을 대체하는 것이 아니라 의도·판단·전문성을 증폭하는 도구입니다. 개발자가 코드를 쓰는 사람에서 "소프트웨어를 만드는 공장(software factory)을 만드는 사람" 으로 바뀌어도 판단과 craft 는 여전히 사람의 몫이라는 것이 Satya 의 설명입니다. Judson 은 마무리에서 "Infinite cognitive compute will never replace human purpose." 라고 했습니다.
+- **Intelligence** — "Not artificial, yours." Satya 는 지능이 몇 개의 모델로 수렴하지 않고 **각 기업이 자신의 학습과 암묵지를 만들고 소유해야** 한다고 했고, Arun Ulag 은 그 혜택이 "not to Microsoft, not to the model companies" 가 아니라 **고객에게 쌓여야 한다**고 했습니다. 차이를 만드는 것은 **조직 고유의 데이터·프로세스·암묵지(IQ)** 라는 메시지입니다. GitHub · Foundry · Fabric · Azure 가 이 기둥에 있습니다.
 - **Trust** — Satya 는 "alignment 도, 모델의 내부 동작도 아직 완전히 이해되지 않는다" 며 **intelligence 의 공급과 그에 대한 권한(authority)을 분리하는 것**이 아키텍처 요건이라고 했습니다. Judson 의 표현으로는 "The only way to gain trust is through observability." Agent 365 · Foundry · Perception · Defender · Entra · Purview 가 이 기둥입니다.
-- 세 기둥 아래의 **Open · Model diverse · Heterogeneous** — 특정 모델·플랫폼에 묶이지 않는다는 원칙은 이후 제품 소개마다 반복됐습니다.
+- 세 기둥 아래의 **Open · Model diverse · Heterogeneous** — 특정 모델·플랫폼에 묶이지 않는다는 원칙으로, Microsoft IQ 소개와 마무리에서 "open, model-diverse, and heterogeneous" 로 반복해 강조됐습니다.
 
 🎥 **키노트 다시 보기**: [On-demand 영상](https://medius.microsoft.com/Embed/video-nc/03c19114-cb6e-42d3-9be3-f8b310426589) · 📰 **주요 발표 모음**: [Microsoft Ignite 2026 Book of News](https://news.microsoft.com/events/ignite/2026/book-of-news/)
 
@@ -55,7 +55,7 @@ last_updated: 2026-11-25
 !!! ga "GA"
     **Microsoft Decision 1.1** — "now generally available and ready for enterprise deployment."
 
-Satya 는 "relational databases 가 software engineering 을 바꿨듯 **decision engineering** 이 소프트웨어를 바꿀 것" 이라며 **Decision Models** 를 소개했습니다. 라우팅·분류·우선순위·검증처럼 소프트웨어 안의 **분기 판단만** 내리는 모델로, 지능을 소프트웨어의 core primitive 로 심기 위한 부품입니다.
+Satya 는 "relational databases 가 software engineering 을 바꿨듯 **decision engineering** 이 소프트웨어를 바꿀 것" 이라며 **Decision Models** 를 소개했습니다. 소프트웨어 안에 **판단(decision)을 core primitive 로 심게 해 주는 모델**로, Mustafa Suleyman 의 표현으로는 "model routing integrated right into your applications" 입니다.
 
 - **10x 빠르고 200x 저렴**: "more than 10x faster and 200 times less expensive than using an LLM."
 - 1.1 에서 **multimodal 입력 지원**, 정확도·응답 속도 개선. 이미 **4,000+ 고객**이 사용 중입니다.
@@ -66,6 +66,7 @@ Satya 는 "relational databases 가 software engineering 을 바꿨듯 **decisio
     [Microsoft-Decision-1.1 is now generally available for fast, low-cost decision making](https://commandline.microsoft.com/microsoft-decision-model-ga/)
 
     - Microsoft Foundry, OpenRouter, Vercel 에서 사용 가능.
+    - 용도: routing, classification, prioritization, verification, workflow control 같은 구조화된 판단.
     - 개발자가 정한 **허용된 action 안에서만** 고르고 **calibrated confidence** 를 돌려주며, 정보가 부족하면 **abstain** — 앱이 임계값을 정해 "실행 / 플래그 / 사람에게 escalate" 를 나눌 수 있습니다.
     - Copilot ↔ Cowork 라우팅을 LLM 과 같은 정확도로 2.2x 빠르게, 4.4x 낮은 비용으로 처리. **Foundry Evaluations 의 judge** 로도 사용 가능.
     - 가격(Foundry input): Global Standard $0.042 / 1M tokens, US Data Zone $0.046, EU·APAC Data Zone $0.05. **Output tokens 무료**.
@@ -97,7 +98,7 @@ Jay Parikh 는 에이전트 플랫폼을 이렇게 정리했습니다: **"GitHub
     - **model router**: 지원 프로젝트에서 자동 모델 선택이 기본값, 44개 모델에서 선택, AI Gateway 에서도 사용 가능.
     - **학습**: Managed Training(이전 managed fine-tuning, SFT·RFT), Python 으로 학습 레시피를 직접 쓰는 **Programmed Training public preview**. **Managed Compute GA**, Baseten on Foundry public preview.
 
-### Intelligence ③ "GitHub is the home for agents" — 에이전트 규모로 다시 짠 GitHub 과 Azure
+### Intelligence ③ "GitHub is the home for agents" — 에이전트 규모로 다시 짜는 GitHub 과 Azure
 
 <figure markdown="span">
   ![GitHub is the home for agents 슬라이드. 2024, 2025, 2026 비교 막대그래프로 Pushes 17.9B, Commits 34.3B, Action jobs 45.4B, Merged pull requests 1.3B](KEY01-microsoft-ignite-opening-keynote/github-home-for-agents-keynote.jpg)
@@ -113,7 +114,7 @@ Jay Parikh 는 에이전트 플랫폼을 이렇게 정리했습니다: **"GitHub
 | Action jobs | 8B | 14B | **45.4B** |
 | Merged pull requests | 402M | 538M | **1.3B** |
 
-- 그래서 GitHub 은 **Git 아키텍처부터 코어를 다시 짰습니다** — storage·compute 분리, push 의 critical path 최소화. 테스트에서 **에이전트 5,000개가 한 repo 에 초당 7,200 writes**, 현재 처리량의 **180x** 를 유지했습니다.
+- 그래서 GitHub 은 **Git 아키텍처부터 코어를 다시 짜고 있습니다** — storage·compute 분리, push 의 critical path 최소화. 테스트에서 **에이전트 약 5,000개를 한 repo 에 붙여 초당 7,200 writes** 를 유지했고, 이는 현재 처리량의 **180x** 라고 했습니다.
 - 그리고 "what worked for GitHub now needs to be pervasive throughout the Azure platform" — 이것이 **Azure agent primitives** 입니다.
 
 <figure markdown="span">
@@ -146,8 +147,8 @@ Jay Parikh 는 에이전트 플랫폼을 이렇게 정리했습니다: **"GitHub
 "Agents need databases that can keep up with their speed and scale" — 데이터 레이어에서 나온 답이 **HorizonDB** 입니다.
 
 - 분산 managed PostgreSQL 로, ultra-low latency · scalable reads · **built-in Search** · AI 기능을 갖췄고 self-managed Postgres 대비 **8x 빠른 성능**입니다.
-- **Fabric HorizonDB (Public Preview)**: HorizonDB 를 Fabric 으로 가져온 것으로, Satya 가 "25년 동안 해 온 일" 이라고 표현한 **트랜잭션과 분석의 완전한 통합**입니다. serverless 로 수 초 안에 프로비저닝되고, 실시간 주문·재고 변경과 페타바이트급 이력을 에이전트가 함께 추론합니다. Copilot 에 "지금 우리 비즈니스에 무슨 일이?" 라고 물으면 실시간 대시보드를 만들어 줍니다.
-- **의미**: 벡터 DB · 검색 · RDB 를 따로 붙이던 RAG/에이전트 백엔드를 PostgreSQL 하나로 모으고, serverless Fabric HorizonDB 로 **에이전트가 직접 DB 를 만들고 버리는 패턴**까지 겨냥합니다.
+- **Fabric HorizonDB (Public Preview)**: HorizonDB 를 Fabric 으로 가져온 것으로, Satya 가 "25년 동안 해 온 일" 이라고 표현한 **트랜잭션과 분석의 완전한 통합**입니다. serverless 로 수 초 안에 프로비저닝됩니다. Satya 가 예로 든 시나리오는 이커머스의 실시간 주문·재고 변경과 페타바이트급 이력을 에이전트가 함께 추론하고, Copilot 에 "Tell me what's happening in my business right now." 라고 물으면 실시간 대시보드를 만들어 주는 것입니다.
+- **의미**: 운영 DB 와 분석 시스템을 따로 두고 연결하던 구조 대신, 검색·AI 기능을 내장한 PostgreSQL 과 Fabric 위에서 **에이전트가 실시간 트랜잭션과 이력을 함께 보고 판단**하는 구조를 겨냥합니다.
 
 !!! supplement "세션 외 보충 · Microsoft Blog for PostgreSQL (2026-11-17)"
     [HorizonDB: PostgreSQL for enterprises, developers, and agents on Azure and Fabric](https://techcommunity.microsoft.com/blog/adforpostgresql/horizondb-postgresql-for-enterprises-developers-and-agents-on-azure-and-fabric/4573498)
@@ -155,7 +156,7 @@ Jay Parikh 는 에이전트 플랫폼을 이렇게 정리했습니다: **"GitHub
     - Azure HorizonDB 는 **13개 Azure region** 에서 GA. 최대 128 TB, 기본 AZ 간 복원력, sub-millisecond commit latency, 5초 미만 failover, Entra ID · Private endpoint · Customer-managed keys.
     - **8x 의 조건**: HammerDB TPROC-C(95K warehouses, 512 users), Edsv6 64 vCores, PostgreSQL 17.11, Korea Central 에서 HA 구성의 self-managed PostgreSQL 과 비교한 내부 벤치마크.
     - 에이전트용 기능: pgvector 호환 + DiskANN, BM25, RRF 하이브리드 검색, Apache AGE 그래프, AI Functions · AI Pipelines, **PostgreSQL MCP Server · PostgreSQL Skills**.
-    - Fabric HorizonDB: 5분 비활성 시 compute 자동 pause, OneLake 기본 mirroring, Fabric Data Warehouse 로 넘겨 실행하는 translytical query.
+    - Fabric HorizonDB: 에이전트가 프로토타입·단기 작업용 DB 를 만들고 버리는 패턴을 겨냥한 serverless — 5분 비활성 시 compute 자동 pause, OneLake 기본 mirroring, Fabric Data Warehouse 로 넘겨 실행하는 translytical query.
 
 ### Trust ① Perception — agentic security system
 
@@ -171,7 +172,7 @@ Jay Parikh 는 에이전트 플랫폼을 이렇게 정리했습니다: **"GitHub
 
 - **Red team** 에이전트는 공격을 시뮬레이션하고(예: 웹앱의 auth·API·injection·비즈니스 로직까지 보는 Pen Test 에이전트), **Blue team** 은 탐지·조사, **Green team** 은 posture·코드·detection 을 고칩니다.
 - 이들을 **playbook** 으로 묶어 트리거 기반으로 자율 실행하고, 비용·소요 시간을 미리 보여 주며, human-in-the-loop 가 필요한 작업은 kanban 으로 관리합니다. 실행 비용과 결과는 FinOps 대시보드와 Agent 365 로 이어집니다.
-- 기반은 Defender · Entra · Purview · Sentinel 이 센서·actuator 로 동작하는 스택과 **500+ 보안 커넥터**, 하루 **165조 시그널**입니다. 작업마다 적합한 모델로 라우팅하며, 여기에 **MAI Cyber 2 Flash** 가 들어갑니다(CyberGym end-to-end 에서 GPT-6 Astra 를 앞서고 task 당 비용은 2% 미만).
+- 기반은 센서 역할을 하는 Defender · Entra · Purview · Sentinel 과, 디바이스 격리·identity 회수·차단 같은 actuator, **500+ 보안 커넥터**, 하루 **165조 시그널**입니다. 작업마다 적합한 모델로 라우팅하며, 여기에 **MAI Cyber 2** 가 통합됩니다. Mustafa 에 따르면 **MAI Cyber 2 Flash** 는 CyberGym end-to-end 에서 GPT-6 Astra 를 앞서고 task 당 비용은 2% 미만입니다.
 - **의미**: 보안 운영이 "알림을 사람이 하나씩 처리" 에서 "**에이전트 팀이 먼저 처리하고 사람이 승인**" 으로 넘어갑니다. 실제로 자율 공격이 방어된 환경에서 어떻게 막혔는지는 아래 [ARTEX 사례](#artex-defender) 에 정리했습니다.
 
 !!! supplement "세션 외 보충 · Microsoft Perception Blog (2026-11-17)"
@@ -191,7 +192,7 @@ Agent 365 는 기존 governance · identity · security · management 를 에이
 
 - **비용 통제**: 에이전트·부서·개인 단위로 한도와 알림을 걸고, IT 와 현업 리더가 각자 범위에서 예산을 관리합니다. Microsoft 에이전트는 **hard limit** 로 한도에서 사용을 바로 멈출 수 있습니다.
 - **비용 spike 추적**: 에이전트별로 비용이 갑자기 오르면, 그것이 사용량 증가 때문인지 **모델 변경 때문인지** 구분하고, 모델을 되돌렸을 때의 forecast 와 비교해 조치합니다 (AT&T 사례 참고).
-- **Agent 365 Business Analytics**: Satya 의 표현으로 "**an ERP system of AI usage**". 토큰이 아니라 **완료된 작업·절약 시간·만든 가치**를 측정하고, 서비스별 비용이 **어떤 모델로 흘러가는지**, use case 별 가치는 얼마인지 보여 줍니다. 저비용 모델 mix 로 forecast 를 돌려 보고, 예산을 **Azure subscription(코스트 센터)으로 chargeback** 하는 spending policy 까지 연결됩니다. Copilot Studio 뿐 아니라 **Amazon Bedrock** 에이전트 비용도 registry 에서 함께 봅니다.
+- **Agent 365 Business Analytics**: Satya 의 표현으로 "**an ERP system of AI usage**". 토큰이 아니라 **완료된 작업·절약 시간·만든 가치**를 측정하고, 서비스별 비용이 **어떤 모델로 흘러가는지**, use case 별 가치는 얼마인지 보여 줍니다. 저비용 모델 mix 로 forecast 를 돌려 보고, 예산을 **Azure subscription(코스트 센터)으로 chargeback** 하는 spending policy 까지 연결됩니다. 데모에서는 Copilot Studio 뿐 아니라 **Amazon Bedrock** 에이전트의 예상 비용도 registry 에서 함께 보여 줬습니다(non-Microsoft agent cost visibility 는 12월 예정).
 - **보안**: 로컬 디바이스의 Shadow AI 탐지(65종 로컬 에이전트), 에이전트별 **dynamic agent risk**, Intune 연동 차단.
 - **의미**: 에이전트가 수만 개가 되면 질문이 "몇 개 있나?" 에서 "**누가, 어떤 모델로, 얼마를 쓰고, 그만한 가치가 있나?**" 로 바뀝니다. 멀티 모델·멀티 플랫폼 환경의 AI FinOps 를 한 화면에서 보겠다는 것이 Agent 365 의 방향입니다.
 
