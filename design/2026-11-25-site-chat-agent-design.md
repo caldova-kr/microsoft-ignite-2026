@@ -41,7 +41,11 @@ PAT 붙여 넣기는 30일짜리 토큰을 사용자가 직접 다루게 해 위
 - **인프라 메모**: 구독 정책이 스토리지 공용 네트워크·공유 키를 끄므로, 함수는 VNet 통합 + 스토리지 private endpoint(blob·queue·table) + user-assigned identity 로 붙는다(`relay/deploy.sh`).
 - **남은 설정**: 사이트 전용 GitHub App(Device Flow 사용)을 만들어 `GITHUB_CLIENT_ID` 를 넣는다. 그 전까지 중계는 `503 relay_not_configured` 를 주고 화면은 "아직 설정되지 않았습니다" 를 보인다. GitHub App 토큰을 Copilot API 가 받는지는 그때 확인하고, 안 되면 OAuth App 으로 같은 흐름을 쓴다.
 - **실측 (2026-11-26, OAuth App `<oauth app client id>`)**: device flow 로그인·중계·브라우저 Copilot 호출이 실제 계정으로 동작했다. 단, 서드파티 **OAuth App 토큰에는 Copilot 이 기본 모델 세트만** 준다 — `/models` 가 gpt-4o·gpt-4o-mini·gpt-3.5-turbo 계열 7개(`model_picker_enabled: false`, `supported_endpoints` 없음)만 돌려주고, 목록 밖 모델(예: `claude-haiku-5.5`)은 `400 model_not_supported`. 사이트는 picker 모델이 없으면 이 세트로 대체하고(날짜 붙은 중복 제거, 기본 gpt-4o), 약한 모델을 위해 "발췌로 부족하면 노트를 읽고 직접 답" 규칙을 프롬프트에 넣었다.
-- **전체 모델**: 사용자가 권한을 가진 모델 전체를 쓰려면 **Copilot Requests 계정 권한을 가진 GitHub App** 의 사용자 토큰(`ghu_`)으로 바꾼다(PAT 의 `copilot_requests` 와 같은 권한). 중계·사이트 코드는 그대로, Client ID 만 교체. 다른 클라이언트의 integration id·client id 를 흉내 내는 방식은 쓰지 않는다.
+- **전체 모델 — 실측 결론 (2026-11-26)**: 서드파티 앱 토큰으로는 브라우저에서 기본 모델만 쓸 수 있다.
+  - GitHub App(`<github app client id>`, 권한 없음) 사용자 토큰(`ghu_`)도 OAuth App 과 똑같이 7개 기본 모델만 받고, `claude-haiku-5.5` 등은 `400 model_not_supported`. GitHub App 의 "Copilot Requests" 는 **조직 권한**(설치 조직 과금 · 앱 개인 키로 서버에서 installation token 발급)뿐이고 계정 권한에는 없다.
+  - Copilot `/responses` 는 브라우저 preflight 에 `405` · CORS 헤더 없음 → GPT-5/6·Grok 처럼 `/responses` 만 지원하는 모델은 전체 권한 토큰이어도 브라우저에서 못 부른다(`/chat/completions`·`/models` 는 `*` 허용). 그래서 `/responses` 지원은 되돌렸다.
+  - GitHub Models(`models.github.ai`, 앱 계정 권한 "Models")는 CORS 헤더가 없어 브라우저 직접 호출 불가. 쓰려면 중계가 추론 요청 전체(대화·토큰)를 대신 전달해야 한다.
+  - 다른 클라이언트의 integration id·client id 를 흉내 내는 방식은 쓰지 않는다.
 - **보조 옵션(보류)**: 기기 내 모델(Edge/Chrome Prompt API, WebLLM)은 로그인 없는 모드로 나중에 검토.
 
 ## 아키텍처
