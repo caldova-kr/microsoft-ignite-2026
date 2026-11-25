@@ -285,26 +285,6 @@ AT&T 는 **60,000+ 에이전트**를 운영하며 Agent 365 로 관리합니다.
 | MAI Image 2.7 · Image 2.7 Flash | Public Preview | 키노트 슬라이드 "Public preview" | — |
 | Agent 365 Business Analytics | Public Preview (Frontier) | Stephanie Cronin "starting in Frontier Public Preview" | delegated spending policies · non-Microsoft agent cost visibility 는 12월 |
 
-### 발표됐지만 키노트에서 상태 미언급
-
-| 항목 | 근거 | 비고 |
-|------|------|------|
-| MAI Code 2 · Code 2 Flash · Cyber 2 Flash | Satya Nadella, Mustafa Suleyman | Code 2: GPT 6.1 SOL 성능의 98% · 비용 40% (GitHub Copilot 의 일상 엔터프라이즈 코딩 과제 기준) |
-| MAI Licensed Weights | Mustafa Suleyman | 고객 Azure 환경에서 실행, Frontier Company 통해 제공 |
-| Meta 최신 모델 → Foundry | Satya Nadella "coming to Foundry" | — |
-| Foundry managed agent harness · 지속 개선 루프 | Satya Nadella, Jay Parikh | Copilot · GitHub Copilot 과 같은 하네스 |
-| Azure agent primitives (MicroVM · Agent grid · Context cache · AKS Flex · Foundry hosted agents) | Satya Nadella | 출시 형태·일정 언급 없음 |
-| Maia 300 | Satya Nadella "We just announced" | leading GPU 시스템 대비 tokens per watt 40%+ |
-| Agent 365 dynamic agent risk · Shadow AI 탐지 확대 | Yina Arenas | 로컬 에이전트 65종, Intune 연동 차단 |
-| Microsoft AI Transparency Initiative | Satya Nadella | AI 투명성·보안·거버넌스 개방 표준, 40개 조직 참여. [Microsoft Source](https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/) |
-
-## Caveats & open questions
-
-- **상태 미언급 항목**은 위 표 그대로입니다. 일부는 공식 블로그에 상태가 나와 있어 각 제품의 보충 블록에 적었습니다(예: Code-2-Flash 는 Foundry 에서 limited access preview).
-- **데모 수치는 데모 조건**: Alaska 사례의 비용은 예시 추론 비용이고 평가 데이터는 synthetic 입니다. Agent 365 화면의 비용·에이전트 수도 데모 값입니다. 고객에게는 구조를 보여 주고 숫자는 조건과 함께 전달하는 것이 안전합니다.
-- **모델 이름**: Satya 가 언급한 "MAI Code Flash"(GitHub Copilot 3M users)와 "MAI Cyber"(Perception 스캔 40%+)는 키노트 슬라이드상 Code 1.1 Flash · Cyber 1.1 Flash 이고, 이번에 새로 발표된 것은 Code 2 / Code 2 Flash / Cyber 2 Flash 입니다.
-- Agent 365 는 Microsoft 365 admin center 안의 제품이지만, 비 Microsoft 에이전트와 Azure subscription chargeback 을 다루기 때문에 이 노트에 포함했습니다.
-
 ## Resources
 
 - 🎥 Session: https://ignite.microsoft.com/en-US/sessions/KEY01
