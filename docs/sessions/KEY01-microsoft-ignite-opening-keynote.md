@@ -10,7 +10,7 @@ session_url: "https://ignite.microsoft.com/en-US/sessions/KEY01"
 video_url: "https://medius.microsoft.com/Embed/video-nc/03c19114-cb6e-42d3-9be3-f8b310426589"
 source_basis: ["catalog", "transcript", "video"]
 tags: ["azure", "foundry", "decision-model", "github", "horizondb", "perception", "agent-365", "finops"]
-status: "draft"
+status: "review"
 last_updated: 2026-11-25
 ---
 

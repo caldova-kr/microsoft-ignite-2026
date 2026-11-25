@@ -47,7 +47,7 @@ hide:
 
 <!-- gen:recent -->
 <div class="dg-note-grid" markdown="0">
-<a class="dg-note-card dg-note-card--draft" href="sessions/KEY01-microsoft-ignite-opening-keynote/"><span class="dg-note-meta"><code>KEY01</code><span>Keynote</span><span>✍️ 작성 중</span></span><strong>Microsoft Ignite opening keynote</strong><span class="dg-note-topics">Security · Frontier Transformation · Agent Platform</span></a>
+<a class="dg-note-card dg-note-card--review" href="sessions/KEY01-microsoft-ignite-opening-keynote/"><span class="dg-note-meta"><code>KEY01</code><span>Keynote</span><span>🔍 검토 중</span></span><strong>Microsoft Ignite opening keynote</strong><span class="dg-note-topics">Security · Frontier Transformation · Agent Platform</span></a>
 </div>
 <!-- /gen:recent -->
 

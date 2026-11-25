@@ -20,4 +20,4 @@ Ignite 2026 세션 1426개 중 **1개** 정리됨. 전체 목록과 필터는 [�
 
 | Code | Title | Type | 상태 | Updated |
 |---|---|---|:-:|---|
-| `KEY01` | [Microsoft Ignite opening keynote](KEY01-microsoft-ignite-opening-keynote.md) | Keynote | ✍️ 작성 중 | 2026-11-25 |
+| `KEY01` | [Microsoft Ignite opening keynote](KEY01-microsoft-ignite-opening-keynote.md) | Keynote | 🔍 검토 중 | 2026-11-25 |
