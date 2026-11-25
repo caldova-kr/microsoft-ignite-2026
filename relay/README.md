@@ -17,10 +17,10 @@
 
 ## 처음 설정
 
-1. **GitHub App** 을 만듭니다 (`caldova-kr` 조직 또는 개인 계정 → Settings → Developer settings → GitHub Apps → New).
-   - Callback URL 은 비워 두고 **Enable Device Flow** 를 켭니다. Webhook 은 끕니다.
-   - 권한은 Copilot 사용에 필요한 계정 권한만(리포지토리·조직 권한 없음). 만든 뒤 **Client ID** 를 복사합니다.
-   - GitHub App 토큰이 Copilot API 에서 거부되면 같은 방식으로 **OAuth App**(Enable Device Flow)을 만들어 그 Client ID 를 씁니다.
+1. **GitHub App** 을 만듭니다 (현재: `caldova-kr` 소유, Client ID `<github app client id>`).
+   - Callback URL 은 사이트 주소, **Enable Device Flow** ☑, **Expire user authorization tokens** ☑, Webhook 끔.
+   - 권한은 **모두 No access** — 로그인과 Copilot `/chat/completions` 호출에 필요한 권한이 없습니다.
+   - 참고(2026-11-26 실측): 서드파티 앱(GitHub App · OAuth App) 사용자 토큰은 Copilot 기본 모델(gpt-4o · gpt-4o-mini · gpt-3.5)만 받습니다.
 2. 배포·설정:
 
    ```bash
