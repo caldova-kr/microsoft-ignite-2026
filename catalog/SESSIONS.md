@@ -6,7 +6,7 @@
 
 온라인으로 볼 수 있음 = 온라인 송출 · 온디맨드 영상 있음 · 녹화 예정 중 하나. 현장 전용이면서 녹화하지 않는 492개는 원문 자료가 없어 정리 대상이 아니므로 맨 아래에 접어 둡니다.
 
-진행: ✅ 완료 0 · 🔍 검토 중 0 · ✍️ 작성 중 0 · ⏸️ 보류 0 · ➖ 제외 1 · · 미검토 933
+진행: ✅ 완료 0 · 🔍 검토 중 1 · ✍️ 작성 중 0 · ⏸️ 보류 0 · ➖ 제외 1 · · 미검토 932
 
 미디어: ▶ 온디맨드 영상 · 🖼 슬라이드 · 📝 트랜스크립트 (`tools/fetch_sources.py <CODE>` 로 받기)
 
@@ -26,7 +26,7 @@
 
 | 진행 | Code | Title | Topic | Level | Tags | Media |
 |:-:|---|---|---|:-:|---|---|
-| · | [KEY01](https://ignite.microsoft.com/en-US/sessions/KEY01) | Microsoft Ignite opening keynote | Security, Frontier Transformation, Agent Platform, Cloud & AI, Microsoft IQ, Copilot |  | Defend with AI | [▶](https://medius.microsoft.com/Embed/video-nc/03c19114-cb6e-42d3-9be3-f8b310426589) 📝 |
+| 🔍 | [KEY01](https://ignite.microsoft.com/en-US/sessions/KEY01) | [Microsoft Ignite opening keynote](../docs/sessions/KEY01-microsoft-ignite-opening-keynote.md) | Security, Frontier Transformation, Agent Platform, Cloud & AI, Microsoft IQ, Copilot |  | Defend with AI | [▶](https://medius.microsoft.com/Embed/video-nc/03c19114-cb6e-42d3-9be3-f8b310426589) 📝 |
 | · | [KEY02](https://ignite.microsoft.com/en-US/sessions/KEY02) | Partner Keynote: Ignite Frontier Transformation | Frontier Transformation, Cloud & AI, Agentic Business Applications, Copilot, MAICPP | 100 | Partner Keynote | [▶](https://medius.microsoft.com/Embed/video-nc/0f460c1b-8468-4b7b-b83e-0ab4cc011a27) 📝 |
 
 ## Breakout

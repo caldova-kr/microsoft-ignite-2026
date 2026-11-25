@@ -40,6 +40,8 @@ SECTION_ORDER = [
     "Related sessions",
 ]
 REQUIRED_SECTIONS = ["TL;DR", "Why it matters", "Resources"]
+# Keynote notes carry the "why" inside each product highlight, so the separate section is optional there.
+OPTIONAL_SECTIONS_BY_TYPE = {"Keynote": {"Why it matters"}}
 
 # Official Microsoft announcement sources whose images may be reused (contributors are Microsoft employees).
 OFFICIAL_DOMAINS = (

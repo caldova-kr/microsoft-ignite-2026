@@ -12,8 +12,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from catalog_lib import (  # noqa: E402
-    NOTE_STATUSES, is_official_url, REQUIRED_SECTIONS, ROOT, SECTION_ORDER, TRIAGE_STATUSES, catalog_index, load_triage,
-    note_code, note_files, parse_note,
+    NOTE_STATUSES, is_official_url, OPTIONAL_SECTIONS_BY_TYPE, REQUIRED_SECTIONS, ROOT, SECTION_ORDER, TRIAGE_STATUSES,
+    catalog_index, load_triage, note_code, note_files, parse_note,
 )
 
 CATALOG_FIELDS = {  # frontmatter key -> catalog key; must match the catalog exactly
@@ -142,7 +142,7 @@ def check_note(path: Path, catalog: dict) -> tuple[list[str], list[str]]:
     if known != sorted(known, key=SECTION_ORDER.index):
         errors.append("sections are out of canonical order")
     for h in REQUIRED_SECTIONS:
-        if h not in headings:
+        if h not in headings and h not in OPTIONAL_SECTIONS_BY_TYPE.get(s["type"], ()):
             errors.append(f"required section missing: ## {h}")
     if s["url"] not in body:
         errors.append(f"Resources must link the session page: {s['url']}")

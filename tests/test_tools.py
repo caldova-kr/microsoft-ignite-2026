@@ -109,6 +109,18 @@ def test_other_event_only_allowed_inside_supplement(tmp_path):
     assert errors == []
 
 
+def test_why_it_matters_optional_only_for_keynotes(tmp_path):
+    p = note(tmp_path)
+    p.write_text(p.read_text(encoding="utf-8").replace("## Why it matters\n\n- x\n", ""), encoding="utf-8")
+    errors, _ = check_note(p, CATALOG)
+    assert len(errors) == 1 and "Why it matters" in errors[0]
+
+    keynote = {"BRK1": {**CATALOG["BRK1"], "type": "Keynote"}}
+    p.write_text(p.read_text(encoding="utf-8").replace("session_type: Breakout", "session_type: Keynote"), encoding="utf-8")
+    errors, _ = check_note(p, keynote)
+    assert errors == []
+
+
 def test_unknown_session_link_is_rejected(tmp_path):
     body = "\n- 관련: https://ignite.microsoft.com/en-US/sessions/BRK999\n"
     errors, _ = check_note(note(tmp_path, extra_body=body), CATALOG)

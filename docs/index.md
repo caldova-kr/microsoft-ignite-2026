@@ -33,7 +33,7 @@ hide:
 <div class="dg-stat"><strong>10</strong><span>session types</span></div>
 <div class="dg-stat"><strong>829</strong><span>on-demand videos</span></div>
 <div class="dg-stat"><strong>575</strong><span>transcripts</span></div>
-<div class="dg-stat"><strong>0<small>/0</small></strong><span>notes / done</span></div>
+<div class="dg-stat"><strong>1<small>/0</small></strong><span>notes / done</span></div>
 </div>
 <!-- /gen:stats -->
 
@@ -46,7 +46,9 @@ hide:
 </div>
 
 <!-- gen:recent -->
-<p class="dg-empty">아직 작성된 노트가 없습니다 — <a href="catalog/">카탈로그</a>에서 정리할 세션을 고르세요.</p>
+<div class="dg-note-grid" markdown="0">
+<a class="dg-note-card dg-note-card--review" href="sessions/KEY01-microsoft-ignite-opening-keynote/"><span class="dg-note-meta"><code>KEY01</code><span>Keynote</span><span>🔍 검토 중</span></span><strong>Microsoft Ignite opening keynote</strong><span class="dg-note-topics">Security · Frontier Transformation · Agent Platform</span></a>
+</div>
 <!-- /gen:recent -->
 
 <div class="dg-section-heading" markdown="1">
