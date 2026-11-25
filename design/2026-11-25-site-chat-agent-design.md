@@ -16,7 +16,7 @@
 | `models.github.ai` (GitHub Models) | ❌ CORS 헤더 없음 | 사용 안 함 |
 
 - GitHub 문서(Managing your personal access tokens)가 fine-grained PAT 계정 권한 **`copilot_requests` (Copilot requests)** 를 "Copilot requests for the given user … count towards the user's premium request allowance" 로 정의하고, 같은 문서가 **URL 파라미터로 토큰 생성 화면을 미리 채우는 방법**을 제공한다. Copilot SDK 인증 문서도 `github_pat_` 를 지원 토큰으로 명시.
-- 따라서 "GitHub 로그인" = **사이트가 미리 채운 링크로 사용자가 직접 만든 fine-grained PAT(권한: Copilot requests 하나, 리포 접근 없음)를 붙여 넣는 것.** 토큰은 사용자 브라우저에서 GitHub 로만 전송된다.
+- (초기안) "GitHub 로그인" = 사용자가 만든 fine-grained PAT 를 붙여 넣는 방식이었으나, 보안 위험으로 아래 "로그인 — device flow" 로 대체했다.
 - VS Code 식 device flow(코드 표시 → `github.com/login/device` 입력)는 VS Code 가 데스크톱 앱이라 CORS 제약이 없어서 가능한 방식이다. 웹 페이지에서 쓰려면 위 두 엔드포인트를 중계하는 무상태 함수가 필요하고(device flow 는 `client_secret` 불필요), 그 중계가 발급된 토큰을 거쳐 전달하게 된다 → "서버 없음" 원칙과 충돌해 1차에서는 채택하지 않는다.
 
 ### CopilotKit (생성형 UI) 판단
@@ -31,6 +31,17 @@
 - 1차는 **WASM 없이** 순수 JS. 노트가 수백 개로 늘어 한국어 검색 품질이 문제가 되면 Pagefind(WASM, 정적 인덱스, CI 에서 `_site` 후처리 — MkDocs 플러그인 아님)로 `search_notes` 내부만 바꾼다. 도구 계약은 그대로.
 - Copilot SDK 런타임을 WASM/WebContainer 로 브라우저에 올리는 안은 런타임이 Node 프로세스·파일시스템을 전제해 과하다 → 에이전트 루프를 직접 구현(수백 줄).
 
+## 로그인 — device flow + 무상태 중계 (2026-11-26, PAT 방식 대체)
+
+PAT 붙여 넣기는 30일짜리 토큰을 사용자가 직접 다루게 해 위험이 커서 없앴다. 조사 결과 브라우저 단독 GitHub 로그인은 불가능하다(웹 OAuth 는 PKCE 를 써도 `client_secret` 필수 + CORS preflight 미지원, device flow 는 secret 은 없지만 CORS 헤더 없음). WASM 도 브라우저 `fetch` 의 CORS 규칙을 그대로 받아 해결책이 아니다.
+
+- **흐름**: "GitHub 로 로그인" → 중계 `POST /api/github/device/code` → 화면에 코드 + `github.com/login/device` 링크(누르면 코드 복사) → 중계 `POST /api/github/token` 을 interval 마다 폴링(`slow_down` 반영) → 토큰 → `api.github.com/user`·Copilot `/models` 확인.
+- **중계** (`relay/`, Azure Functions Flex Consumption, `<resource group>`): 엔드포인트 2개, grant 는 `device_code`·`refresh_token` 만, client id 는 앱 설정에서만, 허용 origin 밖은 403, 본문 로그·저장 없음, App Insights 없음. preflight 는 플랫폼 CORS 가 처리한다(함수가 반환한 OPTIONS 헤더는 호스트가 버림 — 직접 확인).
+- **토큰 보관**: `sessionStorage` 만(탭을 닫으면 사라짐, "기억" 옵션 없음). GitHub App 토큰(8h)은 만료 5분 전 중계로 refresh. 예전 PAT 키는 로드 시 지운다.
+- **인프라 메모**: 구독 정책이 스토리지 공용 네트워크·공유 키를 끄므로, 함수는 VNet 통합 + 스토리지 private endpoint(blob·queue·table) + user-assigned identity 로 붙는다(`relay/deploy.sh`).
+- **남은 설정**: 사이트 전용 GitHub App(Device Flow 사용)을 만들어 `GITHUB_CLIENT_ID` 를 넣는다. 그 전까지 중계는 `503 relay_not_configured` 를 주고 화면은 "아직 설정되지 않았습니다" 를 보인다. GitHub App 토큰을 Copilot API 가 받는지는 그때 확인하고, 안 되면 OAuth App 으로 같은 흐름을 쓴다.
+- **보조 옵션(보류)**: 기기 내 모델(Edge/Chrome Prompt API, WebLLM)은 로그인 없는 모드로 나중에 검토.
+
 ## 아키텍처
 
 ```
@@ -42,7 +53,7 @@
       ├─ tools       search_notes · get_note · search_catalog · get_session
       ├─ components  show_sessions · show_sources (표시) · ask_user_choice (사용자 선택 대기)
       ├─ runAgent    OpenAI 형식 tool calling 루프 (최대 5 라운드, 스트리밍, onToolStart/onToolEnd/onInteract 이벤트)
-      └─ Copilot API  GET /models · POST /chat/completions   (Authorization: Bearer <사용자 PAT>)
+      └─ Copilot API  GET /models · POST /chat/completions   (Authorization: Bearer <device flow 사용자 토큰>)
 ```
 
 ### 도구 (지식 범위를 이 사이트로 한정)
@@ -109,7 +120,7 @@
   - **💬 대화 화면** — ChatGPT 형: 랜딩 내용을 숨기고 가운데 정렬 대화. 빈 상태는 인사말·추천 질문·입력창이 화면 가운데, 대화가 시작되면 입력창이 아래에 고정.
   - 두 보기와 다른 페이지의 플로팅 패널은 같은 대화를 공유한다. `docs/index.md` 에는 빈 마운트(`#icn-chat-home`)만 있어 JS 가 없으면 기존 랜딩 그대로.
 - 다른 페이지: 플로팅 버튼 → 오른쪽 패널(모바일은 전체 화면). Material 팔레트 변수 사용, 라이트/다크 자동.
-- 미연결: 설명 + "① 토큰 만들기"(미리 채운 GitHub 링크) + "② 붙여 넣기" 입력 + "이 브라우저에 기억" 체크(기본 off → `sessionStorage`, on → `localStorage`).
+- 미연결: 설명 + "GitHub 로 로그인" → 코드 · "GitHub 에서 승인하기" 링크 · 대기 표시 · 취소.
 - 연결: 아바타·로그인 이름, 모델 선택(`model_picker_enabled` + `/chat/completions` 지원 + tool calls 지원 모델만), 대화, 새 대화, 연결 해제.
 - 답변 렌더링: HTML 이스케이프 후 최소 마크다운(굵게·코드·링크·목록·줄바꿈)만, 링크는 `http(s)`/사이트 상대경로만 허용.
 

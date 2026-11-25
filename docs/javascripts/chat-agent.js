@@ -13,13 +13,8 @@
   var MAX_TOOL_ROUNDS = 5;
   var NOTE_CHAR_LIMIT = 24000;
 
-  // GitHub's documented fine-grained PAT template parameters; `copilot_requests` is the only permission.
-  var TOKEN_CREATE_URL = "https://github.com/settings/personal-access-tokens/new?" + [
-    "name=" + encodeURIComponent("Ignite 2026 notes chat"),
-    "description=" + encodeURIComponent("Ignite 2026 Session Notes 사이트 챗봇용 — Copilot requests 권한만"),
-    "expires_in=30",
-    "copilot_requests=write"
-  ].join("&");
+  // Stateless CORS relay for GitHub's device-flow endpoints (relay/ in this repo, Azure Functions).
+  var AUTH_RELAY = "https://<relay>/api/github";
 
   function ChatError(kind, message, status) {
     this.name = "ChatError";
@@ -465,6 +460,72 @@
     throw errorFor(res.status, detail);
   }
 
+  // ---------- GitHub sign-in: device flow through the relay (no secrets, no pasted tokens) ----------
+
+  async function relayPost(fetchImpl, relay, path, body, signal) {
+    var res;
+    try {
+      res = await fetchImpl(relay + "/" + path, {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body || {}), signal: signal
+      });
+    } catch (e) {
+      if (e && e.name === "AbortError") throw e;
+      throw new ChatError("relay", "로그인 서버에 연결하지 못했습니다. 잠시 후 다시 시도해 주세요.");
+    }
+    var data = {};
+    try { data = await res.json(); } catch (e) { data = {}; }
+    if (res.status === 503) throw new ChatError("relay", "GitHub 로그인이 아직 설정되지 않았습니다.");
+    if (!res.ok && !data.error) throw new ChatError("relay", "로그인 서버 오류 (" + res.status + ")");
+    return data;
+  }
+
+  async function startDeviceLogin(fetchImpl, relay) {
+    var d = await relayPost(fetchImpl, relay || AUTH_RELAY, "device/code", {});
+    if (d.error || !d.device_code) throw new ChatError("auth", "GitHub 로그인을 시작하지 못했습니다 (" + (d.error || "no code") + ").");
+    return { deviceCode: d.device_code, userCode: d.user_code, uri: d.verification_uri, interval: d.interval || 5, expiresIn: d.expires_in || 900 };
+  }
+
+  function tokenFrom(d, now) {
+    return {
+      access: d.access_token,
+      refresh: d.refresh_token || "",
+      expiresAt: d.expires_in ? now + d.expires_in * 1000 : 0
+    };
+  }
+
+  function wait(ms, signal) {
+    return new Promise(function (resolve, reject) {
+      var t = setTimeout(resolve, ms);
+      if (signal) signal.addEventListener("abort", function () { clearTimeout(t); reject(new DOMException("중지됨", "AbortError")); }, { once: true });
+    });
+  }
+
+  // Polls until the visitor approves on github.com/login/device. opts: {relay, signal, now, sleep}
+  async function pollDeviceLogin(fetchImpl, login, opts) {
+    opts = opts || {};
+    var interval = login.interval;
+    var deadline = (opts.now || Date.now)() + login.expiresIn * 1000;
+    var sleep = opts.sleep || wait;
+    for (;;) {
+      await sleep(interval * 1000, opts.signal);
+      if ((opts.now || Date.now)() > deadline) throw new ChatError("expired", "로그인 코드가 만료됐습니다. 다시 시도해 주세요.");
+      var d = await relayPost(fetchImpl, opts.relay || AUTH_RELAY, "token", { device_code: login.deviceCode }, opts.signal);
+      if (d.access_token) return tokenFrom(d, (opts.now || Date.now)());
+      if (d.error === "authorization_pending") continue;
+      if (d.error === "slow_down") { interval = (d.interval || interval + 5); continue; }
+      if (d.error === "expired_token") throw new ChatError("expired", "로그인 코드가 만료됐습니다. 다시 시도해 주세요.");
+      if (d.error === "access_denied") throw new ChatError("denied", "GitHub 에서 승인을 취소했습니다.");
+      throw new ChatError("auth", "GitHub 로그인 실패 (" + (d.error || "unknown") + ").");
+    }
+  }
+
+  async function refreshLogin(fetchImpl, token, relay, now) {
+    if (!token || !token.refresh) throw new ChatError("auth", "다시 로그인해 주세요.");
+    var d = await relayPost(fetchImpl, relay || AUTH_RELAY, "token", { refresh_token: token.refresh });
+    if (!d.access_token) throw new ChatError("auth", "로그인이 만료됐습니다. 다시 로그인해 주세요.");
+    return tokenFrom(d, (now || Date.now)());
+  }
+
   async function getUser(fetchImpl, token) {
     var res = await failIfNotOk(await fetchImpl(GITHUB_API + "/user", { headers: authHeaders(token) }));
     var u = await res.json();
@@ -720,7 +781,10 @@
   }
 
   return {
-    TOKEN_CREATE_URL: TOKEN_CREATE_URL,
+    AUTH_RELAY: AUTH_RELAY,
+    startDeviceLogin: startDeviceLogin,
+    pollDeviceLogin: pollDeviceLogin,
+    refreshLogin: refreshLogin,
     TOOL_SPECS: TOOL_SPECS,
     COMPONENT_SPECS: COMPONENT_SPECS,
     ChatError: ChatError,

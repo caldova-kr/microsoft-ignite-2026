@@ -7,7 +7,7 @@
 
   var script = document.currentScript;
   var SITE_ROOT = new URL("..", script && script.src ? script.src : location.href).href;
-  var K = { token: "icn-chat-token", profile: "icn-chat-profile", history: "icn-chat-history", open: "icn-chat-open", model: "icn-chat-model" };
+  var K = { auth: "icn-chat-auth", legacyToken: "icn-chat-token", profile: "icn-chat-profile", history: "icn-chat-history", open: "icn-chat-open", model: "icn-chat-model" };
   var HISTORY_LIMIT = 12;
   var homeMount = document.getElementById("icn-chat-home");
   function suggestions() { return document.getElementById("icn-chat-home") ? HOME_SUGGESTIONS : PAGE_SUGGESTIONS; }
@@ -22,18 +22,25 @@
   function del(area, key) { try { window[area].removeItem(key); } catch (e) { /* ignore */ } }
   function getJson(area, key, fallback) { try { return JSON.parse(get(area, key)) || fallback; } catch (e) { return fallback; } }
 
-  function token() { return get("sessionStorage", K.token) || get("localStorage", K.token) || ""; }
+  // GitHub sign-in token from device flow. Tab-scoped (sessionStorage) on purpose: nothing outlives the tab.
+  del("sessionStorage", K.legacyToken);
+  del("localStorage", K.legacyToken);
 
-  function saveToken(t, remember) {
-    del("sessionStorage", K.token);
-    del("localStorage", K.token);
-    set(remember ? "localStorage" : "sessionStorage", K.token, t);
-  }
+  function auth() { return getJson("sessionStorage", K.auth, null); }
+  function token() { var a = auth(); return (a && a.access) || ""; }
+  function saveAuth(a) { set("sessionStorage", K.auth, JSON.stringify(a)); }
 
   function forget() {
-    del("sessionStorage", K.token);
-    del("localStorage", K.token);
+    del("sessionStorage", K.auth);
     del("sessionStorage", K.profile);
+  }
+
+  // GitHub App tokens expire (8h); refresh a few minutes early through the relay.
+  function freshToken() {
+    var a = auth();
+    if (!a) return Promise.reject(new A.ChatError("auth", "다시 로그인해 주세요."));
+    if (!a.expiresAt || Date.now() < a.expiresAt - 5 * 60 * 1000) return Promise.resolve(a.access);
+    return A.refreshLogin(fetch.bind(window), a).then(function (n) { saveAuth(n); return n.access; });
   }
 
   var history = getJson("sessionStorage", K.history, []);
@@ -115,7 +122,7 @@
     fab.setAttribute("aria-expanded", String(show));
     fab.classList.toggle("icn-chat-fab--open", show);
     set("sessionStorage", K.open, show ? "1" : "");
-    if (show) { render(); setTimeout(function () { (token() ? input : body.querySelector("input") || closeBtn).focus(); }, 0); }
+    if (show) { render(); setTimeout(function () { (token() ? input : body.querySelector("button, a") || closeBtn).focus(); }, 0); }
   }
 
   function render() {
@@ -128,7 +135,7 @@
     userBox.textContent = "";
     panel.classList.toggle("icn-chat--empty", !t || !history.length);
     if (!t) return renderSetup();
-    if (!profile) return connect(t, null);
+    if (!profile) return freshToken().then(function (x) { connect(x, false); }, function (e) { forget(); renderSetup(e.message); });
     userBox.appendChild(el("img", { src: profile.avatar, alt: "", width: "20", height: "20" }));
     userBox.appendChild(el("span", { text: profile.login }));
     renderModels();
@@ -144,53 +151,73 @@
     modelSel.value = pick;
   }
 
-  function renderSetup(error) {
+  var login = null; // AbortController of a running device-flow login
+
+  function setupBox(children) {
     body.textContent = "";
-    var tokenInput = el("input", { class: "icn-chat__token", type: "password", autocomplete: "off", spellcheck: "false", placeholder: "github_pat_…", "aria-label": "GitHub 토큰" });
-    var remember = el("input", { type: "checkbox", id: "icn-chat-remember" });
-    var err = el("p", { class: "icn-chat__error", role: "alert", text: error || "" });
-    var go = el("button", { class: "icn-chat__send", type: "button", text: "연결", onclick: function () {
-      var t = tokenInput.value.trim();
-      if (/^ghp_/.test(t)) { err.textContent = "Classic 토큰(ghp_)은 Copilot 이 지원하지 않습니다. 위 링크로 fine-grained 토큰을 만들어 주세요."; return; }
-      if (!/^(github_pat_|gho_|ghu_)/.test(t)) { err.textContent = "github_pat_ 로 시작하는 fine-grained 토큰을 붙여 넣어 주세요."; return; }
-      connect(t, remember.checked);
-    } });
-    tokenInput.addEventListener("keydown", function (e) { if (e.key === "Enter") go.click(); });
     panel.classList.add("icn-chat--empty");
     if (inline) body.appendChild(el("h2", { class: "icn-chat__hello", text: "Ignite 2026 노트에 무엇이든 물어보세요" }));
-    body.appendChild(el("div", { class: "icn-chat__setup" }, [
-      el("p", { text: "이 사이트에 정리된 노트·카탈로그만 근거로 답하는 챗봇입니다. 모델은 여러분의 GitHub Copilot 을 씁니다." }),
-      el("ol", {}, [
-        el("li", {}, [
-          el("a", { href: A.TOKEN_CREATE_URL, target: "_blank", rel: "noopener", text: "GitHub 에서 토큰 만들기" }),
-          el("span", { text: " — 권한은 Copilot requests 하나만 미리 선택됩니다 (리포지토리 접근 없음, 30일 만료). Generate token 을 누르고 토큰을 복사합니다." })
-        ]),
-        el("li", {}, [el("span", { text: "복사한 토큰을 붙여 넣고 연결합니다." })])
-      ]),
-      el("div", { class: "icn-chat__row" }, [tokenInput, go]),
-      el("label", { class: "icn-chat__check", for: "icn-chat-remember" }, [remember, el("span", { text: " 이 브라우저에 기억 (끄면 탭을 닫을 때 지워집니다)" })]),
-      err,
-      el("p", { class: "icn-chat__fine", text: "토큰은 이 브라우저에서 GitHub(api.github.com · api.githubcopilot.com)로만 전송되며 사이트에는 서버가 없습니다. 대화마다 본인 Copilot premium requests 가 차감됩니다." })
-    ]));
+    body.appendChild(el("div", { class: "icn-chat__setup" }, children));
   }
 
-  function connect(t, remember) {
+  function renderSetup(error) {
+    if (login) { login.abort(); login = null; }
+    setupBox([
+      el("p", { text: "이 사이트에 정리된 노트·카탈로그만 근거로 답하는 챗봇입니다. 모델은 여러분의 GitHub Copilot 을 씁니다." }),
+      el("button", { class: "icn-chat__send icn-chat__login", type: "button", onclick: function () { startLogin(); } }, [el("span", { text: "GitHub 로 로그인" })]),
+      el("p", { class: "icn-chat__error", role: "alert", text: error || "" }),
+      el("p", { class: "icn-chat__fine", text: "VS Code 처럼 GitHub 에서 코드를 입력해 승인합니다. 토큰을 복사·붙여 넣을 필요가 없고, 로그인은 이 탭을 닫으면 사라집니다. 대화마다 본인 Copilot premium requests 가 차감됩니다." })
+    ]);
+  }
+
+  function startLogin() {
+    login = new AbortController();
+    var signal = login.signal;
+    setupBox([el("p", { class: "icn-chat__status", text: "GitHub 로그인 코드를 받는 중…" })]);
+    A.startDeviceLogin(fetch.bind(window)).then(function (d) {
+      var copied = el("span", { class: "icn-chat__fine", text: "" });
+      function copy() {
+        if (navigator.clipboard) navigator.clipboard.writeText(d.userCode).then(function () { copied.textContent = " 복사됨"; }, function () {});
+      }
+      var open = el("a", { class: "icn-chat__send icn-chat__login", href: d.uri, target: "_blank", rel: "noopener", text: "GitHub 에서 승인하기 ↗", onclick: copy });
+      setupBox([
+        el("p", { text: "아래 코드를 GitHub 에 입력하고 승인해 주세요." }),
+        el("div", { class: "icn-chat__code" }, [
+          el("code", { text: d.userCode }),
+          el("button", { type: "button", class: "icn-chat__link", text: "복사", onclick: copy }), copied
+        ]),
+        open,
+        el("p", { class: "icn-chat__status icn-chat__waiting", text: "승인을 기다리는 중…" }),
+        el("button", { type: "button", class: "icn-chat__link", text: "취소", onclick: function () { renderSetup(); } })
+      ]);
+      return A.pollDeviceLogin(fetch.bind(window), d, { signal: signal });
+    }).then(function (a) {
+      login = null;
+      saveAuth(a);
+      connect(a.access, true);
+    }).catch(function (e) {
+      if (e && e.name === "AbortError") return;
+      login = null;
+      renderSetup((e && e.message) || String(e));
+    });
+  }
+
+  function connect(t, fresh) {
     body.textContent = "";
     body.appendChild(el("p", { class: "icn-chat__status", text: "GitHub 계정을 확인하는 중…" }));
     Promise.all([A.getUser(fetch.bind(window), t), A.listModels(fetch.bind(window), t)]).then(function (r) {
       if (!r[1].length) throw new A.ChatError("forbidden", "이 계정에서 쓸 수 있는 Copilot 채팅 모델이 없습니다.");
-      if (remember !== null) saveToken(t, remember);
       profile = { login: r[0].login, avatar: r[0].avatar, models: r[1] };
       set("sessionStorage", K.profile, JSON.stringify(profile));
       render();
       input.focus();
     }).catch(function (e) {
       var msg = (e && e.message) || String(e);
-      if (remember === null && e && e.kind !== "auth" && e.kind !== "forbidden") {
-        // Stored token, transient failure: keep the token and offer a retry.
+      if (!fresh && e && e.kind !== "auth" && e.kind !== "forbidden") {
+        // Existing sign-in, transient failure: keep it and offer a retry.
         body.textContent = "";
         body.appendChild(el("p", { class: "icn-chat__error", role: "alert", text: msg }));
-        body.appendChild(el("button", { class: "icn-chat__send", type: "button", text: "다시 시도", onclick: function () { connect(t, null); } }));
+        body.appendChild(el("button", { class: "icn-chat__send", type: "button", text: "다시 시도", onclick: function () { connect(t, false); } }));
         return;
       }
       forget();
@@ -457,9 +484,10 @@
     controller = new AbortController();
     setBusy(true);
     scroll();
-    loadKnowledge().then(function (k) {
+    Promise.all([loadKnowledge(), freshToken()]).then(function (ready) {
+      var k = ready[0];
       return A.runAgent({
-        fetchImpl: fetch.bind(window), token: t, model: modelSel.value, knowledge: k,
+        fetchImpl: fetch.bind(window), token: ready[1], model: modelSel.value, knowledge: k,
         history: recentHistory(), signal: controller.signal,
         page: { title: document.title, url: location.href.split("#")[0] },
         onText: function (d) { turn.text(d); scroll(); },

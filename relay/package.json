@@ -1,0 +1,9 @@
+{
+  "name": "ignite-notes-auth-relay",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Stateless CORS relay for GitHub device-flow sign-in on the Ignite 2026 notes site",
+  "main": "src/functions/*.js",
+  "scripts": { "test": "node --test" },
+  "dependencies": { "@azure/functions": "^4.6.0" }
+}
