@@ -29,10 +29,10 @@ hide:
 
 <!-- gen:stats -->
 <div class="dg-stats" markdown="0">
-<div class="dg-stat"><strong>944<small>/1,436</small></strong><span>online sessions</span></div>
+<div class="dg-stat"><strong>934<small>/1,426</small></strong><span>online sessions</span></div>
 <div class="dg-stat"><strong>10</strong><span>session types</span></div>
-<div class="dg-stat"><strong>809</strong><span>on-demand videos</span></div>
-<div class="dg-stat"><strong>502</strong><span>transcripts</span></div>
+<div class="dg-stat"><strong>829</strong><span>on-demand videos</span></div>
+<div class="dg-stat"><strong>575</strong><span>transcripts</span></div>
 <div class="dg-stat"><strong>0<small>/0</small></strong><span>notes / done</span></div>
 </div>
 <!-- /gen:stats -->
