@@ -109,7 +109,7 @@ test("API errors map to user-facing kinds", async () => {
   await assert.rejects(A.listModels(fetchImpl, "t"), (e) => e.kind === "auth");
 });
 
-test("listModels keeps only picker-enabled chat models with tool calls on /chat/completions", async () => {
+test("listModels keeps picker-enabled chat models with tool calls and records their endpoint", async () => {
   const data = [
     { id: "a", name: "A", model_picker_enabled: true, supported_endpoints: ["/chat/completions"], capabilities: { type: "chat", supports: { tool_calls: true } } },
     { id: "b", model_picker_enabled: true, supported_endpoints: ["/responses"], capabilities: { type: "chat", supports: { tool_calls: true } } },
@@ -117,7 +117,7 @@ test("listModels keeps only picker-enabled chat models with tool calls on /chat/
     { id: "d", model_picker_enabled: true, capabilities: { type: "embeddings", supports: {} } }
   ];
   const fetchImpl = async () => ({ ok: true, status: 200, json: async () => ({ data }) });
-  assert.deepEqual((await A.listModels(fetchImpl, "t")).map((m) => m.id), ["a"]);
+  assert.deepEqual((await A.listModels(fetchImpl, "t")).map((m) => [m.id, m.endpoint]), [["a", "chat"], ["b", "responses"]]);
   const c = { type: "chat", supports: { tool_calls: true } };
   const legacy = [{ id: "gpt-4o", capabilities: c }, { id: "gpt-4o-2024-11-20", capabilities: c }, { id: "gpt-3.5-turbo-0613", capabilities: c }, data[3]];
   const fetchLegacy = async () => ({ ok: true, status: 200, json: async () => ({ data: legacy }) });
@@ -255,4 +255,25 @@ test("notes the agent read become an automatic sources card unless it showed sou
   assert.equal(own.filter((e) => e.name === "show_sources").length, 1);
   const none = await run([[call("a", "get_session", { code: "BRK220" })], [say("답")]]);
   assert.ok(!none.some((e) => e.name === "show_sources"));
+});
+
+test("runAgent talks to /responses for responses-only models and replays tool items", async () => {
+  const seen = [];
+  const rounds = [
+    [{ type: "response.output_item.done", item: { type: "reasoning", id: "rs1", encrypted_content: "x" } },
+     { type: "response.output_item.done", item: { type: "function_call", call_id: "c1", name: "get_session", arguments: "{\"code\":\"KEY01\"}" } }],
+    [{ type: "response.output_text.delta", delta: "KEY01 " }, { type: "response.output_text.delta", delta: "입니다." }]
+  ];
+  const fetchImpl = async (url, init) => { seen.push({ url, body: JSON.parse(init.body) }); return { ok: true, status: 200, body: sse(rounds.shift()) }; };
+  const r = await A.runAgent({ fetchImpl, token: "t", model: "gpt-6-luna", endpoint: "responses", knowledge: k(), history: [{ role: "user", content: "KEY01?" }] });
+  assert.equal(r.text, "KEY01 입니다.");
+  assert.ok(seen.every((x) => x.url === "https://api.githubcopilot.com/responses"));
+  assert.match(seen[0].body.instructions, /Ignite 2026 Session Notes/);
+  assert.deepEqual(seen[0].body.input, [{ role: "user", content: "KEY01?" }]);
+  assert.deepEqual(Object.keys(seen[0].body.tools[0]).sort(), ["description", "name", "parameters", "type"]);
+  const second = seen[1].body.input;
+  assert.deepEqual(second.slice(1, 3).map((i) => i.type), ["reasoning", "function_call"]);
+  assert.equal(second[3].type, "function_call_output");
+  assert.equal(second[3].call_id, "c1");
+  assert.equal(JSON.parse(second[3].output).code, "KEY01");
 });

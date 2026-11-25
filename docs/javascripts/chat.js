@@ -458,6 +458,11 @@
 
   function stop() { if (controller) controller.abort(); }
 
+  function modelEndpoint(id) {
+    var m = profile && profile.models.filter(function (x) { return x.id === id; })[0];
+    return (m && m.endpoint) || "chat";
+  }
+
   function recentHistory() {
     var h = history.slice(-HISTORY_LIMIT).map(function (m) { return { role: m.role, content: m.content }; });
     while (h.length && h[0].role !== "user") h.shift();
@@ -487,7 +492,7 @@
     Promise.all([loadKnowledge(), freshToken()]).then(function (ready) {
       var k = ready[0];
       return A.runAgent({
-        fetchImpl: fetch.bind(window), token: ready[1], model: modelSel.value, knowledge: k,
+        fetchImpl: fetch.bind(window), token: ready[1], model: modelSel.value, endpoint: modelEndpoint(modelSel.value), knowledge: k,
         history: recentHistory(), signal: controller.signal,
         page: { title: document.title, url: location.href.split("#")[0] },
         onText: function (d) { turn.text(d); scroll(); },
