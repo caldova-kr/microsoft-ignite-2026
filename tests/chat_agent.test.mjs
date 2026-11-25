@@ -177,3 +177,31 @@ test("ask_user_choice waits for the user and returns the pick to the model", asy
   assert.equal(r.text, "Security 기준으로 답합니다.");
   assert.ok(seen[0].body.tools.some((t) => t.function.name === "ask_user_choice"));
 });
+
+test("page tools from extraTools run as their own kind and failures go back to the model", async () => {
+  const seen = [];
+  const fetchImpl = fakeFetch([[call("p1", "open_page", { path: "KEY01", anchor: "ga" }), ], [call("p2", "highlight_section", { anchor: "x" })], [say("이동합니다.")]], seen);
+  const ran = [];
+  const extraTools = {
+    prompt: "9. 사이트 탐색 규칙",
+    specs: [{ type: "function", function: { name: "open_page", parameters: { type: "object", properties: {} } } }, { type: "function", function: { name: "highlight_section", parameters: { type: "object", properties: {} } } }],
+    has: (n) => n === "open_page" || n === "highlight_section",
+    run: async (n, a) => { ran.push([n, a]); if (n === "highlight_section") throw new Error("no such section"); return { navigating: ROOT + "sessions/KEY01-keynote/#ga" }; }
+  };
+  const kinds = [];
+  const r = await A.runAgent({ fetchImpl, token: "t", model: "m", knowledge: k(), history: [{ role: "user", content: "?" }], extraTools, onToolEnd: (e) => kinds.push([e.name, e.kind]) });
+  assert.equal(r.text, "이동합니다.");
+  assert.deepEqual(ran, [["open_page", { path: "KEY01", anchor: "ga" }], ["highlight_section", { anchor: "x" }]]);
+  assert.deepEqual(kinds, [["open_page", "page"], ["highlight_section", "page"]]);
+  assert.match(seen[0].body.messages[0].content, /9\. 사이트 탐색 규칙/);
+  assert.ok(seen[0].body.tools.some((t) => t.function.name === "open_page"));
+  assert.deepEqual(JSON.parse(seen[2].body.messages.at(-1).content), { error: "no such section" });
+});
+
+test("renderMarkdown turns pipe tables into escaped HTML tables", () => {
+  const html = A.renderMarkdown("앞\n| 항목 | 상태 |\n|---|:---:|\n| **Perception** | GA |\n| <b>x</b> | [노트](sessions/KEY01-keynote/#ga) |\n뒤", ROOT);
+  assert.match(html, /<p>앞<\/p><div class="icn-table"><table><thead><tr><th>항목<\/th><th>상태<\/th><\/tr><\/thead><tbody>/);
+  assert.match(html, /<td><strong>Perception<\/strong><\/td><td>GA<\/td>/);
+  assert.match(html, /<td>&lt;b&gt;x&lt;\/b&gt;<\/td>/);
+  assert.match(html, /<\/tbody><\/table><\/div><p>뒤<\/p>$/);
+});

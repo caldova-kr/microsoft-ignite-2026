@@ -11,8 +11,8 @@
   var HISTORY_LIMIT = 12;
   var homeMount = document.getElementById("icn-chat-home");
   var SUGGESTIONS = homeMount
-    ? ["키노트의 핵심 의제가 뭐야?", "노트가 정리된 세션은 어떤 게 있어?", "키노트에서 GA 로 발표된 건 뭐야?", "Agent Platform 토픽 세션 찾아 줘"]
-    : ["이 페이지 내용을 요약해 줘", "노트가 정리된 세션은 어떤 게 있어?", "키노트에서 GA 로 발표된 건 뭐야?"];
+    ? ["키노트의 핵심 의제가 뭐야?", "노트가 정리된 세션은 어떤 게 있어?", "키노트 노트의 GA 섹션 보여 줘", "Security 토픽 Breakout 을 카탈로그에서 보여 줘"]
+    : ["이 페이지 내용을 요약해 줘", "지금 보는 섹션 설명해 줘", "이 노트와 관련된 세션을 카탈로그에서 보여 줘"];
   var inline = false;
 
   // ---------- storage (private mode / disabled storage must not break the page) ----------
@@ -90,19 +90,21 @@
   var profile = getJson("sessionStorage", K.profile, null);
   var busy = false;
   var controller = null;
-  var knowledge = null;
 
+  var S = window.IgniteSiteTools || null;
+  var ownKnowledge = null;
   function loadKnowledge() {
-    if (!knowledge) {
-      knowledge = Promise.all([
+    if (S) return S.loadKnowledge();
+    if (!ownKnowledge) {
+      ownKnowledge = Promise.all([
         fetch(SITE_ROOT + "search/search_index.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }),
         fetch(SITE_ROOT + "catalog/sessions.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       ]).then(function (d) { return A.buildKnowledge(d[0], d[1], SITE_ROOT); }, function (e) {
-        knowledge = null;
+        ownKnowledge = null;
         throw new A.ChatError("knowledge", "사이트 노트 데이터를 불러오지 못했습니다 (" + e.message + ").");
       });
     }
-    return knowledge;
+    return ownKnowledge;
   }
 
   function toggle(open) {
@@ -227,7 +229,11 @@
     search_notes: function (a) { return "🔎 노트 검색 · " + (a.query || ""); },
     get_note: function (a) { return "📄 노트 읽기 · " + (a.path || ""); },
     search_catalog: function (a) { return "🗂️ 카탈로그 검색 · " + [a.query, a.type, a.topic, a.has_note ? "노트 있음" : ""].filter(Boolean).join(" · "); },
-    get_session: function (a) { return "🎫 세션 정보 · " + (a.code || ""); }
+    get_session: function (a) { return "🎫 세션 정보 · " + (a.code || ""); },
+    get_current_page: function () { return "👀 현재 페이지 읽기"; },
+    open_page: function (a) { return "🧭 페이지 열기 · " + (a.path || "") + (a.anchor ? "#" + a.anchor : ""); },
+    highlight_section: function (a) { return "🖍️ 섹션 강조 · " + (a.anchor || ""); },
+    filter_catalog: function (a) { return "🗂️ 카탈로그 필터 · " + ["text", "type", "topic", "level", "progress", "media"].map(function (k) { return a[k]; }).filter(Boolean).join(" · "); }
   };
 
   function toolSummary(name, r) {
@@ -243,6 +249,11 @@
       };
     }
     if (name === "get_session") return { status: r.code + " · " + r.title, links: [{ text: r.note_url ? "노트 보기" : "세션 페이지", url: r.note_url || r.session_page }] };
+    if (r.navigating) return { status: "답을 마친 뒤 이동", links: [{ text: decodeURI(r.navigating.replace(SITE_ROOT, "/")), url: r.navigating }] };
+    if (name === "get_current_page") return { status: r.title + (r.selected_text ? " · 선택한 텍스트 포함" : ""), links: [] };
+    if (r.highlighted) return { status: "강조: " + r.heading, links: [] };
+    if (r.already_here) return { status: "이미 이 페이지입니다", links: [] };
+    if (name === "filter_catalog") return { status: "필터 적용 · " + (r.summary || ""), links: [] };
     return { status: "완료", links: [] };
   }
 
@@ -312,7 +323,7 @@
       m.innerHTML = A.renderMarkdown(p.v, SITE_ROOT);
       return m;
     }
-    if (p.kind === "tool") return toolCard(p);
+    if (p.kind === "tool" || p.kind === "page") return toolCard(p);
     if (p.kind === "interactive") return choiceCard(p, onPick);
     if (!p.done) return el("div", { class: "icn-gen icn-gen--loading", text: "화면을 준비하는 중…" });
     return p.name === "show_sessions" ? sessionCards(p.data) : sourceCards(p.data);
@@ -349,7 +360,7 @@
         var i = find(ev.id);
         var p = parts[i];
         p.done = true;
-        if (p.kind === "tool") p.summary = toolSummary(ev.name, ev.result);
+        if (p.kind === "tool" || p.kind === "page") p.summary = toolSummary(ev.name, ev.result);
         else if (p.kind === "render") p.data = ev.result;
         else p.chosen = ev.result && ev.result.chosen;
         draw(i);
@@ -363,6 +374,19 @@
           p.data = { title: "", items: [], missing: [] };
           draw(i);
         });
+      },
+      navigate: function (url) {
+        var cancelled = false;
+        var label = decodeURI(url.replace(SITE_ROOT, "/"));
+        var cancel = el("button", { type: "button", class: "icn-chat__link", text: "취소" });
+        var card = el("div", { class: "icn-nav" }, [el("span", { text: "🧭 " }), linkEl(url, label), el("span", { text: " 로 이동합니다…" }), cancel]);
+        cancel.addEventListener("click", function () { cancelled = true; card.lastChild.remove(); card.appendChild(el("span", { class: "icn-chat__fine", text: " · 취소됨" })); });
+        root.appendChild(card);
+        setTimeout(function () {
+          if (cancelled) return;
+          set("sessionStorage", K.open, "1");
+          if (S) S.navigateNow(url); else location.href = url;
+        }, 1600);
       },
       note: function (cls, msg) { root.appendChild(el(cls === "error" ? "div" : "p", { class: cls === "error" ? "icn-chat__msg icn-chat__msg--error" : "icn-chat__fine", text: msg })); }
     };
@@ -422,6 +446,7 @@
     saveHistory();
     body.appendChild(el("div", { class: "icn-chat__msg icn-chat__msg--user", text: text }));
     var turn = Turn([]);
+    var pendingNav = null;
     turn.wait(true);
     controller = new AbortController();
     setBusy(true);
@@ -434,6 +459,7 @@
         onText: function (d) { turn.text(d); scroll(); },
         onToolStart: function (ev) { turn.start(ev); scroll(); },
         onToolEnd: function (ev) { turn.end(ev); scroll(); },
+        extraTools: S ? S.forChat(function (url) { pendingNav = url; }) : null,
         onInteract: function (ev) {
           return new Promise(function (resolve, reject) {
             if (ev.signal) ev.signal.addEventListener("abort", function () { reject(new DOMException("중지됨", "AbortError")); }, { once: true });
@@ -445,6 +471,7 @@
     }).then(function (r) {
       if (!turn.parts.length) turn.text("(빈 응답)");
       history.push({ role: "assistant", content: r.text || textOf(turn.parts) || "(빈 응답)", parts: turn.parts });
+      if (pendingNav) { saveHistory(); turn.navigate(pendingNav); }
     }).catch(function (e) {
       turn.settle();
       if (e && e.name === "AbortError") {
