@@ -39,6 +39,8 @@ last_updated: 2026-11-25
 - **Trust** — Satya 는 "alignment 도, 모델의 내부 동작도 아직 완전히 이해되지 않는다" 며 **intelligence 의 공급과 그에 대한 권한(authority)을 분리하는 것**이 아키텍처 요건이라고 했습니다. Judson 의 표현으로는 "The only way to gain trust is through observability." Agent 365 · Foundry · Perception · Defender · Entra · Purview 가 이 기둥입니다.
 - 세 기둥 아래의 **Open · Model diverse · Heterogeneous** — 특정 모델·플랫폼에 묶이지 않는다는 원칙은 이후 제품 소개마다 반복됐습니다.
 
+🎥 **키노트 다시 보기**: [On-demand 영상](https://medius.microsoft.com/Embed/video-nc/03c19114-cb6e-42d3-9be3-f8b310426589) · 📰 **주요 발표 모음**: [Microsoft Ignite 2026 Book of News](https://news.microsoft.com/events/ignite/2026/book-of-news/)
+
 ## Top highlights
 
 키노트에서 소개된 제품을 **Intelligence → Trust** 순서로 정리했습니다. 고객·현장 사례는 아래 [Customer scenarios](#customer-scenarios) 에 따로 모았습니다.
@@ -144,8 +146,7 @@ Jay Parikh 는 에이전트 플랫폼을 이렇게 정리했습니다: **"GitHub
 "Agents need databases that can keep up with their speed and scale" — 데이터 레이어에서 나온 답이 **HorizonDB** 입니다.
 
 - 분산 managed PostgreSQL 로, ultra-low latency · scalable reads · **built-in Search** · AI 기능을 갖췄고 self-managed Postgres 대비 **8x 빠른 성능**입니다.
-- **HorizonDB 를 Fabric 으로**: Satya 가 "25년 동안 해 온 일" 이라고 표현한 **트랜잭션과 분석의 완전한 통합**입니다. 실시간 주문·재고 변경과 페타바이트급 이력을 에이전트가 함께 추론하고, Copilot 에 "지금 우리 비즈니스에 무슨 일이?" 라고 물으면 실시간 대시보드를 만들어 줍니다.
-- **Fabric HorizonDB** 는 serverless 로, 수 초 안에 프로비저닝됩니다.
+- **Fabric HorizonDB (Public Preview)**: HorizonDB 를 Fabric 으로 가져온 것으로, Satya 가 "25년 동안 해 온 일" 이라고 표현한 **트랜잭션과 분석의 완전한 통합**입니다. serverless 로 수 초 안에 프로비저닝되고, 실시간 주문·재고 변경과 페타바이트급 이력을 에이전트가 함께 추론합니다. Copilot 에 "지금 우리 비즈니스에 무슨 일이?" 라고 물으면 실시간 대시보드를 만들어 줍니다.
 - **의미**: 벡터 DB · 검색 · RDB 를 따로 붙이던 RAG/에이전트 백엔드를 PostgreSQL 하나로 모으고, serverless Fabric HorizonDB 로 **에이전트가 직접 DB 를 만들고 버리는 패턴**까지 겨냥합니다.
 
 !!! supplement "세션 외 보충 · Microsoft Blog for PostgreSQL (2026-11-17)"
@@ -229,18 +230,19 @@ Agent 365 는 기존 governance · identity · security · management 를 에이
 - 결과: 정확도 **+10 points**, 비용 **98% 절감**. 단, 데모의 비용은 화면에 표시된 대로 예시 추론 비용(fine-tuned 모델 호스팅 제외)이고, 평가는 synthetic 정비 기록 150건 × 5 run 기준입니다.
 - **가져갈 점**: 핵심은 "좋은 모델 고르기" 가 아니라 **우리 회사의 정답(rubric)을 먼저 만들고, 매 변경을 그 기준으로 자동 채점하는 것**입니다. *적용 아이디어*: 프롬프트·모델 변경마다 Foundry eval 을 돌리고, 품질·비용 기준을 통과한 후보만 사람이 승인해 배포하는 CI 형태의 파이프라인으로 구성하면 에이전트를 계속 개선되는 자산으로 운영할 수 있습니다.
 
-### 보안 연구자의 ARTEX 테스트 — "방어된 네트워크에서는 블루팀이 이긴다" {#artex-defender}
+### 보안 연구자의 ARTEX 테스트 — 자율 AI 공격을 막아 낸 Defender {#artex-defender}
 
 <figure markdown="span">
-  ![키노트 화면에 소개된 보안 연구자의 X 게시물과 Microsoft Defender 알림 목록](KEY01-microsoft-ignite-opening-keynote/artex-x-post-keynote.jpg)
-  <figcaption>▶ 영상 25:00 — ARTEX × Microsoft Defender 테스트 게시물</figcaption>
+  ![키노트 화면에 소개된 보안 연구자의 ARTEX 테스트 게시물과 Microsoft Defender 알림 목록](KEY01-microsoft-ignite-opening-keynote/artex-x-post-keynote.jpg)
+  <figcaption>▶ 영상 25:00 — ARTEX × Microsoft Defender 테스트</figcaption>
 </figure>
 
 Satya 가 Perception 을 소개하기 직전에 보여 준 사례입니다. 독립 보안 연구자가 요즘 화제인 **자율 AI 공격 프레임워크 ARTEX** 로 **Microsoft Defender 가 보호하는 환경**을 공격했습니다.
 
-- 에이전트가 네트워크에서 계속 lateral movement 를 시도했지만 **Defender 의 automated attack disruption** 이 탈취된 계정을 격리하고 디바이스를 고립시키며 공격을 계속 막아 냈습니다.
-- 연구자의 결론: 방어되지 않은 네트워크에서는 ARTEX 가 이기지만, "THROW it at a DEFENDED network... guess what? **the blue team wins!**" — 원문: [x.com/UK_Daniel_Card](https://x.com/UK_Daniel_Card/status/2119825084353233380) (2026-11-09).
-- 다만 원문에는 IPS 가 놓친 지점에서 shell 을 한 번 얻었다는 내용도 함께 있습니다. "Defender 가 다 막는다" 보다는 **"방어 posture 가 갖춰진 환경에서는 자율 공격이 시끄럽고 잘 잡힌다"** 로 전달하는 것이 정확합니다.
+- 에이전트가 네트워크에서 계속 lateral movement 를 시도했지만 **Defender 의 automated attack disruption** 이 탈취된 계정을 격리하고 디바이스를 고립시키며 공격이 이어지는 동안에도 계속 막아 냈습니다.
+- Satya 의 해석: 이런 공격은 점점 agentic·autonomous 해지고 있고, 그래서 방어도 **machine speed 의 agentic response** 가 필요하다 — 이것이 Perception 을 만든 이유입니다.
+- 전달할 때는 "Defender 가 다 막는다" 보다 **"방어 posture 가 갖춰진 환경에서는 자율 공격도 탐지·차단된다"** 정도로 말하는 것이 정확합니다. Microsoft 벤치마크가 아니라 한 연구자의 테스트 사례입니다.
+- 🎥 [키노트 영상](https://medius.microsoft.com/Embed/video-nc/03c19114-cb6e-42d3-9be3-f8b310426589) 의 Trust 파트(Perception 소개 직전)에서 볼 수 있습니다.
 
 !!! supplement "세션 외 보충 · Microsoft Security Blog (2026-11-06)"
     [ARTEX abuse expands as cybercriminals target financial sector](https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/) — Microsoft Threat Intelligence 가 관찰한 ARTEX 악용 사례(금융 섹터 대상 Storm-3358), 탐지 신호, honeypot · tarpit · "fake win" 같은 대응 방법, Defender 탐지 목록과 hunting query.
@@ -278,7 +280,7 @@ AT&T 는 **60,000+ 에이전트**를 운영하며 Agent 365 로 관리합니다.
 
 | 항목 | 상태 | 근거 | 비고 |
 |------|------|------|------|
-| Fabric HorizonDB | Public Preview | 키노트 슬라이드 "Public preview" | serverless, 수 초 프로비저닝 |
+| Fabric HorizonDB | Public Preview | 키노트 슬라이드 "Public preview" · Satya Nadella | HorizonDB 를 Fabric 으로 — 트랜잭션·분석 통합, serverless, 수 초 프로비저닝 |
 | MAI Image 2.7 · Image 2.7 Flash | Public Preview | 키노트 슬라이드 "Public preview" | — |
 | Agent 365 Business Analytics | Public Preview (Frontier) | Stephanie Cronin "starting in Frontier Public Preview" | delegated spending policies · non-Microsoft agent cost visibility 는 12월 |
 
@@ -291,7 +293,6 @@ AT&T 는 **60,000+ 에이전트**를 운영하며 Agent 365 로 관리합니다.
 | Meta 최신 모델 → Foundry | Satya Nadella "coming to Foundry" | — |
 | Foundry managed agent harness · 지속 개선 루프 | Satya Nadella, Jay Parikh | Copilot · GitHub Copilot 과 같은 하네스 |
 | Azure agent primitives (MicroVM · Agent grid · Context cache · AKS Flex · Foundry hosted agents) | Satya Nadella | 출시 형태·일정 언급 없음 |
-| HorizonDB in Fabric (트랜잭션·분석 통합) | Satya Nadella | — |
 | Maia 300 | Satya Nadella "We just announced" | leading GPU 시스템 대비 tokens per watt 40%+ |
 | Agent 365 dynamic agent risk · Shadow AI 탐지 확대 | Yina Arenas | 로컬 에이전트 65종, Intune 연동 차단 |
 | Microsoft AI Transparency Initiative | Satya Nadella | AI 투명성·보안·거버넌스 개방 표준, 40개 조직 참여. [Microsoft Source](https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/) |
@@ -308,6 +309,7 @@ AT&T 는 **60,000+ 에이전트**를 운영하며 Agent 365 로 관리합니다.
 - 🎥 Session: https://ignite.microsoft.com/en-US/sessions/KEY01
 - ▶ On-demand video: https://medius.microsoft.com/Embed/video-nc/03c19114-cb6e-42d3-9be3-f8b310426589
 - 📄 Transcript: https://medius.microsoft.com/video/asset/Transcript/03c19114-cb6e-42d3-9be3-f8b310426589
+- 📰 주요 발표 모음: [Microsoft Ignite 2026 Book of News](https://news.microsoft.com/events/ignite/2026/book-of-news/)
 
 **제품별 공식 소개 글**
 
