@@ -40,6 +40,8 @@
     if (node && node.closest && node.closest(".icn-chat")) return;
     lastSelection = sel.toString().trim().slice(0, 600);
   });
+  // Instant navigation keeps this script alive: a selection from the previous page isn't about this one.
+  if (window.document$ && window.document$.subscribe) window.document$.subscribe(function () { lastSelection = ""; });
 
   function sitePath(url) {
     var u = new URL(url, location.href);

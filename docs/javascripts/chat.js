@@ -496,6 +496,20 @@
     return parts.filter(function (p) { return p.t === "text"; }).map(function (p) { return p.v; }).join("\n\n");
   }
 
+  // What the cards showed, so a follow-up ("the first one?") still has it. Only the model sees this;
+  // the screen redraws from parts.
+  function contextOf(parts) {
+    return parts.filter(function (p) { return p.t === "ui" && p.data && p.data.items && p.data.items.length; }).map(function (p) {
+      if (p.name === "show_sessions") return "[화면에 보여 준 세션: " + p.data.items.map(function (i) { return i.code + " " + i.title; }).join(" · ") + "]";
+      if (p.name === "show_sources") return "[출처: " + p.data.items.map(function (i) { return i.note + (i.section ? " › " + i.section : "") + " " + i.url; }).join(" · ") + "]";
+      return "";
+    }).filter(Boolean).join("\n");
+  }
+
+  function memoryOf(text, parts) {
+    return [text, contextOf(parts)].filter(Boolean).join("\n\n");
+  }
+
   function submit() {
     var text = input.value.trim();
     var t = token();
@@ -537,13 +551,13 @@
     }).then(function (r) {
       if (!current()) return;
       if (!turn.parts.length) turn.text("(빈 응답)");
-      history.push({ role: "assistant", content: r.text || textOf(turn.parts) || "(빈 응답)", parts: turn.parts });
+      history.push({ role: "assistant", content: memoryOf(r.text || textOf(turn.parts) || "(빈 응답)", turn.parts), parts: turn.parts });
       if (pendingNav) { saveHistory(); turn.navigate(pendingNav); }
     }).catch(function (e) {
       turn.settle();
       if (!current()) return;
       if (e && e.name === "AbortError") {
-        if (turn.parts.length) history.push({ role: "assistant", content: (textOf(turn.parts) || "(응답 없음)") + "\n\n(중지됨)", parts: turn.parts });
+        if (turn.parts.length) history.push({ role: "assistant", content: memoryOf((textOf(turn.parts) || "(응답 없음)") + "\n\n(중지됨)", turn.parts), parts: turn.parts });
         else history.pop();
         turn.note("fine", "중지했습니다.");
         return;
