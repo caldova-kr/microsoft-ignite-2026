@@ -33,8 +33,8 @@ hide:
 <div class="dg-stats" markdown="0">
 <div class="dg-stat"><strong>934<small>/1,426</small></strong><span>online sessions</span></div>
 <div class="dg-stat"><strong>10</strong><span>session types</span></div>
-<div class="dg-stat"><strong>829</strong><span>on-demand videos</span></div>
-<div class="dg-stat"><strong>575</strong><span>transcripts</span></div>
+<div class="dg-stat"><strong>831</strong><span>on-demand videos</span></div>
+<div class="dg-stat"><strong>727</strong><span>transcripts</span></div>
 <div class="dg-stat"><strong>1<small>/0</small></strong><span>notes / done</span></div>
 </div>
 <!-- /gen:stats -->
@@ -69,7 +69,7 @@ hide:
 <a class="dg-topic-card" href="catalog/?topic=Agent%20Platform"><strong>Agent Platform</strong><span class="dg-topic-count">136<small> sessions</small></span><span class="dg-topic-meta">▶ 118 · 📝 노트 1</span></a>
 <a class="dg-topic-card" href="catalog/?topic=Security"><strong>Security</strong><span class="dg-topic-count">116<small> sessions</small></span><span class="dg-topic-meta">▶ 100 · 📝 노트 1</span></a>
 <a class="dg-topic-card" href="catalog/?topic=Copilot"><strong>Copilot</strong><span class="dg-topic-count">92<small> sessions</small></span><span class="dg-topic-meta">▶ 81 · 📝 노트 1</span></a>
-<a class="dg-topic-card" href="catalog/?topic=Agentic%20Business%20Applications"><strong>Agentic Business Applications</strong><span class="dg-topic-count">87<small> sessions</small></span><span class="dg-topic-meta">▶ 79 · 📝 노트 0</span></a>
+<a class="dg-topic-card" href="catalog/?topic=Agentic%20Business%20Applications"><strong>Agentic Business Applications</strong><span class="dg-topic-count">87<small> sessions</small></span><span class="dg-topic-meta">▶ 80 · 📝 노트 0</span></a>
 <a class="dg-topic-card" href="catalog/?topic=Data"><strong>Data</strong><span class="dg-topic-count">75<small> sessions</small></span><span class="dg-topic-meta">▶ 67 · 📝 노트 0</span></a>
 <a class="dg-topic-card" href="catalog/?topic=Frontier%20Transformation"><strong>Frontier Transformation</strong><span class="dg-topic-count">71<small> sessions</small></span><span class="dg-topic-meta">▶ 65 · 📝 노트 1</span></a>
 <a class="dg-topic-card" href="catalog/?topic=Windows"><strong>Windows</strong><span class="dg-topic-count">56<small> sessions</small></span><span class="dg-topic-meta">▶ 47 · 📝 노트 0</span></a>
