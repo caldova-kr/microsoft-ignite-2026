@@ -30,9 +30,13 @@
   function token() { var a = auth(); return (a && a.access) || ""; }
   function saveAuth(a) { set("sessionStorage", K.auth, JSON.stringify(a)); }
 
+  // Every way of dropping the sign-in also drops the conversation: the next account must not see it
+  // or send it to its Copilot.
   function forget() {
     del("sessionStorage", K.auth);
     del("sessionStorage", K.profile);
+    del("sessionStorage", K.history);
+    history = [];
   }
 
   // The relay URL comes from agent.json, written at deploy time from the repository variable
@@ -50,7 +54,14 @@
     if (!a) return Promise.reject(new A.ChatError("auth", "다시 로그인해 주세요."));
     if (!a.expiresAt || Date.now() < a.expiresAt - 5 * 60 * 1000) return Promise.resolve(a.access);
     return relay().then(function (r) { return A.refreshLogin(fetch.bind(window), a, r); })
-      .then(function (n) { saveAuth(n); return n.access; });
+      .then(function (n) {
+        // Signed out or signed in again while refreshing: don't bring the old account back.
+        var now = auth();
+        if (!now) throw new A.ChatError("auth", "다시 로그인해 주세요.");
+        if (now.access !== a.access) return now.access;
+        saveAuth(n);
+        return n.access;
+      });
   }
 
   var history = getJson("sessionStorage", K.history, []);
@@ -246,9 +257,6 @@
     stop();
     forget();
     profile = null;
-    // The next account must not see (or send to its Copilot) this account's conversation.
-    history = [];
-    saveHistory();
     renderHistory();
     render();
   }
