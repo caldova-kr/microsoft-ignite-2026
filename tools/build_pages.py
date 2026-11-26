@@ -330,6 +330,32 @@ def tldr(body: str) -> str:
 _ADMONITION = re.compile(r'^(?:!!!|\?\?\?\+?)\s+([\w-]+)(?:\s+"([^"]*)")?\s*$')
 
 
+_MD_LINK = re.compile(r"\]\(([^)\s]+)\)")  # links and images
+
+
+def absolute_links(body: str, path: Path, site: str) -> str:
+    """Point fragment and relative links at the deployed page, so they still work once the text leaves the site."""
+    base = page_url(site, path)
+
+    def fix(m: re.Match) -> str:
+        target = m.group(1)
+        if re.match(r"[a-z][a-z0-9+.-]*:|/", target, re.I):
+            return m.group(0)
+        if target.startswith("#"):
+            return f"]({base}{target})"
+        ref, _, frag = target.partition("#")
+        dest = (path.parent / ref).resolve()
+        try:
+            rel = dest.relative_to(DOCS_DIR.resolve()).as_posix()
+        except ValueError:
+            return m.group(0)
+        if rel.endswith(".md"):
+            rel = rel[: -len("index.md")] if rel.endswith("index.md") else rel[:-3] + "/"
+        return f"]({site}{rel}{'#' + frag if frag else ''})"
+
+    return _MD_LINK.sub(fix, body)
+
+
 def llm_text(body: str) -> str:
     """Note markdown → plain markdown for language models: no comments, figures, attr lists or admonition syntax."""
     body = re.sub(r"<!--.*?-->", "", body, flags=re.S)
@@ -415,11 +441,11 @@ def llms_full_txt(sessions: list[dict], meta: dict) -> str:
             f"- URL: {page_url(site, s['note_path'])}",
             f"- Session: {s['code']} · {s['type']} · {', '.join(s['speakers'])} · {s['url']}",
             f"- Status: {fm.get('status', '')} · Sources: {', '.join(fm.get('source_basis') or [])} · Updated: {fm.get('last_updated', '')}",
-            "", llm_text(body),
+            "", llm_text(absolute_links(body, s["note_path"], site)),
         ]
     for p in themes:
         _, body = parse_note(p)
-        parts += ["---", "", f"# {page_title(p)}", "", f"- URL: {page_url(site, p)}", "", llm_text(body)]
+        parts += ["---", "", f"# {page_title(p)}", "", f"- URL: {page_url(site, p)}", "", llm_text(absolute_links(body, p, site))]
     return "\n".join(parts).rstrip() + "\n"
 
 

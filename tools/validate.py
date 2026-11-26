@@ -20,7 +20,7 @@ CATALOG_FIELDS = {  # frontmatter key -> catalog key; must match the catalog exa
     "title": "title", "session_type": "type", "topics": "topics", "catalog_tags": "tags",
     "level": "level", "speakers": "speakers", "session_url": "url", "video_url": "video",
 }
-REQUIRED_KEYS = ["session_code", *CATALOG_FIELDS, "source_basis", "description", "tags", "status", "last_updated"]
+REQUIRED_KEYS = ["session_code", *CATALOG_FIELDS, "source_basis", "tags", "status", "last_updated"]  # description: review/done only
 DESCRIPTION_MAX = 160  # search-result snippet length
 SOURCE_BASIS = {"catalog", "video", "transcript", "slides", "resources"}
 PRIMARY_BASIS = {"video", "transcript", "slides"}

@@ -61,7 +61,7 @@ def note(tmp_path, title="Real title", status="draft", basis="[catalog]", extra_
         session_url: https://ignite.microsoft.com/en-US/sessions/BRK1
         video_url: ""
         source_basis: {basis}
-        description: "{description}"
+        @@DESC@@
         tags: []
         status: {status}
         last_updated: 2026-11-20
@@ -80,7 +80,7 @@ def note(tmp_path, title="Real title", status="draft", basis="[catalog]", extra_
         ## Resources
 
         - 🎥 Session: https://ignite.microsoft.com/en-US/sessions/BRK1
-        """).replace("@@EXTRA@@", extra_body), encoding="utf-8")
+        """).replace("@@EXTRA@@", extra_body).replace("@@DESC@@", "" if description is None else f'description: "{description}"'), encoding="utf-8")
     return p
 
 
@@ -266,5 +266,21 @@ def test_review_notes_need_a_short_description(tmp_path):
     assert len(errors) == 1 and "description" in errors[0]
     errors, _ = check_note(note(tmp_path, description=""), CATALOG)
     assert errors == []
+    errors, _ = check_note(note(tmp_path, description=None), CATALOG)
+    assert errors == []
     errors, warnings = check_note(note(tmp_path, description="가" * 200), CATALOG)
     assert errors == [] and any("160" in w for w in warnings)
+
+
+def test_exported_note_links_point_at_the_deployed_pages():
+    from build_pages import DOCS_DIR, absolute_links
+
+    site = "https://example.github.io/notes/"
+    path = DOCS_DIR / "sessions" / "KEY01-x.md"
+    body = "[사례](#case-a) · [다른 노트](BRK1-y.md#ga) · [홈](../index.md) · [외부](https://ignite.microsoft.com) · ![img](KEY01-x/a.jpg)"
+    out = absolute_links(body, path, site)
+    assert "[사례](https://example.github.io/notes/sessions/KEY01-x/#case-a)" in out
+    assert "[다른 노트](https://example.github.io/notes/sessions/BRK1-y/#ga)" in out
+    assert "[홈](https://example.github.io/notes/)" in out
+    assert "[외부](https://ignite.microsoft.com)" in out
+    assert "![img](https://example.github.io/notes/sessions/KEY01-x/a.jpg)" in out

@@ -246,6 +246,10 @@
     stop();
     forget();
     profile = null;
+    // The next account must not see (or send to its Copilot) this account's conversation.
+    history = [];
+    saveHistory();
+    renderHistory();
     render();
   }
 
@@ -514,7 +518,9 @@
         extraTools: S ? S.forChat(function (url) { pendingNav = url; }) : null,
         onInteract: function (ev) {
           return new Promise(function (resolve, reject) {
-            if (ev.signal) ev.signal.addEventListener("abort", function () { reject(new DOMException("중지됨", "AbortError")); }, { once: true });
+            var stopped = function () { reject(new DOMException("중지됨", "AbortError")); };
+            if (ev.signal && ev.signal.aborted) return stopped();
+            if (ev.signal) ev.signal.addEventListener("abort", stopped, { once: true });
             turn.ask(ev, resolve);
             scroll();
           });
