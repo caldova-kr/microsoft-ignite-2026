@@ -291,6 +291,7 @@ def mkdocs_nav(sessions: list[dict], text: str) -> str:
     # Pages about the site itself (not Ignite content) live under one menu. Themes stay reachable by link only.
     lines += [
         "  - 사이트 안내:",
+        "      - 사이트 기술: site.md",
         "      - Agent 구조: agent.md",
         "      - 기여하기: contributing.md",
         "# /gen:nav",
