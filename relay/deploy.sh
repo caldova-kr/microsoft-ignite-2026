@@ -1,24 +1,25 @@
 #!/usr/bin/env bash
 # Deploy the GitHub device-flow relay to Azure Functions (Flex Consumption, Node 22).
-# Storage is reached only over private endpoints with a user-assigned identity, because
-# subscription policy disables public network access and shared keys on storage accounts.
+# Storage is reached only over private endpoints with a user-assigned identity, so it also works
+# where policy disables public network access and shared keys on storage accounts.
 #
-#   RG=<resource group> LOC=<region> SUFFIX=<suffix> ./relay/deploy.sh   # first time: creates everything
-#   GITHUB_CLIENT_ID=<app client id> ./relay/deploy.sh                            # set/rotate the client id, redeploy code
+#   RG=<resource group> LOC=<region> NAME=<short name> ./relay/deploy.sh                       # first time: creates everything
+#   RG=... LOC=... NAME=... GITHUB_CLIENT_ID=<app client id> ./relay/deploy.sh               # set/rotate the client id, redeploy code
+# The relay URL is printed at the end; set it as the repository variable AGENT_RELAY_URL.
 set -euo pipefail
 
-RG=${RG:-<resource group>}
-LOC=${LOC:-<region>}
-SUFFIX=${SUFFIX:-<suffix>}
-ST=st<name>$SUFFIX
-FN=func-<name>-$SUFFIX
-VNET=vnet-<name>
-ID=id-<name>
+: "${RG:?set RG (resource group)}" "${LOC:?set LOC (Azure region)}" "${NAME:?set NAME (short lowercase name)}"
+# Stable per subscription + resource group, so reruns find the same resources.
+SUFFIX=${SUFFIX:-$(printf %s "$(az account show --query id -o tsv)/$RG" | shasum | cut -c1-6)}
+ST=st${NAME//-/}$SUFFIX
+FN=func-$NAME-$SUFFIX
+VNET=vnet-$NAME
+ID=id-$NAME
 ORIGINS=${ALLOWED_ORIGINS:-https://caldova-kr.github.io,http://127.0.0.1:8000}
 HERE=$(cd "$(dirname "$0")" && pwd)
 
 if ! az functionapp show -n "$FN" -g "$RG" -o none 2>/dev/null; then
-  az group create -n "$RG" -l "$LOC" --tags purpose=ignite-notes-auth-relay -o none
+  az group create -n "$RG" -l "$LOC" --tags purpose=site-agent-auth-relay -o none
   az storage account create -n "$ST" -g "$RG" -l "$LOC" --sku Standard_LRS --min-tls-version TLS1_2 --allow-blob-public-access false -o none
   az network vnet create -g "$RG" -n "$VNET" -l "$LOC" --address-prefixes 10.20.0.0/16 --subnet-name func --subnet-prefixes 10.20.1.0/24 -o none
   az network vnet subnet update -g "$RG" --vnet-name "$VNET" -n func --delegations Microsoft.App/environments -o none

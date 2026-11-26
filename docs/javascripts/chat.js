@@ -35,12 +35,22 @@
     del("sessionStorage", K.profile);
   }
 
+  // The relay URL comes from agent.json, written at deploy time from the repository variable
+  // AGENT_RELAY_URL (not committed). Without it, sign-in reports that login isn't set up.
+  var relayReq = null;
+  function relay() {
+    relayReq = relayReq || fetch(SITE_ROOT + "agent.json").then(function (r) { return r.ok ? r.json() : {}; })
+      .then(function (c) { return (c && c.relay) || ""; }, function () { return ""; });
+    return relayReq;
+  }
+
   // GitHub App tokens expire (8h); refresh a few minutes early through the relay.
   function freshToken() {
     var a = auth();
     if (!a) return Promise.reject(new A.ChatError("auth", "다시 로그인해 주세요."));
     if (!a.expiresAt || Date.now() < a.expiresAt - 5 * 60 * 1000) return Promise.resolve(a.access);
-    return A.refreshLogin(fetch.bind(window), a).then(function (n) { saveAuth(n); return n.access; });
+    return relay().then(function (r) { return A.refreshLogin(fetch.bind(window), a, r); })
+      .then(function (n) { saveAuth(n); return n.access; });
   }
 
   var history = getJson("sessionStorage", K.history, []);
@@ -174,7 +184,8 @@
     login = new AbortController();
     var signal = login.signal;
     setupBox([el("p", { class: "icn-chat__status", text: "GitHub 로그인 코드를 받는 중…" })]);
-    A.startDeviceLogin(fetch.bind(window)).then(function (d) {
+    var relayUrl = "";
+    relay().then(function (r) { relayUrl = r; return A.startDeviceLogin(fetch.bind(window), r); }).then(function (d) {
       var copied = el("span", { class: "icn-chat__fine", text: "" });
       function copy() {
         if (navigator.clipboard) navigator.clipboard.writeText(d.userCode).then(function () { copied.textContent = " 복사됨"; }, function () {});
@@ -190,7 +201,7 @@
         el("p", { class: "icn-chat__status icn-chat__waiting", text: "승인을 기다리는 중…" }),
         el("button", { type: "button", class: "icn-chat__link", text: "취소", onclick: function () { renderSetup(); } })
       ]);
-      return A.pollDeviceLogin(fetch.bind(window), d, { signal: signal });
+      return A.pollDeviceLogin(fetch.bind(window), d, { relay: relayUrl, signal: signal });
     }).then(function (a) {
       login = null;
       saveAuth(a);

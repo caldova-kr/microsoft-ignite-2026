@@ -134,6 +134,8 @@ test("renderMarkdown escapes HTML and only allows safe links", () => {
   assert.match(html, /<a href="https:\/\/ignite\.microsoft\.com\/a\?b=1&amp;c=2" target="_blank" rel="noopener">/);
 });
 
+const RELAY = "https://relay.test/api/github";
+
 test("device-flow login polls the relay until approval, honouring slow_down", async () => {
   const replies = [
     { device_code: "dev", user_code: "ABCD-1234", verification_uri: "https://github.com/login/device", interval: 5, expires_in: 900 },
@@ -141,11 +143,11 @@ test("device-flow login polls the relay until approval, honouring slow_down", as
     { access_token: "ghu_x", refresh_token: "ghr_y", expires_in: 28800 }
   ];
   const calls = [];
-  const fetchImpl = async (url, init) => { calls.push([url.replace(A.AUTH_RELAY, ""), JSON.parse(init.body)]); return { ok: true, status: 200, json: async () => replies.shift() }; };
-  const d = await A.startDeviceLogin(fetchImpl);
+  const fetchImpl = async (url, init) => { calls.push([url.replace(RELAY, ""), JSON.parse(init.body)]); return { ok: true, status: 200, json: async () => replies.shift() }; };
+  const d = await A.startDeviceLogin(fetchImpl, RELAY);
   assert.equal(d.userCode, "ABCD-1234");
   const sleeps = [];
-  const t = await A.pollDeviceLogin(fetchImpl, d, { sleep: async (ms) => { sleeps.push(ms); }, now: () => 1000 });
+  const t = await A.pollDeviceLogin(fetchImpl, d, { relay: RELAY, sleep: async (ms) => { sleeps.push(ms); }, now: () => 1000 });
   assert.deepEqual(t, { access: "ghu_x", refresh: "ghr_y", expiresAt: 1000 + 28800 * 1000 });
   assert.deepEqual(sleeps, [5000, 5000, 10000]);
   assert.deepEqual(calls.map((c) => c[0]), ["/device/code", "/token", "/token", "/token"]);
@@ -155,9 +157,10 @@ test("device-flow login polls the relay until approval, honouring slow_down", as
 test("device-flow errors and refresh go through the relay", async () => {
   const one = (reply, status = 200) => async () => ({ ok: status < 400, status, json: async () => reply });
   const d = { deviceCode: "dev", interval: 1, expiresIn: 900 };
-  await assert.rejects(A.pollDeviceLogin(one({ error: "access_denied" }), d, { sleep: async () => {} }), (e) => e.kind === "denied");
-  await assert.rejects(A.startDeviceLogin(one({ error: "relay_not_configured" }, 503)), (e) => e.kind === "relay");
-  const n = await A.refreshLogin(one({ access_token: "ghu_new", expires_in: 60 }), { refresh: "ghr_y" }, undefined, () => 0);
+  await assert.rejects(A.pollDeviceLogin(one({ error: "access_denied" }), d, { relay: RELAY, sleep: async () => {} }), (e) => e.kind === "denied");
+  await assert.rejects(A.startDeviceLogin(one({ error: "relay_not_configured" }, 503), RELAY), (e) => e.kind === "relay");
+  await assert.rejects(A.startDeviceLogin(one({})), (e) => e.kind === "relay");
+  const n = await A.refreshLogin(one({ access_token: "ghu_new", expires_in: 60 }), { refresh: "ghr_y" }, RELAY, () => 0);
   assert.deepEqual(n, { access: "ghu_new", refresh: "", expiresAt: 60000 });
   await assert.rejects(A.refreshLogin(one({}), { refresh: "" }), (e) => e.kind === "auth");
 });

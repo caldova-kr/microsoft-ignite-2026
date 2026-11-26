@@ -13,8 +13,8 @@
   var MAX_TOOL_ROUNDS = 5;
   var NOTE_CHAR_LIMIT = 24000;
 
-  // Stateless CORS relay for GitHub's device-flow endpoints (relay/ in this repo, Azure Functions).
-  var AUTH_RELAY = "https://<relay>/api/github";
+  // Stateless CORS relay for GitHub's device-flow endpoints (relay/ in this repo). Its URL is not in the
+  // repository: the deploy workflow writes it to agent.json, and chat.js passes it in.
 
   function ChatError(kind, message, status) {
     this.name = "ChatError";
@@ -464,6 +464,7 @@
   // ---------- GitHub sign-in: device flow through the relay (no secrets, no pasted tokens) ----------
 
   async function relayPost(fetchImpl, relay, path, body, signal) {
+    if (!relay) throw new ChatError("relay", "GitHub 로그인이 아직 설정되지 않았습니다.");
     var res;
     try {
       res = await fetchImpl(relay + "/" + path, {
@@ -481,7 +482,7 @@
   }
 
   async function startDeviceLogin(fetchImpl, relay) {
-    var d = await relayPost(fetchImpl, relay || AUTH_RELAY, "device/code", {});
+    var d = await relayPost(fetchImpl, relay, "device/code", {});
     if (d.error || !d.device_code) throw new ChatError("auth", "GitHub 로그인을 시작하지 못했습니다 (" + (d.error || "no code") + ").");
     return { deviceCode: d.device_code, userCode: d.user_code, uri: d.verification_uri, interval: d.interval || 5, expiresIn: d.expires_in || 900 };
   }
@@ -510,7 +511,7 @@
     for (;;) {
       await sleep(interval * 1000, opts.signal);
       if ((opts.now || Date.now)() > deadline) throw new ChatError("expired", "로그인 코드가 만료됐습니다. 다시 시도해 주세요.");
-      var d = await relayPost(fetchImpl, opts.relay || AUTH_RELAY, "token", { device_code: login.deviceCode }, opts.signal);
+      var d = await relayPost(fetchImpl, opts.relay, "token", { device_code: login.deviceCode }, opts.signal);
       if (d.access_token) return tokenFrom(d, (opts.now || Date.now)());
       if (d.error === "authorization_pending") continue;
       if (d.error === "slow_down") { interval = (d.interval || interval + 5); continue; }
@@ -522,7 +523,7 @@
 
   async function refreshLogin(fetchImpl, token, relay, now) {
     if (!token || !token.refresh) throw new ChatError("auth", "다시 로그인해 주세요.");
-    var d = await relayPost(fetchImpl, relay || AUTH_RELAY, "token", { refresh_token: token.refresh });
+    var d = await relayPost(fetchImpl, relay, "token", { refresh_token: token.refresh });
     if (!d.access_token) throw new ChatError("auth", "로그인이 만료됐습니다. 다시 로그인해 주세요.");
     return tokenFrom(d, (now || Date.now)());
   }
@@ -787,7 +788,6 @@
   }
 
   return {
-    AUTH_RELAY: AUTH_RELAY,
     startDeviceLogin: startDeviceLogin,
     pollDeviceLogin: pollDeviceLogin,
     refreshLogin: refreshLogin,
