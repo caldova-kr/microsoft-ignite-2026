@@ -125,12 +125,13 @@ test("listModels keeps only picker-enabled chat models with tool calls on /chat/
 });
 
 test("renderMarkdown escapes HTML and only allows safe links", () => {
-  const html = A.renderMarkdown("<img src=x onerror=alert(1)> **굵게** `code`\n- [노트](sessions/KEY01-keynote/)\n- [x](javascript:alert(1))\n- https://ignite.microsoft.com/a?b=1&c=2", ROOT);
+  const html = A.renderMarkdown("<img src=x onerror=alert(1)> **굵게** `code`\n- [노트](sessions/KEY01-keynote/)\n- [x](javascript:alert(1))\n- [y](/\\evil.example)\n- https://ignite.microsoft.com/a?b=1&c=2", ROOT);
   assert.ok(!html.includes("<img"));
   assert.match(html, /&lt;img/);
   assert.match(html, /<strong>굵게<\/strong> <code>code<\/code>/);
   assert.match(html, new RegExp('<a href="' + ROOT + 'sessions/KEY01-keynote/">노트</a>'));
   assert.ok(!/href="javascript/i.test(html));
+  assert.ok(!/evil\.example/.test(html.match(/href="[^"]*"/g).join(" ")));
   assert.match(html, /<a href="https:\/\/ignite\.microsoft\.com\/a\?b=1&amp;c=2" target="_blank" rel="noopener">/);
 });
 

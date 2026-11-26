@@ -484,7 +484,9 @@
   async function startDeviceLogin(fetchImpl, relay) {
     var d = await relayPost(fetchImpl, relay, "device/code", {});
     if (d.error || !d.device_code) throw new ChatError("auth", "GitHub 로그인을 시작하지 못했습니다 (" + (d.error || "no code") + ").");
-    return { deviceCode: d.device_code, userCode: d.user_code, uri: d.verification_uri, interval: d.interval || 5, expiresIn: d.expires_in || 900 };
+    // The approval link is shown as a button: only ever send people to github.com.
+    var uri = /^https:\/\/github\.com\//.test(d.verification_uri || "") ? d.verification_uri : "https://github.com/login/device";
+    return { deviceCode: d.device_code, userCode: d.user_code, uri: uri, interval: d.interval || 5, expiresIn: d.expires_in || 900 };
   }
 
   function tokenFrom(d, now) {
@@ -708,7 +710,8 @@
   function safeHref(url, siteRoot) {
     var u = url.replace(/&amp;/g, "&");
     if (/^https?:\/\//i.test(u)) return { href: u, external: !siteRoot || u.indexOf(siteRoot) !== 0 };
-    if (/^[a-z][a-z0-9+.-]*:/i.test(u) || /^\/\//.test(u)) return null;
+    // Browsers treat "/\host" like "//host"; neither is a site-relative link.
+    if (/^[a-z][a-z0-9+.-]*:/i.test(u) || /^[\/\\]{2}/.test(u)) return null;
     // Bare note paths like "sessions/KEY01-…/" are relative to the site root, not the current page.
     if (siteRoot && !/^[/#?]/.test(u)) u = siteRoot + u.replace(/^\.\//, "");
     return { href: u, external: false };

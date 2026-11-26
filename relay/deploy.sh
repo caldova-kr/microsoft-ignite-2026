@@ -15,12 +15,16 @@ ST=st${NAME//-/}$SUFFIX
 FN=func-$NAME-$SUFFIX
 VNET=vnet-$NAME
 ID=id-$NAME
-ORIGINS=${ALLOWED_ORIGINS:-https://caldova-kr.github.io,http://127.0.0.1:8000}
+# Production origin only; for local testing pass e.g. ALLOWED_ORIGINS=https://caldova-kr.github.io,http://127.0.0.1:8000
+ORIGINS=${ALLOWED_ORIGINS:-https://caldova-kr.github.io}
+# Login traffic is tiny (about 10 concurrent visitors); a low ceiling also caps cost under abuse.
+MAX_INSTANCES=${MAX_INSTANCES:-2}
 HERE=$(cd "$(dirname "$0")" && pwd)
 
 if ! az functionapp show -n "$FN" -g "$RG" -o none 2>/dev/null; then
   az group create -n "$RG" -l "$LOC" --tags purpose=site-agent-auth-relay -o none
-  az storage account create -n "$ST" -g "$RG" -l "$LOC" --sku Standard_LRS --min-tls-version TLS1_2 --allow-blob-public-access false -o none
+  az storage account create -n "$ST" -g "$RG" -l "$LOC" --sku Standard_LRS --min-tls-version TLS1_2 --allow-blob-public-access false \
+    --public-network-access Disabled --allow-shared-key-access false -o none
   az network vnet create -g "$RG" -n "$VNET" -l "$LOC" --address-prefixes 10.20.0.0/16 --subnet-name func --subnet-prefixes 10.20.1.0/24 -o none
   az network vnet subnet update -g "$RG" --vnet-name "$VNET" -n func --delegations Microsoft.App/environments -o none
   az network vnet subnet create -g "$RG" --vnet-name "$VNET" -n pe --address-prefixes 10.20.2.0/24 -o none
@@ -41,19 +45,29 @@ if ! az functionapp show -n "$FN" -g "$RG" -o none 2>/dev/null; then
   UID_=$(az identity show -g "$RG" -n "$ID" --query id -o tsv)
   az functionapp create -n "$FN" -g "$RG" --storage-account "$ST" --flexconsumption-location "$LOC" --runtime node --runtime-version 22 \
     --vnet "$VNET" --subnet func --assign-identity "$UID_" \
-    --deployment-storage-auth-type UserAssignedIdentity --deployment-storage-auth-value "$UID_" --disable-app-insights -o none
+    --deployment-storage-auth-type UserAssignedIdentity --deployment-storage-auth-value "$UID_" --disable-app-insights \
+    --https-only true -o none
   CID=$(az identity show -g "$RG" -n "$ID" --query clientId -o tsv)
   az functionapp config appsettings delete -n "$FN" -g "$RG" --setting-names AzureWebJobsStorage -o none
   az functionapp config appsettings set -n "$FN" -g "$RG" -o none --settings \
     "AzureWebJobsStorage__accountName=$ST" AzureWebJobsStorage__credential=managedidentity "AzureWebJobsStorage__clientId=$CID"
 fi
 
+# Hardening, applied on every run so existing apps converge too.
+az functionapp update -n "$FN" -g "$RG" --set httpsOnly=true -o none
+az functionapp config set -n "$FN" -g "$RG" --min-tls-version 1.2 --ftps-state Disabled --remote-debugging-enabled false -o none
+for p in ftp scm; do
+  az resource update -g "$RG" -n "$FN/basicPublishingCredentialsPolicies/$p" --resource-type Microsoft.Web/sites/basicPublishingCredentialsPolicies \
+    --api-version 2023-12-01 --set properties.allow=false -o none
+done
+az functionapp scale config set -n "$FN" -g "$RG" --maximum-instance-count "$MAX_INSTANCES" -o none
+
 az functionapp config appsettings set -n "$FN" -g "$RG" -o none --settings "ALLOWED_ORIGINS=$ORIGINS" ${GITHUB_CLIENT_ID:+"GITHUB_CLIENT_ID=$GITHUB_CLIENT_ID"}
 # The platform answers CORS preflight; the function itself still rejects other origins.
 az functionapp cors remove -n "$FN" -g "$RG" --allowed-origins -o none 2>/dev/null || true
 az functionapp cors add -n "$FN" -g "$RG" --allowed-origins ${ORIGINS//,/ } -o none
 
-(cd "$HERE" && npm install --omit=dev --silent)
+(cd "$HERE" && npm ci --omit=dev --silent)
 ZIP=$(mktemp -d)/relay.zip
 (cd "$HERE" && zip -qr "$ZIP" host.json package.json src node_modules)
 az functionapp deployment source config-zip -g "$RG" -n "$FN" --src "$ZIP" -o none

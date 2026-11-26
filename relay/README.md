@@ -6,6 +6,8 @@
 - **저장·로그 없음** — 요청·응답 본문을 기록하지 않고(Application Insights 미사용), 아무것도 저장하지 않습니다. 토큰은 HTTPS 로 한 번 지나갈 뿐입니다.
 - **좁은 표면** — `POST /api/github/device/code`, `POST /api/github/token`(grant 는 `device_code`·`refresh_token` 만) 두 개. 허용 origin(`ALLOWED_ORIGINS`) 밖은 403, client id 는 요청이 아니라 설정에서만 가져옵니다.
 - 토큰은 브라우저 `sessionStorage` 에만 둡니다(탭을 닫으면 사라짐). GitHub App 토큰은 8시간 만료이고 refresh 도 이 중계로 합니다.
+- **하드닝** — HTTPS Only, TLS 1.2, FTP · SCM 기본 인증 끔, 최대 인스턴스 2(동시 접속 10명 안팎 기준, 남용 시 비용 상한), GitHub 호출 10초 timeout · redirect 거부, 본문 4KB 초과는 413. `deploy.sh` 가 실행할 때마다 다시 맞춥니다.
+- **남는 위험** — refresh token(약 6개월)도 탭의 `sessionStorage` 에 있어, 사이트에 XSS 가 생기면 함께 노출됩니다. Agent 화면은 모델 출력을 이스케이프하고 링크 스킴을 제한하지만, CSP 는 테마 override 없이 넣을 수 없어 쓰지 않습니다.
 
 ## 구성
 
@@ -36,5 +38,10 @@
    ```
 
    로컬에서는 `docs/agent.json`(git 무시)에 `{"relay": "<중계 주소>"}` 를 두면 됩니다. 이 파일이 없으면 Agent 가 "GitHub 로그인이 아직 설정되지 않았습니다" 라고 안내합니다.
+   운영 중계는 사이트 origin 만 허용하므로, 로컬에서 로그인까지 시험할 때만 잠시 로컬 origin 을 더했다가 되돌립니다.
+
+   ```bash
+   RG=... LOC=... NAME=... ALLOWED_ORIGINS=https://caldova-kr.github.io,http://127.0.0.1:8000 ./relay/deploy.sh
+   ```
 
 테스트: `node --test "tests/*.test.mjs"` (`tests/relay.test.mjs`).

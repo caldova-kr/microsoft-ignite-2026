@@ -5,6 +5,8 @@
 
 const GITHUB = "https://github.com";
 const DEVICE_GRANT = "urn:ietf:params:oauth:grant-type:device_code";
+const MAX_BODY = 4096;
+const UPSTREAM_TIMEOUT_MS = 10000;
 
 function config(env) {
   return {
@@ -61,6 +63,7 @@ async function handle(req, env, fetchImpl) {
   if (!cfg.clientId) return reply(503, { error: "relay_not_configured" }, cors);
   const route = ROUTES[req.route];
   if (!route) return reply(404, { error: "not_found" }, cors);
+  if (req.tooLarge) return reply(413, { error: "payload_too_large" }, cors);
 
   const input = req.body && typeof req.body === "object" ? req.body : {};
   const form = route.form(cfg, input);
@@ -72,16 +75,20 @@ async function handle(req, env, fetchImpl) {
     upstream = await fetchImpl(route.url, {
       method: "POST",
       headers: { Accept: "application/json", "Content-Type": "application/x-www-form-urlencoded", "User-Agent": "ignite-notes-auth-relay" },
-      body: new URLSearchParams(form).toString()
+      body: new URLSearchParams(form).toString(),
+      // GitHub answers directly; never re-send a device code or refresh token elsewhere, and don't hang.
+      redirect: "error",
+      signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS)
     });
   } catch (e) {
     return reply(502, { error: "github_unreachable" }, cors);
   }
   let data = {};
-  try { data = await upstream.json(); } catch (e) { data = { error: "bad_upstream_response" }; }
+  try { data = (await upstream.json()) || {}; } catch (e) { data = { error: "bad_upstream_response" }; }
+  if (typeof data !== "object") data = { error: "bad_upstream_response" };
   const out = {};
   route.pick.forEach((k) => { if (data[k] !== undefined) out[k] = data[k]; });
   return reply(upstream.ok ? 200 : upstream.status, out, cors);
 }
 
-module.exports = { handle, config, corsHeaders };
+module.exports = { handle, config, corsHeaders, MAX_BODY };

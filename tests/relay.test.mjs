@@ -48,3 +48,16 @@ test("unknown routes and a missing client id are refused", async () => {
   const off = await handle({ method: "POST", origin: ORIGIN, route: "token", body: { device_code: "d" } }, { ALLOWED_ORIGINS: ORIGIN }, null);
   assert.equal(off.status, 503);
 });
+
+test("upstream calls never follow redirects or hang, oversized and null bodies are handled", async () => {
+  const seen = [];
+  const gh = async (url, init) => { seen.push(init); return { ok: true, status: 200, json: async () => null }; };
+  const r = await handle({ method: "POST", origin: ORIGIN, route: "device/code", body: {} }, ENV, gh);
+  assert.equal(r.status, 200);
+  assert.deepEqual(JSON.parse(r.body), {});
+  assert.equal(seen[0].redirect, "error");
+  assert.ok(seen[0].signal instanceof AbortSignal);
+  const big = await handle({ method: "POST", origin: ORIGIN, route: "token", body: {}, tooLarge: true }, ENV, gh);
+  assert.equal(big.status, 413);
+  assert.equal(big.headers["Access-Control-Allow-Origin"], ORIGIN);
+});

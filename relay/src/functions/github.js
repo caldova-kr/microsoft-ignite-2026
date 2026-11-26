@@ -1,6 +1,6 @@
 "use strict";
 const { app } = require("@azure/functions");
-const { handle } = require("../relay");
+const { handle, MAX_BODY } = require("../relay");
 
 for (const route of ["device/code", "token"]) {
   app.http("github-" + route.replace("/", "-"), {
@@ -9,12 +9,13 @@ for (const route of ["device/code", "token"]) {
     authLevel: "anonymous",
     handler: async (request) => {
       let body = {};
-      if (request.method === "POST") {
+      let tooLarge = Number(request.headers.get("content-length") || 0) > MAX_BODY;
+      if (request.method === "POST" && !tooLarge) {
         const text = await request.text();
-        if (text.length > 4096) body = null;
+        if (text.length > MAX_BODY) tooLarge = true;
         else { try { body = text ? JSON.parse(text) : {}; } catch (e) { body = {}; } }
       }
-      return handle({ method: request.method, origin: request.headers.get("origin"), route, body: body || {} }, process.env, fetch);
+      return handle({ method: request.method, origin: request.headers.get("origin"), route, body: body || {}, tooLarge }, process.env, fetch);
     }
   });
 }
