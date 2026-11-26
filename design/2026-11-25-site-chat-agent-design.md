@@ -1,8 +1,8 @@
-# 설계 메모 — 사이트 내장 챗봇 (서버 없음 · 사용자 Copilot 크레딧) (2026-11-25)
+# 설계 메모 — 사이트 내장 Agent (서버 없음 · 사용자 Copilot 크레딧) (2026-11-25)
 
 ## 목표
 
-- 이 사이트가 제공하는 챗봇: 모든 페이지 우하단에서 열리는 패널로, **이 사이트에 정리된 노트·카탈로그만 근거로** 답한다.
+- 이 사이트가 제공하는 Agent: 모든 페이지 우하단에서 열리는 패널로, **이 사이트에 정리된 노트·카탈로그만 근거로** 답한다.
 - **서버 없음.** 정적 GitHub Pages 그대로, 로직은 전부 브라우저에서 돈다.
 - 모델 호출은 **사용자 본인의 GitHub Copilot** 으로 — 사용량은 그 사용자의 premium request 한도에서 차감되고, 사이트 운영자는 키·비용을 갖지 않는다.
 
@@ -99,7 +99,7 @@ PAT 붙여 넣기는 30일짜리 토큰을 사용자가 직접 다루게 해 위
 | `highlight_section(anchor)` | 현재 페이지 섹션으로 스크롤하고 잠시 강조 | 없음 |
 | `filter_catalog(text, type, topic, level, progress, media)` | 카탈로그 탐색기 폼에 값을 넣고 `change` 를 보내 실제 화면을 필터. 다른 페이지면 `catalog/?…` 로 이동 (기존 URL 상태 규약 재사용) | 이동 |
 
-1. **우리 챗봇**: `runAgent({ extraTools })` 로 들어가 kind `page` 도구 카드로 보인다. 이동은 아래 "레이아웃 유지(instant navigation)" 방식으로 **턴 도중에** 일어나고, 결과로 새 페이지 정보(제목·종류·목차)가 돌아와 에이전트가 이어서 강조·이동·필터를 할 수 있다.
+1. **우리 Agent**: `runAgent({ extraTools })` 로 들어가 kind `page` 도구 카드로 보인다. 이동은 아래 "레이아웃 유지(instant navigation)" 방식으로 **턴 도중에** 일어나고, 결과로 새 페이지 정보(제목·종류·목차)가 돌아와 에이전트가 이어서 강조·이동·필터를 할 수 있다.
 2. **WebMCP**: `document.modelContext.registerTool` 이 있으면(Chrome origin trial) 지식 도구 4개 + 페이지 도구 4개를 등록해, 브라우저 자체 에이전트가 우리 모델 호출 없이 사이트를 검색·탐색할 수 있다. 지식 도구는 `readOnlyHint: true`. 등록 실패는 무시(사이트 동작에 영향 없음).
 
 - 이동은 이 사이트 안으로만 허용한다(사이트 밖 URL·노트 없는 세션은 오류로 돌려 모델이 안내하게 함).
@@ -122,7 +122,7 @@ PAT 붙여 넣기는 30일짜리 토큰을 사용자가 직접 다루게 해 위
 ### UI
 
 - 홈 화면은 두 가지 보기 중 선택(오른쪽 위 스위치, 기본은 소개 화면, 선택은 탭 안 `sessionStorage` 에만 기억, `?view=chat|landing` 링크 지원):
-  - **📰 소개 화면** — 기존 랜딩 페이지 + 플로팅 챗봇.
+  - **📰 소개 화면** — 기존 랜딩 페이지 + 플로팅 Agent.
   - **💬 대화 화면** — ChatGPT 형: 랜딩 내용을 숨기고 가운데 정렬 대화. 빈 상태는 인사말·추천 질문·입력창이 화면 가운데, 대화가 시작되면 입력창이 아래에 고정.
   - 두 보기와 다른 페이지의 플로팅 패널은 같은 대화를 공유한다. `docs/index.md` 에는 빈 마운트(`#icn-chat-home`)만 있어 JS 가 없으면 기존 랜딩 그대로.
 - 다른 페이지: 플로팅 버튼 → 오른쪽 패널(모바일은 전체 화면). Material 팔레트 변수 사용, 라이트/다크 자동.
@@ -148,16 +148,16 @@ PAT 붙여 넣기는 30일짜리 토큰을 사용자가 직접 다루게 해 위
 
 ## GEO — AI 엔진·에이전트가 읽기 쉬운 사이트
 
-기본 원칙은 **"사이트를 탐색해서 답한다"** 다. 사람용 페이지와 같은 내용을 기계가 바로 읽을 수 있는 형태로도 내놓고, 챗봇·WebMCP·외부 AI 엔진이 모두 같은 입구에서 시작하게 한다.
+기본 원칙은 **"사이트를 탐색해서 답한다"** 다. 사람용 페이지와 같은 내용을 기계가 바로 읽을 수 있는 형태로도 내놓고, Agent·WebMCP·외부 AI 엔진이 모두 같은 입구에서 시작하게 한다.
 
 | 산출물 | 대상 | 내용 | 만드는 곳 |
 |---|---|---|---|
 | `llms.txt` | 외부 AI 엔진·에이전트 | 사이트 설명 · 인용 규칙(근거 원칙) · 노트 목록(노트의 `## TL;DR` 인용문을 요약으로) · 카탈로그(URL 필터 예시)·JSON 링크 | `build_pages.py` 생성물 (`--check` 대상) |
 | `llms-full.txt` | 〃 | 노트 전문 — URL·세션·상태·근거·갱신일 머리말 + 주석·figure·attr list·admonition 문법을 걷어낸 본문(이미지는 alt + 캡션 텍스트) | 〃 |
-| `get_site_overview` 도구 | 챗봇 · WebMCP | `llms.txt` 와 같은 개요를 지식에서 바로 반환 — 탐색의 시작점 | `chat-agent.js` |
+| `get_site_overview` 도구 | Agent · WebMCP | `llms.txt` 와 같은 개요를 지식에서 바로 반환 — 탐색의 시작점 | `chat-agent.js` |
 | 기존 자산 | 모두 | `sitemap.xml`(MkDocs), 섹션별 고정 앵커, 결론 먼저인 `TL;DR`, `catalog/sessions.json`, `search/search_index.json` | 이미 있음 |
 
-- 노트 frontmatter `description`(한 문장, 160자 이내, 본문 근거만, review/done 필수 — `validate.py`): Material 이 그대로 `<meta name="description">` 로 넣고(템플릿 override 불필요), `llms.txt` 노트 요약·`notes.json`(`ds`)·챗봇 `get_site_overview` 에도 쓰인다. 비어 있으면 `## TL;DR` 인용문으로 대신한다. 노트 템플릿·`new_session.py` 에 필드를 추가했다.
+- 노트 frontmatter `description`(한 문장, 160자 이내, 본문 근거만, review/done 필수 — `validate.py`): Material 이 그대로 `<meta name="description">` 로 넣고(템플릿 override 불필요), `llms.txt` 노트 요약·`notes.json`(`ds`)·Agent `get_site_overview` 에도 쓰인다. 비어 있으면 `## TL;DR` 인용문으로 대신한다. 노트 템플릿·`new_session.py` 에 필드를 추가했다.
 - `llms-full.txt` 의 각 노트는 `## TL;DR` 인용문부터 시작하므로, TL;DR 은 결론 먼저인 지금 형식을 유지한다.
 - 홈 하단에 `llms.txt`·`llms-full.txt` 링크를 둔다.
 - 하지 않은 것: JSON-LD·`<link rel="alternate">` 는 `<head>` 를 바꾸는 테마 override 가 필요해 보류(Zensical 이전 경로 유지). `robots.txt` 는 프로젝트 페이지(`/microsoft-ignite-2026/`)에서는 도메인 루트에 둘 수 없다.

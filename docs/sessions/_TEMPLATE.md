@@ -11,7 +11,7 @@ session_url: ""             # https://ignite.microsoft.com/en-US/sessions/<CODE>
 video_url: ""               # 카탈로그 onDemand (없으면 빈 값)
 # ── 작성자 필드 ──
 source_basis: []            # 실제로 확인한 근거만: catalog | video | transcript | slides | resources
-description: ""             # 한 문장 요약(160자 이내, 본문 근거만) — 검색 결과·meta description·llms.txt·챗봇 개요에 쓰임. review/done 필수
+description: ""             # 한 문장 요약(160자 이내, 본문 근거만) — 검색 결과·meta description·llms.txt·Agent 개요에 쓰임. review/done 필수
 tags: []                    # (선택) 우리 분류용, 소문자·하이픈
 status: draft               # draft | review | done
 last_updated: 2026-11-20

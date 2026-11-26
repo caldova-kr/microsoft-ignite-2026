@@ -289,7 +289,7 @@ def mkdocs_nav(sessions: list[dict], text: str) -> str:
             label = json.dumps(f"{s['code']} — {s['title']}", ensure_ascii=False)
             lines.append(f"          - {label}: sessions/{s['note_path'].name}")
     # Themes and contributing pages stay reachable by link but are kept out of the top menu.
-    lines += ["  - 챗봇 구조: chatbot/index.md", "# /gen:nav"]
+    lines += ["  - Agent 구조: agent/index.md", "# /gen:nav"]
     pattern = re.compile(r"# gen:nav.*?# /gen:nav", re.S)
     if not pattern.search(text):
         raise SystemExit("mkdocs.yml is missing the '# gen:nav' ... '# /gen:nav' block")

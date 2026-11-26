@@ -1,17 +1,17 @@
 ---
-title: 사이트 챗봇 구조
-description: GitHub 로그인 후 방문자 자신의 Copilot 으로, 이 사이트의 노트와 카탈로그만 근거로 답하는 챗봇의 구성 · 로그인 흐름 · 에이전트 루프 · 데이터 위치.
+title: 사이트 Agent 구조
+description: GitHub 로그인 후 방문자 자신의 Copilot 으로, 이 사이트의 노트와 카탈로그만 근거로 답하는 Agent 의 구성 · 로그인 흐름 · 에이전트 루프 · 데이터 위치.
 ---
 
-# 사이트 챗봇 구조
+# 사이트 Agent 구조
 
-이 사이트의 챗봇은 **브라우저 안에서 도는 에이전트**입니다. 답변은 방문자 본인의 GitHub Copilot 이 만들고, 근거는 이 사이트에 정리된 노트와 카탈로그로 한정됩니다.
+이 사이트의 Agent 는 **브라우저 안에서 도는 에이전트**입니다. 답변은 방문자 본인의 GitHub Copilot 이 만들고, 근거는 이 사이트에 정리된 노트와 카탈로그로 한정됩니다.
 홈에서 **💬 대화 화면** 으로 전환하거나, 어느 페이지에서든 오른쪽 아래 버튼으로 엽니다.
 
 ## 구성
 
 <figure class="ar-figure" markdown="0">
---8<-- "docs/chatbot/architecture.svg"
+--8<-- "docs/agent/architecture.svg"
 <figcaption>구성도</figcaption>
 </figure>
 
@@ -24,7 +24,7 @@ Azure Functions relay 는 **로그인 두 요청만** 통과시킵니다. 이 re
 ## 로그인 — GitHub device flow
 
 <figure class="ar-figure" markdown="0">
---8<-- "docs/chatbot/device-flow.svg"
+--8<-- "docs/agent/device-flow.svg"
 <figcaption>로그인 순서</figcaption>
 </figure>
 
@@ -35,7 +35,7 @@ Azure Functions relay 는 **로그인 두 요청만** 통과시킵니다. 이 re
 ## 에이전트 루프
 
 <figure class="ar-figure" markdown="0">
---8<-- "docs/chatbot/agent-loop.svg"
+--8<-- "docs/agent/agent-loop.svg"
 <figcaption>에이전트 루프</figcaption>
 </figure>
 
@@ -47,7 +47,7 @@ Azure Functions relay 는 **로그인 두 요청만** 통과시킵니다. 이 re
 ## 데이터가 머무는 곳
 
 <figure class="ar-figure" markdown="0">
---8<-- "docs/chatbot/data.svg"
+--8<-- "docs/agent/data.svg"
 <figcaption>데이터 위치</figcaption>
 </figure>
 
@@ -59,7 +59,7 @@ Azure Functions relay 는 **로그인 두 요청만** 통과시킵니다. 이 re
 
 ## 검색 엔진 · 외부 AI 를 위한 출력
 
-챗봇과 같은 지식을 외부 AI 도구도 읽을 수 있게, 빌드 때 [`llms.txt`](../llms.txt)(노트 목록과 요약)와 [`llms-full.txt`](../llms-full.txt)(노트 전문)를 함께 만듭니다. 노트 frontmatter 의 `description` 은 페이지 `<meta description>` 과 이 파일들의 요약으로 쓰입니다.
+Agent 와 같은 지식을 외부 AI 도구도 읽을 수 있게, 빌드 때 [`llms.txt`](../llms.txt)(노트 목록과 요약)와 [`llms-full.txt`](../llms-full.txt)(노트 전문)를 함께 만듭니다. 노트 frontmatter 의 `description` 은 페이지 `<meta description>` 과 이 파일들의 요약으로 쓰입니다.
 
 ## 소스
 

@@ -1,6 +1,6 @@
 # GitHub 로그인 중계 (Azure Functions)
 
-사이트 챗봇의 **"GitHub 로 로그인"** 은 VS Code 와 같은 GitHub device flow 입니다. GitHub 의 device flow 엔드포인트(`github.com/login/device/code`, `github.com/login/oauth/access_token`)는 CORS 헤더를 주지 않아 정적 페이지가 직접 부를 수 없으므로, 이 함수가 그 두 호출만 대신 전달하고 CORS 헤더를 붙입니다.
+사이트 Agent 의 **"GitHub 로 로그인"** 은 VS Code 와 같은 GitHub device flow 입니다. GitHub 의 device flow 엔드포인트(`github.com/login/device/code`, `github.com/login/oauth/access_token`)는 CORS 헤더를 주지 않아 정적 페이지가 직접 부를 수 없으므로, 이 함수가 그 두 호출만 대신 전달하고 CORS 헤더를 붙입니다.
 
 - **비밀값 없음** — device flow 는 `client_secret` 이 필요 없습니다. 함수가 가진 설정은 공개 값인 `GITHUB_CLIENT_ID` 와 허용 origin 뿐입니다.
 - **저장·로그 없음** — 요청·응답 본문을 기록하지 않고(Application Insights 미사용), 아무것도 저장하지 않습니다. 토큰은 HTTPS 로 한 번 지나갈 뿐입니다.

@@ -1,4 +1,4 @@
-/* Site chatbot panel — vanilla JS, no dependencies. Logic: chat-agent.js (window.IgniteChatAgent). */
+/* Site agent panel — vanilla JS, no dependencies. Logic: chat-agent.js (window.IgniteChatAgent). */
 (function () {
   "use strict";
 
@@ -78,9 +78,9 @@
       el("button", { class: "icn-chat__link", type: "button", text: "연결 해제", onclick: function () { disconnect(); } })
     ])
   ]);
-  var panel = el("section", { class: "icn-chat", id: "icn-chat", role: "dialog", "aria-label": "노트 챗봇", hidden: "" }, [
+  var panel = el("section", { class: "icn-chat", id: "icn-chat", role: "dialog", "aria-label": "노트 Agent", hidden: "" }, [
     el("header", { class: "icn-chat__head" }, [
-      el("div", { class: "icn-chat__title" }, [el("strong", { text: "노트 챗봇" }), el("span", { text: "Ignite 2026 Session Notes" })]),
+      el("div", { class: "icn-chat__title" }, [el("strong", { text: "노트 Agent" }), el("span", { text: "Ignite 2026 Session Notes" })]),
       userBox, newBtn, closeBtn
     ]),
     body,
@@ -163,7 +163,7 @@
   function renderSetup(error) {
     if (login) { login.abort(); login = null; }
     setupBox([
-      el("p", { text: "이 사이트에 정리된 노트·카탈로그만 근거로 답하는 챗봇입니다. 모델은 여러분의 GitHub Copilot 을 씁니다." }),
+      el("p", { text: "이 사이트에 정리된 노트·카탈로그만 근거로 답하는 Agent 입니다. 모델은 여러분의 GitHub Copilot 을 씁니다." }),
       el("button", { class: "icn-chat__send icn-chat__login", type: "button", onclick: function () { startLogin(); } }, [el("span", { text: "GitHub 로 로그인" })]),
       el("p", { class: "icn-chat__error", role: "alert", text: error || "" }),
       el("p", { class: "icn-chat__fine", text: "VS Code 처럼 GitHub 에서 코드를 입력해 승인합니다. 토큰을 복사·붙여 넣을 필요가 없고, 로그인은 이 탭을 닫으면 사라집니다. 대화마다 본인 Copilot premium requests 가 차감됩니다." })

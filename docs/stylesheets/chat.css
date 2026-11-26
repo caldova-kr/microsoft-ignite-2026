@@ -1,4 +1,4 @@
-/* Site chatbot panel (docs/javascripts/chat.js). Uses the site's --dg-* / --md-* tokens. */
+/* Site agent panel (docs/javascripts/chat.js). Uses the site's --dg-* / --md-* tokens. */
 .icn-chat-fab {
   position: fixed;
   right: 1.2rem;
@@ -437,7 +437,7 @@
 }
 .icn-chat__waiting { animation: icn-pulse 1.4s ease-in-out infinite; }
 
-/* ---------- architecture diagrams (docs/chatbot/*.svg, inlined) ---------- */
+/* ---------- architecture diagrams (docs/agent/*.svg, inlined) ---------- */
 .ar-svg{display:block;width:100%;height:auto;font-family:var(--md-text-font-family,"Noto Sans KR",sans-serif)}
 .ar-zone{fill:var(--dg-soft,#eef2f7);stroke:var(--dg-border,#dbe2eb)}
 .ar-box{fill:var(--dg-surface,#fff);stroke:var(--dg-border,#c9d3df);stroke-width:1.2}

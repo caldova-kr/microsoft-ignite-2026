@@ -34,7 +34,7 @@ jobs:
       - name: Generated files are up to date
         run: python tools/build_pages.py --check
       - run: python -m pytest -q
-      - name: Site chatbot tests
+      - name: Site agent tests
         run: node --test "tests/*.test.mjs"
       - name: Session issues → site catalog (not committed)
         if: github.event_name != 'pull_request'

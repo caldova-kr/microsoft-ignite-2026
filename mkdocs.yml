@@ -102,5 +102,5 @@ nav:
       - sessions/index.md
       - "Keynote":
           - "KEY01 — Microsoft Ignite opening keynote": sessions/KEY01-microsoft-ignite-opening-keynote.md
-  - 챗봇 구조: chatbot/index.md
+  - Agent 구조: agent/index.md
 # /gen:nav

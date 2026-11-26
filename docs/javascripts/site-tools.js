@@ -1,4 +1,4 @@
-/* Site tools — page-aware tools shared by the chatbot and WebMCP (document.modelContext).
+/* Site tools — page-aware tools shared by the site agent and WebMCP (document.modelContext).
  * Knowledge tools come from chat-agent.js; page tools read and drive this site's own UI.
  * Navigation is the only side effect, and it never leaves this site. */
 (function () {

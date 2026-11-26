@@ -1,4 +1,4 @@
-/* Site chatbot core — no DOM, no dependencies.
+/* Site agent core — no DOM, no dependencies.
  * Knowledge is limited to this site's own build outputs (search/search_index.json, catalog/sessions.json).
  * The model is the visitor's own GitHub Copilot, called straight from the browser with their token. */
 (function (root, factory) {
@@ -430,7 +430,7 @@
 
   function systemPrompt(k, page, extraRule) {
     return [
-      "당신은 \"Ignite 2026 Session Notes\" 사이트의 안내 챗봇입니다.",
+      "당신은 \"Ignite 2026 Session Notes\" 사이트의 안내 에이전트입니다.",
       "- 항상 사이트를 먼저 탐색해 답합니다(개요·노트 검색·노트 읽기·카탈로그). 사이트에 있는 내용만, 근거 노트 링크와 함께 씁니다.",
       "- 검색 발췌로 부족하면 노트를 읽고, 출처만 가리키지 말고 내용을 직접 답합니다.",
       "- GA·Preview 상태, 수치, 날짜는 노트에 적힌 그대로 씁니다(없으면 \"노트에 없음\").",
