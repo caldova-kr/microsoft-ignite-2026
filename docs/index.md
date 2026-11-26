@@ -8,16 +8,18 @@ hide:
 
 <div class="dg-landing dg-home" markdown="1">
 
+<div id="icn-chat-home" class="icn-chat-home" markdown="0"></div>
+
 <div class="dg-hero" markdown="1">
 
 <p class="dg-eyebrow">MICROSOFT IGNITE 2026 · SAN FRANCISCO · NOV 17–20</p>
 
 # Ignite 2026 Session Notes
 
-<p class="dg-lead">세션에서 실제로 나온 내용만, 근거와 함께.</p>
+<p class="dg-lead">2026년 11월 17–20일, 샌프란시스코에서 열린 Microsoft Ignite 2026.</p>
 
-공식 세션 카탈로그 전체를 수집해 두고, 영상·트랜스크립트·슬라이드를 확인한 세션부터 고객·아키텍트 관점으로 정리합니다.
-세션 밖 정보는 별도 블록으로 분리해 출처를 밝힙니다.
+[Microsoft Ignite](https://ignite.microsoft.com/en-US/home) 는 Microsoft 의 주요 발표와 깊이 있는 기술 학습, 다음 변화를 만드는 사람들을 직접 만나는 자리입니다.
+키노트 · 기술 세션 · 핸즈온 랩 · 자격증 과정으로 agentic business applications, agent platform, cloud & AI platform, Copilot, data & AI platform, Frontier Transformation, security, Windows ecosystem 등을 다룹니다.
 
 <div class="dg-actions" markdown="1">
 
@@ -77,12 +79,4 @@ hide:
 </div>
 <!-- /gen:topics -->
 
-<div class="dg-contribute" markdown="1">
-
-**원문 우선.** 모든 노트는 해당 세션의 공식 자료로 추적 가능해야 하고, 카탈로그와 다른 메타데이터는 CI에서 거부됩니다.
-카탈로그 → 이슈 → 원문 확보 → 노트로 이어지는 정리 과정은 기여 가이드에 있습니다.
-
-[작성 규약과 정리 과정 보기](contributing.md){ .dg-text-link }
-
-</div>
 </div>

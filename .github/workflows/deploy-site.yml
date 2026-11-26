@@ -34,11 +34,23 @@ jobs:
       - name: Generated files are up to date
         run: python tools/build_pages.py --check
       - run: python -m pytest -q
+      - name: Site agent tests
+        run: node --test "tests/*.test.mjs"
       - name: Session issues → site catalog (not committed)
         if: github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
         run: python tools/fetch_issues.py --repo "${{ github.repository }}"
+      - name: Agent login relay URL → agent.json (not committed)
+        if: github.event_name != 'pull_request'
+        env:
+          AGENT_RELAY_URL: ${{ vars.AGENT_RELAY_URL }}
+        run: |
+          python - <<'PY'
+          import json, os
+          with open("docs/agent.json", "w") as f:
+              json.dump({"relay": os.environ.get("AGENT_RELAY_URL", "")}, f)
+          PY
       - run: mkdocs build --strict
       - if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v5

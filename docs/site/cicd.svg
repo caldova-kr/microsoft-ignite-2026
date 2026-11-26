@@ -1,0 +1,59 @@
+<svg class="ar-svg" viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ar6-title">
+<title id="ar6-title">GitHub Actions 워크플로</title>
+<defs><marker id="ar6-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ar-head" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="ar-z" x="20" y="24">WORKFLOW · TRIGGER</text>
+<text class="ar-z" x="270" y="24">JOB</text>
+<text class="ar-z" x="610" y="24">STEP</text>
+<text class="ar-z" x="820" y="24">RESULT</text>
+<rect class="ar-box ar-key" x="20" y="40" width="210" height="64" rx="8"/>
+<text class="ar-t" x="36" y="66">deploy-site</text>
+<text class="ar-s" x="36" y="88">push · PR · 이슈 변경</text>
+<rect class="ar-box" x="270" y="40" width="300" height="64" rx="8"/>
+<text class="ar-t" x="286" y="66">검증</text>
+<text class="ar-s ar-c" x="286" y="88">validate · pytest · node --test</text>
+<rect class="ar-box" x="610" y="40" width="170" height="64" rx="8"/>
+<text class="ar-t" x="626" y="66">mkdocs build</text>
+<text class="ar-s ar-c" x="626" y="88">--strict</text>
+<rect class="ar-box ar-key" x="820" y="40" width="160" height="64" rx="8"/>
+<text class="ar-t" x="836" y="66">GitHub Pages</text>
+<text class="ar-s" x="836" y="88">PR 은 검증만</text>
+<path class="ar-line" d="M230 72H268" marker-end="url(#ar6-h)"/>
+<path class="ar-line" d="M570 72H608" marker-end="url(#ar6-h)"/>
+<path class="ar-line" d="M780 72H818" marker-end="url(#ar6-h)"/>
+<rect class="ar-box" x="20" y="130" width="210" height="64" rx="8"/>
+<text class="ar-t" x="36" y="156">refresh-catalog</text>
+<text class="ar-s" x="36" y="178">매일 06:17 KST</text>
+<rect class="ar-box" x="270" y="130" width="300" height="64" rx="8"/>
+<text class="ar-t" x="286" y="156">카탈로그 갱신</text>
+<text class="ar-s ar-c" x="286" y="178">fetch_catalog · build_pages · validate</text>
+<rect class="ar-box" x="610" y="130" width="170" height="64" rx="8"/>
+<text class="ar-t" x="626" y="156">commit · push</text>
+<text class="ar-s ar-c" x="626" y="178">github-actions[bot]</text>
+<path class="ar-line" d="M230 162H268" marker-end="url(#ar6-h)"/>
+<path class="ar-line" d="M570 162H608" marker-end="url(#ar6-h)"/>
+<path class="ar-line ar-ret" d="M780 162H800V92H818" marker-end="url(#ar6-h)"/>
+<rect class="ar-box" x="20" y="220" width="210" height="64" rx="8"/>
+<text class="ar-t" x="36" y="246">claim</text>
+<text class="ar-s ar-c" x="36" y="268">/claim · /unclaim</text>
+<rect class="ar-box" x="270" y="220" width="300" height="64" rx="8"/>
+<text class="ar-t" x="286" y="246">assignee 지정 · 해제</text>
+<text class="ar-s" x="286" y="268">session 라벨 이슈 + 안내 댓글</text>
+<rect class="ar-box" x="610" y="220" width="170" height="64" rx="8"/>
+<text class="ar-t" x="626" y="246">workflow run</text>
+<text class="ar-s ar-c" x="626" y="268">deploy · board</text>
+<path class="ar-line" d="M230 252H268" marker-end="url(#ar6-h)"/>
+<path class="ar-line" d="M570 252H608" marker-end="url(#ar6-h)"/>
+<path class="ar-line ar-ret" d="M780 240H808V100H818" marker-end="url(#ar6-h)"/>
+<path class="ar-line ar-ret" d="M780 266H808V342H818" marker-end="url(#ar6-h)"/>
+<rect class="ar-box" x="20" y="310" width="210" height="64" rx="8"/>
+<text class="ar-t" x="36" y="336">project-board</text>
+<text class="ar-s" x="36" y="358">이슈 · PR · 매시 17분</text>
+<rect class="ar-box" x="270" y="310" width="300" height="64" rx="8"/>
+<text class="ar-t" x="286" y="336">상태 계산</text>
+<text class="ar-s ar-c" x="286" y="358">project_board.py</text>
+<rect class="ar-box ar-key" x="820" y="310" width="160" height="64" rx="8"/>
+<text class="ar-t" x="836" y="336">Project 보드</text>
+<text class="ar-s" x="836" y="358">Status 자동 반영</text>
+<path class="ar-line" d="M230 342H268" marker-end="url(#ar6-h)"/>
+<path class="ar-line" d="M570 342H818" marker-end="url(#ar6-h)"/>
+</svg>

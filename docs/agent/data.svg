@@ -1,0 +1,30 @@
+<svg class="ar-svg" viewBox="0 0 960 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ar4-title">
+<title id="ar4-title">데이터가 머무는 곳</title>
+<rect class="ar-zone" x="20" y="20" width="290" height="260" rx="14"/>
+<text class="ar-z" x="40" y="48">BROWSER TAB</text>
+<rect class="ar-box ar-key" x="40" y="66" width="250" height="44" rx="8"/>
+<text class="ar-t" x="56" y="94">access token · 8h</text>
+<rect class="ar-box" x="40" y="120" width="250" height="44" rx="8"/>
+<text class="ar-t" x="56" y="148">refresh token</text>
+<rect class="ar-box" x="40" y="174" width="250" height="44" rx="8"/>
+<text class="ar-t" x="56" y="202">대화 기록 · 프로필</text>
+<text class="ar-s ar-c" x="40" y="254">sessionStorage → 탭 닫기 = 삭제</text>
+<rect class="ar-zone" x="335" y="20" width="290" height="260" rx="14"/>
+<text class="ar-z" x="355" y="48">AZURE RELAY</text>
+<rect class="ar-box" x="355" y="66" width="250" height="44" rx="8"/>
+<text class="ar-t" x="371" y="94">client_id · 허용 origin</text>
+<rect class="ar-box ar-key" x="355" y="120" width="250" height="98" rx="8"/>
+<text class="ar-t" x="371" y="148">저장 0</text>
+<text class="ar-t" x="371" y="172">본문 로그 0</text>
+<text class="ar-t" x="371" y="196">client secret 0</text>
+<text class="ar-s ar-c" x="355" y="254">stateless · App Insights 없음</text>
+<rect class="ar-zone" x="650" y="20" width="290" height="260" rx="14"/>
+<text class="ar-z" x="670" y="48">GITHUB</text>
+<rect class="ar-box" x="670" y="66" width="250" height="44" rx="8"/>
+<text class="ar-t" x="686" y="94">앱 승인 · 회수</text>
+<rect class="ar-box" x="670" y="120" width="250" height="44" rx="8"/>
+<text class="ar-t" x="686" y="148">Copilot 사용량</text>
+<rect class="ar-box ar-key" x="670" y="174" width="250" height="44" rx="8"/>
+<text class="ar-t" x="686" y="202">모델 범위 · 정책</text>
+<text class="ar-s ar-c" x="670" y="254">Settings → Applications</text>
+</svg>

@@ -5,3 +5,7 @@ __pycache__/
 .venv/
 .DS_Store
 docs/catalog/issues.json
+docs/agent.json
+
+# Azure Functions relay
+relay/node_modules/

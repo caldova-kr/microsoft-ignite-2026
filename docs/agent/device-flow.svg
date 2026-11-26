@@ -1,0 +1,45 @@
+<svg class="ar-svg" viewBox="0 0 960 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ar2-title">
+<title id="ar2-title">GitHub device flow 로그인 순서</title>
+<defs><marker id="ar2-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ar-head" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="ar-box" x="40" y="20" width="140" height="44" rx="10"/>
+<text class="ar-t" x="110" y="47" text-anchor="middle">사용자</text>
+<rect class="ar-box ar-key" x="230" y="20" width="140" height="44" rx="10"/>
+<text class="ar-t" x="300" y="47" text-anchor="middle">사이트 (브라우저)</text>
+<rect class="ar-box ar-key" x="420" y="20" width="140" height="44" rx="10"/>
+<text class="ar-t" x="490" y="47" text-anchor="middle">Azure 중계</text>
+<rect class="ar-box" x="610" y="20" width="140" height="44" rx="10"/>
+<text class="ar-t" x="680" y="47" text-anchor="middle">github.com</text>
+<rect class="ar-box ar-key" x="800" y="20" width="140" height="44" rx="10"/>
+<text class="ar-t" x="870" y="47" text-anchor="middle">Copilot API</text>
+<path class="ar-life" d="M110 64V600M300 64V600M490 64V600M680 64V600M870 64V600"/>
+<path class="ar-line" d="M110 100H298" marker-end="url(#ar2-h)"/>
+<text class="ar-lbl" x="204" y="92" text-anchor="middle">GitHub 로 로그인</text>
+<path class="ar-line" d="M300 138H488" marker-end="url(#ar2-h)"/>
+<text class="ar-lbl ar-c" x="394" y="130" text-anchor="middle">POST device/code</text>
+<path class="ar-line" d="M490 172H678" marker-end="url(#ar2-h)"/>
+<text class="ar-lbl ar-c" x="584" y="164" text-anchor="middle">client_id</text>
+<path class="ar-line ar-ret" d="M680 206H492" marker-end="url(#ar2-h)"/>
+<text class="ar-lbl ar-c" x="584" y="198" text-anchor="middle">device_code · user_code</text>
+<path class="ar-line ar-ret" d="M490 240H302" marker-end="url(#ar2-h)"/>
+<text class="ar-lbl ar-c" x="394" y="232" text-anchor="middle">user_code · interval</text>
+<path class="ar-line ar-ret" d="M300 276H112" marker-end="url(#ar2-h)"/>
+<text class="ar-lbl ar-c" x="204" y="268" text-anchor="middle">ABCD-1234</text>
+<path class="ar-line" d="M110 314H678" marker-end="url(#ar2-h)"/>
+<text class="ar-lbl" x="394" y="306" text-anchor="middle">github.com/login/device · 코드 입력 · Authorize</text>
+<rect class="ar-loop" x="250" y="334" width="460" height="124" rx="8"/>
+<text class="ar-s" x="262" y="352">반복 · interval</text>
+<path class="ar-line" d="M300 372H488" marker-end="url(#ar2-h)"/>
+<text class="ar-lbl ar-c" x="394" y="364" text-anchor="middle">POST token</text>
+<path class="ar-line" d="M490 404H678" marker-end="url(#ar2-h)"/>
+<text class="ar-lbl ar-c" x="584" y="396" text-anchor="middle">device_code</text>
+<path class="ar-line ar-ret" d="M680 438H492" marker-end="url(#ar2-h)"/>
+<text class="ar-lbl ar-c" x="584" y="430" text-anchor="middle">authorization_pending</text>
+<path class="ar-line ar-ret" d="M680 486H302" marker-end="url(#ar2-h)"/>
+<text class="ar-lbl ar-c" x="490" y="478" text-anchor="middle">access_token ghu_ (8h) · refresh_token</text>
+<rect class="ar-box" x="250" y="500" width="100" height="30" rx="6"/>
+<text class="ar-s ar-c" x="300" y="520" text-anchor="middle">sessionStorage</text>
+<path class="ar-line" d="M300 556H868" marker-end="url(#ar2-h)"/>
+<text class="ar-lbl ar-c" x="584" y="548" text-anchor="middle">GET /models · POST /chat/completions</text>
+<path class="ar-line ar-ret" d="M870 590H302" marker-end="url(#ar2-h)"/>
+<text class="ar-lbl" x="584" y="582" text-anchor="middle">스트리밍 응답</text>
+</svg>

@@ -20,7 +20,8 @@ CATALOG_FIELDS = {  # frontmatter key -> catalog key; must match the catalog exa
     "title": "title", "session_type": "type", "topics": "topics", "catalog_tags": "tags",
     "level": "level", "speakers": "speakers", "session_url": "url", "video_url": "video",
 }
-REQUIRED_KEYS = ["session_code", *CATALOG_FIELDS, "source_basis", "tags", "status", "last_updated"]
+REQUIRED_KEYS = ["session_code", *CATALOG_FIELDS, "source_basis", "tags", "status", "last_updated"]  # description: review/done only
+DESCRIPTION_MAX = 160  # search-result snippet length
 SOURCE_BASIS = {"catalog", "video", "transcript", "slides", "resources"}
 PRIMARY_BASIS = {"video", "transcript", "slides"}
 OTHER_EVENT = re.compile(r"build\.microsoft\.com|\bBuild 20\d\d\b|\bIgnite 20(?!26)\d\d\b")
@@ -119,6 +120,11 @@ def check_note(path: Path, catalog: dict) -> tuple[list[str], list[str]]:
     basis = set(fm.get("source_basis") or [])
     if basis - SOURCE_BASIS:
         errors.append(f"unknown source_basis: {sorted(basis - SOURCE_BASIS)}")
+    desc = str(fm.get("description") or "").strip()
+    if status in ("review", "done") and not desc:
+        errors.append("review/done notes need a one-sentence description (search snippet, llms.txt)")
+    if len(desc) > DESCRIPTION_MAX:
+        warnings.append(f"description is {len(desc)} chars; keep it within {DESCRIPTION_MAX} for search snippets")
     if status in ("review", "done") and not basis & PRIMARY_BASIS:
         errors.append("review/done notes need a primary source in source_basis (video | transcript | slides)")
     if "transcript" in basis and not s["transcript"]:
