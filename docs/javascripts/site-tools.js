@@ -185,7 +185,9 @@
   function applyCatalogFilters(form, args) {
     var applied = {};
     var rejected = {};
-    form.reset();
+    // The catalog's own reset also clears state outside the form (★ favourites only, sort).
+    var reset = document.querySelector(".dg-cat-reset");
+    if (reset) reset.click(); else form.reset();
     Object.keys(CATALOG_FIELDS).forEach(function (k) {
       if (!args[k]) return;
       var field = form.elements[CATALOG_FIELDS[k]];
@@ -258,6 +260,16 @@
     return el && /sessions/.test(el.textContent);
   }
 
+  // The catalog fills its selects only after sessions.json loads; filtering earlier would reject
+  // valid values and the change event would also drop them from the URL.
+  function filterWhenReady(args) {
+    return waitFor(catalogSummaryReady, 5000).then(function () {
+      var form = document.querySelector(".dg-cat-controls");
+      if (!form || !catalogSummaryReady()) return { error: "카탈로그를 아직 불러오지 못했습니다. 잠시 후 다시 시도해 주세요." };
+      return applyCatalogFilters(form, args);
+    });
+  }
+
   // ctx.navigate(url): how to leave the page without instant navigation (chat: after the answer; WebMCP: now).
   function go(url, ctx) {
     if (INSTANT) return openInstant(url, ctx);
@@ -270,15 +282,12 @@
     if (name === "get_current_page") return getCurrentPage();
     if (name === "highlight_section") return highlightSection(args);
     if (name === "filter_catalog") {
-      var form = document.querySelector(".dg-cat-controls");
-      if (form) return applyCatalogFilters(form, args);
+      if (document.querySelector(".dg-cat-controls")) return filterWhenReady(args);
       var url = catalogUrl(args);
       if (!INSTANT) { ctx.navigate(url); return { navigating: url }; }
       return openInstant(url, ctx).then(function (page) {
         if (page.navigating) return page;
-        return waitFor(catalogSummaryReady, 5000).then(function () {
-          var f = document.querySelector(".dg-cat-controls");
-          var out = f ? applyCatalogFilters(f, args) : {};
+        return filterWhenReady(args).then(function (out) {
           out.opened = page.opened;
           return out;
         });

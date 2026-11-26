@@ -238,7 +238,11 @@
     });
   }
 
+  // Bumped by 새 대화 / 연결 해제 so a turn that is still cancelling can't write into the new history.
+  var turnId = 0;
+
   function disconnect() {
+    turnId++;
     stop();
     forget();
     profile = null;
@@ -246,6 +250,7 @@
   }
 
   function resetChat() {
+    turnId++;
     stop();
     history = [];
     saveHistory();
@@ -491,6 +496,8 @@
     body.appendChild(el("div", { class: "icn-chat__msg icn-chat__msg--user", text: text }));
     var turn = Turn([]);
     var pendingNav = null;
+    var id = ++turnId;
+    function current() { return id === turnId; }
     turn.wait(true);
     controller = new AbortController();
     setBusy(true);
@@ -514,11 +521,13 @@
         }
       });
     }).then(function (r) {
+      if (!current()) return;
       if (!turn.parts.length) turn.text("(빈 응답)");
       history.push({ role: "assistant", content: r.text || textOf(turn.parts) || "(빈 응답)", parts: turn.parts });
       if (pendingNav) { saveHistory(); turn.navigate(pendingNav); }
     }).catch(function (e) {
       turn.settle();
+      if (!current()) return;
       if (e && e.name === "AbortError") {
         if (turn.parts.length) history.push({ role: "assistant", content: (textOf(turn.parts) || "(응답 없음)") + "\n\n(중지됨)", parts: turn.parts });
         else history.pop();
@@ -530,11 +539,13 @@
       if (e && e.kind === "auth") { forget(); profile = null; setTimeout(render, 2500); }
     }).then(function () {
       turn.wait(false);
-      saveHistory();
+      if (current()) saveHistory();
       controller = null;
       setBusy(false);
+      // 연결 해제 during a turn: render() skipped the login screen while busy.
+      if (!current() && !token()) { render(); return; }
       scroll();
-      if (!panel.hidden && token()) input.focus();
+      if (!panel.hidden) input.focus();
     });
   }
 
