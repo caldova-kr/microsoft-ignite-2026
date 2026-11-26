@@ -59,7 +59,7 @@ Azure Functions relay 는 **로그인 두 요청만** 통과시킵니다. 이 re
 
 ## 검색 엔진 · 외부 AI 를 위한 출력
 
-Agent 와 같은 지식을 외부 AI 도구도 읽을 수 있게, 빌드 때 [`llms.txt`](../llms.txt)(노트 목록과 요약)와 [`llms-full.txt`](../llms-full.txt)(노트 전문)를 함께 만듭니다. 노트 frontmatter 의 `description` 은 페이지 `<meta description>` 과 이 파일들의 요약으로 쓰입니다.
+Agent 와 같은 지식을 외부 AI 도구도 읽을 수 있게, 빌드 때 [`llms.txt`](llms.txt)(노트 목록과 요약)와 [`llms-full.txt`](llms-full.txt)(노트 전문)를 함께 만듭니다. 노트 frontmatter 의 `description` 은 페이지 `<meta description>` 과 이 파일들의 요약으로 쓰입니다.
 
 ## 소스
 
