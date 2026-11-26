@@ -529,12 +529,14 @@
 
   // ---------- home page: landing (floating panel) or ChatGPT-style chat view ----------
 
+  // The notes landing is the default; the chat view is an opt-in for this tab only.
   var HOME_MODE = "icn-home-view";
+  del("localStorage", HOME_MODE);
   var modeButtons = {};
 
   function applyHomeMode(mode, stage, byUser) {
     inline = mode === "chat";
-    set("localStorage", HOME_MODE, mode);
+    set("sessionStorage", HOME_MODE, mode);
     document.body.classList.toggle("icn-home--chat", inline);
     panel.classList.toggle("icn-chat--inline", inline);
     Object.keys(modeButtons).forEach(function (m) { modeButtons[m].setAttribute("aria-pressed", String(m === mode)); });
@@ -569,7 +571,7 @@
     homeMount.appendChild(sw);
     homeMount.appendChild(stage);
     var asked = new URLSearchParams(location.search).get("view");
-    var mode = asked === "chat" || asked === "landing" ? asked : (get("localStorage", HOME_MODE) || "landing");
+    var mode = asked === "chat" || asked === "landing" ? asked : (get("sessionStorage", HOME_MODE) || "landing");
     applyHomeMode(mode, stage);
   }
 

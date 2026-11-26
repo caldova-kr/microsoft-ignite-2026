@@ -436,3 +436,21 @@
   letter-spacing: 0.12em;
 }
 .icn-chat__waiting { animation: icn-pulse 1.4s ease-in-out infinite; }
+
+/* ---------- architecture diagrams (docs/chatbot/*.svg, inlined) ---------- */
+.ar-svg{display:block;width:100%;height:auto;font-family:var(--md-text-font-family,"Noto Sans KR",sans-serif)}
+.ar-zone{fill:var(--dg-soft,#eef2f7);stroke:var(--dg-border,#dbe2eb)}
+.ar-box{fill:var(--dg-surface,#fff);stroke:var(--dg-border,#c9d3df);stroke-width:1.2}
+.ar-key{stroke:var(--dg-accent,#1759c0);stroke-width:1.8}
+.ar-t{fill:var(--dg-text,#182230);font-size:14px;font-weight:700}
+.ar-s{fill:var(--dg-muted,#566578);font-size:12px}
+.ar-z{fill:var(--dg-muted,#566578);font-size:12px;font-weight:700;letter-spacing:.06em}
+.ar-c{font-family:var(--md-code-font-family,"JetBrains Mono",monospace);font-size:11.5px}
+.ar-line{stroke:var(--dg-accent,#1759c0);stroke-width:1.6;fill:none}
+.ar-ret{stroke-dasharray:5 4}
+.ar-life{stroke:var(--dg-border,#c9d3df);stroke-width:1.2;stroke-dasharray:4 5}
+.ar-lbl{fill:var(--dg-text,#182230);font-size:12px}
+.ar-head{fill:var(--dg-accent,#1759c0)}
+.ar-loop{fill:none;stroke:var(--dg-muted,#566578);stroke-dasharray:3 4}
+.md-typeset .ar-figure { width: 100%; max-width: none; box-sizing: border-box; margin: 1.2rem 0 1.6rem; padding: 1rem; border: 1px solid var(--dg-border); border-radius: 0.8rem; background: var(--dg-bg); }
+.md-typeset .ar-figure figcaption { margin-top: 0.6rem; color: var(--dg-muted); font-size: 0.66rem; }

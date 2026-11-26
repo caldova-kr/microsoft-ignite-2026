@@ -102,7 +102,5 @@ nav:
       - sessions/index.md
       - "Keynote":
           - "KEY01 — Microsoft Ignite opening keynote": sessions/KEY01-microsoft-ignite-opening-keynote.md
-  - 테마:
-      - themes/index.md
-  - 기여하기: contributing.md
+  - 챗봇 구조: chatbot/index.md
 # /gen:nav

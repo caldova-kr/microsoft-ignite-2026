@@ -49,7 +49,7 @@ python tools/validate.py && mkdocs serve # 검증 후 미리보기 http://127.0.
 
 ## 사이트 챗봇
 
-모든 페이지 우하단 **💬 노트에 물어보기** 는 이 사이트의 노트·카탈로그만 근거로 답하는 챗봇입니다. 서버 없이 브라우저에서 돌고, 모델은 방문자 본인의 GitHub Copilot 을 씁니다. 홈에서는 오른쪽 위 스위치로 **📰 소개 화면**(기존 랜딩)과 **💬 대화 화면**(ChatGPT 형 전체 화면 대화)을 고를 수 있습니다(`?view=chat` 링크 가능).
+모든 페이지 우하단 **💬 노트에 물어보기** 는 이 사이트의 노트·카탈로그만 근거로 답하는 챗봇입니다. 서버 없이 브라우저에서 돌고, 모델은 방문자 본인의 GitHub Copilot 을 씁니다. 홈은 기본으로 **📰 소개 화면**(랜딩)을 보여 주고, 오른쪽 위 스위치로 **💬 대화 화면**(ChatGPT 형 전체 화면 대화)을 고를 수 있습니다(`?view=chat` 링크 가능). 구성도·로그인 흐름은 사이트의 [챗봇 구조](https://caldova-kr.github.io/microsoft-ignite-2026/chatbot/) 페이지([`docs/chatbot/`](docs/chatbot/index.md))에 있습니다.
 
 - 로그인: **GitHub 로 로그인** → VS Code 처럼 GitHub 에서 코드를 입력해 승인합니다(device flow). GitHub 엔드포인트에 CORS 가 없어서 그 두 호출만 비밀값·저장 없는 Azure Functions 중계([`relay/`](relay/README.md))를 거칩니다. 토큰은 탭 안(`sessionStorage`)에만 있고, 모델 호출은 브라우저에서 `api.githubcopilot.com` 으로 바로 가며 본인 premium requests 에서 차감됩니다.
 - 지식: MkDocs 가 만드는 `search/search_index.json` 과 `catalog/sessions.json` 만 도구(`get_site_overview` · `search_notes` · `get_note` · `search_catalog` · `get_session`)로 읽습니다. 항상 사이트를 먼저 탐색해 답하고, 노트를 쓰면 다음 배포부터 자동 반영됩니다.

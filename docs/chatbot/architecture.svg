@@ -1,0 +1,51 @@
+<svg class="ar-svg" viewBox="0 0 960 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ar1-title">
+<title id="ar1-title">사이트 챗봇 구성도</title>
+<defs><marker id="ar1-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ar-head" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="ar-zone" x="20" y="20" width="540" height="480" rx="14"/>
+<text class="ar-z" x="40" y="46">BROWSER · GITHUB PAGES</text>
+<rect class="ar-box ar-key" x="40" y="66" width="230" height="64" rx="10"/>
+<text class="ar-t" x="56" y="94">채팅 패널 · 생성형 UI</text>
+<text class="ar-s ar-c" x="56" y="116">chat.js</text>
+<rect class="ar-box" x="310" y="66" width="230" height="64" rx="10"/>
+<text class="ar-t" x="326" y="94">탭 저장소</text>
+<text class="ar-s ar-c" x="326" y="116">sessionStorage</text>
+<rect class="ar-box ar-key" x="40" y="166" width="230" height="64" rx="10"/>
+<text class="ar-t" x="56" y="194">에이전트 루프</text>
+<text class="ar-s ar-c" x="56" y="216">chat-agent.js</text>
+<rect class="ar-box" x="310" y="166" width="230" height="64" rx="10"/>
+<text class="ar-t" x="326" y="194">사이트 도구</text>
+<text class="ar-s ar-c" x="326" y="216">site-tools.js</text>
+<rect class="ar-box" x="40" y="290" width="500" height="92" rx="10"/>
+<text class="ar-t" x="56" y="318">지식 · 빌드 산출물</text>
+<text class="ar-s ar-c" x="56" y="342">search/search_index.json</text>
+<text class="ar-s ar-c" x="56" y="362">catalog/sessions.json · sessions/notes.json</text>
+<rect class="ar-box" x="40" y="412" width="500" height="64" rx="10"/>
+<text class="ar-t" x="56" y="440">노트 · 카탈로그 페이지</text>
+<text class="ar-s ar-c" x="56" y="462">llms.txt · llms-full.txt · sitemap.xml</text>
+<rect class="ar-box ar-key" x="620" y="40" width="320" height="70" rx="10"/>
+<text class="ar-t" x="636" y="68">Azure Functions 중계</text>
+<text class="ar-s ar-c" x="636" y="92">POST device/code · POST token</text>
+<rect class="ar-box" x="620" y="150" width="320" height="60" rx="10"/>
+<text class="ar-t" x="636" y="176">github.com</text>
+<text class="ar-s ar-c" x="636" y="196">login/device · oauth/access_token</text>
+<rect class="ar-box ar-key" x="620" y="252" width="320" height="70" rx="10"/>
+<text class="ar-t" x="636" y="280">GitHub Copilot API</text>
+<text class="ar-s ar-c" x="636" y="304">GET /models · POST /chat/completions</text>
+<rect class="ar-box" x="620" y="352" width="320" height="58" rx="10"/>
+<text class="ar-t" x="636" y="378">브라우저 에이전트</text>
+<text class="ar-s ar-c" x="636" y="398">WebMCP · document.modelContext</text>
+<rect class="ar-box" x="620" y="436" width="320" height="58" rx="10"/>
+<text class="ar-t" x="636" y="462">AI 검색 엔진</text>
+<text class="ar-s ar-c" x="636" y="482">GEO</text>
+<path class="ar-line" d="M155 130V164" marker-end="url(#ar1-h)"/>
+<path class="ar-line" d="M270 198H308" marker-end="url(#ar1-h)" marker-start="url(#ar1-h)"/>
+<path class="ar-line" d="M155 230V288" marker-end="url(#ar1-h)"/>
+<path class="ar-line" d="M425 230V288" marker-end="url(#ar1-h)"/>
+<path class="ar-line" d="M540 98H576V75H618" marker-end="url(#ar1-h)" marker-start="url(#ar1-h)"/>
+<text class="ar-lbl" x="548" y="124">로그인</text>
+<path class="ar-line" d="M780 110V148" marker-end="url(#ar1-h)"/>
+<path class="ar-line" d="M270 214H290V250H600V287H618" marker-end="url(#ar1-h)"/>
+<text class="ar-lbl" x="440" y="244">Bearer 토큰 · 직접 호출</text>
+<path class="ar-line" d="M618 381H582V214H542" marker-end="url(#ar1-h)"/>
+<path class="ar-line" d="M618 465H560V444H542" marker-end="url(#ar1-h)"/>
+</svg>
