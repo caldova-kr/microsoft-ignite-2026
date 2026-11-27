@@ -34,7 +34,7 @@ hide:
 <div class="dg-stat"><strong>934<small>/1,426</small></strong><span>online sessions</span></div>
 <div class="dg-stat"><strong>10</strong><span>session types</span></div>
 <div class="dg-stat"><strong>831</strong><span>on-demand videos</span></div>
-<div class="dg-stat"><strong>727</strong><span>transcripts</span></div>
+<div class="dg-stat"><strong>728</strong><span>transcripts</span></div>
 <div class="dg-stat"><strong>1<small>/0</small></strong><span>notes / done</span></div>
 </div>
 <!-- /gen:stats -->

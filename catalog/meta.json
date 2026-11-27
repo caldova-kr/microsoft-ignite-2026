@@ -1,13 +1,13 @@
 {
   "event": "Microsoft Ignite 2026",
   "source": "https://ignite.microsoft.com/api/session/all/en-US",
-  "fetched_at": "2026-11-26T03:32:52Z",
+  "fetched_at": "2026-11-27T03:38:19Z",
   "raw_instances": 1588,
   "sessions": 1426,
   "online_sessions": 934,
   "supplemented": [],
   "with_video": 831,
   "with_slides": 307,
-  "with_transcript": 727,
-  "sha256": "759ba2e751a7b4659dd45d1a8af0c90ddfd7f3cdc49c9dffe67c76987fe3fcab"
+  "with_transcript": 728,
+  "sha256": "d4e46b9f4e212b4702434a53a8a25540b5725e1dd073c22fed18a9e4d3507e23"
 }
