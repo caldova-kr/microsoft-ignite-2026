@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 604" role="img" aria-labelledby="brk251-flow-title brk251-flow-desc" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
   <title id="brk251-flow-title">Foundry 에이전트 관측 · 개선 흐름</title>
-  <desc id="brk251-flow-desc">에이전트가 남긴 trace 를 Build 단계의 평가, Production 단계의 Insights · Annotations · Agent Optimizer, Scale 단계의 Fleet overview 가 함께 읽고, Optimizer 가 만든 후보를 평가로 채점한 뒤 사람이 승격하면 새 에이전트 버전으로 돌아가는 루프.</desc>
+  <desc id="brk251-flow-desc">에이전트가 남긴 trace 를 Build 단계의 평가, Production 단계의 Insights · Annotations · Agent Optimizer, Scale 단계의 Fleet overview 가 함께 읽고, Optimizer 가 만든 후보를 Evaluation 이 채점하고, 그 결과를 보고 사람이 승격하면 새 에이전트 버전으로 돌아가는 루프.</desc>
   <defs>
     <marker id="brk251-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
       <polygon points="0 0, 8 3, 0 6" fill="#566578"/>
@@ -30,14 +30,14 @@
   <line x1="872" y1="168" x2="872" y2="242" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
   <line x1="484" y1="308" x2="484" y2="386" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
   <line x1="668" y1="308" x2="668" y2="386" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
-  <line x1="352" y1="424" x2="398" y2="424" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
+  <line x1="398" y1="424" x2="354" y2="424" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
   <rect x="358" y="398" width="36" height="16" rx="3" fill="#ffffff"/>
   <text x="376" y="410" fill="#182230" font-size="11" text-anchor="middle">채점</text>
 
   <!-- improvement loop -->
-  <path d="M 704,460 V 524 Q 704,532 696,532 H 32 Q 24,532 24,524 V 66 Q 24,58 32,58 H 54" fill="none" stroke="#1759c0" stroke-width="2" marker-end="url(#brk251-arrow-accent)"/>
-  <rect x="216" y="508" width="176" height="16" rx="3" fill="#ffffff"/>
-  <text x="304" y="520" fill="#1759c0" font-size="11.5" font-weight="700" text-anchor="middle">새 버전 승격 · 사람이 결정</text>
+  <path d="M 300,460 V 524 Q 300,532 292,532 H 32 Q 24,532 24,524 V 66 Q 24,58 32,58 H 54" fill="none" stroke="#1759c0" stroke-width="2" marker-end="url(#brk251-arrow-accent)"/>
+  <rect x="60" y="508" width="176" height="16" rx="3" fill="#ffffff"/>
+  <text x="148" y="520" fill="#1759c0" font-size="11.5" font-weight="700" text-anchor="middle">새 버전 승격 · 사람이 결정</text>
 
   <!-- agent -->
   <rect x="56" y="28" width="184" height="60" rx="8" fill="#ffffff" stroke="#182230" stroke-width="1.4"/>

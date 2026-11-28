@@ -69,7 +69,7 @@ last_updated: 2026-11-20
 
 | 항목 | 상태 | 설명 |
 |------|------|------|
-| [항목 이름](Microsoft Learn URL) | GA / Public Preview / Private Preview / Limited / Roadmap | 어떤 수고를 덜어 주는지 → 어떻게 동작하는지 (합니다체 1~3문장) |
+| [항목 이름](Microsoft Learn URL) | GA / Public Preview / Private Preview / Limited / Roadmap / 미언급 | 어떤 수고를 덜어 주는지 → 어떻게 동작하는지 (합니다체 1~3문장) |
 
 <!-- figure: 📰 공식 블로그 이미지 또는 ▶ 발표 슬라이드 캡처 -->
 

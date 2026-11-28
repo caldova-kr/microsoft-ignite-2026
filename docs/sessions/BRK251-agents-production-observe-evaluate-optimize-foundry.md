@@ -91,7 +91,7 @@ last_updated: 2026-11-28
 ## Session summary
 
 <figure markdown="span">
-  ![Foundry 에이전트 관측 · 개선 흐름도. 에이전트가 남긴 Traces(Application Insights, GA)를 Build 의 Evaluation(Datasets · Evaluators 와 함께), Production 의 Insights(GA) · Annotations, Scale 의 Fleet overview 가 읽고, Insights 와 Annotations 가 Agent Optimizer 로 이어지며 Evaluation 이 후보를 채점하고, 사람이 승격한 새 버전이 다시 에이전트로 돌아가는 루프](BRK251-agents-production-observe-evaluate-optimize-foundry/foundry-improvement-flow.svg)
+  ![Foundry 에이전트 관측 · 개선 흐름도. 에이전트가 남긴 Traces(Application Insights, GA)를 Build 의 Evaluation(Datasets · Evaluators 와 함께), Production 의 Insights(GA) · Annotations, Scale 의 Fleet overview 가 읽고, Insights 와 Annotations 가 Agent Optimizer 로 이어지고, Optimizer 가 만든 후보를 Evaluation 이 채점한 결과를 보고 사람이 승격한 새 버전이 다시 에이전트로 돌아가는 루프](BRK251-agents-production-observe-evaluate-optimize-foundry/foundry-improvement-flow.svg)
   <figcaption>슬라이드 #7 · #17 · #29 를 바탕으로 다시 그린 흐름</figcaption>
 </figure>
 
