@@ -105,12 +105,9 @@ def video_frame(pptx: Path, videos: list[str], seconds: float, out: Path, width:
                         "-frames:v", "1", "-vf", f"scale='min({width},iw)':-2", "-q:v", "3", str(out)], check=True)
 
 
-def crop(out: Path, box: str) -> None:
-    with tempfile.TemporaryDirectory() as tmp:
-        cut = Path(tmp) / out.name
-        subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(out), "-vf", f"crop={box}",
-                        "-q:v", "3", str(cut)], check=True)
-        shutil.copyfile(cut, out)
+def crop(full: Path, box: str, out: Path) -> None:
+    subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(full), "-vf", f"crop={box}",
+                    "-q:v", "3", str(out)], check=True)
 
 
 def main() -> None:
@@ -149,20 +146,23 @@ def main() -> None:
     folder = NOTES_DIR / notes[0].stem
     folder.mkdir(exist_ok=True)
     out = (folder / f"{args.name}.jpg").resolve()
-    if args.at is not None:
-        if not slide["videos"]:
-            raise SystemExit(f"slide {args.slide} has no embedded video")
-        video_frame(pptx, slide["videos"], args.at, out, args.width)
-    elif not with_powerpoint(pptx, args.slide, out, args.width):
-        try:
-            page = pdf_page(slides, args.slide)
-        except ValueError as exc:
-            raise SystemExit(f"{exc}; export it with PowerPoint") from exc
-        with tempfile.TemporaryDirectory() as tmp:  # a deck passed with --pptx is converted fresh, never beside it
-            if not with_libreoffice(pptx, page, out, args.width, Path(tmp) if args.pptx else cache):
+    with tempfile.TemporaryDirectory() as tmp:
+        # With --crop the full image stays in the temp folder, so a failed crop leaves nothing in the note folder.
+        full = Path(tmp) / out.name if args.crop else out
+        if args.at is not None:
+            if not slide["videos"]:
+                raise SystemExit(f"slide {args.slide} has no embedded video")
+            video_frame(pptx, slide["videos"], args.at, full, args.width)
+        elif not with_powerpoint(pptx, args.slide, full, args.width):
+            try:
+                page = pdf_page(slides, args.slide)
+            except ValueError as exc:
+                raise SystemExit(f"{exc}; export it with PowerPoint") from exc
+            # A deck passed with --pptx is converted fresh in the temp folder, never beside the deck.
+            if not with_libreoffice(pptx, page, full, args.width, Path(tmp) if args.pptx else cache):
                 raise SystemExit("rendering needs PowerPoint (Windows) or LibreOffice + pdftoppm on PATH")
-    if args.crop:
-        crop(out, args.crop)
+        if args.crop:
+            crop(full, args.crop, out)
 
     title = slide["title"] or "<슬라이드 제목>"
     where = f"슬라이드 #{args.slide}" + (f" (삽입 영상 {args.at:g}초)" if args.at is not None else "")

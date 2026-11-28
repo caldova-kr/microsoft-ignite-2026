@@ -49,7 +49,7 @@ fal 의 설명을 모은 표이고, 속도 · 비용 수치는 조건 없이 든
 
 - 지금 배포할 수 있는 것은 **5종**입니다. Kling 은 v3 Pro 가 올라와 있고, H3 Turbo 는 "MiniMax H3 Max Turbo" 라는 이름입니다. 가격은 아래 표와 같습니다.
 - LTX 의 레이어 · 3D 입력, 파인튜닝, content filter 적용은 Learn 의 fal 문서에는 나와 있지 않습니다.
-- fal 은 입력 프롬프트를 자동으로 보강합니다. Learn 의 MiniMax 예제는 `"prompt_expansion_mode": "disabled"` 로 이를 끄고 호출합니다.
+- fal 은 입력 프롬프트를 자동으로 보강합니다. Learn 의 MiniMax 예제에 `"prompt_expansion_mode": "disabled"` 파라미터가 있어, 이를 끄는 설정으로 보입니다.
 
 | 모델 | 입력 방식 | 배포 유형 | 해상도 | 길이(초) | 가격(USD / 영상 1초) |
 |---|---|---|---|---|---|
