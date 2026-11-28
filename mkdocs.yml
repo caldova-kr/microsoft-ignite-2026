@@ -102,6 +102,8 @@ nav:
       - sessions/index.md
       - "Keynote":
           - "KEY01 — Microsoft Ignite opening keynote": sessions/KEY01-microsoft-ignite-opening-keynote.md
+      - "Agent Platform":
+          - "BRK256 — Video AI at scale with Microsoft Foundry and fal": sessions/BRK256-video-ai-scale-microsoft-foundry-fal.md
   - 사이트 안내:
       - 사이트 기술: site.md
       - Agent 구조: agent.md

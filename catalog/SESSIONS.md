@@ -6,7 +6,7 @@
 
 온라인으로 볼 수 있음 = 온라인 송출 · 온디맨드 영상 있음 · 녹화 예정 중 하나. 현장 전용이면서 녹화하지 않는 492개는 원문 자료가 없어 정리 대상이 아니므로 맨 아래에 접어 둡니다.
 
-진행: ✅ 완료 0 · 🔍 검토 중 1 · ✍️ 작성 중 0 · ⏸️ 보류 0 · ➖ 제외 1 · · 미검토 932
+진행: ✅ 완료 0 · 🔍 검토 중 2 · ✍️ 작성 중 0 · ⏸️ 보류 0 · ➖ 제외 1 · · 미검토 931
 
 미디어: ▶ 온디맨드 영상 · 🖼 슬라이드 · 📝 트랜스크립트 (`tools/fetch_sources.py <CODE>` 로 받기)
 
@@ -96,7 +96,7 @@
 | · | [BRK253](https://ignite.microsoft.com/en-US/sessions/BRK253) | Operate AI at enterprise scale with Microsoft Foundry | Agent Platform | 300 | Microsoft Foundry, Governance, Microsoft Agent 365 | [▶](https://medius.microsoft.com/Embed/video-nc/a37af8ed-5abf-410c-a590-33b43d1ed912) [🖼](https://medius.microsoft.com/video/asset/PPT/a37af8ed-5abf-410c-a590-33b43d1ed912) 📝 |
 | · | [BRK254](https://ignite.microsoft.com/en-US/sessions/BRK254) | Turn enterprise data into a durable advantage with Microsoft AI models | Agent Platform | 200 | Microsoft Foundry, Microsoft Copilot, Model customization | [▶](https://medius.microsoft.com/Embed/video-nc/2e3e9a21-e6b1-4d6a-857c-2f33c7d56359) [🖼](https://medius.microsoft.com/video/asset/PPT/2e3e9a21-e6b1-4d6a-857c-2f33c7d56359) 📝 |
 | · | [BRK255](https://ignite.microsoft.com/en-US/sessions/BRK255) | Build private, responsive on-device AI agents with Foundry | Agent Platform | 300 | Microsoft Foundry, Windows | [▶](https://medius.microsoft.com/Embed/video-nc/88f950e4-aa9d-4eb3-941a-ff1a2f18de79) [🖼](https://medius.microsoft.com/video/asset/PPT/88f950e4-aa9d-4eb3-941a-ff1a2f18de79) 📝 |
-| · | [BRK256](https://ignite.microsoft.com/en-US/sessions/BRK256) | Video AI at scale with Microsoft Foundry and fal | Agent Platform | 300 |  | [▶](https://medius.microsoft.com/Embed/video-nc/cd099c8b-eee0-43e9-a94b-470e9b9c52df) [🖼](https://medius.microsoft.com/video/asset/PPT/cd099c8b-eee0-43e9-a94b-470e9b9c52df) 📝 |
+| 🔍 | [BRK256](https://ignite.microsoft.com/en-US/sessions/BRK256) | [Video AI at scale with Microsoft Foundry and fal](../docs/sessions/BRK256-video-ai-scale-microsoft-foundry-fal.md) | Agent Platform | 300 |  | [▶](https://medius.microsoft.com/Embed/video-nc/cd099c8b-eee0-43e9-a94b-470e9b9c52df) [🖼](https://medius.microsoft.com/video/asset/PPT/cd099c8b-eee0-43e9-a94b-470e9b9c52df) 📝 |
 | · | [BRK257](https://ignite.microsoft.com/en-US/sessions/BRK257) | Inside Microsoft: How we scale expertise with Foundry agents | Agent Platform | 200 | Microsoft Foundry, Customer, Observability and evaluation | [▶](https://medius.microsoft.com/Embed/video-nc/1b63d1a9-3340-45d1-bb78-e79fcb44f1f9) [🖼](https://medius.microsoft.com/video/asset/PPT/1b63d1a9-3340-45d1-bb78-e79fcb44f1f9) |
 | · | [BRK258](https://ignite.microsoft.com/en-US/sessions/BRK258) | Agentic automation: How Copilot Studio blends workflows and agents | Agent Platform | 200 | Resiliency, Copilot studio | [▶](https://medius.microsoft.com/Embed/video-nc/884ed343-acbc-4e75-b5d0-4dc057f66e78) [🖼](https://medius.microsoft.com/video/asset/PPT/884ed343-acbc-4e75-b5d0-4dc057f66e78) 📝 |
 | · | [BRK259](https://ignite.microsoft.com/en-US/sessions/BRK259) | See how the Microsoft Copilot harness powers Copilot Studio | Agent Platform | 200 | Github Copilot, Copilot studio | [▶](https://medius.microsoft.com/Embed/video-nc/57bd65b7-dce0-4d9d-9d20-70a3b284e9bd) [🖼](https://medius.microsoft.com/video/asset/PPT/57bd65b7-dce0-4d9d-9d20-70a3b284e9bd) 📝 |
