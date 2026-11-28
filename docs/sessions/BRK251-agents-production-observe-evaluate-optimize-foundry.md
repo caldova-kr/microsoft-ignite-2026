@@ -54,7 +54,7 @@ last_updated: 2026-11-28
   <figcaption>슬라이드 #6 — Visibility is common. Confidence in agent quality is not.</figcaption>
 </figure>
 
-관측 도구는 이미 흔하지만 **라이브 트래픽까지 평가하는 팀은 37%** 뿐이라, 대부분은 운영 중인 에이전트가 맞게 동작하는지 모르는 상태입니다. 이번 발표는 이 빈틈을 메우는 데 초점이 있습니다.
+관측 도구는 이미 흔하지만 **라이브 트래픽을 계속 평가하는 팀은 37%** 에 그칩니다. 운영 중인 에이전트의 품질을 지속적으로 검증하는 데 빈틈이 있다는 뜻이고, 이번 발표는 이 빈틈을 메우는 데 초점이 있습니다.
 
 ## Customer scenarios
 
