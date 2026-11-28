@@ -29,12 +29,14 @@ def rels(zf: zipfile.ZipFile, part: str) -> list[dict[str, str]]:
         return []
     out = []
     for tag in REL.findall(zf.read(name).decode("utf-8")):
-        rel = dict(ATTR.findall(tag))
+        rel = {k: html.unescape(v) for k, v in ATTR.findall(tag)}
         target = rel.get("Target", "")
-        if rel.get("TargetMode") != "External":
+        external = rel.get("TargetMode") == "External"
+        if not external:
             target = target.lstrip("/") if target.startswith("/") else posixpath.normpath(
                 posixpath.join(posixpath.dirname(part), target))
-        out.append({"id": rel.get("Id", ""), "type": rel.get("Type", "").rsplit("/", 1)[-1], "target": target})
+        out.append({"id": rel.get("Id", ""), "type": rel.get("Type", "").rsplit("/", 1)[-1], "target": target,
+                    "external": external})
     return out
 
 
@@ -46,8 +48,14 @@ def slide_parts(zf: zipfile.ZipFile) -> list[str]:
 
 
 def paragraphs(xml: str) -> list[str]:
-    lines = (html.unescape("".join(RUN.findall(p))).strip() for p in PARA.findall(xml))
-    return [line for line in lines if line]
+    out = []
+    for p in PARA.findall(xml):
+        p = re.sub(r"<a:t\b[^>]*/>", "", p)                    # empty run: would swallow XML up to the next </a:t>
+        p = re.sub(r"<a:br\b[^>]*/>|<a:br\b.*?</a:br>", "<a:t> </a:t>", p, flags=re.S)  # line break inside a paragraph
+        line = " ".join(html.unescape("".join(RUN.findall(p))).split())
+        if line:
+            out.append(line)
+    return out
 
 
 def slide_title(xml: str) -> str:
@@ -71,7 +79,8 @@ def read_slides(path: Path) -> list[dict]:
                 "text": paragraphs(xml),
                 "notes": [line for line in note_lines if not line.isdigit()],  # drop the slide-number placeholder
                 "links": sorted({r["target"] for r in related if r["type"] == "hyperlink"}),
-                "videos": sorted({r["target"] for r in related if r["target"].lower().endswith(VIDEO_EXT)}),
+                "videos": sorted({r["target"] for r in related
+                                  if not r["external"] and r["target"].lower().endswith(VIDEO_EXT)}),
             })
     return slides
 

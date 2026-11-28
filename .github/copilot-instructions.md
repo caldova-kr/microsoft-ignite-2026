@@ -16,7 +16,7 @@
 | **T1 세션 원문** | 해당 세션의 on-demand 영상, 공식 트랜스크립트(.docx), 공식 슬라이드(.pptx) | 본문 전체 | `video` · `transcript` · `slides` |
 | **T2 카탈로그** | `catalog/sessions.json` 의 제목·타입·토픽·태그·레벨·발표자·초록·`resources` | frontmatter, 세션 소개, Resources | `catalog` · `resources` |
 | **T3 Ignite 2026 공식 발표** | [Book of News 2026](https://news.microsoft.com/events/ignite/2026/book-of-news/), 카탈로그 `resources` 또는 Book of News가 링크한 Microsoft 공식 블로그 | 글: `!!! supplement "세션 외 보충 · <출처>"` 블록 안에서만 · 이미지: 출처 캡션과 함께 본문 어디든 | — |
-| **T4 공식 문서** | Microsoft Learn 등 제품 공식 문서 (상태·제약 확인용) | `!!! supplement` 블록 안에서만, **확인 일자 포함** | — |
+| **T4 공식 문서 · 제품 조회** | Microsoft Learn 등 제품 공식 문서, 실제 제품을 직접 조회한 결과(조회 조건 명시) — 상태·제약 확인용 | `!!! supplement` 블록 안에서만, **확인 일자 포함** | — |
 
 규칙:
 
@@ -28,7 +28,7 @@
 6. **GA / Preview / Roadmap 상태와 날짜**는 세션 또는 T3 가 명시한 경우에만 쓴다. 명시되지 않았으면 `미언급` 으로 두고 `Caveats & open questions` 에 적는다. 추측 금지.
 7. **수치·벤치마크·고객 사례**는 세션에서 말한 수치 그대로, 조건(비교 대상·환경)과 함께 쓴다. 단위 변환·반올림·재계산 금지.
 8. **확신이 없으면 단정하지 말고** `Caveats & open questions` 에 질문으로 남긴다.
-9. 인용은 짧게, 영어 원문 + 발화자 표기 후 한국어로 설명한다. 트랜스크립트·슬라이드·영상 **원본 파일**은 커밋하지 않는다(`.cache/` 는 git-ignored). 영상 **프레임 캡처**와 공식 블로그 **이미지**는 2장 규칙에 따라 커밋한다.
+9. 인용은 짧게, 영어 원문 + 발화자 표기 후 한국어로 설명한다. 트랜스크립트·슬라이드·영상 **원본 파일**은 커밋하지 않는다(`.cache/` 는 git-ignored). 슬라이드 · 영상 **캡처 이미지**와 공식 블로그 **이미지**는 2장 규칙에 따라 커밋한다.
 10. 근거 표기: `Key announcements` 표의 `근거` 열에 발화자(`Satya Nadella "…"`)·`키노트 슬라이드` 처럼 남긴다. 본문에는 수치·인용처럼 꼭 필요한 곳에만 짧게 두고, bullet 마다 `(transcript: …)`·`(영상 MM:SS)` 를 붙이지 않는다 — 읽는 흐름이 우선이다(근거 파일·시점은 작성자가 추적 가능하면 충분).
 
 ## 2. 이미지 — 슬라이드 · 영상 캡처 + 공식 블로그 이미지
@@ -38,14 +38,14 @@
 ### 왜 가능한가
 
 이 저장소의 기여자는 **모두 Microsoft 직원**이다. 세션 영상·슬라이드·공식 발표 블로그는 Microsoft 가 공개한 자료이므로,
-출처를 밝히는 조건으로 영상 캡처와 공식 블로그 이미지를 노트에 넣어 재사용한다. (외부 기여자는 이 규칙을 적용하지 않고 링크만 단다.)
+출처를 밝히는 조건으로 슬라이드 · 영상 캡처와 공식 블로그 이미지를 노트에 넣어 재사용한다. (외부 기여자는 이 규칙을 적용하지 않고 링크만 단다.)
 
 ### 무엇을 넣나
 
 | 이미지 | 언제 | 만드는 법 | 캡션(필수) |
 |---|---|---|---|
 | **영상 캡처** (T1) | 키 슬라이드, 아키텍처, 데모 화면, 발표 표·수치 | `python tools/capture_frame.py <CODE> MM:SS <name> [--crop w:h:x:y]` | `▶ 영상 MM:SS — 한 줄 설명` |
-| **슬라이드 내보내기** (T1) | 공식 슬라이드(.pptx)가 공개된 세션 — 영상 프레임보다 선명하므로 먼저 쓴다 | `python tools/capture_slide.py <CODE> <N> <name>` · 영상이 삽입된 슬라이드는 `--at <초>` 로 그 영상의 한 장면 | `슬라이드 #N — 슬라이드 제목` |
+| **슬라이드 내보내기** (T1) | 공식 슬라이드(.pptx)가 공개된 세션 — 영상 프레임보다 선명하므로 먼저 쓴다 | `python tools/capture_slide.py <CODE> <N> <name> [--crop w:h:x:y]` · 영상이 삽입된 슬라이드는 `--at <초>` 로 그 영상의 한 장면 | `슬라이드 #N — 슬라이드 제목` |
 | **공식 블로그 이미지** (T3) | 발표(announcement)를 설명하는 공식 다이어그램·스크린샷 | `python tools/fetch_image.py <CODE> --page <포스트 URL> --image <이미지 URL> --name <name>` | `📰 공식 블로그 · [포스트 제목](URL) (YYYY-MM-DD)` |
 
 - 공식 블로그 = `news.microsoft.com`(Book of News 포함) · `blogs.microsoft.com` · `azure.microsoft.com/…/blog` · `techcommunity.microsoft.com` · `devblogs.microsoft.com` · `github.blog` · `www.microsoft.com/…/blog` (`tools/catalog_lib.py: OFFICIAL_DOMAINS`).
@@ -252,7 +252,7 @@ Keynote 처럼 여러 제품이 발표되는 세션은 시간순 요약이 아�
 - 다른 이벤트(특히 Build 2026) 노트의 문장·표·다이어그램 재사용.
 - 카탈로그 유래 필드를 손으로 수정하거나 섹션 이름·순서 변경.
 - 생성물 직접 편집, `mkdocs.yml` 의 theme/plugins/markdown_extensions 임의 변경, hooks·서드파티 플러그인 추가(→ Zensical 이전 호환성 유지).
-- 트랜스크립트·슬라이드·영상 원본 파일 커밋 (프레임 캡처는 가능).
+- 트랜스크립트·슬라이드·영상 원본 파일 커밋 (슬라이드 · 영상에서 캡처한 이미지는 가능).
 - 출처 캡션 없는 이미지, 외부 이미지 핫링크, 공식이 아닌 블로그·SNS·이전 이벤트 포스트의 이미지, ID·이메일이 보이는 캡처.
 - 영어 본문 전환, 마케팅 톤 재작성.
 - 다른 사람이 assignee 인 세션을 작성하거나, 이슈 없이 노트 PR 만들기.

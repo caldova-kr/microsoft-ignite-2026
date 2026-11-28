@@ -294,7 +294,7 @@ def deck(tmp_path):
         show = ' show="0"' if hidden else ""
         badge = "<p:sp><p:txBody><a:p><a:pPr/><a:r><a:t>Badge</a:t></a:r></a:p></p:txBody></p:sp>"
         title = f'<p:sp><p:nvSpPr><p:nvPr><p:ph type="title"/></p:nvPr></p:nvSpPr><p:txBody><a:p><a:r><a:t>{text}</a:t></a:r></a:p></p:txBody></p:sp>'
-        return f'<p:sld{show}><p:spTree>{badge}{title}<p:sp><p:txBody><a:p><a:r><a:t>A &amp; B</a:t></a:r></a:p></p:txBody></p:sp></p:spTree></p:sld>'
+        return f'<p:sld{show}><p:spTree>{badge}{title}<p:sp><p:txBody><a:p><a:r><a:t/></a:r><a:r><a:t>A &amp;</a:t></a:r><a:br/><a:r><a:t>B</a:t></a:r></a:p></p:txBody></p:sp></p:spTree></p:sld>'
 
     rel = '<Relationship Id="{}" Type="http://x/relationships/{}" Target="{}"{}/>'
     path = tmp_path / "deck.pptx"
@@ -306,8 +306,9 @@ def deck(tmp_path):
         zf.writestr("ppt/slides/slide2.xml", slide("Shown first"))
         zf.writestr("ppt/slides/_rels/slide1.xml.rels",
                     rel.format("rId1", "notesSlide", "../notesSlides/notesSlide1.xml", "")
-                    + rel.format("rId2", "hyperlink", "https://aka.ms/x", ' TargetMode="External"')
-                    + rel.format("rId3", "video", "../media/media1.mp4", ""))
+                    + rel.format("rId2", "hyperlink", "https://aka.ms/x?a=1&amp;b=2", ' TargetMode="External"')
+                    + rel.format("rId3", "video", "../media/media1.mp4", "")
+                    + rel.format("rId4", "video", "https://example.com/linked.mp4", ' TargetMode="External"'))
         zf.writestr("ppt/notesSlides/notesSlide1.xml", "<p:notes><a:p><a:r><a:t>say this</a:t></a:r></a:p><a:p><a:r><a:t>2</a:t></a:r></a:p></p:notes>")
     return path
 
@@ -318,11 +319,11 @@ def test_slides_are_read_in_presentation_order_with_notes_links_and_videos(tmp_p
     first, second = read_slides(deck(tmp_path))
     assert (first["number"], first["title"], first["text"], first["hidden"]) == (1, "Shown first", ["Badge", "Shown first", "A & B"], False)
     assert second == {"number": 2, "part": "ppt/slides/slide1.xml", "hidden": True, "title": "Hidden one",
-                      "text": ["Badge", "Hidden one", "A & B"], "notes": ["say this"], "links": ["https://aka.ms/x"],
+                      "text": ["Badge", "Hidden one", "A & B"], "notes": ["say this"], "links": ["https://aka.ms/x?a=1&b=2"],
                       "videos": ["ppt/media/media1.mp4"]}
     text = slides_markdown(deck(tmp_path))
     assert text.index("## Slide 1 — Shown first\n- Badge") < text.index("## Slide 2 — Hidden one  (hidden)")
-    assert "Notes: say this" in text and "Link: https://aka.ms/x" in text and "Embedded video: 1" in text
+    assert "Notes: say this" in text and "Link: https://aka.ms/x?a=1&b=2" in text and "Embedded video: 1" in text
 
 
 def test_pdf_page_skips_hidden_slides():
@@ -354,6 +355,7 @@ def test_captions_become_timestamped_text():
     from fetch_sources import vtt_to_text
 
     assert vtt_to_text(VTT) == "[00:00] Good morning. Still the first half minute.\n[01:00] Later on.\n"
+    assert vtt_to_text("WEBVTT\n\n01:05.000 --> 01:07.000\nQ&amp;A &gt;&gt; next\n") == "[01:00] Q&A >> next\n"
 
 
 def test_player_caption_track_is_picked_by_language():
@@ -382,3 +384,5 @@ def test_unreadable_transcript_falls_back_to_player_captions(monkeypatch):
     text, source = fetch_sources.fetch_transcript({"video": "https://v", "transcript": "https://t", "slides": ""})
     assert source == "player captions" and "[00:00] Good morning." in text
     assert fetch_sources.fetch_transcript({"video": "", "transcript": "", "slides": ""}) is None
+    pages["https://c/Caption_en-US.vtt"] = b"WEBVTT\n"
+    assert fetch_sources.fetch_transcript({"video": "https://v", "transcript": "", "slides": ""}) is None

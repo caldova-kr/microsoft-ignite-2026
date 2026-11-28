@@ -29,15 +29,15 @@ Foundry 에서 바로 배포해 쓰는 영상 생성 모델은 `sora-2` 가 2026
 
 ### 1. 세 계열 한눈에 
 
-(이미지: One car, three video models 슬라이드. 같은 자동차 이미지를 Kling v3 Pro, LTX-2.5 Pro, H3 Max 로 각각 애니메이션한 세로 영상 세 개가 나란히 놓인 Dusk orbit 장면 — 슬라이드 #30 — One car, three video models)
+(이미지: One car, three video models 슬라이드. 같은 자동차 이미지를 Kling v3 Pro, LTX-2.5 Pro, H3 Max 로 각각 애니메이션한 세로 영상 세 개가 나란히 놓인 Dusk orbit 장면 — 슬라이드 #30 (삽입 영상 11.2초) — One car, three video models)
 
 | fal 의 설명 | Kling Video v3 | MiniMax H3 | LTX-2.5 |
 |---|---|---|---|
-| 한 줄 요약 | 가장 좋은 품질, 가장 비쌈 | 품질은 Kling 에 근접, 훨씬 빠름 | 품질보다 제어(controllability) |
+| 한 줄 요약 | 전문가급 품질, 비용이 높은 편 | 품질은 Kling 에 근접, 훨씬 빠름 | 품질보다 제어(controllability) |
 | 공개 여부 | closed source | open source | open model |
 | 변형 | Pro · Standard · Turbo | H3 Max · H3 Turbo | Pro · Fast |
 | 잘하는 것 | cinematic shot, 폭발 같은 VFX, 물리 · 일관성 | 말하는 사람 · 표정, 음성 생성, 장면 전환 | 레이어별 정의, 모션 지정, 3D 모델 입력 |
-| 속도 | 세 모델 중 느린 편 | "like 20 times faster", 2~3초 생성 | 수치 없음 |
+| 속도 | 세 모델 중 느린 편 | Kling 과 견주어 "like 20 times faster", 2~3초 생성 | 수치 없음 |
 | 비용 감각 | 초당 "tens of cents" | H3 Turbo 는 초당 "less than a cent" | 미언급 |
 | 이럴 때 고른다 | 완성도가 중요한 최종본 | 대량 · 저지연, 개인화, 빠른 반복 | 기존 제작 파이프라인의 한 단계 |
 | 주의점 | 비용 | 미언급 | 프롬프트 한 줄 결과물에는 부적합 |
@@ -49,6 +49,7 @@ fal 의 설명을 모은 표이고, 속도 · 비용 수치는 조건 없이 든
 
 - 지금 배포할 수 있는 것은 **5종**입니다. Kling 은 v3 Pro 가 올라와 있고, H3 Turbo 는 "MiniMax H3 Max Turbo" 라는 이름입니다. 가격은 아래 표와 같습니다.
 - LTX 의 레이어 · 3D 입력, 파인튜닝, content filter 적용은 Learn 의 fal 문서에는 나와 있지 않습니다.
+- fal 은 입력 프롬프트를 자동으로 보강합니다. Learn 의 MiniMax 예제는 `"prompt_expansion_mode": "disabled"` 로 이를 끄고 호출합니다.
 
 | 모델 | 입력 방식 | 배포 유형 | 해상도 | 길이(초) | 가격(USD / 영상 1초) |
 |---|---|---|---|---|---|
@@ -67,10 +68,10 @@ fal 의 설명을 모은 표이고, 속도 · 비용 수치는 조건 없이 든
 
 ## Why it matters
 
-- Foundry 가 모델만이 아니라 **inference provider 를 고르는 곳**으로 넓어집니다. fal 이 그 첫 사례이고, 모델은 더 늘어날 예정입니다.
+- Foundry 가 모델만이 아니라 **inference provider 를 고르는 곳**으로 넓어집니다. 이번 fal 모델이 그 시작이고, 더 늘어날 예정입니다.
 - 영상 생성에서도 **호스팅 위치가 선택 기준**이 됐습니다. 프롬프트 · 참조 이미지 · IP 가 그대로 민감 데이터이기 때문입니다.
 
-### Foundry 영상 생성의 빈자리를 채우는 선택지 
+### Foundry 의 영상 생성 선택지 
 
 (이미지: What's available in Foundry today 슬라이드. Video models 항목에 Sora(OpenAI), NVIDIA Cosmos, Kling · LTX · MiniMax through fal 이 나열되고 왼쪽 카탈로그 화면에 Fal-Kling-V3-Pro, Fal-LTX-2.5-Fast 등과 sora-2 카드가 보임 — 슬라이드 #3 — What's available in Foundry today)
 
@@ -86,7 +87,7 @@ fal 의 설명을 모은 표이고, 속도 · 비용 수치는 조건 없이 든
 
 **판단 (적용 아이디어)**
 
-- **고려해 볼 만합니다** — Sora 2 가 빠진 뒤 Foundry 에서 영상 생성을 계속하려면 현재로서는 fal 5종이 사실상 유일한 선택지이고, text · image → video 와 오디오 생성까지 범위가 겹칩니다.
+- **고려해 볼 만합니다** — text · image → video 와 오디오 생성까지 Sora 2 와 범위가 겹칩니다.
 - **Sora 2 보다 나은지는 확인하지 않았습니다** — 품질을 직접 비교한 자료는 세션에도 문서에도 없습니다. 조회도 작성자 구독 기준입니다.
 
 ### 가용 리전 · 사용 조건 
@@ -94,11 +95,11 @@ fal 의 설명을 모은 표이고, 속도 · 비용 수치는 조건 없이 든
 **세션 외 보충 · Microsoft Learn · 작성자 확인 (Azure CLI 조회, 2026-11-28)**
 [Fal models on Microsoft Foundry (preview)](https://learn.microsoft.com/en-us/azure/foundry/how-to/fal-ai-models/enable-fal-models) · [Deploy and use Claude models in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-claude)
 
-**한국 리전(Korea Central)에는 없습니다.** 해외 리전에 Foundry 리소스를 따로 만들어야 합니다.
+**한국 리전(Korea Central)을 포함한 아시아 리전에는 없습니다.** 해외 리전에 Foundry 리소스를 따로 만들어야 합니다.
 
 | 항목 | 결과 | 출처 |
 |---|---|---|
-| 가용 리전 | **East US 2**(5종), **Sweden Central**(Kling v3 Pro 제외 4종). Korea Central · Japan East · Southeast Asia 등 아시아 리전에는 없음 | 작성자 조회 (32개 리전) |
+| 가용 리전 | **East US 2**(5종), **Sweden Central**(Kling v3 Pro 제외 4종). 조회한 나머지 리전에는 없음 | 작성자 조회 (32개 리전) |
 | 한국 계약 | fal 문서에 국가 · 구독 유형 제외 목록 없음. Claude 문서는 "Enterprise Accounts located in South Korea" 를 미지원으로 명시. 한국 EA 구독에서의 실제 배포는 미확인 | Learn |
 | 데이터 처리 | fal 서비스는 "operated outside of Microsoft facilities". Microsoft 의 Product Terms · DPA · certifications 미적용, fal Terms of Service 적용 | Learn |
 | 시작 조건 | 구독 Owner 또는 Contributor 가 `Fal.EnableDeploy` preview feature 를 1회 등록 | Learn |
@@ -109,7 +110,7 @@ fal 의 설명을 모은 표이고, 속도 · 비용 수치는 조건 없이 든
 
 ## Customer scenarios
 
-영상 생성을 실제 서비스에 쓰는 사례는 둘입니다. 둘 다 fal 이전의 사례라 쓰인 모델은 다르지만, 어디에 쓰는지를 보여 줍니다.
+영상 생성을 실제 서비스에 쓰는 사례는 둘입니다. 둘 다 fal 이전의 사례이지만, 어디에 쓰는지를 보여 줍니다.
 
 - **HyperCinema** — 방문객의 얼굴 스캔과 성격 퀴즈로 개인화 이미지와 30~45초 영상을 5분 안에 제공. 사례 공개 당시 하루 이미지 50,000장, 영상 6,000개.
 - **WPP** — 피칭 단계에서 스토리보드 대신 애니메이션 영상으로 캠페인을 미리 보여 줌. 브랜드 가이드라인으로 프롬프트를 만들어 레시피 · 언어 · 플랫폼별로 일괄 생성. Sora 를 쓴 사례입니다.
@@ -119,9 +120,9 @@ fal 의 설명을 모은 표이고, 속도 · 비용 수치는 조건 없이 든
 | 항목 | 상태 | 근거 | 비고 |
 |------|------|------|------|
 | fal on Microsoft Foundry | Public Preview | 슬라이드 #10 "Available Now as Public Preview" | fal 카탈로그의 영상 모델을 Foundry Models 에서 "first-party Azure service" 로 제공 |
-| Kling Video v3 (Pro · Standard · Turbo) | 미언급 | 슬라이드 #11 "New" · Burkay Gur | closed source |
-| MiniMax H3 (H3 Max · H3 Turbo) | 미언급 | 슬라이드 #11 "New" · Burkay Gur | open source, fal 의 post-training · 속도 최적화 적용 |
-| LTX-2.5 (Pro · Fast) | 미언급 | 슬라이드 #11 "New" · Burkay Gur | open model, 제어 중심 |
+| Kling Video v3 (Pro · Standard · Turbo) | Public Preview | 슬라이드 #10 · #11 "New" | closed source |
+| MiniMax H3 (H3 Max · H3 Turbo) | Public Preview | 슬라이드 #10 · #11 "New" | open source, fal 의 post-training · 속도 최적화 적용 |
+| LTX-2.5 (Pro · Fast) | Public Preview | 슬라이드 #10 · #11 "New" | open model, 제어 중심 |
 
 ## Architecture
 
@@ -140,15 +141,14 @@ fal 의 설명을 모은 표이고, 속도 · 비용 수치는 조건 없이 든
 | 문서 → 영상 | GPT-6.2 Sol → MAI Image 2.7 → H3 Max (reference-to-video) | 한 쪽짜리 안전 수칙을 "잘못된 예 / 올바른 예" 교육 영상으로 자동 변환 | 37:30 |
 | 이미지 한 장 → 캠페인 | MAI Image 2.7 → Kling v3 Pro · LTX-2.5 Pro · H3 Max | 광고 이미지 하나에서 영상, 규격별 · 언어별(한국어 포함) 변형까지 | 39:00 |
 
-(이미지: From policy to video 슬라이드. 안전 수칙 문서 PS-104 Head Protection 을 GPT-6.2 Sol 이 이미지 · 영상 프롬프트로 바꾸고, MAI Image 2.7 이 참조 이미지를 만들고, H3 Max reference-to-video 가 Wrong way 와 Right way 영상을 생성하는 흐름 — 슬라이드 #25 — From policy to video)
+(이미지: From policy to video 슬라이드. 안전 수칙 문서 PS-104 Head Protection 을 GPT-6.2 Sol 이 이미지 · 영상 프롬프트로 바꾸고, MAI Image 2.7 이 참조 이미지를 만들고, H3 Max reference-to-video 가 Wrong way 와 Right way 영상을 생성하는 흐름 — 슬라이드 #25 (삽입 영상 17.2초) — From policy to video)
 
-재사용할 만한 것은 **문서 → 영상** 패턴입니다. 작업자 · 안전모 · 공장을 참조 이미지로 따로 만들어 두어 영상마다 같은 인물과 배경이 유지되고, 흐름 전체를 Foundry API 로 자동화할 수 있습니다.
+재사용할 만한 것은 **문서 → 영상** 패턴입니다. 교육 자료가 많을 때 흐름 전체를 Foundry API 로 자동화할 수 있습니다.
 
 ## Caveats & open questions
 
-- 생성 속도와 품질은 직접 재 보지 않았습니다. 발표 수치에는 해상도 · 길이 같은 조건이 없어, 도입 전에 실제 프롬프트로 측정해야 합니다.
-- GA 시점, Kling 의 나머지 변형(Standard · Turbo)이 언제 제공되는지, 추가될 모델은 확인되지 않았습니다.
-- fal 이 프롬프트를 자동으로 보강(prompt enhancement)한다고 했는데, 결과가 의도와 달라질 수 있어 끄는 방법을 확인해야 합니다.
+- 생성 속도와 품질은 직접 재 보지 않았습니다. 도입 전에 실제 프롬프트로 측정해야 합니다.
+- GA 시점과 추가될 모델은 확인되지 않았습니다.
 
 ## Resources
 

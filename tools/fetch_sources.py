@@ -29,7 +29,7 @@ from slides_lib import slides_markdown  # noqa: E402
 
 UA = {"User-Agent": "Mozilla/5.0 (ignite-2026-notes source fetch)"}
 RAW_LINKS = {"video": "onDemand", "transcript": "captionFileLink", "slides": "slideDeck"}
-CUE = re.compile(r"(\d+):(\d\d):(\d\d)[.,]\d+ --> ")
+CUE = re.compile(r"(?:(\d+):)?(\d\d):(\d\d)[.,]\d+ --> ")
 
 
 def get(url: str) -> bytes:
@@ -68,10 +68,10 @@ def vtt_to_text(vtt: str, bucket: int = 30) -> str:
         m = CUE.search(block)
         if not m:
             continue
-        start = int(m.group(1)) * 3600 + int(m.group(2)) * 60 + int(m.group(3))
+        start = int(m.group(1) or 0) * 3600 + int(m.group(2)) * 60 + int(m.group(3))
         text = " ".join(line.strip() for line in block[m.end():].splitlines()[1:] if line.strip())
         if text:
-            groups.setdefault(start // bucket, []).append(re.sub(r"<[^>]+>", "", text))
+            groups.setdefault(start // bucket, []).append(html.unescape(re.sub(r"<[^>]+>", "", text)))
     return "".join(f"[{k * bucket // 60:02d}:{k * bucket % 60:02d}] {' '.join(v)}\n" for k, v in sorted(groups.items()))
 
 
@@ -92,7 +92,8 @@ def fetch_transcript(link: dict[str, str]) -> tuple[str, str] | None:
         src = captions_url(get(link["video"]).decode("utf-8", "replace"))
         if src:
             text = vtt_to_text(get(src).decode("utf-8-sig", "replace"))
-            return "(on-demand player captions, en-US — cite as video, not transcript)\n" + text, "player captions"
+            if text:
+                return "(on-demand player captions, en-US — cite as video, not transcript)\n" + text, "player captions"
     return None
 
 
@@ -141,10 +142,15 @@ def main() -> None:
         if link["slides"]:
             try:
                 (out / "slides.pptx").write_bytes(get(link["slides"]))
-                (out / "slides.md").write_text(slides_markdown(out / "slides.pptx"), encoding="utf-8")
-                got += ["slides.pptx", "slides.md"]
+                got.append("slides.pptx")
             except Exception as exc:  # noqa: BLE001
                 print(f"[{code}] slides download failed: {exc}", file=sys.stderr)
+            else:
+                try:
+                    (out / "slides.md").write_text(slides_markdown(out / "slides.pptx"), encoding="utf-8")
+                    got.append("slides.md")
+                except Exception as exc:  # noqa: BLE001
+                    print(f"[{code}] slides.pptx saved, but its text could not be read: {exc}", file=sys.stderr)
         print(f"[{code}] {out.relative_to(CACHE_DIR.parent)}: {', '.join(got)}"
               + ("" if link["video"] else "  (no on-demand video yet)"))
 
