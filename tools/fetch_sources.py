@@ -3,8 +3,12 @@
 
 Writes:
   catalog.md      catalog record (title, type, topics, tags, abstract, Microsoft AI summary, links)
-  transcript.txt  official transcript (from the catalog's caption file), if published
+  transcript.txt  official transcript, if published. When it is missing or cannot be read (some are
+                  rights-protected), the on-demand player's public English captions with [MM:SS] marks
   slides.pptx     official slide deck, if published
+  slides.md       text of the deck, one block per slide (number, text, notes, links, embedded videos)
+
+A file this run could not refresh stays in the folder and is reported as left from an earlier run.
 
 These files are the evidence a session note must be based on. They are Microsoft-owned
 material and are never committed; notes cite the public URLs instead.
@@ -23,8 +27,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from catalog_lib import API_URL, CACHE_DIR, RAW_CACHE, catalog_index, html_to_text  # noqa: E402
+from slides_lib import slides_markdown  # noqa: E402
 
 UA = {"User-Agent": "Mozilla/5.0 (ignite-2026-notes source fetch)"}
+RAW_LINKS = {"video": "onDemand", "transcript": "captionFileLink", "slides": "slideDeck"}
+CUE = re.compile(r"(?:(\d+):)?(\d\d):(\d\d)[.,]\d+[ \t]+-->[ \t]+")
+EVIDENCE = ("transcript.txt", "slides.pptx", "slides.md")
 
 
 def get(url: str) -> bytes:
@@ -47,6 +55,71 @@ def docx_to_text(blob: bytes) -> str:
     return "\n".join(line for line in lines if line) + "\n"
 
 
+def captions_url(embed_html: str, lang: str = "en-US") -> str | None:
+    """Caption track the public on-demand player offers for `lang`."""
+    m = re.search(r"captionsConfiguration\s*=\s*(\{.*?\});", embed_html, re.S)
+    if not m:
+        return None
+    tracks = json.loads(m.group(1)).get("languageList", [])
+    return next((t["src"] for t in tracks if f"Caption_{lang}." in t.get("src", "")), None)
+
+
+def vtt_to_text(vtt: str, bucket: int = 30) -> str:
+    """WebVTT cues → plain text, one line per `bucket` seconds, each starting with [MM:SS]."""
+    groups: dict[int, list[str]] = {}
+    start = None  # start second of the cue being read; None between cues (header, cue identifiers, comments)
+    for line in vtt.splitlines():
+        line = line.strip()
+        m = CUE.match(line)  # a timing line opens a cue, as in the WebVTT parser
+        if m:
+            start = int(m.group(1) or 0) * 3600 + int(m.group(2)) * 60 + int(m.group(3))
+        elif not line:  # blank (or whitespace-only) line closes it
+            start = None
+        elif start is not None:
+            text = html.unescape(re.sub(r"<[^>]+>", "", line)).strip()
+            if text:
+                groups.setdefault(start // bucket, []).append(text)
+    return "".join(f"[{k * bucket // 60:02d}:{k * bucket % 60:02d}] {' '.join(v)}\n" for k, v in sorted(groups.items()))
+
+
+def links(session: dict, raws: list[dict]) -> dict[str, str]:
+    """Media links from the catalog snapshot, falling back to the raw catalog when the snapshot is older."""
+    return {key: session[key] or next((r[field] for r in raws if r.get(field)), "")
+            for key, field in RAW_LINKS.items()}
+
+
+def fetch_transcript(link: dict[str, str]) -> tuple[str, str] | None:
+    """(text, where it came from) — the official transcript, else the player's captions."""
+    if link["transcript"]:
+        try:
+            return docx_to_text(get(link["transcript"])), "official transcript"
+        except Exception as exc:  # noqa: BLE001 — rights-protected files are not readable ZIPs
+            print(f"  official transcript not readable ({exc}); trying the player's captions", file=sys.stderr)
+    if link["video"]:
+        src = captions_url(get(link["video"]).decode("utf-8", "replace"))
+        if src:
+            text = vtt_to_text(get(src).decode("utf-8-sig", "replace"))
+            if text:
+                return "(on-demand player captions, en-US — cite as video, not transcript)\n" + text, "player captions"
+    return None
+
+
+def kept_from_earlier_run(folder: Path, written: set[str]) -> list[str]:
+    """Evidence files this run did not write but that are still in the folder."""
+    return [name for name in EVIDENCE if name not in written and (folder / name).exists()]
+
+
+def write_slides_text(folder: Path) -> None:
+    """slides.md from slides.pptx. If the deck cannot be read, an older deck's text must not stay behind."""
+    target = folder / "slides.md"
+    try:
+        text = slides_markdown(folder / "slides.pptx")
+    except Exception:
+        target.unlink(missing_ok=True)
+        raise
+    target.write_text(text, encoding="utf-8")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("codes", nargs="+", help="session codes, e.g. KEY01 BRK220")
@@ -63,13 +136,14 @@ def main() -> None:
         out.mkdir(parents=True, exist_ok=True)
 
         raws = raw_records(code, args.refresh)
+        link = links(s, raws)
         ai_summary = next((html_to_text(r.get("aiDescription")) for r in raws if r.get("aiDescription")), "")
         lines = [
             f"# [{code}] {s['title']}", "",
             f"- Type: {s['type']}", f"- Topics: {', '.join(s['topics'])}", f"- Tags: {', '.join(s['tags'])}",
             f"- Level: {s['level'] or ''}", f"- Speakers: {', '.join(s['speakers'])}",
-            f"- Session page: {s['url']}", f"- Video: {s['video']}", f"- Slides: {s['slides']}",
-            f"- Transcript: {s['transcript']}", "",
+            f"- Session page: {s['url']}", f"- Video: {link['video']}", f"- Slides: {link['slides']}",
+            f"- Transcript: {link['transcript']}", "",
             "## Abstract (catalog)", "", s["description"], "",
             "## Microsoft AI-generated summary (catalog `aiDescription`)", "",
             "> 카탈로그가 제공하는 AI 생성 요약. 사실 확인의 1차 근거가 아니라 탐색용 — 주장은 transcript/영상/슬라이드로 확인할 것.",
@@ -80,20 +154,31 @@ def main() -> None:
         (out / "catalog.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
         got = ["catalog.md"]
 
-        if s["transcript"]:
+        try:
+            transcript = fetch_transcript(link)
+        except Exception as exc:  # noqa: BLE001
+            transcript = None
+            print(f"[{code}] transcript download failed: {exc}", file=sys.stderr)
+        if transcript:
+            (out / "transcript.txt").write_text(transcript[0], encoding="utf-8")
+            got.append(f"transcript.txt ({transcript[1]})")
+        if link["slides"]:
             try:
-                (out / "transcript.txt").write_text(docx_to_text(get(s["transcript"])), encoding="utf-8")
-                got.append("transcript.txt")
-            except Exception as exc:  # noqa: BLE001
-                print(f"[{code}] transcript download failed: {exc}", file=sys.stderr)
-        if s["slides"]:
-            try:
-                (out / "slides.pptx").write_bytes(get(s["slides"]))
+                (out / "slides.pptx").write_bytes(get(link["slides"]))
                 got.append("slides.pptx")
             except Exception as exc:  # noqa: BLE001
                 print(f"[{code}] slides download failed: {exc}", file=sys.stderr)
+            else:
+                try:
+                    write_slides_text(out)
+                    got.append("slides.md")
+                except Exception as exc:  # noqa: BLE001
+                    print(f"[{code}] slides.pptx saved, but its text could not be read (no slides.md): {exc}", file=sys.stderr)
         print(f"[{code}] {out.relative_to(CACHE_DIR.parent)}: {', '.join(got)}"
-              + ("" if s["video"] else "  (no on-demand video yet)"))
+              + ("" if link["video"] else "  (no on-demand video yet)"))
+        kept = kept_from_earlier_run(out, {label.split()[0] for label in got})
+        if kept:
+            print(f"[{code}] not refreshed in this run — left from an earlier one: {', '.join(kept)}", file=sys.stderr)
 
 
 if __name__ == "__main__":

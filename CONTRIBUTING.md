@@ -48,7 +48,8 @@ git switch -c note/BRK220
 pip install -r requirements.txt
 python tools/fetch_sources.py BRK220   # 원문 자료 → .cache/sources/BRK220/ (커밋되지 않음)
 python tools/new_session.py BRK220     # 카탈로그 값이 채워진 docs/sessions/BRK220-<slug>.md
-python tools/capture_frame.py BRK220 18:40 <name>   # 핵심 장면 캡처 (아래 "이미지 우선")
+python tools/capture_slide.py BRK220 12 <name>      # 핵심 슬라이드를 이미지로 (아래 "이미지")
+python tools/capture_frame.py BRK220 18:40 <name>   # 덱이 없거나 데모 화면이면 영상 캡처
 #   … 노트 작성 …
 python tools/build_pages.py            # 인덱스·카탈로그·메뉴 갱신 (생성물도 커밋)
 python tools/validate.py && mkdocs build --strict
@@ -60,17 +61,19 @@ gh pr create --draft --title "[BRK220] <제목>" --body "Closes #<이슈번호>"
 - 에이전트(Copilot 등)로 쓰면 에이전트가 먼저 **정리 의도**(관점·독자, 중점 발표·사례, 제외 범위, 형식)를 묻습니다. 이슈의 "공유 포인트" 에 미리 적어 두면 그대로 반영됩니다.
 - 영상·트랜스크립트·슬라이드가 아직 없으면 노트를 시작하지 말고 이슈에 그 사실을 남겨 둡니다.
 
-## 이미지 — 영상 캡처 + 공식 블로그 이미지
+## 이미지 — 슬라이드 · 영상 캡처 + 공식 블로그 이미지
 
-**기여자는 모두 Microsoft 직원**이라 Microsoft 가 공개한 세션 영상의 캡처와 공식 발표 블로그 이미지를 출처와 함께 노트에 넣을 수 있습니다. 핵심 장면(키 슬라이드·발표 수치·데모 화면)만 이미지로 보여 주고, 더 궁금한 사람을 위해서는 공식 소개 블로그 링크를 걸어 주세요.
+**기여자는 모두 Microsoft 직원**이라 Microsoft 가 공개한 세션 슬라이드 · 영상의 캡처와 공식 발표 블로그 이미지를 출처와 함께 노트에 넣을 수 있습니다. 핵심 장면(키 슬라이드·발표 수치·데모 화면)만 이미지로 보여 주고, 더 궁금한 사람을 위해서는 공식 소개 블로그 링크를 걸어 주세요.
 
 ```bash
+python tools/capture_slide.py BRK220 12 agent-architecture                # 슬라이드 #12 → 노트 폴더 (덱이 공개된 세션은 이쪽이 선명)
+python tools/capture_slide.py BRK220 30 demo-result --at 11.2             # 영상이 삽입된 슬라이드는 그 영상의 11.2초 장면
 python tools/capture_frame.py BRK220 18:40 agent-architecture             # 영상 18:40 프레임 → 노트 폴더
 python tools/capture_frame.py BRK220 18:40 agent-architecture --crop 1200:675:200:100   # ID 가 보이면 잘라내기
 python tools/fetch_image.py BRK220 --page <공식 블로그 포스트 URL> --image <이미지 URL> --name foundry-overview
 ```
 
-두 도구 모두 아래 형식의 스니펫을 출력합니다. 캡션의 출처 표기는 필수이고 CI 가 검사합니다.
+세 도구 모두 아래 형식의 스니펫을 출력합니다. 캡션의 출처 표기(`영상 MM:SS` · `슬라이드 #N` · 공식 블로그 링크)는 필수이고 CI 가 검사합니다.
 
 ```markdown
 <figure markdown="span">
@@ -83,7 +86,7 @@ python tools/fetch_image.py BRK220 --page <공식 블로그 포스트 URL> --ima
 - 문체는 주변에 공유하는 **참관 후기**(합니다체)입니다. Keynote 처럼 발표가 많은 세션은 핵심 의제 → 제품 소개(의미 포함) → 고객 사례 → GA / Preview 구분 순서로 씁니다 (instructions 6장 "Keynote · 발표 중심 노트의 구성").
 - 공식 블로그는 Ignite 2026 발표 포스트(Book of News, Azure/Tech Community/Microsoft 블로그, GitHub Blog 등)만. 블로그에서만 나온 *글* 정보는 `세션 외 보충` 블록에 둡니다.
 - 캡처 전에 테넌트·구독 ID, 이메일, 토큰이 보이는지 확인하고 `--crop` 으로 잘라냅니다. 공개되지 않은 사내 자료는 넣지 않습니다.
-- 영상 프레임 캡처에는 `ffmpeg` 가 필요합니다 (`brew install ffmpeg`).
+- 영상 프레임 캡처에는 `ffmpeg` 가 필요합니다 (`brew install ffmpeg`). 슬라이드 내보내기에는 PowerPoint(Windows) 또는 LibreOffice + `pdftoppm`(poppler)이 필요합니다.
 
 ## 작성 원칙 — 반드시 지킬 것
 
@@ -101,7 +104,7 @@ python tools/fetch_image.py BRK220 --page <공식 블로그 포스트 URL> --ima
 - GA · Preview 상태와 날짜는 **세션이나 공식 발표가 명시한 경우에만.** 아니면 `Caveats & open questions` 에 질문으로.
 - 카탈로그 유래 frontmatter(제목·타입·토픽·태그·발표자 등)는 수정하지 않습니다 — CI 가 카탈로그와 비교합니다.
 - `review`/`done` 노트는 `source_basis` 에 `video`/`transcript`/`slides` 중 하나 이상이 있어야 합니다 — CI 강제.
-- 트랜스크립트·슬라이드·영상 **원본 파일**은 커밋하지 않습니다 (영상 프레임 캡처와 공식 블로그 이미지는 커밋).
+- 트랜스크립트·슬라이드·영상 **원본 파일**은 커밋하지 않습니다 (슬라이드 · 영상에서 캡처한 이미지와 공식 블로그 이미지는 커밋).
 
 ## 진행 상태 한눈에
 

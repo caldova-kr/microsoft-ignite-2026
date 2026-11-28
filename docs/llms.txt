@@ -6,6 +6,7 @@
 
 ## Notes
 
+- [BRK256 — Video AI at scale with Microsoft Foundry and fal](https://caldova-kr.github.io/microsoft-ignite-2026/sessions/BRK256-video-ai-scale-microsoft-foundry-fal/): fal 이 서빙하는 Kling Video v3 · MiniMax H3 · LTX-2.5 가 Foundry 에 Public Preview — 품질·속도·제어로 갈리는 세 계열의 차이와 고르는 법, US 호스팅 조건. (Breakout · status review · 근거 catalog, transcript, video, slides · 2026-11-28)
 - [KEY01 — Microsoft Ignite opening keynote](https://caldova-kr.github.io/microsoft-ignite-2026/sessions/KEY01-microsoft-ignite-opening-keynote/): Ignite 2026 오프닝 키노트를 Human Ambition · Intelligence · Trust 세 의제로 정리 — Decision 1.1·HorizonDB·Perception GA, Foundry 지속 개선 루프, Agent 365 비용 통제. (Keynote · status review · 근거 catalog, transcript, video · 2026-11-25)
 
 ## Catalog

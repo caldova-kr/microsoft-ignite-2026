@@ -284,3 +284,179 @@ def test_exported_note_links_point_at_the_deployed_pages():
     assert "[홈](https://example.github.io/notes/)" in out
     assert "[외부](https://ignite.microsoft.com)" in out
     assert "![img](https://example.github.io/notes/sessions/KEY01-x/a.jpg)" in out
+
+
+def deck(tmp_path, hidden_value="0"):
+    """Minimal .pptx: presentation order is slide2 then slide1; slide1 is hidden and has notes, a link and a video."""
+    import zipfile
+
+    def slide(text, hidden=False):
+        show = f' show="{hidden_value}"' if hidden else ""
+        badge = "<p:sp><p:txBody><a:p><a:pPr/><a:r><a:t>Badge</a:t></a:r></a:p></p:txBody></p:sp>"
+        title = f'<p:sp><p:nvSpPr><p:nvPr><p:ph type="title"/></p:nvPr></p:nvSpPr><p:txBody><a:p><a:r><a:t>{text}</a:t></a:r></a:p></p:txBody></p:sp>'
+        return f'<p:sld{show}><p:spTree>{badge}{title}<p:sp><p:txBody><a:p><a:r><a:t/></a:r><a:r><a:t>A &amp;</a:t></a:r><a:br/><a:r><a:t>B</a:t></a:r></a:p></p:txBody></p:sp></p:spTree></p:sld>'
+
+    rel = '<Relationship Id="{}" Type="http://x/relationships/{}" Target="{}"{}/>'
+    path = tmp_path / "deck.pptx"
+    with zipfile.ZipFile(path, "w") as zf:
+        zf.writestr("ppt/presentation.xml", '<p:sldIdLst><p:sldId id="1" r:id="rId2"/><p:sldId id="2" r:id="rId1"/></p:sldIdLst>')
+        zf.writestr("ppt/_rels/presentation.xml.rels",
+                    rel.format("rId1", "slide", "slides/slide1.xml", "") + rel.format("rId2", "slide", "slides/slide2.xml", ""))
+        zf.writestr("ppt/slides/slide1.xml", slide("Hidden one", hidden=True))
+        zf.writestr("ppt/slides/slide2.xml", slide("Shown first"))
+        zf.writestr("ppt/slides/_rels/slide1.xml.rels",
+                    rel.format("rId1", "notesSlide", "../notesSlides/notesSlide1.xml", "")
+                    + rel.format("rId2", "hyperlink", "https://aka.ms/x?a=1&amp;b=2", ' TargetMode="External"')
+                    + rel.format("rId3", "video", "../media/media1.mp4", "")
+                    + rel.format("rId4", "video", "https://example.com/linked.mp4", ' TargetMode="External"'))
+        zf.writestr("ppt/notesSlides/notesSlide1.xml",
+                    "<p:notes><p:sp><p:txBody><a:p><a:r><a:t>say this</a:t></a:r></a:p><a:p><a:r><a:t>42</a:t></a:r></a:p></p:txBody></p:sp>"
+                    '<p:sp><p:nvSpPr><p:nvPr><p:ph type="sldNum" idx="5"/></p:nvPr></p:nvSpPr>'
+                    '<p:txBody><a:p><a:fld type="slidenum"><a:t>2</a:t></a:fld></a:p></p:txBody></p:sp></p:notes>')
+    return path
+
+
+def test_slides_are_read_in_presentation_order_with_notes_links_and_videos(tmp_path):
+    from slides_lib import read_slides, slides_markdown
+
+    first, second = read_slides(deck(tmp_path))
+    assert (first["number"], first["title"], first["text"], first["hidden"]) == (1, "Shown first", ["Badge", "Shown first", "A & B"], False)
+    assert second == {"number": 2, "part": "ppt/slides/slide1.xml", "hidden": True, "title": "Hidden one",
+                      "text": ["Badge", "Hidden one", "A & B"], "notes": ["say this", "42"], "links": ["https://aka.ms/x?a=1&b=2"],
+                      "videos": ["ppt/media/media1.mp4"]}
+    text = slides_markdown(deck(tmp_path))
+    assert text.index("## Slide 1 — Shown first\n- Badge") < text.index("## Slide 2 — Hidden one  (hidden)")
+    assert "Notes: say this / 42" in text and "Link: https://aka.ms/x?a=1&b=2" in text and "Embedded video: 1" in text
+    assert [s["hidden"] for s in read_slides(deck(tmp_path, hidden_value="false"))] == [False, True]
+
+
+def test_pdf_page_skips_hidden_slides():
+    import pytest
+    from slides_lib import pdf_page
+
+    slides = [{"hidden": False}, {"hidden": True}, {"hidden": False}]
+    assert [pdf_page(slides, 1), pdf_page(slides, 3)] == [1, 2]
+    with pytest.raises(ValueError):
+        pdf_page(slides, 2)
+
+
+VTT = """WEBVTT
+
+00:00:01.000 --> 00:00:04.000
+Good morning.
+
+2
+00:00:29.500 --> 00:00:31.000 align:middle
+<v Speaker>Still the first
+half minute.
+
+00:01:05.000 --> 00:01:07.000
+Later on.
+"""
+
+
+def test_captions_become_timestamped_text():
+    from fetch_sources import vtt_to_text
+
+    assert vtt_to_text(VTT) == "[00:00] Good morning. Still the first half minute.\n[01:00] Later on.\n"
+    assert vtt_to_text("WEBVTT\n\n01:05.000 --> 01:07.000\nQ&amp;A &gt;&gt; next\n") == "[01:00] Q&A >> next\n"
+    assert vtt_to_text("WEBVTT\n\n00:00:02.000\t-->  00:00:03.000\nTabs and spaces\n") == "[00:00] Tabs and spaces\n"
+    spaced = "WEBVTT\n\n00:00:01.000 --> 00:00:02.000\nfirst\n \t\n00:01:05.000 --> 00:01:06.000\nsecond\n"
+    assert vtt_to_text(spaced) == "[00:00] first\n[01:00] second\n"  # whitespace-only line between cues
+
+
+def test_player_caption_track_is_picked_by_language():
+    from fetch_sources import captions_url
+
+    page = 'var captionsConfiguration = {"languageList":[{"src":"https://h/Caption_ko-KR.vtt?sig=a"},{"src":"https://h/Caption_en-US.vtt?sig=b\\u0026x=1"}]};'
+    assert captions_url(page) == "https://h/Caption_en-US.vtt?sig=b&x=1"
+    assert captions_url("<html>no captions</html>") is None
+
+
+def test_media_links_fall_back_to_raw_catalog_when_snapshot_is_older():
+    from fetch_sources import links
+
+    snapshot = {"video": "https://v", "transcript": "", "slides": ""}
+    raws = [{"sessionCode": "BRK1"}, {"captionFileLink": "https://t", "slideDeck": "https://s", "onDemand": "https://other"}]
+    assert links(snapshot, raws) == {"video": "https://v", "transcript": "https://t", "slides": "https://s"}
+
+
+def test_unreadable_transcript_falls_back_to_player_captions(monkeypatch):
+    import fetch_sources
+
+    pages = {"https://t": b"\xd0\xcf\x11\xe0 rights-protected",
+             "https://v": b'captionsConfiguration = {"languageList":[{"src":"https://c/Caption_en-US.vtt"}]};',
+             "https://c/Caption_en-US.vtt": VTT.encode()}
+    monkeypatch.setattr(fetch_sources, "get", pages.__getitem__)
+    text, source = fetch_sources.fetch_transcript({"video": "https://v", "transcript": "https://t", "slides": ""})
+    assert source == "player captions" and "[00:00] Good morning." in text
+    assert fetch_sources.fetch_transcript({"video": "", "transcript": "", "slides": ""}) is None
+    pages["https://c/Caption_en-US.vtt"] = b"WEBVTT\n"
+    assert fetch_sources.fetch_transcript({"video": "https://v", "transcript": "", "slides": ""}) is None
+
+
+def test_slide_with_several_videos_needs_an_explicit_choice():
+    import pytest
+    from capture_slide import pick_video
+
+    assert pick_video(["ppt/media/a.mp4"], None, 5) == "ppt/media/a.mp4"
+    assert pick_video(["ppt/media/a.mp4", "ppt/media/b.mp4"], 2, 5) == "ppt/media/b.mp4"
+    with pytest.raises(SystemExit, match="2 embedded videos"):
+        pick_video(["ppt/media/a.mp4", "ppt/media/b.mp4"], None, 5)
+    with pytest.raises(SystemExit, match="no embedded video"):
+        pick_video([], None, 5)
+    with pytest.raises(SystemExit, match="1..2"):
+        pick_video(["ppt/media/a.mp4", "ppt/media/b.mp4"], 3, 5)
+    for videos in (["ppt/media/a.mp4"], ["ppt/media/a.mp4", "ppt/media/b.mp4"]):
+        with pytest.raises(SystemExit, match="--video must be"):  # 0 is out of range, not "use the default"
+            pick_video(videos, 0, 5)
+
+
+def test_unreadable_deck_does_not_leave_older_slide_text(tmp_path):
+    import pytest
+    from fetch_sources import write_slides_text
+
+    (tmp_path / "slides.md").write_text("## Slide 1 — from an older deck\n", encoding="utf-8")
+    (tmp_path / "slides.pptx").write_bytes(b"not a zip")
+    with pytest.raises(Exception):
+        write_slides_text(tmp_path)
+    assert not (tmp_path / "slides.md").exists()
+
+    deck(tmp_path).replace(tmp_path / "slides.pptx")
+    write_slides_text(tmp_path)
+    assert "## Slide 1 — Shown first" in (tmp_path / "slides.md").read_text(encoding="utf-8")
+
+
+def test_video_option_is_rejected_without_at(monkeypatch, capsys):
+    import pytest
+    import capture_slide
+
+    monkeypatch.setattr("sys.argv", ["capture_slide.py", "BRK1", "3", "some-name", "--video", "2"])
+    with pytest.raises(SystemExit) as exc:
+        capture_slide.main()
+    assert exc.value.code == 2 and "--video requires --at" in capsys.readouterr().err
+
+
+def test_tab_characters_keep_words_apart():
+    from slides_lib import paragraphs
+
+    # DrawingML has no inline tab element (<a:tab> is a tab stop inside <a:tabLst>); tabs are characters in <a:t>.
+    xml = '<a:p><a:pPr><a:tabLst><a:tab pos="914400" algn="l"/></a:tabLst></a:pPr><a:r><a:t>Left\tRight</a:t></a:r></a:p>'
+    assert paragraphs(xml) == ["Left Right"]
+
+
+def test_figure_snippet_escapes_the_slide_title():
+    from capture_slide import figure_snippet
+
+    snippet = figure_snippet("BRK1-x/a.jpg", 3, "A <b> & </figcaption>", at=11.2)
+    assert "<figcaption>슬라이드 #3 (삽입 영상 11.2초) — A &lt;b&gt; &amp; &lt;/figcaption&gt;</figcaption>" in snippet
+    assert "<figcaption>슬라이드 #3 — <슬라이드 제목></figcaption>" in figure_snippet("BRK1-x/a.jpg", 3, "")
+
+
+def test_files_not_refreshed_are_reported(tmp_path):
+    from fetch_sources import kept_from_earlier_run
+
+    for name in ("catalog.md", "transcript.txt", "slides.pptx", "slides.md"):
+        (tmp_path / name).write_text("x", encoding="utf-8")
+    assert kept_from_earlier_run(tmp_path, {"catalog.md", "transcript.txt"}) == ["slides.pptx", "slides.md"]
+    assert kept_from_earlier_run(tmp_path, {"catalog.md", "transcript.txt", "slides.pptx", "slides.md"}) == []
