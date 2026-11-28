@@ -19,6 +19,7 @@ PARA = re.compile(r"<a:p\b.*?</a:p>", re.S)
 RUN = re.compile(r"<a:t\b[^>]*>(.*?)</a:t>", re.S)
 SHAPE = re.compile(r"<p:sp\b.*?</p:sp>", re.S)
 TITLE = re.compile(r'<p:ph\b[^>]*\btype="(?:title|ctrTitle)"')
+SLIDE_NUMBER = re.compile(r'<p:ph\b[^>]*\btype="sldNum"')
 VIDEO_EXT = (".mp4", ".m4v", ".mov", ".wmv", ".avi")
 
 
@@ -58,6 +59,11 @@ def paragraphs(xml: str) -> list[str]:
     return out
 
 
+def notes_text(xml: str) -> list[str]:
+    """Speaker notes without the slide-number placeholder; a note line that is just a number is kept."""
+    return paragraphs(SHAPE.sub(lambda m: "" if SLIDE_NUMBER.search(m.group(0)) else m.group(0), xml))
+
+
 def slide_title(xml: str) -> str:
     """Text of the title placeholder — the first text on a slide is often a badge or label instead."""
     return next((" ".join(paragraphs(shape)) for shape in SHAPE.findall(xml) if TITLE.search(shape)), "")
@@ -70,14 +76,13 @@ def read_slides(path: Path) -> list[dict]:
             xml = zf.read(part).decode("utf-8")
             related = rels(zf, part)
             notes = next((r["target"] for r in related if r["type"] == "notesSlide"), None)
-            note_lines = paragraphs(zf.read(notes).decode("utf-8")) if notes else []
             slides.append({
                 "number": number,
                 "part": part,
                 "hidden": bool(re.search(r'<p:sld\b[^>]*\bshow="(?:0|false)"', xml)),  # xsd:boolean
                 "title": slide_title(xml),
                 "text": paragraphs(xml),
-                "notes": [line for line in note_lines if not line.isdigit()],  # drop the slide-number placeholder
+                "notes": notes_text(zf.read(notes).decode("utf-8")) if notes else [],
                 "links": sorted({r["target"] for r in related if r["type"] == "hyperlink"}),
                 # A video has two relationships (video + media) to one part: keep each once, in file order.
                 "videos": list(dict.fromkeys(r["target"] for r in related

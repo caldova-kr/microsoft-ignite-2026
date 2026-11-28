@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import base64
+import html
 import os
 import shutil
 import subprocess
@@ -124,6 +125,14 @@ def crop(full: Path, box: str, out: Path) -> None:
                     "-q:v", "3", str(out)], check=True)
 
 
+def figure_snippet(rel: str, slide: int, title: str, at: float | None = None) -> str:
+    """The <figure> block to paste into the note. The slide title is escaped: it lands inside HTML."""
+    where = f"슬라이드 #{slide}" + (f" (삽입 영상 {at:g}초)" if at is not None else "")
+    caption = html.escape(title, quote=False) if title else "<슬라이드 제목>"
+    return (f'<figure markdown="span">\n  ![<무엇을 보여 주는지>]({rel})\n'
+            f"  <figcaption>{where} — {caption}</figcaption>\n</figure>")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("code")
@@ -179,12 +188,9 @@ def main() -> None:
         if args.crop:
             crop(full, args.crop, out)
 
-    title = slide["title"] or "<슬라이드 제목>"
-    where = f"슬라이드 #{args.slide}" + (f" (삽입 영상 {args.at:g}초)" if args.at is not None else "")
     rel = f"{notes[0].stem}/{out.name}"
     print(f"wrote {out.relative_to(NOTES_DIR.parent.parent)} ({out.stat().st_size // 1024} KB) — check it for IDs/emails before committing\n")
-    print(f'<figure markdown="span">\n  ![<무엇을 보여 주는지>]({rel})\n'
-          f"  <figcaption>{where} — {title}</figcaption>\n</figure>")
+    print(figure_snippet(rel, args.slide, slide["title"], args.at))
 
 
 if __name__ == "__main__":

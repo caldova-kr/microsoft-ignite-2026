@@ -309,7 +309,10 @@ def deck(tmp_path, hidden_value="0"):
                     + rel.format("rId2", "hyperlink", "https://aka.ms/x?a=1&amp;b=2", ' TargetMode="External"')
                     + rel.format("rId3", "video", "../media/media1.mp4", "")
                     + rel.format("rId4", "video", "https://example.com/linked.mp4", ' TargetMode="External"'))
-        zf.writestr("ppt/notesSlides/notesSlide1.xml", "<p:notes><a:p><a:r><a:t>say this</a:t></a:r></a:p><a:p><a:r><a:t>2</a:t></a:r></a:p></p:notes>")
+        zf.writestr("ppt/notesSlides/notesSlide1.xml",
+                    "<p:notes><p:sp><p:txBody><a:p><a:r><a:t>say this</a:t></a:r></a:p><a:p><a:r><a:t>42</a:t></a:r></a:p></p:txBody></p:sp>"
+                    '<p:sp><p:nvSpPr><p:nvPr><p:ph type="sldNum" idx="5"/></p:nvPr></p:nvSpPr>'
+                    '<p:txBody><a:p><a:fld type="slidenum"><a:t>2</a:t></a:fld></a:p></p:txBody></p:sp></p:notes>')
     return path
 
 
@@ -319,11 +322,11 @@ def test_slides_are_read_in_presentation_order_with_notes_links_and_videos(tmp_p
     first, second = read_slides(deck(tmp_path))
     assert (first["number"], first["title"], first["text"], first["hidden"]) == (1, "Shown first", ["Badge", "Shown first", "A & B"], False)
     assert second == {"number": 2, "part": "ppt/slides/slide1.xml", "hidden": True, "title": "Hidden one",
-                      "text": ["Badge", "Hidden one", "A & B"], "notes": ["say this"], "links": ["https://aka.ms/x?a=1&b=2"],
+                      "text": ["Badge", "Hidden one", "A & B"], "notes": ["say this", "42"], "links": ["https://aka.ms/x?a=1&b=2"],
                       "videos": ["ppt/media/media1.mp4"]}
     text = slides_markdown(deck(tmp_path))
     assert text.index("## Slide 1 — Shown first\n- Badge") < text.index("## Slide 2 — Hidden one  (hidden)")
-    assert "Notes: say this" in text and "Link: https://aka.ms/x?a=1&b=2" in text and "Embedded video: 1" in text
+    assert "Notes: say this / 42" in text and "Link: https://aka.ms/x?a=1&b=2" in text and "Embedded video: 1" in text
     assert [s["hidden"] for s in read_slides(deck(tmp_path, hidden_value="false"))] == [False, True]
 
 
@@ -358,6 +361,8 @@ def test_captions_become_timestamped_text():
     assert vtt_to_text(VTT) == "[00:00] Good morning. Still the first half minute.\n[01:00] Later on.\n"
     assert vtt_to_text("WEBVTT\n\n01:05.000 --> 01:07.000\nQ&amp;A &gt;&gt; next\n") == "[01:00] Q&A >> next\n"
     assert vtt_to_text("WEBVTT\n\n00:00:02.000\t-->  00:00:03.000\nTabs and spaces\n") == "[00:00] Tabs and spaces\n"
+    spaced = "WEBVTT\n\n00:00:01.000 --> 00:00:02.000\nfirst\n \t\n00:01:05.000 --> 00:01:06.000\nsecond\n"
+    assert vtt_to_text(spaced) == "[00:00] first\n[01:00] second\n"  # whitespace-only line between cues
 
 
 def test_player_caption_track_is_picked_by_language():
@@ -430,3 +435,28 @@ def test_video_option_is_rejected_without_at(monkeypatch, capsys):
     with pytest.raises(SystemExit) as exc:
         capture_slide.main()
     assert exc.value.code == 2 and "--video requires --at" in capsys.readouterr().err
+
+
+def test_tab_characters_keep_words_apart():
+    from slides_lib import paragraphs
+
+    # DrawingML has no inline tab element (<a:tab> is a tab stop inside <a:tabLst>); tabs are characters in <a:t>.
+    xml = '<a:p><a:pPr><a:tabLst><a:tab pos="914400" algn="l"/></a:tabLst></a:pPr><a:r><a:t>Left\tRight</a:t></a:r></a:p>'
+    assert paragraphs(xml) == ["Left Right"]
+
+
+def test_figure_snippet_escapes_the_slide_title():
+    from capture_slide import figure_snippet
+
+    snippet = figure_snippet("BRK1-x/a.jpg", 3, "A <b> & </figcaption>", at=11.2)
+    assert "<figcaption>슬라이드 #3 (삽입 영상 11.2초) — A &lt;b&gt; &amp; &lt;/figcaption&gt;</figcaption>" in snippet
+    assert "<figcaption>슬라이드 #3 — <슬라이드 제목></figcaption>" in figure_snippet("BRK1-x/a.jpg", 3, "")
+
+
+def test_files_not_refreshed_are_reported(tmp_path):
+    from fetch_sources import kept_from_earlier_run
+
+    for name in ("catalog.md", "transcript.txt", "slides.pptx", "slides.md"):
+        (tmp_path / name).write_text("x", encoding="utf-8")
+    assert kept_from_earlier_run(tmp_path, {"catalog.md", "transcript.txt"}) == ["slides.pptx", "slides.md"]
+    assert kept_from_earlier_run(tmp_path, {"catalog.md", "transcript.txt", "slides.pptx", "slides.md"}) == []

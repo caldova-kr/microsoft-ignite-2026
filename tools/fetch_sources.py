@@ -8,6 +8,8 @@ Writes:
   slides.pptx     official slide deck, if published
   slides.md       text of the deck, one block per slide (number, text, notes, links, embedded videos)
 
+A file this run could not refresh stays in the folder and is reported as left from an earlier run.
+
 These files are the evidence a session note must be based on. They are Microsoft-owned
 material and are never committed; notes cite the public URLs instead.
 """
@@ -30,6 +32,7 @@ from slides_lib import slides_markdown  # noqa: E402
 UA = {"User-Agent": "Mozilla/5.0 (ignite-2026-notes source fetch)"}
 RAW_LINKS = {"video": "onDemand", "transcript": "captionFileLink", "slides": "slideDeck"}
 CUE = re.compile(r"(?:(\d+):)?(\d\d):(\d\d)[.,]\d+[ \t]+-->[ \t]+")
+EVIDENCE = ("transcript.txt", "slides.pptx", "slides.md")
 
 
 def get(url: str) -> bytes:
@@ -64,14 +67,18 @@ def captions_url(embed_html: str, lang: str = "en-US") -> str | None:
 def vtt_to_text(vtt: str, bucket: int = 30) -> str:
     """WebVTT cues → plain text, one line per `bucket` seconds, each starting with [MM:SS]."""
     groups: dict[int, list[str]] = {}
-    for block in re.split(r"\r?\n\r?\n", vtt):
-        m = CUE.search(block)
-        if not m:
-            continue
-        start = int(m.group(1) or 0) * 3600 + int(m.group(2)) * 60 + int(m.group(3))
-        text = " ".join(line.strip() for line in block[m.end():].splitlines()[1:] if line.strip())
-        if text:
-            groups.setdefault(start // bucket, []).append(html.unescape(re.sub(r"<[^>]+>", "", text)))
+    start = None  # start second of the cue being read; None between cues (header, cue identifiers, comments)
+    for line in vtt.splitlines():
+        line = line.strip()
+        m = CUE.match(line)  # a timing line opens a cue, as in the WebVTT parser
+        if m:
+            start = int(m.group(1) or 0) * 3600 + int(m.group(2)) * 60 + int(m.group(3))
+        elif not line:  # blank (or whitespace-only) line closes it
+            start = None
+        elif start is not None:
+            text = html.unescape(re.sub(r"<[^>]+>", "", line)).strip()
+            if text:
+                groups.setdefault(start // bucket, []).append(text)
     return "".join(f"[{k * bucket // 60:02d}:{k * bucket % 60:02d}] {' '.join(v)}\n" for k, v in sorted(groups.items()))
 
 
@@ -95,6 +102,11 @@ def fetch_transcript(link: dict[str, str]) -> tuple[str, str] | None:
             if text:
                 return "(on-demand player captions, en-US — cite as video, not transcript)\n" + text, "player captions"
     return None
+
+
+def kept_from_earlier_run(folder: Path, written: set[str]) -> list[str]:
+    """Evidence files this run did not write but that are still in the folder."""
+    return [name for name in EVIDENCE if name not in written and (folder / name).exists()]
 
 
 def write_slides_text(folder: Path) -> None:
@@ -164,6 +176,9 @@ def main() -> None:
                     print(f"[{code}] slides.pptx saved, but its text could not be read (no slides.md): {exc}", file=sys.stderr)
         print(f"[{code}] {out.relative_to(CACHE_DIR.parent)}: {', '.join(got)}"
               + ("" if link["video"] else "  (no on-demand video yet)"))
+        kept = kept_from_earlier_run(out, {label.split()[0] for label in got})
+        if kept:
+            print(f"[{code}] not refreshed in this run — left from an earlier one: {', '.join(kept)}", file=sys.stderr)
 
 
 if __name__ == "__main__":

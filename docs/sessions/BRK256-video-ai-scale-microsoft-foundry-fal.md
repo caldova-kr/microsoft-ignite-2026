@@ -40,7 +40,7 @@ last_updated: 2026-11-28
 </figure>
 
 !!! supplement "세션 외 보충 · 이 발표의 의미 (Microsoft Learn · 작성자 확인, 2026-11-28)"
-    Foundry 에서 바로 배포해 쓰는 영상 생성 모델은 `sora-2` 가 2026-11-02 에 종료된 뒤로 **fal 의 5종뿐**입니다. Foundry 에서 영상 생성을 하려는 팀에게 다시 고려해 볼 선택지가 생겼다는 것이 이 발표의 의미입니다. → [근거](#foundry-video-options)
+    Foundry 에서 바로 배포해 쓰는 콘텐츠 제작용 영상 생성 모델은 `sora-2` 가 2026-11-02 에 종료된 뒤로 **fal 의 5종뿐**입니다. Foundry 에서 영상 생성을 하려는 팀에게 다시 고려해 볼 선택지가 생겼다는 것이 이 발표의 의미입니다. → [근거](#foundry-video-options)
 
     **한국 리전(Korea Central)에서는 배포할 수 없습니다.** → [가용 리전](#availability)
 
