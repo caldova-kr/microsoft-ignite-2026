@@ -103,6 +103,7 @@ nav:
       - "Keynote":
           - "KEY01 — Microsoft Ignite opening keynote": sessions/KEY01-microsoft-ignite-opening-keynote.md
       - "Agent Platform":
+          - "BRK251 — Agents in production: Observe, evaluate, and optimize with Foundry": sessions/BRK251-agents-production-observe-evaluate-optimize-foundry.md
           - "BRK256 — Video AI at scale with Microsoft Foundry and fal": sessions/BRK256-video-ai-scale-microsoft-foundry-fal.md
   - 사이트 안내:
       - 사이트 기술: site.md

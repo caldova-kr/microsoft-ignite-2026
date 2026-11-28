@@ -1,4 +1,28 @@
 {
+ "BRK251": {
+  "d": 45,
+  "ds": "운영 중인 에이전트를 '돌아가는가' 에서 '맞게 하는가' 로 — Foundry Insights GA, 평가 데이터셋·Agent Optimizer·Fleet 비용 Preview, TCS 토큰 66% 절감 사례.",
+  "k": "https://medius.microsoft.com/video/asset/PPT/d0c333e4-ff00-44c0-b014-18b69ba12acf",
+  "l": 100,
+  "p": [
+   "Agent Platform"
+  ],
+  "pr": "review",
+  "s": [
+   "Han Che",
+   "Divya Chirasani",
+   "Deepraj Khot"
+  ],
+  "sb": [
+   "catalog",
+   "video",
+   "slides"
+  ],
+  "u": "https://ignite.microsoft.com/en-US/sessions/BRK251",
+  "up": "2026-11-28",
+  "v": "https://medius.microsoft.com/Embed/video-nc/d0c333e4-ff00-44c0-b014-18b69ba12acf",
+  "y": "Breakout"
+ },
  "BRK256": {
   "d": 45,
   "ds": "fal 이 서빙하는 Kling Video v3 · MiniMax H3 · LTX-2.5 가 Foundry 에 Public Preview — 품질·속도·제어로 갈리는 세 계열의 차이와 고르는 법, US 호스팅 조건.",

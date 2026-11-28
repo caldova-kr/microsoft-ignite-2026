@@ -35,7 +35,7 @@ hide:
 <div class="dg-stat"><strong>10</strong><span>session types</span></div>
 <div class="dg-stat"><strong>831</strong><span>on-demand videos</span></div>
 <div class="dg-stat"><strong>728</strong><span>transcripts</span></div>
-<div class="dg-stat"><strong>2<small>/0</small></strong><span>notes / done</span></div>
+<div class="dg-stat"><strong>3<small>/0</small></strong><span>notes / done</span></div>
 </div>
 <!-- /gen:stats -->
 
@@ -50,6 +50,7 @@ hide:
 <!-- gen:recent -->
 <div class="dg-note-grid" markdown="0">
 <a class="dg-note-card dg-note-card--review" href="sessions/BRK256-video-ai-scale-microsoft-foundry-fal/"><span class="dg-note-thumb"><img src="sessions/BRK256-video-ai-scale-microsoft-foundry-fal/new-video-models-from-fal.jpg" alt="" loading="lazy"></span><span class="dg-note-body"><span class="dg-note-meta"><code>BRK256</code><span>Breakout</span><span>🔍 검토 중</span></span><strong>Video AI at scale with Microsoft Foundry and fal</strong><span class="dg-note-excerpt">fal 이 서빙하는 영상 생성 모델 세 계열 — Kling Video v3 · MiniMax H3 · LTX-2.5 — 이 Microsoft Foundry 에 Public Preview 로 들어왔습니다. 세션의 메시지는 &quot;가장 좋은 모델 하나&quot; 가 아니라 품질은 Kling, 속도와 물량…</span><span class="dg-note-topics">Agent Platform</span></span></a>
+<a class="dg-note-card dg-note-card--review" href="sessions/BRK251-agents-production-observe-evaluate-optimize-foundry/"><span class="dg-note-thumb"><img src="sessions/BRK251-agents-production-observe-evaluate-optimize-foundry/everything-new-by-stage.jpg" alt="" loading="lazy"></span><span class="dg-note-body"><span class="dg-note-meta"><code>BRK251</code><span>Breakout</span><span>🔍 검토 중</span></span><strong>Agents in production: Observe, evaluate, and optimize with Foundry</strong><span class="dg-note-excerpt">에이전트는 오류 없이 &quot;돌아가면서도&quot; 틀린 답을 낼 수 있어서, 운영 관측의 질문이 &quot;Is it up?&quot; 에서 &quot;Is it right?&quot; 로 바뀌었다는 것이 세션의 출발점입니다. Foundry 는 이를 Build(평가 기준 세우기) → Production(모르던 문제 찾고 고치기) →…</span><span class="dg-note-topics">Agent Platform</span></span></a>
 <a class="dg-note-card dg-note-card--review" href="sessions/KEY01-microsoft-ignite-opening-keynote/"><span class="dg-note-thumb"><img src="sessions/KEY01-microsoft-ignite-opening-keynote/frontier-ecosystem-three-pillars.jpg" alt="" loading="lazy"></span><span class="dg-note-body"><span class="dg-note-meta"><code>KEY01</code><span>Keynote</span><span>🔍 검토 중</span></span><strong>Microsoft Ignite opening keynote</strong><span class="dg-note-excerpt">Ignite 2026 오프닝 키노트는 Human Ambition · Intelligence · Trust 세 가지 의제로 짜여 있었습니다. Satya Nadella 는 이를 AI 시대의 세 가지 &quot;architectural imperative&quot; 로, Judson Althoff 는 fron…</span><span class="dg-note-topics">Security · Frontier Transformation · Agent Platform</span></span></a>
 </div>
 <!-- /gen:recent -->
@@ -67,7 +68,7 @@ hide:
 <!-- gen:topics -->
 <div class="dg-topic-grid" markdown="0">
 <a class="dg-topic-card" href="catalog/?topic=Cloud%20%26%20AI"><strong>Cloud &amp; AI</strong><span class="dg-topic-count">192<small> sessions</small></span><span class="dg-topic-meta">▶ 175 · 📝 노트 1</span></a>
-<a class="dg-topic-card" href="catalog/?topic=Agent%20Platform"><strong>Agent Platform</strong><span class="dg-topic-count">136<small> sessions</small></span><span class="dg-topic-meta">▶ 118 · 📝 노트 2</span></a>
+<a class="dg-topic-card" href="catalog/?topic=Agent%20Platform"><strong>Agent Platform</strong><span class="dg-topic-count">136<small> sessions</small></span><span class="dg-topic-meta">▶ 118 · 📝 노트 3</span></a>
 <a class="dg-topic-card" href="catalog/?topic=Security"><strong>Security</strong><span class="dg-topic-count">116<small> sessions</small></span><span class="dg-topic-meta">▶ 100 · 📝 노트 1</span></a>
 <a class="dg-topic-card" href="catalog/?topic=Copilot"><strong>Copilot</strong><span class="dg-topic-count">92<small> sessions</small></span><span class="dg-topic-meta">▶ 81 · 📝 노트 1</span></a>
 <a class="dg-topic-card" href="catalog/?topic=Agentic%20Business%20Applications"><strong>Agentic Business Applications</strong><span class="dg-topic-count">87<small> sessions</small></span><span class="dg-topic-meta">▶ 80 · 📝 노트 0</span></a>
