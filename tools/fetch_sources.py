@@ -3,8 +3,10 @@
 
 Writes:
   catalog.md      catalog record (title, type, topics, tags, abstract, Microsoft AI summary, links)
-  transcript.txt  official transcript (from the catalog's caption file), if published
+  transcript.txt  official transcript, if published. When it is missing or cannot be read (some are
+                  rights-protected), the on-demand player's public English captions with [MM:SS] marks
   slides.pptx     official slide deck, if published
+  slides.md       text of the deck, one block per slide (number, text, notes, links, embedded videos)
 
 These files are the evidence a session note must be based on. They are Microsoft-owned
 material and are never committed; notes cite the public URLs instead.
@@ -23,8 +25,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from catalog_lib import API_URL, CACHE_DIR, RAW_CACHE, catalog_index, html_to_text  # noqa: E402
+from slides_lib import slides_markdown  # noqa: E402
 
 UA = {"User-Agent": "Mozilla/5.0 (ignite-2026-notes source fetch)"}
+RAW_LINKS = {"video": "onDemand", "transcript": "captionFileLink", "slides": "slideDeck"}
+CUE = re.compile(r"(\d+):(\d\d):(\d\d)[.,]\d+ --> ")
 
 
 def get(url: str) -> bytes:
@@ -47,6 +52,50 @@ def docx_to_text(blob: bytes) -> str:
     return "\n".join(line for line in lines if line) + "\n"
 
 
+def captions_url(embed_html: str, lang: str = "en-US") -> str | None:
+    """Caption track the public on-demand player offers for `lang`."""
+    m = re.search(r"captionsConfiguration\s*=\s*(\{.*?\});", embed_html, re.S)
+    if not m:
+        return None
+    tracks = json.loads(m.group(1)).get("languageList", [])
+    return next((t["src"] for t in tracks if f"Caption_{lang}." in t.get("src", "")), None)
+
+
+def vtt_to_text(vtt: str, bucket: int = 30) -> str:
+    """WebVTT cues → plain text, one line per `bucket` seconds, each starting with [MM:SS]."""
+    groups: dict[int, list[str]] = {}
+    for block in re.split(r"\r?\n\r?\n", vtt):
+        m = CUE.search(block)
+        if not m:
+            continue
+        start = int(m.group(1)) * 3600 + int(m.group(2)) * 60 + int(m.group(3))
+        text = " ".join(line.strip() for line in block[m.end():].splitlines()[1:] if line.strip())
+        if text:
+            groups.setdefault(start // bucket, []).append(re.sub(r"<[^>]+>", "", text))
+    return "".join(f"[{k * bucket // 60:02d}:{k * bucket % 60:02d}] {' '.join(v)}\n" for k, v in sorted(groups.items()))
+
+
+def links(session: dict, raws: list[dict]) -> dict[str, str]:
+    """Media links from the catalog snapshot, falling back to the raw catalog when the snapshot is older."""
+    return {key: session[key] or next((r[field] for r in raws if r.get(field)), "")
+            for key, field in RAW_LINKS.items()}
+
+
+def fetch_transcript(link: dict[str, str]) -> tuple[str, str] | None:
+    """(text, where it came from) — the official transcript, else the player's captions."""
+    if link["transcript"]:
+        try:
+            return docx_to_text(get(link["transcript"])), "official transcript"
+        except Exception as exc:  # noqa: BLE001 — rights-protected files are not readable ZIPs
+            print(f"  official transcript not readable ({exc}); trying the player's captions", file=sys.stderr)
+    if link["video"]:
+        src = captions_url(get(link["video"]).decode("utf-8", "replace"))
+        if src:
+            text = vtt_to_text(get(src).decode("utf-8-sig", "replace"))
+            return "(on-demand player captions, en-US — cite as video, not transcript)\n" + text, "player captions"
+    return None
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("codes", nargs="+", help="session codes, e.g. KEY01 BRK220")
@@ -63,13 +112,14 @@ def main() -> None:
         out.mkdir(parents=True, exist_ok=True)
 
         raws = raw_records(code, args.refresh)
+        link = links(s, raws)
         ai_summary = next((html_to_text(r.get("aiDescription")) for r in raws if r.get("aiDescription")), "")
         lines = [
             f"# [{code}] {s['title']}", "",
             f"- Type: {s['type']}", f"- Topics: {', '.join(s['topics'])}", f"- Tags: {', '.join(s['tags'])}",
             f"- Level: {s['level'] or ''}", f"- Speakers: {', '.join(s['speakers'])}",
-            f"- Session page: {s['url']}", f"- Video: {s['video']}", f"- Slides: {s['slides']}",
-            f"- Transcript: {s['transcript']}", "",
+            f"- Session page: {s['url']}", f"- Video: {link['video']}", f"- Slides: {link['slides']}",
+            f"- Transcript: {link['transcript']}", "",
             "## Abstract (catalog)", "", s["description"], "",
             "## Microsoft AI-generated summary (catalog `aiDescription`)", "",
             "> 카탈로그가 제공하는 AI 생성 요약. 사실 확인의 1차 근거가 아니라 탐색용 — 주장은 transcript/영상/슬라이드로 확인할 것.",
@@ -80,20 +130,23 @@ def main() -> None:
         (out / "catalog.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
         got = ["catalog.md"]
 
-        if s["transcript"]:
+        try:
+            transcript = fetch_transcript(link)
+        except Exception as exc:  # noqa: BLE001
+            transcript = None
+            print(f"[{code}] transcript download failed: {exc}", file=sys.stderr)
+        if transcript:
+            (out / "transcript.txt").write_text(transcript[0], encoding="utf-8")
+            got.append(f"transcript.txt ({transcript[1]})")
+        if link["slides"]:
             try:
-                (out / "transcript.txt").write_text(docx_to_text(get(s["transcript"])), encoding="utf-8")
-                got.append("transcript.txt")
-            except Exception as exc:  # noqa: BLE001
-                print(f"[{code}] transcript download failed: {exc}", file=sys.stderr)
-        if s["slides"]:
-            try:
-                (out / "slides.pptx").write_bytes(get(s["slides"]))
-                got.append("slides.pptx")
+                (out / "slides.pptx").write_bytes(get(link["slides"]))
+                (out / "slides.md").write_text(slides_markdown(out / "slides.pptx"), encoding="utf-8")
+                got += ["slides.pptx", "slides.md"]
             except Exception as exc:  # noqa: BLE001
                 print(f"[{code}] slides download failed: {exc}", file=sys.stderr)
         print(f"[{code}] {out.relative_to(CACHE_DIR.parent)}: {', '.join(got)}"
-              + ("" if s["video"] else "  (no on-demand video yet)"))
+              + ("" if link["video"] else "  (no on-demand video yet)"))
 
 
 if __name__ == "__main__":

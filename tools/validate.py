@@ -69,7 +69,7 @@ def check_images(path: Path, body: str, status: str) -> tuple[list[str], list[st
                 if not any(is_official_url(u) for u in links):
                     errors.append(f"caption must cite '영상 MM:SS' / '슬라이드 #N' or link an official Microsoft blog post: {src}")
     if status in ("review", "done") and count == 0:
-        warnings.append("no images — capture key frames (tools/capture_frame.py) or official blog images")
+        warnings.append("no images — export key slides (tools/capture_slide.py), capture frames (tools/capture_frame.py) or use official blog images")
     return errors, warnings
 
 
