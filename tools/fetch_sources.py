@@ -97,6 +97,17 @@ def fetch_transcript(link: dict[str, str]) -> tuple[str, str] | None:
     return None
 
 
+def write_slides_text(folder: Path) -> None:
+    """slides.md from slides.pptx. If the deck cannot be read, an older deck's text must not stay behind."""
+    target = folder / "slides.md"
+    try:
+        text = slides_markdown(folder / "slides.pptx")
+    except Exception:
+        target.unlink(missing_ok=True)
+        raise
+    target.write_text(text, encoding="utf-8")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("codes", nargs="+", help="session codes, e.g. KEY01 BRK220")
@@ -147,10 +158,10 @@ def main() -> None:
                 print(f"[{code}] slides download failed: {exc}", file=sys.stderr)
             else:
                 try:
-                    (out / "slides.md").write_text(slides_markdown(out / "slides.pptx"), encoding="utf-8")
+                    write_slides_text(out)
                     got.append("slides.md")
                 except Exception as exc:  # noqa: BLE001
-                    print(f"[{code}] slides.pptx saved, but its text could not be read: {exc}", file=sys.stderr)
+                    print(f"[{code}] slides.pptx saved, but its text could not be read (no slides.md): {exc}", file=sys.stderr)
         print(f"[{code}] {out.relative_to(CACHE_DIR.parent)}: {', '.join(got)}"
               + ("" if link["video"] else "  (no on-demand video yet)"))
 

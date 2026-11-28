@@ -136,6 +136,8 @@ def main() -> None:
     ap.add_argument("--width", type=int, default=1600, help="output width (default 1600)")
     args = ap.parse_args()
 
+    if args.video is not None and args.at is None:
+        ap.error("--video requires --at")
     if not NAME.fullmatch(args.name):
         raise SystemExit(f"name must be lowercase kebab-case: {args.name}")
     if args.crop:

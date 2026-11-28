@@ -405,3 +405,28 @@ def test_slide_with_several_videos_needs_an_explicit_choice():
     for videos in (["ppt/media/a.mp4"], ["ppt/media/a.mp4", "ppt/media/b.mp4"]):
         with pytest.raises(SystemExit, match="--video must be"):  # 0 is out of range, not "use the default"
             pick_video(videos, 0, 5)
+
+
+def test_unreadable_deck_does_not_leave_older_slide_text(tmp_path):
+    import pytest
+    from fetch_sources import write_slides_text
+
+    (tmp_path / "slides.md").write_text("## Slide 1 — from an older deck\n", encoding="utf-8")
+    (tmp_path / "slides.pptx").write_bytes(b"not a zip")
+    with pytest.raises(Exception):
+        write_slides_text(tmp_path)
+    assert not (tmp_path / "slides.md").exists()
+
+    deck(tmp_path).replace(tmp_path / "slides.pptx")
+    write_slides_text(tmp_path)
+    assert "## Slide 1 — Shown first" in (tmp_path / "slides.md").read_text(encoding="utf-8")
+
+
+def test_video_option_is_rejected_without_at(monkeypatch, capsys):
+    import pytest
+    import capture_slide
+
+    monkeypatch.setattr("sys.argv", ["capture_slide.py", "BRK1", "3", "some-name", "--video", "2"])
+    with pytest.raises(SystemExit) as exc:
+        capture_slide.main()
+    assert exc.value.code == 2 and "--video requires --at" in capsys.readouterr().err

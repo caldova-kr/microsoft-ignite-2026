@@ -145,9 +145,11 @@ fal 의 설명을 모은 표이고, 속도 · 비용 수치는 조건 없이 든
 | 항목 | 상태 | 근거 | 비고 |
 |------|------|------|------|
 | fal on Microsoft Foundry | Public Preview | 슬라이드 #10 "Available Now as Public Preview" | fal 카탈로그의 영상 모델을 Foundry Models 에서 "first-party Azure service" 로 제공 |
-| Kling Video v3 (Pro · Standard · Turbo) | Public Preview | 슬라이드 #10 · #11 "New" | closed source |
-| MiniMax H3 (H3 Max · H3 Turbo) | Public Preview | 슬라이드 #10 · #11 "New" | open source, fal 의 post-training · 속도 최적화 적용 |
-| LTX-2.5 (Pro · Fast) | Public Preview | 슬라이드 #10 · #11 "New" | open model, 제어 중심 |
+| Kling Video v3 | Public Preview | 슬라이드 #10 · #11 "New" | closed source. 슬라이드에 소개된 변형은 Pro · Standard · Turbo |
+| MiniMax H3 | Public Preview | 슬라이드 #10 · #11 "New" | open source, fal 의 post-training · 속도 최적화 적용. 슬라이드에 소개된 변형은 H3 Max · H3 Turbo |
+| LTX-2.5 | Public Preview | 슬라이드 #10 · #11 "New" | open model, 제어 중심. 슬라이드에 소개된 변형은 Pro · Fast |
+
+상태는 계열 단위의 발표 기준입니다. 변형마다 지금 배포할 수 있는지는 [현재 확인한 목록](#model-comparison)을 보세요.
 
 ## Architecture
 
