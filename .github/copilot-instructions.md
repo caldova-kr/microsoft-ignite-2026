@@ -31,7 +31,7 @@
 9. 인용은 짧게, 영어 원문 + 발화자 표기 후 한국어로 설명한다. 트랜스크립트·슬라이드·영상 **원본 파일**은 커밋하지 않는다(`.cache/` 는 git-ignored). 영상 **프레임 캡처**와 공식 블로그 **이미지**는 2장 규칙에 따라 커밋한다.
 10. 근거 표기: `Key announcements` 표의 `근거` 열에 발화자(`Satya Nadella "…"`)·`키노트 슬라이드` 처럼 남긴다. 본문에는 수치·인용처럼 꼭 필요한 곳에만 짧게 두고, bullet 마다 `(transcript: …)`·`(영상 MM:SS)` 를 붙이지 않는다 — 읽는 흐름이 우선이다(근거 파일·시점은 작성자가 추적 가능하면 충분).
 
-## 2. 이미지 — 영상 캡처 + 공식 블로그 이미지
+## 2. 이미지 — 슬라이드 · 영상 캡처 + 공식 블로그 이미지
 
 이미지는 글을 대신하는 핵심 장면(키 슬라이드·발표 수치·데모 화면)에만 쓴다. 모든 항목에 넣을 필요는 없고, **이미지를 글로 설명하지 않는다**("위 화면은…", "화면 요약:" 금지). 더 궁금한 사람을 위해서는 이미지보다 **공식 소개 블로그 링크**를 건다.
 
@@ -45,6 +45,7 @@
 | 이미지 | 언제 | 만드는 법 | 캡션(필수) |
 |---|---|---|---|
 | **영상 캡처** (T1) | 키 슬라이드, 아키텍처, 데모 화면, 발표 표·수치 | `python tools/capture_frame.py <CODE> MM:SS <name> [--crop w:h:x:y]` | `▶ 영상 MM:SS — 한 줄 설명` |
+| **슬라이드 내보내기** (T1) | 공식 슬라이드(.pptx)가 공개된 세션 — 영상 프레임보다 선명하므로 먼저 쓴다 | `python tools/capture_slide.py <CODE> <N> <name>` · 영상이 삽입된 슬라이드는 `--at <초>` 로 그 영상의 한 장면 | `슬라이드 #N — 슬라이드 제목` |
 | **공식 블로그 이미지** (T3) | 발표(announcement)를 설명하는 공식 다이어그램·스크린샷 | `python tools/fetch_image.py <CODE> --page <포스트 URL> --image <이미지 URL> --name <name>` | `📰 공식 블로그 · [포스트 제목](URL) (YYYY-MM-DD)` |
 
 - 공식 블로그 = `news.microsoft.com`(Book of News 포함) · `blogs.microsoft.com` · `azure.microsoft.com/…/blog` · `techcommunity.microsoft.com` · `devblogs.microsoft.com` · `github.blog` · `www.microsoft.com/…/blog` (`tools/catalog_lib.py: OFFICIAL_DOMAINS`).
@@ -100,9 +101,10 @@
 
 ```bash
 pip install -r requirements.txt
-python tools/fetch_sources.py BRK220          # .cache/sources/BRK220/ 에 catalog.md · transcript.txt · slides.pptx
+python tools/fetch_sources.py BRK220          # .cache/sources/BRK220/ 에 catalog.md · transcript.txt · slides.pptx · slides.md
 python tools/new_session.py BRK220            # docs/sessions/BRK220-<slug>.md 생성 (카탈로그 필드 자동 입력)
-python tools/capture_frame.py BRK220 18:40 agent-architecture   # 핵심 장면 캡처 (반복)
+python tools/capture_slide.py BRK220 12 agent-architecture      # 슬라이드 #12 를 이미지로 (덱이 공개된 세션은 이쪽을 먼저)
+python tools/capture_frame.py BRK220 18:40 agent-architecture   # 영상 프레임 캡처 (덱이 없거나 데모 화면일 때)
 python tools/fetch_image.py BRK220 --page <공식 블로그 URL> --image <이미지 URL> --name <name>
 # … 노트 작성 (T1 근거로, 이미지 우선) …
 python tools/build_pages.py                   # 인덱스·카탈로그·nav 재생성
@@ -110,6 +112,9 @@ python tools/validate.py                      # 카탈로그 일치·근거·섹
 mkdocs build --strict
 ```
 
+- `slides.md` 는 덱의 텍스트를 슬라이드 번호 순으로 뽑은 것이다(제목 · 본문 · 발표자 노트 · 링크 · 삽입 영상 여부). 덱을 읽을 때는 이 파일을 보고, 번호를 `capture_slide.py` 에 그대로 쓴다.
+- 공식 트랜스크립트가 없거나 권한 보호로 열리지 않으면 `fetch_sources.py` 가 on-demand 플레이어의 공개 영어 자막을 `[MM:SS]` 표시와 함께 `transcript.txt` 로 받는다. 이 경우 `source_basis` 는 `transcript` 가 아니라 `video` 로 적는다. 보호된 파일을 풀려고 하지 않는다.
+- 카탈로그 스냅샷에 영상 · 슬라이드 · 트랜스크립트 링크가 아직 없으면 `--refresh` 로 최신 카탈로그의 링크를 쓴다.
 - 영상만 있고 트랜스크립트가 없으면 영상을 보며 타임스탬프(`MM:SS`)로 근거를 남긴다. 영상이 없으면(`video` 빈 값) `triage.yml` 에 `hold` 로 둔다.
 - `catalog/triage.yml` 은 일괄 `hold`/`skip` 표시용일 뿐이다. 제안·점유는 이슈로만 한다.
 
@@ -128,7 +133,7 @@ docs/
 │   └── <CODE>-<slug>/   # 그 노트의 이미지·다이어그램
 ├── themes/              # 여러 노트를 묶는 주제 페이지 (작성된 노트만 근거)
 └── contributing.md
-tools/                   # fetch_catalog · fetch_sources · new_session · build_pages · validate · fetch_issues(배포 시 이슈→사이트) · project_board(이슈·PR 상태→프로젝트 보드)
+tools/                   # fetch_catalog · fetch_sources · new_session · capture_slide · capture_frame · fetch_image · build_pages · validate · fetch_issues(배포 시 이슈→사이트) · project_board(이슈·PR 상태→프로젝트 보드)
 ```
 
 - 파일명: `<CODE>-<slug>.md`. CODE 는 카탈로그 `sessionCode` 그대로(`KEY01`, `BRK220`, `THRSP312`, `LTG401` …), slug 는 소문자·하이픈.
@@ -212,6 +217,19 @@ Keynote 처럼 여러 제품이 발표되는 세션은 시간순 요약이 아�
 - 링크는 실재하는 URL 만: 세션 페이지 `https://ignite.microsoft.com/en-US/sessions/<CODE>`, 카탈로그의 `video`/`slides`/`resources`, Book of News, 세션 화면에 나온 aka.ms 링크가 가리키는 공식 포스트, Ignite 2026 공식 블로그, Microsoft Learn. URL·포스트 제목을 추측해 만들지 않는다.
 - 외부 공개 사이트다: 고객명·내부 정보·NDA 내용·발표자 연락처를 넣지 않는다.
 - 구조 설명은 직접 그리기보다 **세션 슬라이드 캡처**를 먼저 쓴다. 직접 그린 다이어그램은 세션이 보여준 구조만, 캡션에 근거 시점(`영상 MM:SS`)을 단다.
+
+### 세션 중계가 아니라 정리
+
+노트의 목표는 세션을 옮겨 적는 것이 아니라, 기여자가 정한 관점에서 **필요한 정보만 바로 보이게** 정리하는 것이다 (예: `docs/sessions/BRK256-*.md`).
+
+- **트랜스크립트를 순서대로 옮기지 않는다.** "이 세션이 왜 의미 있는가" 를 먼저 정하고(예: 종료된 모델의 빈자리를 채우는 선택지), 그 관점에 필요한 것만 남긴다.
+- **중계 · 메타 서술 금지.** "발표자가 ~라고 했다" 를 문장마다 붙이지 않고, "세션은 ~를 언급하지 않았다" 처럼 세션이 하지 않은 것을 굳이 적지 않는다. 판매자 쪽 주장임을 밝혀야 할 때만 표 머리나 한 문장으로 표시한다.
+- **중복 금지.** 표에 있는 내용을 bullet 로 다시 쓰지 않고, 한 사실은 한 곳에만 둔다. 초안을 쓴 뒤 섹션 간 중복을 한 번 점검한다.
+- **`Demo highlights` 는 가져갈 패턴 중심.** 시간순 나열 대신 "패턴 / 모델 · 서비스 조합 / 쓸 곳" 처럼 재사용할 수 있는 형태로 묶는다.
+- **소제목은 담백하게.** 질문형 제목이나 특정 대상을 내세운 제목 대신 "가용 리전 · 사용 조건" 같은 명사구를 쓰고, 강조할 대상(예: 한국)은 본문에서 굵게 짚는다.
+- **평가 · 최상급 표현 금지.** "강력한", "가장 싼" 처럼 확인하지 않은 평가나, 표에서 읽히는 것을 굳이 짚는 문장은 쓰지 않는다.
+- **현재 제공 상태를 확인해 가볍게 덧붙인다.** 발표가 말한 제공 모델 · 변형, 가격, 리전, 상태는 Microsoft Learn · 공식 블로그 · 실제 제품 조회로 확인한다. 다르면 `supplement` 블록에 "현재 Foundry · Microsoft Learn 에서 확인했을 때는 …" 정도로 확인 일자와 함께 적는다. 별도 번호 섹션이나 "발표 vs 실제" 대비 표로 부각하지 않는다.
+- **확인하지 않은 것은 단정하지 않는다.** "다른 대안은 없다" 같은 주장은 쓰기 전에 확인하고, 직접 조회한 결과는 조회 조건(구독 · 리전 · 일자)과 함께 `supplement` 블록에 적는다.
 
 ## 8. Validation (CI: `.github/workflows/deploy-site.yml`)
 
