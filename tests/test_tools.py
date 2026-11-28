@@ -402,3 +402,6 @@ def test_slide_with_several_videos_needs_an_explicit_choice():
         pick_video([], None, 5)
     with pytest.raises(SystemExit, match="1..2"):
         pick_video(["ppt/media/a.mp4", "ppt/media/b.mp4"], 3, 5)
+    for videos in (["ppt/media/a.mp4"], ["ppt/media/a.mp4", "ppt/media/b.mp4"]):
+        with pytest.raises(SystemExit, match="--video must be"):  # 0 is out of range, not "use the default"
+            pick_video(videos, 0, 5)

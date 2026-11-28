@@ -100,12 +100,14 @@ def pick_video(videos: list[str], index: int | None, slide: int) -> str:
     """The embedded video to capture; a slide with several needs an explicit --video."""
     if not videos:
         raise SystemExit(f"slide {slide} has no embedded video")
-    if index is None and len(videos) > 1:
-        names = ", ".join(f"{i}={Path(v).name}" for i, v in enumerate(videos, 1))
-        raise SystemExit(f"slide {slide} has {len(videos)} embedded videos — choose one with --video ({names})")
-    if not 1 <= (index or 1) <= len(videos):
+    if index is None:
+        if len(videos) > 1:
+            names = ", ".join(f"{i}={Path(v).name}" for i, v in enumerate(videos, 1))
+            raise SystemExit(f"slide {slide} has {len(videos)} embedded videos — choose one with --video ({names})")
+        index = 1
+    if not 1 <= index <= len(videos):
         raise SystemExit(f"--video must be 1..{len(videos)}")
-    return videos[(index or 1) - 1]
+    return videos[index - 1]
 
 
 def video_frame(pptx: Path, video: str, seconds: float, out: Path, width: int) -> None:
