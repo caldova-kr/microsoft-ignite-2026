@@ -96,11 +96,23 @@ def need_ffmpeg(option: str) -> None:
         raise SystemExit(f"ffmpeg is required for {option} (brew install ffmpeg / apt-get install ffmpeg)")
 
 
-def video_frame(pptx: Path, videos: list[str], seconds: float, out: Path, width: int) -> None:
+def pick_video(videos: list[str], index: int | None, slide: int) -> str:
+    """The embedded video to capture; a slide with several needs an explicit --video."""
+    if not videos:
+        raise SystemExit(f"slide {slide} has no embedded video")
+    if index is None and len(videos) > 1:
+        names = ", ".join(f"{i}={Path(v).name}" for i, v in enumerate(videos, 1))
+        raise SystemExit(f"slide {slide} has {len(videos)} embedded videos — choose one with --video ({names})")
+    if not 1 <= (index or 1) <= len(videos):
+        raise SystemExit(f"--video must be 1..{len(videos)}")
+    return videos[(index or 1) - 1]
+
+
+def video_frame(pptx: Path, video: str, seconds: float, out: Path, width: int) -> None:
     with tempfile.TemporaryDirectory() as tmp:
-        clip = Path(tmp) / Path(videos[0]).name
+        clip = Path(tmp) / Path(video).name
         with zipfile.ZipFile(pptx) as zf:
-            clip.write_bytes(zf.read(videos[0]))
+            clip.write_bytes(zf.read(video))
         subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", f"{seconds:.2f}", "-i", str(clip),
                         "-frames:v", "1", "-vf", f"scale='min({width},iw)':-2", "-q:v", "3", str(out)], check=True)
 
@@ -116,6 +128,7 @@ def main() -> None:
     ap.add_argument("slide", type=int, help="slide number as shown in PowerPoint (see .cache/sources/<CODE>/slides.md)")
     ap.add_argument("name", help="kebab-case file name without extension, e.g. agent-architecture")
     ap.add_argument("--at", type=float, metavar="SECONDS", help="capture this moment of the slide's embedded video")
+    ap.add_argument("--video", type=int, metavar="N", help="which embedded video to use with --at when the slide has several")
     ap.add_argument("--crop", help="w:h:x:y applied to the exported image (to remove IDs/emails or zoom in)")
     ap.add_argument("--pptx", type=Path, help="deck to read instead of .cache/sources/<CODE>/slides.pptx")
     ap.add_argument("--width", type=int, default=1600, help="output width (default 1600)")
@@ -150,9 +163,7 @@ def main() -> None:
         # With --crop the full image stays in the temp folder, so a failed crop leaves nothing in the note folder.
         full = Path(tmp) / out.name if args.crop else out
         if args.at is not None:
-            if not slide["videos"]:
-                raise SystemExit(f"slide {args.slide} has no embedded video")
-            video_frame(pptx, slide["videos"], args.at, full, args.width)
+            video_frame(pptx, pick_video(slide["videos"], args.video, args.slide), args.at, full, args.width)
         elif not with_powerpoint(pptx, args.slide, full, args.width):
             try:
                 page = pdf_page(slides, args.slide)

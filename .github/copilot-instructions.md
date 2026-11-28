@@ -45,7 +45,7 @@
 | 이미지 | 언제 | 만드는 법 | 캡션(필수) |
 |---|---|---|---|
 | **영상 캡처** (T1) | 키 슬라이드, 아키텍처, 데모 화면, 발표 표·수치 | `python tools/capture_frame.py <CODE> MM:SS <name> [--crop w:h:x:y]` | `▶ 영상 MM:SS — 한 줄 설명` |
-| **슬라이드 내보내기** (T1) | 공식 슬라이드(.pptx)가 공개된 세션 — 영상 프레임보다 선명하므로 먼저 쓴다 | `python tools/capture_slide.py <CODE> <N> <name> [--crop w:h:x:y]` · 영상이 삽입된 슬라이드는 `--at <초>` 로 그 영상의 한 장면 | `슬라이드 #N — 슬라이드 제목` |
+| **슬라이드 내보내기** (T1) | 공식 슬라이드(.pptx)가 공개된 세션 — 영상 프레임보다 선명하므로 먼저 쓴다 | `python tools/capture_slide.py <CODE> <N> <name> [--crop w:h:x:y]` · 영상이 삽입된 슬라이드는 `--at <초>` 로 그 영상의 한 장면(영상이 여러 개면 `--video N`) | `슬라이드 #N — 슬라이드 제목` |
 | **공식 블로그 이미지** (T3) | 발표(announcement)를 설명하는 공식 다이어그램·스크린샷 | `python tools/fetch_image.py <CODE> --page <포스트 URL> --image <이미지 URL> --name <name>` | `📰 공식 블로그 · [포스트 제목](URL) (YYYY-MM-DD)` |
 
 - 공식 블로그 = `news.microsoft.com`(Book of News 포함) · `blogs.microsoft.com` · `azure.microsoft.com/…/blog` · `techcommunity.microsoft.com` · `devblogs.microsoft.com` · `github.blog` · `www.microsoft.com/…/blog` (`tools/catalog_lib.py: OFFICIAL_DOMAINS`).

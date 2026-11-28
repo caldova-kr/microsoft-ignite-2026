@@ -74,13 +74,14 @@ def read_slides(path: Path) -> list[dict]:
             slides.append({
                 "number": number,
                 "part": part,
-                "hidden": bool(re.search(r'<p:sld\b[^>]*\bshow="0"', xml)),
+                "hidden": bool(re.search(r'<p:sld\b[^>]*\bshow="(?:0|false)"', xml)),  # xsd:boolean
                 "title": slide_title(xml),
                 "text": paragraphs(xml),
                 "notes": [line for line in note_lines if not line.isdigit()],  # drop the slide-number placeholder
                 "links": sorted({r["target"] for r in related if r["type"] == "hyperlink"}),
-                "videos": sorted({r["target"] for r in related
-                                  if not r["external"] and r["target"].lower().endswith(VIDEO_EXT)}),
+                # A video has two relationships (video + media) to one part: keep each once, in file order.
+                "videos": list(dict.fromkeys(r["target"] for r in related
+                                             if not r["external"] and r["target"].lower().endswith(VIDEO_EXT))),
             })
     return slides
 

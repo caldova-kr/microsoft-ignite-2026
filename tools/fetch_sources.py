@@ -29,7 +29,7 @@ from slides_lib import slides_markdown  # noqa: E402
 
 UA = {"User-Agent": "Mozilla/5.0 (ignite-2026-notes source fetch)"}
 RAW_LINKS = {"video": "onDemand", "transcript": "captionFileLink", "slides": "slideDeck"}
-CUE = re.compile(r"(?:(\d+):)?(\d\d):(\d\d)[.,]\d+ --> ")
+CUE = re.compile(r"(?:(\d+):)?(\d\d):(\d\d)[.,]\d+[ \t]+-->[ \t]+")
 
 
 def get(url: str) -> bytes:

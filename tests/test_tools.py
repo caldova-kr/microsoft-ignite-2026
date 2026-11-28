@@ -286,12 +286,12 @@ def test_exported_note_links_point_at_the_deployed_pages():
     assert "![img](https://example.github.io/notes/sessions/KEY01-x/a.jpg)" in out
 
 
-def deck(tmp_path):
+def deck(tmp_path, hidden_value="0"):
     """Minimal .pptx: presentation order is slide2 then slide1; slide1 is hidden and has notes, a link and a video."""
     import zipfile
 
     def slide(text, hidden=False):
-        show = ' show="0"' if hidden else ""
+        show = f' show="{hidden_value}"' if hidden else ""
         badge = "<p:sp><p:txBody><a:p><a:pPr/><a:r><a:t>Badge</a:t></a:r></a:p></p:txBody></p:sp>"
         title = f'<p:sp><p:nvSpPr><p:nvPr><p:ph type="title"/></p:nvPr></p:nvSpPr><p:txBody><a:p><a:r><a:t>{text}</a:t></a:r></a:p></p:txBody></p:sp>'
         return f'<p:sld{show}><p:spTree>{badge}{title}<p:sp><p:txBody><a:p><a:r><a:t/></a:r><a:r><a:t>A &amp;</a:t></a:r><a:br/><a:r><a:t>B</a:t></a:r></a:p></p:txBody></p:sp></p:spTree></p:sld>'
@@ -324,6 +324,7 @@ def test_slides_are_read_in_presentation_order_with_notes_links_and_videos(tmp_p
     text = slides_markdown(deck(tmp_path))
     assert text.index("## Slide 1 — Shown first\n- Badge") < text.index("## Slide 2 — Hidden one  (hidden)")
     assert "Notes: say this" in text and "Link: https://aka.ms/x?a=1&b=2" in text and "Embedded video: 1" in text
+    assert [s["hidden"] for s in read_slides(deck(tmp_path, hidden_value="false"))] == [False, True]
 
 
 def test_pdf_page_skips_hidden_slides():
@@ -356,6 +357,7 @@ def test_captions_become_timestamped_text():
 
     assert vtt_to_text(VTT) == "[00:00] Good morning. Still the first half minute.\n[01:00] Later on.\n"
     assert vtt_to_text("WEBVTT\n\n01:05.000 --> 01:07.000\nQ&amp;A &gt;&gt; next\n") == "[01:00] Q&A >> next\n"
+    assert vtt_to_text("WEBVTT\n\n00:00:02.000\t-->  00:00:03.000\nTabs and spaces\n") == "[00:00] Tabs and spaces\n"
 
 
 def test_player_caption_track_is_picked_by_language():
@@ -386,3 +388,17 @@ def test_unreadable_transcript_falls_back_to_player_captions(monkeypatch):
     assert fetch_sources.fetch_transcript({"video": "", "transcript": "", "slides": ""}) is None
     pages["https://c/Caption_en-US.vtt"] = b"WEBVTT\n"
     assert fetch_sources.fetch_transcript({"video": "https://v", "transcript": "", "slides": ""}) is None
+
+
+def test_slide_with_several_videos_needs_an_explicit_choice():
+    import pytest
+    from capture_slide import pick_video
+
+    assert pick_video(["ppt/media/a.mp4"], None, 5) == "ppt/media/a.mp4"
+    assert pick_video(["ppt/media/a.mp4", "ppt/media/b.mp4"], 2, 5) == "ppt/media/b.mp4"
+    with pytest.raises(SystemExit, match="2 embedded videos"):
+        pick_video(["ppt/media/a.mp4", "ppt/media/b.mp4"], None, 5)
+    with pytest.raises(SystemExit, match="no embedded video"):
+        pick_video([], None, 5)
+    with pytest.raises(SystemExit, match="1..2"):
+        pick_video(["ppt/media/a.mp4", "ppt/media/b.mp4"], 3, 5)
