@@ -16,7 +16,7 @@ Ignite 2026 세션 하나의 노트를 작성한다. `.github/copilot-instructio
 5. 의도에 맞는 핵심 장면만 이미지로 넣는다. 덱이 있으면 `python tools/capture_slide.py <CODE> <슬라이드 번호> <name>` (영상이 삽입된 슬라이드는 `--at <초>`), 덱이 없거나 데모 화면이면 `python tools/capture_frame.py <CODE> MM:SS <name>` 로 캡처한다. 생성된 이미지를 열어 내용과 ID·이메일 노출을 확인하고, 필요하면 `--crop` 으로 다시 캡처한다. 발표 항목은 Ignite 2026 공식 블로그 포스트의 이미지를 `tools/fetch_image.py` 로 받거나 링크로 건다.
 6. 세션 타입별 권장 조합(Keynote 는 "Keynote · 발표 중심 노트의 구성")으로 참관 후기 문체로 쓴다 — 세션을 옮겨 적지 않고 필요한 정보만 추린다(instructions 7장 "세션 중계가 아니라 정리"). 이미지는 핵심 장면만, 이미지를 글로 설명하지 않고, bullet 마다 근거 표기를 달지 않는다. 발표 항목 표는 근거 열 대신 `설명` 열 + Learn 링크로 쓰고, 기능 흐름 중심 Breakout 은 "Breakout · 기능 흐름 중심 노트의 구성"(흐름 SVG + 표 하나)을 따른다. 모든 주장은 원문으로 확인하고, 세션 밖 정보는 `!!! supplement "세션 외 보충 · <출처>"` 블록에만 둔다. `aiDescription`·초록·사전 지식·다른 이벤트 내용으로 채우지 않는다.
 7. 초안을 기여자에게 보여 주고 피드백(구성·문체·강조점)을 반영한다. 의도 질문에 답을 받지 못한 채 쓴 초안이면 커밋 전에 의도를 다시 묻는다. 반영할 때마다 섹션 간 중복(그림을 다시 설명하는 글 포함)을 점검한다.
-8. `source_basis` 에 실제로 확인한 근거만 적는다. 사람 검토 전이므로 `status: review` 로 둔다.
+8. `source_basis` 에 실제로 확인한 근거만 적는다. Draft PR 단계에서는 `status: review` 로 둔다.
 9. `python tools/build_pages.py`, `python tools/validate.py`, `mkdocs build --strict` 를 통과시킨다.
-10. 브랜치 `note/<CODE>` 에서 커밋하고 `Closes #<N>` 과 정리 의도를 넣은 Draft PR 을 연다.
+10. 브랜치 `note/<CODE>` 에서 커밋하고 `Closes #<N>` 과 정리 의도를 넣은 Draft PR 을 연다. 기여자가 확인해 **Ready for review 로 올릴 때 `status: done`, `last_updated` 를 그날로 바꿔 커밋**한다 — 그대로 두면 머지 후에도 사이트에 "검토 중" 으로 남는다.
 11. 근거가 불충분해 단정하지 못한 항목을 목록으로 보고한다.

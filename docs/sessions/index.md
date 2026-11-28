@@ -20,11 +20,11 @@ Ignite 2026 세션 1426개 중 **3개** 정리됨. 전체 목록과 필터는 [�
 
 | Code | Title | Type | 상태 | Updated |
 |---|---|---|:-:|---|
-| `KEY01` | [Microsoft Ignite opening keynote](KEY01-microsoft-ignite-opening-keynote.md) | Keynote | 🔍 검토 중 | 2026-11-25 |
+| `KEY01` | [Microsoft Ignite opening keynote](KEY01-microsoft-ignite-opening-keynote.md) | Keynote | ✅ 완료 | 2026-11-29 |
 
 ## Agent Platform
 
 | Code | Title | Type | 상태 | Updated |
 |---|---|---|:-:|---|
-| `BRK251` | [Agents in production: Observe, evaluate, and optimize with Foundry](BRK251-agents-production-observe-evaluate-optimize-foundry.md) | Breakout | 🔍 검토 중 | 2026-11-28 |
-| `BRK256` | [Video AI at scale with Microsoft Foundry and fal](BRK256-video-ai-scale-microsoft-foundry-fal.md) | Breakout | 🔍 검토 중 | 2026-11-28 |
+| `BRK251` | [Agents in production: Observe, evaluate, and optimize with Foundry](BRK251-agents-production-observe-evaluate-optimize-foundry.md) | Breakout | ✅ 완료 | 2026-11-29 |
+| `BRK256` | [Video AI at scale with Microsoft Foundry and fal](BRK256-video-ai-scale-microsoft-foundry-fal.md) | Breakout | ✅ 완료 | 2026-11-29 |

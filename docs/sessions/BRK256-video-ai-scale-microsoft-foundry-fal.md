@@ -11,8 +11,8 @@ video_url: "https://medius.microsoft.com/Embed/video-nc/cd099c8b-eee0-43e9-a94b-
 source_basis: ["catalog", "transcript", "video", "slides"]
 description: "fal 이 서빙하는 Kling Video v3 · MiniMax H3 · LTX-2.5 가 Foundry 에 Public Preview — 품질·속도·제어로 갈리는 세 계열의 차이와 고르는 법, US 호스팅 조건."
 tags: ["foundry", "fal", "video-generation", "kling", "minimax-h3", "ltx", "sora-2", "model-selection"]
-status: "review"
-last_updated: 2026-11-28
+status: "done"
+last_updated: 2026-11-29
 ---
 
 # [BRK256] Video AI at scale with Microsoft Foundry and fal

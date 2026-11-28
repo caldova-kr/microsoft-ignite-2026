@@ -7,7 +7,7 @@
   "p": [
    "Agent Platform"
   ],
-  "pr": "review",
+  "pr": "done",
   "s": [
    "Han Che",
    "Divya Chirasani",
@@ -19,7 +19,7 @@
    "slides"
   ],
   "u": "https://ignite.microsoft.com/en-US/sessions/BRK251",
-  "up": "2026-11-28",
+  "up": "2026-11-29",
   "v": "https://medius.microsoft.com/Embed/video-nc/d0c333e4-ff00-44c0-b014-18b69ba12acf",
   "y": "Breakout"
  },
@@ -31,7 +31,7 @@
   "p": [
    "Agent Platform"
   ],
-  "pr": "review",
+  "pr": "done",
   "s": [
    "Alexander Hughes",
    "Naomi Moneypenny",
@@ -45,7 +45,7 @@
    "slides"
   ],
   "u": "https://ignite.microsoft.com/en-US/sessions/BRK256",
-  "up": "2026-11-28",
+  "up": "2026-11-29",
   "v": "https://medius.microsoft.com/Embed/video-nc/cd099c8b-eee0-43e9-a94b-470e9b9c52df",
   "y": "Breakout"
  },
@@ -62,7 +62,7 @@
    "Microsoft IQ",
    "Copilot"
   ],
-  "pr": "review",
+  "pr": "done",
   "s": [
    "Satya Nadella",
    "Judson Althoff"
@@ -73,7 +73,7 @@
    "video"
   ],
   "u": "https://ignite.microsoft.com/en-US/sessions/KEY01",
-  "up": "2026-11-25",
+  "up": "2026-11-29",
   "v": "https://medius.microsoft.com/Embed/video-nc/03c19114-cb6e-42d3-9be3-f8b310426589",
   "y": "Keynote"
  }

@@ -11,8 +11,8 @@ video_url: "https://medius.microsoft.com/Embed/video-nc/d0c333e4-ff00-44c0-b014-
 source_basis: ["catalog", "video", "slides"]
 description: "운영 중인 에이전트를 '돌아가는가' 에서 '맞게 하는가' 로 — Foundry Insights GA, 평가 데이터셋·Agent Optimizer·Fleet 비용 Preview, TCS 토큰 66% 절감 사례."
 tags: ["foundry", "observability", "evaluation", "insights", "agent-optimizer", "finops"]
-status: "review"
-last_updated: 2026-11-28
+status: "done"
+last_updated: 2026-11-29
 ---
 
 # [BRK251] Agents in production: Observe, evaluate, and optimize with Foundry

@@ -12,7 +12,7 @@
 
 - URL: https://caldova-kr.github.io/microsoft-ignite-2026/sessions/BRK251-agents-production-observe-evaluate-optimize-foundry/
 - Session: BRK251 · Breakout · Han Che, Divya Chirasani, Deepraj Khot · https://ignite.microsoft.com/en-US/sessions/BRK251
-- Status: review · Sources: catalog, video, slides · Updated: 2026-11-28
+- Status: done · Sources: catalog, video, slides · Updated: 2026-11-29
 
 ## TL;DR
 
@@ -121,7 +121,7 @@
 
 - URL: https://caldova-kr.github.io/microsoft-ignite-2026/sessions/BRK256-video-ai-scale-microsoft-foundry-fal/
 - Session: BRK256 · Breakout · Alexander Hughes, Naomi Moneypenny, Burkay Gur, Lovis Odin Odin · https://ignite.microsoft.com/en-US/sessions/BRK256
-- Status: review · Sources: catalog, transcript, video, slides · Updated: 2026-11-28
+- Status: done · Sources: catalog, transcript, video, slides · Updated: 2026-11-29
 
 ## TL;DR
 
@@ -280,7 +280,7 @@ fal 의 설명을 모은 표이고, 속도 · 비용 수치는 조건 없이 든
 
 - URL: https://caldova-kr.github.io/microsoft-ignite-2026/sessions/KEY01-microsoft-ignite-opening-keynote/
 - Session: KEY01 · Keynote · Satya Nadella, Judson Althoff · https://ignite.microsoft.com/en-US/sessions/KEY01
-- Status: review · Sources: catalog, transcript, video · Updated: 2026-11-25
+- Status: done · Sources: catalog, transcript, video · Updated: 2026-11-29
 
 ## TL;DR
 
