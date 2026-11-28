@@ -65,11 +65,11 @@ last_updated: 2026-11-20
 
 <!-- ════════ 3. Announcements ════════ -->
 
-## Key announcements  <!-- [해당 시] 세션에서 발표·언급된 것만. 표 + 주요 발표마다 공식 블로그 이미지 또는 발표 슬라이드 캡처 -->
+## Key announcements  <!-- [해당 시] 세션에서 발표·언급된 것만. 기능 흐름 중심 Breakout 은 이 섹션을 지우고 Session summary 표로 합친다. 근거 열은 두지 않는다 — 근거는 작성자가 추적 가능하면 충분 -->
 
-| 항목 | 상태 | 근거 | 비고 |
-|------|------|------|------|
-|      | GA / Public Preview / Private Preview / Limited / Roadmap / 미언급 | 영상 MM:SS · 슬라이드 #N · transcript "…" |  |
+| 항목 | 상태 | 설명 |
+|------|------|------|
+| [항목 이름](Microsoft Learn URL) | GA / Public Preview / Private Preview / Limited / Roadmap | 어떤 수고를 덜어 주는지 → 어떻게 동작하는지 (합니다체 1~3문장) |
 
 <!-- figure: 📰 공식 블로그 이미지 또는 ▶ 발표 슬라이드 캡처 -->
 
