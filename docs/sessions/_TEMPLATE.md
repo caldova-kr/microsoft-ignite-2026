@@ -65,11 +65,11 @@ last_updated: 2026-11-20
 
 <!-- ════════ 3. Announcements ════════ -->
 
-## Key announcements  <!-- [해당 시] 세션에서 발표·언급된 것만. 기능 흐름 중심 Breakout 은 이 섹션을 지우고 Session summary 표로 합친다. 근거 열은 두지 않는다 — 근거는 작성자가 추적 가능하면 충분. 항목 이름 링크는 그 항목을 소개한 Ignite 2026 공식 발표 글, 없으면 Microsoft Learn 문서, 둘 다 없으면(Private Preview · Roadmap 등) 링크 없이 항목 이름만 — URL 을 추측해 만들지 않는다 -->
+## Key announcements  <!-- [해당 시] 세션에서 발표·언급된 것만. 기능 흐름 중심 Breakout 은 이 섹션을 지우고 Session summary 표로 합친다. 근거 열은 두지 않는다 — 항목 이름의 공식 링크나 원문 위치로 독자가 따라갈 수 있게. 항목 이름 링크는 그 항목을 소개한 Ignite 2026 공식 발표 글, 없으면 Microsoft Learn 문서, 둘 다 없으면(Private Preview · Roadmap 등) 설명 끝에 (영상 MM:SS) · (슬라이드 #N) — URL 을 추측해 만들지 않는다 -->
 
 | 항목 | 상태 | 설명 |
 |------|------|------|
-| [항목 이름](공식 발표 글 또는 Microsoft Learn URL) · 둘 다 없으면 항목 이름만 | GA / Public Preview / Private Preview / Limited / Roadmap / 미언급 | 어떤 수고를 덜어 주는지 → 어떻게 동작하는지 (합니다체 1~3문장) |
+| [항목 이름](공식 발표 글 또는 Microsoft Learn URL) · 둘 다 없으면 항목 이름만 (설명 끝에 원문 위치) | GA / Public Preview / Private Preview / Limited / Roadmap / 미언급 | 어떤 수고를 덜어 주는지 → 어떻게 동작하는지 (합니다체 1~3문장) |
 
 <!-- figure: 📰 공식 블로그 이미지 또는 ▶ 발표 슬라이드 캡처 -->
 
