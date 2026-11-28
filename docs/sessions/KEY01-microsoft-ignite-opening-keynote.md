@@ -11,8 +11,8 @@ video_url: "https://medius.microsoft.com/Embed/video-nc/03c19114-cb6e-42d3-9be3-
 source_basis: ["catalog", "transcript", "video"]
 description: "Ignite 2026 오프닝 키노트를 Human Ambition · Intelligence · Trust 세 의제로 정리 — Decision 1.1·HorizonDB·Perception GA, Foundry 지속 개선 루프, Agent 365 비용 통제."
 tags: ["azure", "foundry", "decision-model", "github", "horizondb", "perception", "agent-365", "finops"]
-status: "review"
-last_updated: 2026-11-25
+status: "done"
+last_updated: 2026-11-29
 ---
 
 # [KEY01] Microsoft Ignite opening keynote

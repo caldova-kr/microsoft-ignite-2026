@@ -156,7 +156,7 @@ video_url: ""             # ┘
 source_basis: []          # 실제로 확인한 근거: catalog | video | transcript | slides | resources
 description: ""           # 한 문장 요약, 160자 이내, 본문(T1) 근거만 — meta description·llms.txt·Agent 개요. review/done 필수
 tags: []                  # (선택) 우리 분류, 소문자-하이픈
-status: draft             # draft | review | done
+status: draft             # draft(작성 중) → review(Draft PR) → done(Ready for review 로 올릴 때 바꿈. 그대로 두면 머지 후에도 "검토 중")
 last_updated: YYYY-MM-DD
 ```
 
