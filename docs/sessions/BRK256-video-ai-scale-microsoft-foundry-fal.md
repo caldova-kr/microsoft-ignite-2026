@@ -76,7 +76,7 @@ fal 의 설명을 모은 표이고, 속도 · 비용 수치는 조건 없이 든
     | 모델 | 입력 방식 | 배포 유형 | 해상도 | 길이(초) | 가격(USD / 영상 1초) |
     |---|---|---|---|---|---|
     | Kling v3 Pro | text-to-video, image-to-video | US Data Zone | API 스키마에 명시 없음 | 3~15 | $0.1232 (audio off) · $0.1848 (audio on) · $0.2156 (audio + voice control) |
-    | LTX-2.5 Fast | text-to-video, image-to-video | Global Standard | 720p · 1080p · 1440p · 2160p | 6~20 | $0.09 (720p) · $0.13 (1080p) · $0.19 (1440p) · $0.30 (4K) |
+    | LTX-2.5 Fast | text-to-video, image-to-video | Global Standard | 720p · 1080p · 1440p · 2160p | 6~20 (20초까지는 720p · 1080p 의 24 · 25 FPS 만, 그 밖은 10초까지) | $0.09 (720p) · $0.13 (1080p) · $0.19 (1440p) · $0.30 (4K) |
     | LTX-2.5 Pro | text-to-video, image-to-video | Global Standard | 720p · 1080p | 6 · 8 · 10 | $0.12 (720p) · $0.17 (1080p) |
     | MiniMax H3 Max | text-to-video, image-to-video, reference-to-video | Global Standard | 480P · 768P · 1080P | 0.92~15 | $0.05 (480p) · $0.08 (768p) · $0.16 (1080p) |
     | MiniMax H3 Max Turbo | text-to-video, image-to-video | Global Standard | 480P · 768P · 1080P | 0.92~15 | $0.025 (480p) · $0.04 (768p) · $0.08 (1080p) |
@@ -131,7 +131,7 @@ fal 의 설명을 모은 표이고, 속도 · 비용 수치는 조건 없이 든
     | 쿼터 | 분당 요청 수 free tier 0, Tier 1~4 는 2, Tier 5~7 은 40 | Learn |
     | 모델 수명 | 버전 2026-11-02, lifecycle Preview, 추론 종료 예정일 2027-02-17 | 작성자 조회 |
 
-    **판단 (적용 아이디어)** — 한국 고객도 쓸 수는 있지만, 프롬프트 · 참조 이미지 · 결과 영상이 국외에서 fal 약관으로 처리됩니다. 인물 사진이나 미공개 제품 이미지를 넣는 경우, 금융 · 공공 고객은 법무 · 보안 검토가 먼저입니다.
+    **판단 (적용 아이디어)** — 한국 계약을 막는 문서상 제한은 없지만, 한국 EA 구독에서 실제로 배포되는지부터 확인해야 합니다. 배포가 되더라도 프롬프트 · 참조 이미지 · 결과 영상이 국외에서 fal 약관으로 처리되므로, 인물 사진이나 미공개 제품 이미지를 넣는 경우와 금융 · 공공 고객은 법무 · 보안 검토가 먼저입니다.
 
 ## Customer scenarios
 
