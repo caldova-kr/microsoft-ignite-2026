@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 604" role="img" aria-labelledby="brk251-flow-title brk251-flow-desc" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <title id="brk251-flow-title">Foundry 에이전트 관측 · 개선 흐름</title>
+  <desc id="brk251-flow-desc">에이전트가 남긴 trace 를 Build 단계의 평가, Production 단계의 Insights · Annotations · Agent Optimizer, Scale 단계의 Fleet overview 가 함께 읽고, Optimizer 가 만든 후보를 Evaluation 이 채점하고, 그 결과를 보고 사람이 승격하면 새 에이전트 버전으로 돌아가는 루프.</desc>
+  <defs>
+    <marker id="brk251-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#566578"/>
+    </marker>
+    <marker id="brk251-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1759c0"/>
+    </marker>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="999" height="603" rx="12" fill="#ffffff" stroke="#dbe2eb"/>
+
+  <!-- zones -->
+  <rect x="40" y="204" width="328" height="296" rx="10" fill="#eef2f7" stroke="#dbe2eb"/>
+  <text x="56" y="488" fill="#566578" font-size="12" font-weight="700" letter-spacing="0.06em">① BUILD · 기준 세우기</text>
+  <rect x="384" y="204" width="384" height="296" rx="10" fill="#eef2f7" stroke="#dbe2eb"/>
+  <text x="400" y="488" fill="#566578" font-size="12" font-weight="700" letter-spacing="0.06em">② PRODUCTION · 찾고 고치기</text>
+  <rect x="784" y="204" width="176" height="296" rx="10" fill="#eef2f7" stroke="#dbe2eb"/>
+  <text x="800" y="488" fill="#566578" font-size="12" font-weight="700" letter-spacing="0.06em">③ SCALE · 전체 보기</text>
+
+  <!-- connectors (drawn before boxes) -->
+  <line x1="148" y1="88" x2="148" y2="122" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
+  <line x1="204" y1="168" x2="204" y2="386" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
+  <line x1="116" y1="308" x2="116" y2="386" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
+  <line x1="292" y1="308" x2="292" y2="386" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
+  <line x1="484" y1="168" x2="484" y2="242" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
+  <line x1="668" y1="168" x2="668" y2="242" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
+  <line x1="872" y1="168" x2="872" y2="242" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
+  <line x1="484" y1="308" x2="484" y2="386" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
+  <line x1="668" y1="308" x2="668" y2="386" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
+  <line x1="398" y1="424" x2="354" y2="424" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
+  <rect x="358" y="398" width="36" height="16" rx="3" fill="#ffffff"/>
+  <text x="376" y="410" fill="#182230" font-size="11" text-anchor="middle">채점</text>
+
+  <!-- improvement loop -->
+  <path d="M 300,460 V 524 Q 300,532 292,532 H 32 Q 24,532 24,524 V 66 Q 24,58 32,58 H 54" fill="none" stroke="#1759c0" stroke-width="2" marker-end="url(#brk251-arrow-accent)"/>
+  <rect x="60" y="508" width="176" height="16" rx="3" fill="#ffffff"/>
+  <text x="148" y="520" fill="#1759c0" font-size="11.5" font-weight="700" text-anchor="middle">새 버전 승격 · 사람이 결정</text>
+
+  <!-- agent -->
+  <rect x="56" y="28" width="184" height="60" rx="8" fill="#ffffff" stroke="#182230" stroke-width="1.4"/>
+  <text x="148" y="54" fill="#182230" font-size="14" font-weight="700" text-anchor="middle">에이전트 (버전 N)</text>
+  <text x="148" y="74" fill="#566578" font-size="11.5" text-anchor="middle">Foundry 호스팅 · 외부 OTel</text>
+
+  <!-- traces bus -->
+  <rect x="56" y="124" width="888" height="44" rx="8" fill="#e8eef8" stroke="#c9d3df" stroke-width="1.2"/>
+  <text x="76" y="151" fill="#182230" font-size="14" font-weight="700">Traces</text>
+  <text x="136" y="151" fill="#566578" font-size="11.5">Application Insights</text>
+  <rect x="880" y="138" width="48" height="16" rx="3" fill="#e6f4ea" stroke="#2e7d32"/>
+  <text x="904" y="150" fill="#2e7d32" font-size="9.5" font-weight="700" text-anchor="middle">GA</text>
+
+  <!-- build -->
+  <rect x="56" y="244" width="120" height="64" rx="8" fill="#ffffff" stroke="#c9d3df" stroke-width="1.2"/>
+  <rect x="66" y="252" width="56" height="16" rx="3" fill="#ffffff" stroke="#8a94a6"/>
+  <text x="94" y="264" fill="#566578" font-size="9.5" font-weight="700" text-anchor="middle">PREVIEW</text>
+  <text x="66" y="286" fill="#182230" font-size="14" font-weight="700">Datasets</text>
+  <text x="66" y="302" fill="#566578" font-size="11">golden · 합성</text>
+
+  <rect x="216" y="244" width="136" height="64" rx="8" fill="#ffffff" stroke="#c9d3df" stroke-width="1.2"/>
+  <text x="226" y="266" fill="#182230" font-size="14" font-weight="700">Evaluators</text>
+  <text x="226" y="281" fill="#566578" font-size="10.5">built-in · rubric</text>
+  <rect x="226" y="289" width="48" height="14" rx="3" fill="#ffffff" stroke="#8a94a6"/>
+  <text x="250" y="299.5" fill="#566578" font-size="8.5" font-weight="700" text-anchor="middle">PREVIEW</text>
+  <text x="279" y="300" fill="#566578" font-size="10">safety · decision</text>
+
+  <rect x="56" y="388" width="296" height="72" rx="8" fill="#ffffff" stroke="#c9d3df" stroke-width="1.2"/>
+  <text x="72" y="418" fill="#182230" font-size="14" font-weight="700">Evaluation</text>
+  <text x="72" y="440" fill="#566578" font-size="11.5">오프라인 데이터셋 · 라이브 트래픽</text>
+
+  <!-- production -->
+  <rect x="400" y="244" width="168" height="64" rx="8" fill="#eaf1fb" stroke="#1759c0" stroke-width="1.8"/>
+  <rect x="410" y="252" width="40" height="16" rx="3" fill="#e6f4ea" stroke="#2e7d32"/>
+  <text x="430" y="264" fill="#2e7d32" font-size="9.5" font-weight="700" text-anchor="middle">GA</text>
+  <text x="410" y="286" fill="#182230" font-size="14" font-weight="700">Insights</text>
+  <text x="410" y="302" fill="#566578" font-size="11">반복 문제 · 근거 trace</text>
+
+  <rect x="584" y="244" width="168" height="64" rx="8" fill="#ffffff" stroke="#c9d3df" stroke-width="1.2"/>
+  <rect x="594" y="252" width="56" height="16" rx="3" fill="#ffffff" stroke="#8a94a6"/>
+  <text x="622" y="264" fill="#566578" font-size="9.5" font-weight="700" text-anchor="middle">PREVIEW</text>
+  <text x="594" y="286" fill="#182230" font-size="14" font-weight="700">Annotations</text>
+  <text x="594" y="302" fill="#566578" font-size="11">전문가 피드백</text>
+
+  <rect x="400" y="388" width="352" height="72" rx="8" fill="#eaf1fb" stroke="#1759c0" stroke-width="1.8"/>
+  <rect x="410" y="396" width="56" height="16" rx="3" fill="#ffffff" stroke="#8a94a6"/>
+  <text x="438" y="408" fill="#566578" font-size="9.5" font-weight="700" text-anchor="middle">PREVIEW</text>
+  <text x="410" y="432" fill="#182230" font-size="14" font-weight="700">Agent Optimizer</text>
+  <text x="410" y="450" fill="#566578" font-size="11">insight 수정 · skill 학습 · 비용 최적화 → 후보</text>
+
+  <!-- scale -->
+  <rect x="800" y="244" width="144" height="88" rx="8" fill="#ffffff" stroke="#c9d3df" stroke-width="1.2"/>
+  <rect x="810" y="252" width="56" height="16" rx="3" fill="#ffffff" stroke="#8a94a6"/>
+  <text x="838" y="264" fill="#566578" font-size="9.5" font-weight="700" text-anchor="middle">PREVIEW</text>
+  <text x="810" y="286" fill="#182230" font-size="14" font-weight="700">Fleet overview</text>
+  <text x="810" y="304" fill="#566578" font-size="11">health · quality</text>
+  <text x="810" y="320" fill="#566578" font-size="11">cost · 예산</text>
+
+  <!-- legend -->
+  <line x1="40" y1="556" x2="960" y2="556" stroke="#dbe2eb" stroke-width="1"/>
+  <text x="40" y="584" fill="#566578" font-size="10" font-weight="700" letter-spacing="0.14em">LEGEND</text>
+  <rect x="120" y="573" width="40" height="16" rx="3" fill="#e6f4ea" stroke="#2e7d32"/>
+  <text x="140" y="585" fill="#2e7d32" font-size="9.5" font-weight="700" text-anchor="middle">GA</text>
+  <text x="168" y="585" fill="#566578" font-size="11">이번에 정식 출시</text>
+  <rect x="280" y="573" width="56" height="16" rx="3" fill="#ffffff" stroke="#8a94a6"/>
+  <text x="308" y="585" fill="#566578" font-size="9.5" font-weight="700" text-anchor="middle">PREVIEW</text>
+  <text x="344" y="585" fill="#566578" font-size="11">이번에 Preview</text>
+  <line x1="460" y1="581" x2="496" y2="581" stroke="#566578" stroke-width="1.4" marker-end="url(#brk251-arrow)"/>
+  <text x="504" y="585" fill="#566578" font-size="11">trace · 평가 데이터 흐름</text>
+  <line x1="660" y1="581" x2="696" y2="581" stroke="#1759c0" stroke-width="2" marker-end="url(#brk251-arrow-accent)"/>
+  <text x="704" y="585" fill="#566578" font-size="11">개선 루프</text>
+</svg>

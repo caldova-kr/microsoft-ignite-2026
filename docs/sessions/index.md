@@ -12,7 +12,7 @@ hide:
 
 # 세션 노트
 
-Ignite 2026 세션 1426개 중 **2개** 정리됨. 전체 목록과 필터는 [세션 카탈로그](../catalog/index.md)에서.
+Ignite 2026 세션 1426개 중 **3개** 정리됨. 전체 목록과 필터는 [세션 카탈로그](../catalog/index.md)에서.
 
 </div>
 
@@ -26,4 +26,5 @@ Ignite 2026 세션 1426개 중 **2개** 정리됨. 전체 목록과 필터는 [�
 
 | Code | Title | Type | 상태 | Updated |
 |---|---|---|:-:|---|
+| `BRK251` | [Agents in production: Observe, evaluate, and optimize with Foundry](BRK251-agents-production-observe-evaluate-optimize-foundry.md) | Breakout | 🔍 검토 중 | 2026-11-28 |
 | `BRK256` | [Video AI at scale with Microsoft Foundry and fal](BRK256-video-ai-scale-microsoft-foundry-fal.md) | Breakout | 🔍 검토 중 | 2026-11-28 |

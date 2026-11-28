@@ -29,7 +29,7 @@
 7. **수치·벤치마크·고객 사례**는 세션에서 말한 수치 그대로, 조건(비교 대상·환경)과 함께 쓴다. 단위 변환·반올림·재계산 금지.
 8. **확신이 없으면 단정하지 말고** `Caveats & open questions` 에 질문으로 남긴다.
 9. 인용은 짧게, 영어 원문 + 발화자 표기 후 한국어로 설명한다. 트랜스크립트·슬라이드·영상 **원본 파일**은 커밋하지 않는다(`.cache/` 는 git-ignored). 슬라이드 · 영상 **캡처 이미지**와 공식 블로그 **이미지**는 2장 규칙에 따라 커밋한다.
-10. 근거 표기: `Key announcements` 표의 `근거` 열에 발화자(`Satya Nadella "…"`)·`키노트 슬라이드` 처럼 남긴다. 본문에는 수치·인용처럼 꼭 필요한 곳에만 짧게 두고, bullet 마다 `(transcript: …)`·`(영상 MM:SS)` 를 붙이지 않는다 — 읽는 흐름이 우선이다(근거 파일·시점은 작성자가 추적 가능하면 충분).
+10. 근거 표기: 근거를 문장마다 나열하지 않는다. 발표 항목의 설명 · 상태는 **세션 원문(T1)으로 확인한 것만** 쓰고(작성자가 원문 위치를 추적할 수 있어야 함), 항목 이름의 링크는 근거가 아니라 **더 알아보기용 참고 자료**다. 세션 원문은 노트의 영상 · 슬라이드 링크(`Resources`)와 슬라이드 캡션으로 독자가 확인할 수 있다. 본문에는 수치·인용처럼 꼭 필요한 곳에만 짧게 두고, bullet 마다 `(transcript: …)`·`(영상 MM:SS)` 를 붙이지 않는다 — 읽는 흐름이 우선이다. 발표 항목 표에는 `슬라이드 #N` 같은 근거 열 대신 **`설명` 열**(무엇인지 → 어떻게 쓰는지, 합니다체 1~3문장)을 두고, 항목 이름에는 링크를 건다 — ① 그 항목을 소개한 Ignite 2026 공식 발표 글, ② 없으면 Microsoft Learn 문서, ③ 둘 다 없으면 참고 링크 대신 **설명 끝에 세션 원문 위치를 짧게** 남긴다(예: `(영상 23:40)` · `(슬라이드 #12)`). URL 은 추측하지 않고, 실제로 열리는지 확인한다. 여러 기능을 한 글에서 함께 소개해 항목별 글이 없으면 Learn 문서로 연결하고, 공통 발표 글은 `Resources` 에 둔다. Keynote 처럼 발화자의 말이 상태의 근거로 의미가 있을 때만 `Satya Nadella "…"` 같은 근거 열을 둘 수 있다.
 
 ## 2. 이미지 — 슬라이드 · 영상 캡처 + 공식 블로그 이미지
 
@@ -88,6 +88,8 @@
 ### 작성 전 의도 확인 (에이전트 필수)
 
 같은 세션도 누가·누구에게 공유하느냐에 따라 정리할 내용이 다르다. 에이전트는 원문을 받은 뒤 **본문을 쓰기 전에 기여자에게 정리 의도를 먼저 묻고**, 답을 기준으로 범위와 구성을 정한다.
+
+- **autopilot(자율) 모드로 시작했다면 먼저 interactive 모드로 바꾸자고 제안한다.** 자율 모드에서는 의도 질문에 답을 받지 못하고 가정으로 초안을 쓰게 된다. 그렇게 쓴 초안이 있으면 **커밋 · PR 전에 의도를 다시 묻고** 답에 맞춰 고친다.
 
 - 물어볼 것 (한 번에 묶어서, 선택지 + 자유 입력으로):
   1. **관점·독자** — 예: Azure AI & Apps, 보안, 데이터, 개발자 생산성 / 고객 공유용, 팀 내부 공유용
@@ -181,7 +183,7 @@ last_updated: YYYY-MM-DD
 | session_type (카탈로그) | 핵심 섹션 |
 |---|---|
 | `Keynote` | TL;DR(이벤트 핵심 의제) · **Top highlights**(제품 소개 + 의미) · Customer scenarios(사례) · **Key announcements**(GA / Preview 구분) · Resources |
-| `Breakout`, `Pre-recorded` | TL;DR · Why it matters · Customer scenarios · Key announcements · **Session summary** · Architecture · Demo highlights · Code & samples · Caveats · Resources |
+| `Breakout`, `Pre-recorded` | TL;DR · Why it matters · Customer scenarios · Key announcements · **Session summary** · Architecture · Demo highlights · Code & samples · Caveats · Resources (기능 흐름 중심이면 Key announcements 를 Session summary 에 합친다 — 아래 "Breakout · 기능 흐름 중심 노트의 구성") |
 | `Theater`, `Lightning Talk`, `Broadcast Stage` | TL;DR · **Top highlights** · Why it matters · Demo highlights · Resources |
 | `Table Talk`, `Innovation Session` | TL;DR · **Top highlights**(논의 포인트) · Why it matters · Caveats · Resources |
 | `Lab`, `Digital Lab` | TL;DR · Why it matters · Session summary · **Code & samples** · Caveats · Resources |
@@ -196,6 +198,18 @@ Keynote 처럼 여러 제품이 발표되는 세션은 시간순 요약이 아�
 4. **상태는 눈에 띄게, 섞지 않게** — 제품마다 `!!! ga` / `!!! preview` 콜아웃을 두고, 세션에서 상태를 말하지 않은 것은 제품 소개 안에 "상태 미언급: …" 한 줄로만 적는다. `Key announcements` 는 상태가 확인된 것만 `### GA` · `### Preview` 표로 나누고(상태 미언급 표는 두지 않음), **한 제품은 한 행만** 둔다. 블로그에만 나온 상태는 `supplement` 블록에. Keynote 노트는 `Caveats & open questions` 를 두지 않아도 된다 — 데모 수치의 조건 같은 주의점은 해당 사례 안에 한 줄로 적는다.
 5. **제품마다 공식 소개 글 링크** — 세션 화면의 aka.ms 링크를 따라가거나 Ignite 2026 공식 포스트를 찾아 `supplement` 블록과 `Resources` 의 "제품별 공식 소개 글" 목록에 건다. 세부 스펙·가격·리전은 본문에 늘어놓지 말고 링크로 넘긴다.
 6. 후속 세션은 각자의 노트에서 다루므로 Keynote 노트에는 `Related sessions` 를 넣지 않아도 된다.
+
+### Breakout · 기능 흐름 중심 노트의 구성
+
+플랫폼 기능 여러 개가 하나의 흐름(예: Build → Production → Scale, 개선 루프)으로 엮여 발표되는 Breakout 은 **흐름 그림 하나와 표 하나**로 정리한다 (예: `docs/sessions/BRK251-*.md`).
+
+1. **`Why it matters` = 문제 제기 슬라이드로 흐름 잇기** — 세션이 앞부분에서 보여 준 업계 현황 · 문제 정의 슬라이드(예: "Is it up?" → "Is it right?")를 이미지와 한두 문장으로 이어 붙여, 왜 이 기능들이 필요한지 보여 준다. 인용한 조사의 출처 · 시점은 세션이 밝힌 그대로 적는다.
+2. **`Key announcements` 를 따로 두지 않고 `Session summary` 에 합친다** — 발표 항목과 요약이 같은 기능을 두 번 설명하게 되기 때문이다. `Session summary` 는 맨 위에 **흐름 SVG**(7장 다이어그램 규칙), 그 아래 **표 하나**로 구성한다.
+   - 표: `항목 | 상태 | 설명`. 항목 이름의 링크는 규칙 10 순서를 따르고, 상태는 GA / Preview, 설명은 "어떤 수고를 덜어 주는지 → 어떻게 동작하는지 → 설정 포인트" 를 합니다체로 이어 쓴다.
+   - 순서는 그림의 흐름을 따른다. 한 제품의 새 기능 여러 개는 **상태가 같을 때만** 한 행으로 묶는다(예: Agent Optimizer 의 세 기능, 모두 Preview). 상태가 다른 기능(GA 와 Preview 가 섞임)은 행을 나눈다.
+   - `Demo highlights` 의 패턴(예: custom category, 여러 문제를 한 번에 고치기)은 표에 다시 쓰지 않는다.
+3. **`Customer scenarios` = 고객을 모르는 사람도 따라갈 수 있게** — **누구인지**(세션이 소개한 조직명과, 세션이 밝힌 Microsoft 와의 관계 — 7장 공개 범위 규칙. 사례의 솔루션이 Microsoft 제품이 아니면 분명히 밝힌다) → **무엇을 만들었나**(솔루션, 동작 방식) → **대상 · 문제** → **Foundry 등을 어떻게 적용했나** → **결과** 순서로 쓴다. 고객 사례 슬라이드가 있으면 이미지로 보여 주고, 글에는 슬라이드에 없는 것(발표자가 말로 덧붙인 조건 · 주기 · 판단)만 남긴다. 우리 해석은 *적용 아이디어* 로 표시한다.
+4. 세션이 짧게 언급한 기능(예: decision model 을 judge 로)은 기여자가 강조를 원하지 않으면 세션 비중대로 표의 한 행으로만 둔다.
 
 ### Callouts
 
@@ -215,8 +229,10 @@ Keynote 처럼 여러 제품이 발표되는 세션은 시간순 요약이 아�
 - 제목·소제목은 명사구. 결론을 각 절 첫 문장에 둔다.
 - 마케팅 형용사 금지 (revolutionary, game-changing, seamless, cutting-edge 등 — validate.py 경고).
 - 링크는 실재하는 URL 만: 세션 페이지 `https://ignite.microsoft.com/en-US/sessions/<CODE>`, 카탈로그의 `video`/`slides`/`resources`, Book of News, 세션 화면에 나온 aka.ms 링크가 가리키는 공식 포스트, Ignite 2026 공식 블로그, Microsoft Learn. URL·포스트 제목을 추측해 만들지 않는다.
-- 외부 공개 사이트다: 고객명·내부 정보·NDA 내용·발표자 연락처를 넣지 않는다.
-- 구조 설명은 직접 그리기보다 **세션 슬라이드 캡처**를 먼저 쓴다. 직접 그린 다이어그램은 세션이 보여준 구조만, 캡션에 근거 시점(`영상 MM:SS`)을 단다.
+- 외부 공개 사이트다: 내부 정보·NDA 내용·발표자 연락처를 넣지 않는다. 고객은 **세션이 공개적으로 소개한 조직명만** 쓴다(예: 무대에서 사례를 발표한 회사). 세션에 나오지 않은 고객명, 개인 고객의 이름, 세션이 밝히지 않은 계약 · 관계 정보는 넣지 않는다.
+- 구조 설명은 직접 그리기보다 **세션 슬라이드 캡처**를 먼저 쓴다. 직접 그린 다이어그램은 세션이 보여준 구조만, 캡션에 근거(`영상 MM:SS` 또는 `슬라이드 #7 · #17 을 바탕으로 다시 그린 흐름`)를 단다.
+  - 노트의 SVG 는 노트 폴더에 두고 `![…](…svg)` 로 넣는다. `<img>` 로 들어가 사이트 CSS 가 적용되지 않으므로, 색 · 글꼴을 SVG 안에 직접 쓰고 흰 배경 rect 를 둔다. 색은 사이트 다이어그램(`ar-*`) 팔레트를 쓴다: 글자 `#182230`, 보조 `#566578`, 강조 `#1759c0`, 영역 `#eef2f7`, 테두리 `#c9d3df`.
+  - 노드에는 제품 이름과 GA / Preview 표시만 두고 글자를 최소로 한다. `rsvg-convert -w 1600 -o /tmp/x.png <svg>` 로 렌더해 화살표가 글자 · 상자를 가리지 않는지 확인한다(예: `docs/sessions/BRK251-*/foundry-improvement-flow.svg`).
 
 ### 세션 중계가 아니라 정리
 
@@ -230,6 +246,8 @@ Keynote 처럼 여러 제품이 발표되는 세션은 시간순 요약이 아�
 - **평가 · 최상급 표현 금지.** "강력한", "가장 싼" 처럼 확인하지 않은 평가나, 표에서 읽히는 것을 굳이 짚는 문장은 쓰지 않는다.
 - **현재 제공 상태를 확인해 가볍게 덧붙인다.** 발표가 말한 제공 모델 · 변형, 가격, 리전, 상태는 Microsoft Learn · 공식 블로그 · 실제 제품 조회로 확인한다. 다르면 `supplement` 블록에 "현재 Foundry · Microsoft Learn 에서 확인했을 때는 …" 정도로 확인 일자와 함께 적는다. 별도 번호 섹션이나 "발표 vs 실제" 대비 표로 부각하지 않는다.
 - **확인하지 않은 것은 단정하지 않는다.** "다른 대안은 없다" 같은 주장은 쓰기 전에 확인하고, 직접 조회한 결과는 조회 조건(구독 · 리전 · 일자)과 함께 `supplement` 블록에 적는다.
+- **출처끼리 다르면 고르지 않는다.** Learn 과 공식 블로그가 서로 다르게 말하면(예: 어떤 모델을 judge 로 쓸 수 있는지) 어느 한쪽으로 단정하지 않는다. 둘 다 확인되는 것만 남기거나 그 내용을 뺀다. 기여자가 제품에서 직접 확인한 상태는 `작성자 확인` 으로 표기한다.
+- **이미지 · 다이어그램을 글로 다시 설명하지 않는다.** 그림 바로 아래에 그림의 흐름을 문장으로 옮기지 않는다. 그림과 함께 두는 표의 `항목` · `상태` 는 그림의 노드와 대응시키되, `설명` 칸에서 그림의 흐름(무엇이 무엇으로 이어지는지)을 다시 풀지 않는다. 그림에 없는 것(설정 포인트, 조건, 수치의 맥락)만 글로 남긴다.
 
 ## 8. Validation (CI: `.github/workflows/deploy-site.yml`)
 

@@ -6,7 +6,7 @@
 
 온라인으로 볼 수 있음 = 온라인 송출 · 온디맨드 영상 있음 · 녹화 예정 중 하나. 현장 전용이면서 녹화하지 않는 492개는 원문 자료가 없어 정리 대상이 아니므로 맨 아래에 접어 둡니다.
 
-진행: ✅ 완료 0 · 🔍 검토 중 2 · ✍️ 작성 중 0 · ⏸️ 보류 0 · ➖ 제외 1 · · 미검토 931
+진행: ✅ 완료 0 · 🔍 검토 중 3 · ✍️ 작성 중 0 · ⏸️ 보류 0 · ➖ 제외 1 · · 미검토 930
 
 미디어: ▶ 온디맨드 영상 · 🖼 슬라이드 · 📝 트랜스크립트 (`tools/fetch_sources.py <CODE>` 로 받기)
 
@@ -90,7 +90,7 @@
 | · | [BRK248](https://ignite.microsoft.com/en-US/sessions/BRK248) | Trust at scale: Governance lessons from Microsoft | Agent Platform | 200 | Governance, Secure AI, Get Ready for AI | [▶](https://medius.microsoft.com/Embed/video-nc/ce52d49f-3e12-48cc-8808-c7b3a4f6ec8a) [🖼](https://medius.microsoft.com/video/asset/PPT/ce52d49f-3e12-48cc-8808-c7b3a4f6ec8a) 📝 |
 | · | [BRK249](https://ignite.microsoft.com/en-US/sessions/BRK249) | From traces to better agents: The Foundry improvement loop | Agent Platform | 200 | Microsoft Foundry, Observability and evaluation | [▶](https://medius.microsoft.com/Embed/video-nc/25394d02-90b5-4b9c-a642-2ee6e7b042a6) [🖼](https://medius.microsoft.com/video/asset/PPT/25394d02-90b5-4b9c-a642-2ee6e7b042a6) 📝 |
 | · | [BRK250](https://ignite.microsoft.com/en-US/sessions/BRK250) | Govern AI everywhere: From open frameworks to enterprise control | Agent Platform | 300 | Microsoft Foundry, Governance | [▶](https://medius.microsoft.com/Embed/video-nc/353389c8-c4d5-46a4-b99c-779e377bcc28) [🖼](https://medius.microsoft.com/video/asset/PPT/353389c8-c4d5-46a4-b99c-779e377bcc28) 📝 |
-| · | [BRK251](https://ignite.microsoft.com/en-US/sessions/BRK251) | Agents in production: Observe, evaluate, and optimize with Foundry | Agent Platform | 100 | Microsoft Foundry, Observability and evaluation | [▶](https://medius.microsoft.com/Embed/video-nc/d0c333e4-ff00-44c0-b014-18b69ba12acf) [🖼](https://medius.microsoft.com/video/asset/PPT/d0c333e4-ff00-44c0-b014-18b69ba12acf) 📝 |
+| 🔍 | [BRK251](https://ignite.microsoft.com/en-US/sessions/BRK251) | [Agents in production: Observe, evaluate, and optimize with Foundry](../docs/sessions/BRK251-agents-production-observe-evaluate-optimize-foundry.md) | Agent Platform | 100 | Microsoft Foundry, Observability and evaluation | [▶](https://medius.microsoft.com/Embed/video-nc/d0c333e4-ff00-44c0-b014-18b69ba12acf) [🖼](https://medius.microsoft.com/video/asset/PPT/d0c333e4-ff00-44c0-b014-18b69ba12acf) 📝 |
 | · | [BRK251O](https://ignite.microsoft.com/en-US/sessions/BRK251O) | Agents in production: Observe, evaluate, and optimize with Foundry (Overflow Viewing) | Agent Platform | 100 | Microsoft Foundry, Observability and evaluation |  |
 | · | [BRK252](https://ignite.microsoft.com/en-US/sessions/BRK252) | Turn your data into AI advantage with Training in Microsoft Foundry | Agent Platform | 200 | Microsoft Foundry, Customer, Model customization | [▶](https://medius.microsoft.com/Embed/video-nc/6562c56a-541a-4cd0-9446-59046e0d658a) [🖼](https://medius.microsoft.com/video/asset/PPT/6562c56a-541a-4cd0-9446-59046e0d658a) 📝 |
 | · | [BRK253](https://ignite.microsoft.com/en-US/sessions/BRK253) | Operate AI at enterprise scale with Microsoft Foundry | Agent Platform | 300 | Microsoft Foundry, Governance, Microsoft Agent 365 | [▶](https://medius.microsoft.com/Embed/video-nc/a37af8ed-5abf-410c-a590-33b43d1ed912) [🖼](https://medius.microsoft.com/video/asset/PPT/a37af8ed-5abf-410c-a590-33b43d1ed912) 📝 |
